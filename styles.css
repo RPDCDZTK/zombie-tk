@@ -745,4 +745,91 @@ footer p{margin:5px 0}
         box-shadow:-20px 0 60px rgba(0,0,0,.65);
         transition:transform .35s cubic-bezier(.2,.8,.25,1);
     }
-    
+    .menu a{
+        display:block;width:100%;text-align:center;
+        padding:9px 10px;font-size:.92em;border-radius:6px;
+        background:rgba(139,0,0,.12);
+    }
+    .menu a:hover{transform:none}
+
+    .barra-busqueda{padding:8px 14px;gap:10px}
+    .atajo{display:none}
+
+    .btn-nav{width:38px;height:38px;font-size:1.25em}
+    .btn-prev{left:2px}
+    .btn-next{right:2px}
+
+    .grid-alfabeto{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:13px}
+    .tile-letra{min-height:132px;padding:16px 24px}
+    .tile-letra .rango{font-size:2em}
+}
+
+/* ============ MÓVILES (≤768px) ============ */
+@media (max-width:768px){
+    :root{--header-h:118px}
+
+    .header-superior{padding:6px 12px}
+    .titulo-header h1{font-size:1.2em}
+    .titulo-header p{font-size:.66em}
+    .logo-img{width:40px;height:40px;font-size:1.1em}
+
+    main{padding:22px 14px}
+    .seccion h2{font-size:1.5em}
+    .ver-todo{font-size:.75rem;padding:6px 11px}
+
+    .card{min-width:180px;max-width:180px}
+    .card-img{height:250px}
+
+    .grid-series{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+    .grid-series .card-img{height:240px}
+    .descripcion-seccion{font-size:.95em;padding:14px}
+
+    .barra-busqueda{padding:8px 12px}
+    .barra-busqueda form{min-width:100%}
+    .campo-busqueda{min-width:0;padding:10px 12px}
+    .btn-buscar{padding:10px 14px;font-size:.82rem}
+    .arsenal{display:none}
+
+    .capa-busqueda{padding:12px}
+    .ventana-busqueda{width:94vw;max-height:88vh}
+    .vb-cabecera{padding:14px 14px 12px}
+    .vb-titulo h2{font-size:1.1em}
+    .vb-filtros{padding:10px 14px}
+    .vb-cuerpo{padding:12px 14px}
+    .vb-pie{padding:10px 14px}
+    .res-thumb{width:52px;height:76px;font-size:1.4em}
+    .res-ir{display:none}
+    .res-enlace{padding:10px;gap:11px}
+
+    .campo-busqueda{min-width:100%}
+    .contador{font-size:.72rem;padding:6px 11px}
+    .grid-alfabeto{grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+    .tile-letra{min-height:118px;padding:14px 20px}
+    .tile-letra .rango{font-size:1.7em}
+    .tile-letra .accion{font-size:.62rem;letter-spacing:1px}
+    .tile-letra::before{left:6px}
+    .tile-letra::after{right:6px}
+}
+
+/* ============ MÓVILES PEQUEÑOS (≤480px) ============ */
+@media (max-width:480px){
+    .titulo-header h1{font-size:1.05em;letter-spacing:1px}
+    .card{min-width:160px;max-width:160px}
+    .card-img{height:220px}
+    .grid-series{grid-template-columns:repeat(2,1fr);gap:10px}
+    .grid-series .card-img{height:210px}
+    .menu a{padding:9px 8px;font-size:.9em}
+    .enlace-seccion{gap:8px}
+    .grid-alfabeto{grid-template-columns:repeat(3,1fr)}
+    .vacio-catalogo{padding:16px}
+    .vb-consulta{font-size:.72rem}
+    .vb-conteo{font-size:.72rem}
+    .vb-continuar{font-size:.78rem;padding:8px 14px}
+}
+
+/* ============ MOVIMIENTO REDUCIDO ============ */
+@media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .carrusel{scroll-behavior:auto}
+}
