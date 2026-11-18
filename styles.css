@@ -1,4 +1,4 @@
-/* ============ ZOMBIE-TK · v4 ============ */
+/* ============ ZOMBIE-TK · v5 ============ */
 :root{
     --rojo:#ff1a1a;
     --rojo-vivo:#ff4444;
@@ -150,6 +150,49 @@ main{max-width:1400px;margin:0 auto;padding:28px 20px}
     color:var(--rojo);font-size:2em;margin-bottom:18px;padding-left:15px;
     border-left:5px solid var(--rojo-osc);
     font-family:'Impact','Arial Black',sans-serif;letter-spacing:2px;
+}
+
+/* ============ TÍTULOS DE SECCIÓN CLICABLES ============ */
+.cabecera-seccion{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:14px;flex-wrap:wrap;
+}
+.cabecera-seccion h2{margin-bottom:18px}
+
+.enlace-seccion{
+    color:inherit;text-decoration:none;
+    display:inline-flex;align-items:center;gap:12px;
+    transition:color .25s ease,text-shadow .25s ease;
+}
+.enlace-seccion .flecha{
+    display:inline-block;font-size:.75em;line-height:1;
+    color:var(--rojo-vivo);opacity:.55;
+    transform:translateX(0);
+    transition:transform .3s cubic-bezier(.2,.8,.25,1),opacity .3s ease,color .3s ease;
+}
+.enlace-seccion:hover,
+.enlace-seccion:focus-visible{
+    color:#fff;
+    text-shadow:0 0 16px rgba(255,26,26,.75);
+}
+.enlace-seccion:hover .flecha,
+.enlace-seccion:focus-visible .flecha{
+    transform:translateX(8px);opacity:1;color:var(--rojo);
+}
+
+.ver-todo{
+    flex:none;margin-bottom:18px;
+    font-family:'Segoe UI',Tahoma,sans-serif;
+    font-size:.85rem;font-weight:bold;letter-spacing:1px;
+    color:var(--rojo-vivo);text-decoration:none;
+    border:1px solid var(--rojo-osc);border-radius:999px;
+    padding:7px 14px;background:rgba(139,0,0,.12);
+    transition:background .25s,color .25s,transform .25s,box-shadow .25s;
+}
+.ver-todo:hover{
+    background:var(--rojo-osc);color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(139,0,0,.45);
 }
 
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
@@ -304,6 +347,7 @@ footer p{margin:5px 0}
 
     main{padding:22px 14px}
     .seccion h2{font-size:1.5em}
+    .ver-todo{font-size:.75rem;padding:6px 11px}
 
     .card{min-width:180px;max-width:180px}
     .card-img{height:250px}
@@ -321,6 +365,7 @@ footer p{margin:5px 0}
     .grid-series{grid-template-columns:repeat(2,1fr);gap:10px}
     .grid-series .card-img{height:210px}
     .menu a{padding:9px 8px;font-size:.9em}
+    .enlace-seccion{gap:8px}
 }
 
 /* ============ MOVIMIENTO REDUCIDO ============ */
