@@ -200,7 +200,7 @@ main {
     background: #ff1a1a;
 }
 
-/* ========== TARJETAS ========== */
+/* ========== TARJETAS - IMÁGENES ADAPTATIVAS ========== */
 .card {
     min-width: 220px;
     max-width: 220px;
@@ -222,18 +222,34 @@ main {
     border-color: #ff1a1a;
 }
 
+/* Contenedor de la imagen con dimensiones fijas */
 .card-img {
     width: 100%;
-    height: 300px;
+    height: 300px; /* Altura fija para todas las portadas */
     background: linear-gradient(135deg, #2a0000, #4a0000);
+    position: relative;
+    overflow: hidden; /* Corta cualquier parte que sobresalga */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4em;
-    color: #ff1a1a;
-    position: relative;
 }
 
+/* La imagen se adapta al contenedor sin deformarse */
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Clave: llena el espacio manteniendo proporción */
+    object-position: center; /* Centra la imagen */
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* Efecto zoom al pasar el mouse */
+.card:hover .card-img img {
+    transform: scale(1.08);
+}
+
+/* Sombra degradada en la parte inferior de la imagen */
 .card-img::after {
     content: '';
     position: absolute;
@@ -242,8 +258,10 @@ main {
     right: 0;
     height: 50%;
     background: linear-gradient(to top, #1a1a1a, transparent);
+    pointer-events: none;
 }
 
+/* Información de la tarjeta */
 .card-info {
     padding: 15px;
     flex-grow: 1;
@@ -272,6 +290,37 @@ main {
     font-size: 0.75em;
     margin-top: 10px;
     align-self: flex-start;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .card {
+        min-width: 180px;
+        max-width: 180px;
+    }
+
+    .card-img {
+        height: 250px;
+    }
+
+    .card-info h3 {
+        font-size: 1em;
+    }
+
+    .card-info p {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        min-width: 160px;
+        max-width: 160px;
+    }
+
+    .card-img {
+        height: 220px;
+    }
 }
 
 /* ========== BOTONES DE NAVEGACIÓN DEL CARRUSEL ========== */
