@@ -3,48 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a0000">
     <title>Zombie-TK | Películas, Series, Animes, Cómics y Libros de Zombies</title>
     <meta name="description" content="Zombie-TK: Tu sitio de películas, series, animes, cómics y libros de zombies con doblaje al español neutro.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=4">
+    <noscript>
+        <style>
+            @media (max-width:1024px){
+                .menu{position:static;transform:none;visibility:visible;height:auto;width:auto;flex-direction:row;flex-wrap:wrap;padding:10px;border-left:none}
+                .btn-hamburguesa{display:none}
+            }
+        </style>
+    </noscript>
 </head>
 <body>
 
-    <!-- HEADER FIJO -->
     <header class="header-fijo">
         <div class="header-superior">
             <div class="logo-container">
-                <div class="logo-img">🧟</div>
+                <div class="logo-img" data-fallback="🧟">
+                    <img src="img/logo.png" alt="Logo Zombie-TK">
+                </div>
                 <div class="titulo-header">
                     <h1>ZOMBIE-TK</h1>
                     <p>Películas, Series, Animes, Cómics y Libros</p>
                 </div>
             </div>
-            
-            <!-- Botón hamburguesa (solo visible en móviles/tablets) -->
-            <button class="btn-hamburguesa" id="btnHamburguesa" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button type="button" class="btn-hamburguesa" id="btnHamburguesa" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuNav">
+                <span></span><span></span><span></span>
             </button>
         </div>
 
-        <!-- Menú horizontal para PC -->
-        <nav class="nav-desktop" id="navDesktop">
-            <a href="index.html" class="activo">Inicio</a>
-            <a href="peliculas.html">Películas</a>
-            <a href="series.html">Series</a>
-            <a href="animes.html">Animes</a>
-            <a href="comics.html">Cómics</a>
-            <a href="libros.html">Libros</a>
-            <a href="tutoriales.html">Tutoriales</a>
-            <a href="cortometrajes.html">Cortometrajes</a>
-            <a href="relatos.html">Relatos</a>
-            <a href="juegos.html">Juegos</a>
-            <a href="revista.html">Revista</a>
-        </nav>
-
-        <!-- Menú lateral para móviles/tablets -->
-        <nav class="nav-mobile" id="menuNav">
+        <nav class="menu" id="menuNav">
             <a href="index.html" class="activo">Inicio</a>
             <a href="peliculas.html">Películas</a>
             <a href="series.html">Series</a>
@@ -59,234 +49,133 @@
         </nav>
     </header>
 
-    <!-- Overlay para cerrar menú al hacer clic fuera -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <main>
 
-        <!-- CARRUSEL DE PELÍCULAS -->
-        <section class="seccion">
+        <section class="seccion reveal">
             <h2>🎬 PELÍCULAS</h2>
             <div class="carrusel-container">
-                <button class="btn-nav btn-prev" onclick="scrollCarrusel('carrusel-peliculas', -250)">‹</button>
-                <div class="carrusel" id="carrusel-peliculas">
+                <button type="button" class="btn-nav btn-prev" aria-label="Anterior">‹</button>
+                <div class="carrusel">
                     <a href="peliculas/A-B.html" class="card">
-                        <div class="card-img">🎬</div>
-                        <div class="card-info">
-                            <h3>28 Days Later</h3>
-                            <p>Un virus desata el apocalipsis zombie en Londres.</p>
-                            <span class="card-tag">Terror</span>
-                        </div>
+                        <div class="card-img" data-fallback="🎬"><img src="img/peliculas/28-Days-Later.jpg" alt="28 Days Later" loading="lazy"></div>
+                        <div class="card-info"><h3>28 Days Later</h3><p>Un virus desata el apocalipsis zombie en Londres.</p><span class="card-tag">Terror</span></div>
                     </a>
                     <a href="peliculas/C-D.html" class="card">
-                        <div class="card-img">🧟</div>
-                        <div class="card-info">
-                            <h3>Dawn of the Dead</h3>
-                            <p>Sobrevivientes en un centro comercial rodeado de zombies.</p>
-                            <span class="card-tag">Clásico</span>
-                        </div>
+                        <div class="card-img" data-fallback="🧟"><img src="img/peliculas/Dawn-of-the-Dead.jpg" alt="Dawn of the Dead" loading="lazy"></div>
+                        <div class="card-info"><h3>Dawn of the Dead</h3><p>Sobrevivientes en un centro comercial rodeado de zombies.</p><span class="card-tag tag-ambar">Clásico</span></div>
                     </a>
                     <a href="peliculas/E-F.html" class="card">
-                        <div class="card-img">💀</div>
-                        <div class="card-info">
-                            <h3>El Ejército de los Muertos</h3>
-                            <p>Un atraco en Las Vegas infestada de zombies.</p>
-                            <span class="card-tag">Acción</span>
-                        </div>
+                        <div class="card-img" data-fallback="💀"><img src="img/peliculas/El-Ejercito-de-los-Muertos.jpg" alt="El Ejército de los Muertos" loading="lazy"></div>
+                        <div class="card-info"><h3>El Ejército de los Muertos</h3><p>Un atraco en Las Vegas infestada de zombies.</p><span class="card-tag">Acción</span></div>
                     </a>
                     <a href="peliculas/G-H.html" class="card">
-                        <div class="card-img">🩸</div>
-                        <div class="card-info">
-                            <h3>Guerra Mundial Z</h3>
-                            <p>Una pandemia zombie amenaza con destruir la humanidad.</p>
-                            <span class="card-tag">Thriller</span>
-                        </div>
+                        <div class="card-img" data-fallback="🩸"><img src="img/peliculas/Guerra-Mundial-Z.jpg" alt="Guerra Mundial Z" loading="lazy"></div>
+                        <div class="card-info"><h3>Guerra Mundial Z</h3><p>Una pandemia zombie amenaza con destruir la humanidad.</p><span class="card-tag">Thriller</span></div>
                     </a>
                     <a href="peliculas/I-J.html" class="card">
-                        <div class="card-img">🧠</div>
-                        <div class="card-info">
-                            <h3>Soy Leyenda</h3>
-                            <p>El último hombre en una Nueva York post-apocalíptica.</p>
-                            <span class="card-tag">Drama</span>
-                        </div>
+                        <div class="card-img" data-fallback="🧠"><img src="img/peliculas/Soy-Leyenda.jpg" alt="Soy Leyenda" loading="lazy"></div>
+                        <div class="card-info"><h3>Soy Leyenda</h3><p>El último hombre en una Nueva York post-apocalíptica.</p><span class="card-tag">Drama</span></div>
                     </a>
                     <a href="peliculas/K-L.html" class="card">
-                        <div class="card-img">🌆</div>
-                        <div class="card-info">
-                            <h3>La Noche de los Muertos Vivientes</h3>
-                            <p>El clásico que inició el género zombie moderno.</p>
-                            <span class="card-tag">Clásico</span>
-                        </div>
+                        <div class="card-img" data-fallback="🌆"><img src="img/peliculas/La-Noche-de-los-Muertos-Vivientes.jpg" alt="La Noche de los Muertos Vivientes" loading="lazy"></div>
+                        <div class="card-info"><h3>La Noche de los Muertos Vivientes</h3><p>El clásico que inició el género zombie moderno.</p><span class="card-tag tag-ambar">Clásico</span></div>
                     </a>
                     <a href="peliculas/M-N.html" class="card">
-                        <div class="card-img">🚂</div>
-                        <div class="card-info">
-                            <h3>Tren a Busan</h3>
-                            <p>Un tren se convierte en el último refugio humano.</p>
-                            <span class="card-tag">Acción</span>
-                        </div>
+                        <div class="card-img" data-fallback="🚂"><img src="img/peliculas/Tren-a-Busan.jpg" alt="Tren a Busan" loading="lazy"></div>
+                        <div class="card-info"><h3>Tren a Busan</h3><p>Un tren se convierte en el último refugio humano.</p><span class="card-tag">Acción</span></div>
                     </a>
                     <a href="peliculas/O-P.html" class="card">
-                        <div class="card-img">🏚️</div>
-                        <div class="card-info">
-                            <h3>Planeta Zombie</h3>
-                            <p>La humanidad lucha por sobrevivir en un mundo infectado.</p>
-                            <span class="card-tag">Terror</span>
-                        </div>
+                        <div class="card-img" data-fallback="🏚️"><img src="img/peliculas/Planeta-Zombie.jpg" alt="Planeta Zombie" loading="lazy"></div>
+                        <div class="card-info"><h3>Planeta Zombie</h3><p>La humanidad lucha por sobrevivir en un mundo infectado.</p><span class="card-tag">Terror</span></div>
                     </a>
                 </div>
-                <button class="btn-nav btn-next" onclick="scrollCarrusel('carrusel-peliculas', 250)">›</button>
+                <button type="button" class="btn-nav btn-next" aria-label="Siguiente">›</button>
             </div>
         </section>
 
-        <!-- CARRUSEL DE SERIES -->
-        <section class="seccion">
+        <section class="seccion reveal">
             <h2>📺 SERIES</h2>
             <div class="carrusel-container">
-                <button class="btn-nav btn-prev" onclick="scrollCarrusel('carrusel-series', -250)">‹</button>
-                <div class="carrusel" id="carrusel-series">
+                <button type="button" class="btn-nav btn-prev" aria-label="Anterior">‹</button>
+                <div class="carrusel">
                     <a href="series/The-Walking-Dead.html" class="card">
-                        <div class="card-img"><img src="img/series/The Walking Dead.jpg" alt="The Walking Dead"></div>
-                        <div class="card-info">
-                            <h3>The Walking Dead</h3>
-                            <p>Un grupo de sobrevivientes lucha en un mundo post-apocalíptico.</p>
-                            <span class="card-tag">Drama</span>
-                        </div>
+                        <div class="card-img" data-fallback="🚶"><img src="img/series/The-Walking-Dead.jpg" alt="The Walking Dead" loading="lazy"></div>
+                        <div class="card-info"><h3>The Walking Dead</h3><p>Un grupo de sobrevivientes lucha en un mundo post-apocalíptico.</p><span class="card-tag">Drama</span></div>
                     </a>
                     <a href="series/Z-Nation.html" class="card">
-                        <div class="card-img"><img src="img/series/Z Nation.png" alt="Z Nation"></div>
-                        <div class="card-info">
-                            <h3>Z Nation</h3>
-                            <p>Una misión para transportar al único inmune conocido.</p>
-                            <span class="card-tag">Acción</span>
-                        </div>
+                        <div class="card-img" data-fallback="🇺🇸"><img src="img/series/Z-Nation.jpg" alt="Z Nation" loading="lazy"></div>
+                        <div class="card-info"><h3>Z Nation</h3><p>Una misión para transportar al único inmune conocido.</p><span class="card-tag">Acción</span></div>
                     </a>
                     <a href="series/Black-Summer.html" class="card">
-                        <div class="card-img"><img src="img/series/Black Summer.jpg" alt="Black Summer"></div>
-                        <div class="card-info">
-                            <h3>Black Summer</h3>
-                            <p>Los primeros días caóticos del apocalipsis zombie.</p>
-                            <span class="card-tag">Intenso</span>
-                        </div>
+                        <div class="card-img" data-fallback="🌑"><img src="img/series/Black-Summer.jpg" alt="Black Summer" loading="lazy"></div>
+                        <div class="card-info"><h3>Black Summer</h3><p>Los primeros días caóticos del apocalipsis zombie.</p><span class="card-tag">Intenso</span></div>
                     </a>
                     <a href="series/Kingdom.html" class="card">
-                        <div class="card-img"><img src="img/series/Kingdom.jpg" alt="Kingdom"></div>
-                        <div class="card-info">
-                            <h3>Kingdom</h3>
-                            <p>Intrigas políticas y zombies en la Corea medieval.</p>
-                            <span class="card-tag">Histórico</span>
-                        </div>
+                        <div class="card-img" data-fallback="👑"><img src="img/series/Kingdom.jpg" alt="Kingdom" loading="lazy"></div>
+                        <div class="card-info"><h3>Kingdom</h3><p>Intrigas políticas y zombies en la Corea medieval.</p><span class="card-tag tag-ambar">Histórico</span></div>
                     </a>
                     <a href="series/I-Zombie.html" class="card">
-                        <div class="card-img"><img src="img/series/I Zombie.jpg" alt="I Zombie"></div>
-                        <div class="card-info">
-                            <h3>I Zombie</h3>
-                            <p>Una médica zombie resuelve crímenes comiendo cerebros.</p>
-                            <span class="card-tag">Misterio</span>
-                        </div>
+                        <div class="card-img" data-fallback="🔍"><img src="img/series/I-Zombie.jpg" alt="iZombie" loading="lazy"></div>
+                        <div class="card-info"><h3>iZombie</h3><p>Una médica zombie resuelve crímenes comiendo cerebros.</p><span class="card-tag">Misterio</span></div>
                     </a>
                     <a href="series/Daybreak.html" class="card">
-                        <div class="card-img"><img src="img/series/Daybreak.png" alt="Daybreak"></div>
-                        <div class="card-info">
-                            <h3>Daybreak</h3>
-                            <p>Adolescentes sobreviven en un mundo post-apocalíptico.</p>
-                            <span class="card-tag">Comedia</span>
-                        </div>
+                        <div class="card-img" data-fallback="🌅"><img src="img/series/Daybreak.jpg" alt="Daybreak" loading="lazy"></div>
+                        <div class="card-info"><h3>Daybreak</h3><p>Adolescentes sobreviven en un mundo post-apocalíptico.</p><span class="card-tag tag-verde">Comedia</span></div>
                     </a>
                     <a href="series/Reality-Z.html" class="card">
-                        <div class="card-img"><img src="img/series/Reality Z.jpg" alt="Reality Z"></div>
-                        <div class="card-info">
-                            <h3>Reality Z</h3>
-                            <p>Un reality show se convierte en una lucha por la vida.</p>
-                            <span class="card-tag">Terror</span>
-                        </div>
+                        <div class="card-img" data-fallback="📺"><img src="img/series/Reality-Z.jpg" alt="Reality Z" loading="lazy"></div>
+                        <div class="card-info"><h3>Reality Z</h3><p>Un reality show se convierte en una lucha por la vida.</p><span class="card-tag">Terror</span></div>
                     </a>
                     <a href="series/Dead-Set.html" class="card">
-                        <div class="card-img"><img src="img/series/Dead-Set.jpg" alt="Dead Set"></div>
-                        <div class="card-info">
-                            <h3>Dead Set</h3>
-                            <p>Concursantes de Big Brother atrapados durante el apocalipsis.</p>
-                            <span class="card-tag">Británico</span>
-                        </div>
+                        <div class="card-img" data-fallback="🎭"><img src="img/series/Dead-Set.jpg" alt="Dead Set" loading="lazy"></div>
+                        <div class="card-info"><h3>Dead Set</h3><p>Concursantes de Big Brother atrapados durante el apocalipsis.</p><span class="card-tag tag-ambar">Británico</span></div>
                     </a>
                 </div>
-                <button class="btn-nav btn-next" onclick="scrollCarrusel('carrusel-series', 250)">›</button>
+                <button type="button" class="btn-nav btn-next" aria-label="Siguiente">›</button>
             </div>
         </section>
 
-        <!-- CARRUSEL DE LIBROS -->
-        <section class="seccion">
+        <section class="seccion reveal">
             <h2>📚 LIBROS</h2>
             <div class="carrusel-container">
-                <button class="btn-nav btn-prev" onclick="scrollCarrusel('carrusel-libros', -250)">‹</button>
-                <div class="carrusel" id="carrusel-libros">
+                <button type="button" class="btn-nav btn-prev" aria-label="Anterior">‹</button>
+                <div class="carrusel">
                     <a href="libros/A-B.html" class="card">
-                        <div class="card-img">📖</div>
-                        <div class="card-info">
-                            <h3>Apocalipsis Z</h3>
-                            <p>El inicio del fin de la humanidad contado en primera persona.</p>
-                            <span class="card-tag">Novela</span>
-                        </div>
+                        <div class="card-img" data-fallback="📖"><img src="img/libros/Apocalipsis-Z.jpg" alt="Apocalipsis Z" loading="lazy"></div>
+                        <div class="card-info"><h3>Apocalipsis Z</h3><p>El inicio del fin de la humanidad contado en primera persona.</p><span class="card-tag">Novela</span></div>
                     </a>
                     <a href="libros/C-D.html" class="card">
-                        <div class="card-img">🧟‍♂️</div>
-                        <div class="card-info">
-                            <h3>Diario de un Zombie</h3>
-                            <p>La vida cotidiana desde la perspectiva de un no-muerto.</p>
-                            <span class="card-tag">Comedia</span>
-                        </div>
+                        <div class="card-img" data-fallback="🧟‍♂️"><img src="img/libros/Diario-de-un-Zombie.jpg" alt="Diario de un Zombie" loading="lazy"></div>
+                        <div class="card-info"><h3>Diario de un Zombie</h3><p>La vida cotidiana desde la perspectiva de un no-muerto.</p><span class="card-tag tag-verde">Comedia</span></div>
                     </a>
                     <a href="libros/E-F.html" class="card">
-                        <div class="card-img">🌍</div>
-                        <div class="card-info">
-                            <h3>Guerra Mundial Z</h3>
-                            <p>Testimonios de sobrevivientes de la guerra zombie global.</p>
-                            <span class="card-tag">Documental</span>
-                        </div>
+                        <div class="card-img" data-fallback="🌍"><img src="img/libros/Guerra-Mundial-Z.jpg" alt="Guerra Mundial Z" loading="lazy"></div>
+                        <div class="card-info"><h3>Guerra Mundial Z</h3><p>Testimonios de sobrevivientes de la guerra zombie global.</p><span class="card-tag">Documental</span></div>
                     </a>
                     <a href="libros/G-H.html" class="card">
-                        <div class="card-img">🏥</div>
-                        <div class="card-info">
-                            <h3>Hospital de los Muertos</h3>
-                            <p>El brote comienza en un hospital aparentemente normal.</p>
-                            <span class="card-tag">Suspenso</span>
-                        </div>
+                        <div class="card-img" data-fallback="🏥"><img src="img/libros/Hospital-de-los-Muertos.jpg" alt="Hospital de los Muertos" loading="lazy"></div>
+                        <div class="card-info"><h3>Hospital de los Muertos</h3><p>El brote comienza en un hospital aparentemente normal.</p><span class="card-tag">Suspenso</span></div>
                     </a>
                     <a href="libros/I-J.html" class="card">
-                        <div class="card-img">🌆</div>
-                        <div class="card-info">
-                            <h3>Infección</h3>
-                            <p>Una ciudad entera cae en 24 horas ante el virus.</p>
-                            <span class="card-tag">Thriller</span>
-                        </div>
+                        <div class="card-img" data-fallback="🌆"><img src="img/libros/Infeccion.jpg" alt="Infección" loading="lazy"></div>
+                        <div class="card-info"><h3>Infección</h3><p>Una ciudad entera cae en 24 horas ante el virus.</p><span class="card-tag">Thriller</span></div>
                     </a>
                     <a href="libros/K-L.html" class="card">
-                        <div class="card-img">📕</div>
-                        <div class="card-info">
-                            <h3>La Carretera</h3>
-                            <p>Un padre y su hijo viajan por un mundo devastado.</p>
-                            <span class="card-tag">Drama</span>
-                        </div>
+                        <div class="card-img" data-fallback="📕"><img src="img/libros/La-Carretera.jpg" alt="La Carretera" loading="lazy"></div>
+                        <div class="card-info"><h3>La Carretera</h3><p>Un padre y su hijo viajan por un mundo devastado.</p><span class="card-tag">Drama</span></div>
                     </a>
                     <a href="libros/M-N.html" class="card">
-                        <div class="card-img">🌙</div>
-                        <div class="card-info">
-                            <h3>Noche de Muertos</h3>
-                            <p>Relatos de terror ambientados en la noche más oscura.</p>
-                            <span class="card-tag">Antología</span>
-                        </div>
+                        <div class="card-img" data-fallback="🌙"><img src="img/libros/Noche-de-Muertos.jpg" alt="Noche de Muertos" loading="lazy"></div>
+                        <div class="card-info"><h3>Noche de Muertos</h3><p>Relatos de terror ambientados en la noche más oscura.</p><span class="card-tag tag-ambar">Antología</span></div>
                     </a>
                     <a href="libros/O-P.html" class="card">
-                        <div class="card-img">📗</div>
-                        <div class="card-info">
-                            <h3>Paciente Cero</h3>
-                            <p>La historia del origen de la pandemia zombie.</p>
-                            <span class="card-tag">Ciencia Ficción</span>
-                        </div>
+                        <div class="card-img" data-fallback="📗"><img src="img/libros/Paciente-Cero.jpg" alt="Paciente Cero" loading="lazy"></div>
+                        <div class="card-info"><h3>Paciente Cero</h3><p>La historia del origen de la pandemia zombie.</p><span class="card-tag tag-verde">Ciencia Ficción</span></div>
                     </a>
                 </div>
-                <button class="btn-nav btn-next" onclick="scrollCarrusel('carrusel-libros', 250)">›</button>
+                <button type="button" class="btn-nav btn-next" aria-label="Siguiente">›</button>
             </div>
         </section>
 
@@ -297,6 +186,6 @@
         <p>Contenido con doblaje al español neutro 🇲🇽</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>
