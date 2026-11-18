@@ -1,4 +1,4 @@
-/* ============ ZOMBIE-TK · v4 ============ */
+/* ============ ZOMBIE-TK · v5 ============ */
 (function () {
     'use strict';
 
@@ -64,7 +64,7 @@
         var next = cont.querySelector('.btn-next');
 
         function paso() {
-            var c = track.querySelector('.card');
+            var c = track.querySelector('.card:not(.oculta)');
             return c ? (c.getBoundingClientRect().width + 18) * 2 : 480;
         }
         function actualizar() {
@@ -119,4 +119,86 @@
             tick = false;
         });
     }, { passive: true });
+
+    /* ---- Buscador de catálogo: filtra destacadas y marca la letra ---- */
+    var buscador = d.getElementById('buscadorCatalogo');
+    if (buscador) {
+        var tarjetas = Array.prototype.slice.call(d.querySelectorAll('#carrusel-destacadas .card'));
+        var fichas = Array.prototype.slice.call(d.querySelectorAll('.tile-letra'));
+        var contador = d.getElementById('contadorCatalogo');
+        var pista = d.getElementById('pistaLetra');
+        var vacio = d.getElementById('vacioCatalogo');
+        var btnX = d.querySelector('.limpiar-x');
+
+        function normalizar(s) {
+            return (s || '').toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+        }
+
+        function aplicar() {
+            var q = normalizar(buscador.value.trim());
+            var visibles = 0;
+
+            tarjetas.forEach(function (c) {
+                var titulo = normalizar(c.getAttribute('data-titulo'));
+                var ok = !q || titulo.indexOf(q) !== -1;
+                c.classList.toggle('oculta', !ok);
+                if (ok) visibles++;
+            });
+
+            if (contador) {
+                contador.textContent = q
+                    ? visibles + ' de ' + tarjetas.length + ' destacadas'
+                    : tarjetas.length + ' destacadas';
+            }
+            if (vacio) vacio.classList.toggle('visible', visibles === 0);
+            if (btnX) btnX.classList.toggle('visible', !!q);
+
+            var m = q.match(/[A-Z0-9]/);
+            var ch = m ? m[0] : null;
+            var encontrada = null;
+
+            fichas.forEach(function (f) {
+                var de = f.getAttribute('data-desde');
+                var ha = f.getAttribute('data-hasta');
+                var dentro = false;
+                if (ch) {
+                    dentro = (ch >= '0' && ch <= '9')
+                        ? (de === '0')
+                        : (ch >= de && ch <= ha);
+                }
+                f.classList.toggle('destacado', dentro);
+                f.classList.toggle('atenuado', !!q && !dentro);
+                if (dentro) encontrada = f;
+            });
+
+            if (pista) {
+                if (q && encontrada) {
+                    pista.textContent = 'Los títulos que empiezan con «' + ch + '» están en ' +
+                        encontrada.getAttribute('data-desde') + ' – ' + encontrada.getAttribute('data-hasta') + '.';
+                    pista.classList.add('visible');
+                } else if (q && !ch) {
+                    pista.textContent = 'Usa letras o números para ubicar una sección del catálogo.';
+                    pista.classList.add('visible');
+                } else {
+                    pista.classList.remove('visible');
+                }
+            }
+
+            window.dispatchEvent(new Event('resize'));
+        }
+
+        function limpiar() {
+            buscador.value = '';
+            aplicar();
+            buscador.focus();
+        }
+
+        buscador.addEventListener('input', aplicar);
+        if (btnX) btnX.addEventListener('click', limpiar);
+        if (vacio) {
+            var btnVacio = vacio.querySelector('[data-limpiar-busqueda]');
+            if (btnVacio) btnVacio.addEventListener('click', limpiar);
+        }
+        aplicar();
+    }
 })();
