@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1a0000">
     <title>Zombie-TK | Películas, Series, Animes, Cómics y Libros de Zombies</title>
     <meta name="description" content="Zombie-TK: Tu sitio de películas, series, animes, cómics y libros de zombies con doblaje al español neutro.">
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=7">
     <noscript>
         <style>
             @media (max-width:1024px){
@@ -46,12 +46,36 @@
             <a href="relatos.html">Relatos</a>
             <a href="juegos.html">Juegos</a>
             <a href="revista.html">Revista</a>
+            <a href="buscar.html" class="enlace-buscar">🔍 Buscar</a>
         </nav>
     </header>
 
     <div class="overlay" id="overlay"></div>
 
     <main>
+
+        <section class="buscador-hero reveal">
+            <h2 class="hero-titulo">ENCUENTRA TU PRÓXIMA PESADILLA</h2>
+            <p class="hero-sub">Un solo buscador para todo el arsenal: películas, series, libros, animes y cómics con doblaje al español neutro.</p>
+            <form class="form-busqueda" id="formBuscadorIndex" action="buscar.html" method="get" role="search">
+                <div class="campo-busqueda campo-grande">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                        <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+                    </svg>
+                    <input type="text" id="qIndex" name="q" placeholder="Escribe un título… ej. «Walking», «Tren», «Kingdom»" autocomplete="off" aria-label="Buscar en todo Zombie-TK">
+                </div>
+                <button type="submit" class="btn-buscar">BUSCAR</button>
+            </form>
+            <div class="populares">
+                <span class="populares-label">Búsquedas populares:</span>
+                <a class="chip-pop" href="buscar.html?q=The%20Walking%20Dead">The Walking Dead</a>
+                <a class="chip-pop" href="buscar.html?q=Tren%20a%20Busan">Tren a Busan</a>
+                <a class="chip-pop" href="buscar.html?q=Kingdom">Kingdom</a>
+                <a class="chip-pop" href="buscar.html?q=Apocalipsis%20Z">Apocalipsis Z</a>
+                <a class="chip-pop" href="buscar.html?q=Zombieland%20Saga">Zombieland Saga</a>
+            </div>
+        </section>
 
         <section class="seccion reveal">
             <div class="cabecera-seccion">
@@ -119,7 +143,7 @@
                         <div class="card-info"><h3>The Walking Dead</h3><p>Un grupo de sobrevivientes lucha en un mundo post-apocalíptico.</p><span class="card-tag">Drama</span></div>
                     </a>
                     <a href="series/Z-Nation.html" class="card">
-                        <div class="card-img" data-fallback="🇺🇸"><img src="img/series/Z-Nation.png" alt="Z Nation" loading="lazy"></div>
+                        <div class="card-img" data-fallback="🇺"><img src="img/series/Z-Nation.jpg" alt="Z Nation" loading="lazy"></div>
                         <div class="card-info"><h3>Z Nation</h3><p>Una misión para transportar al único inmune conocido.</p><span class="card-tag">Acción</span></div>
                     </a>
                     <a href="series/Black-Summer.html" class="card">
@@ -135,7 +159,7 @@
                         <div class="card-info"><h3>iZombie</h3><p>Una médica zombie resuelve crímenes comiendo cerebros.</p><span class="card-tag">Misterio</span></div>
                     </a>
                     <a href="series/Daybreak.html" class="card">
-                        <div class="card-img" data-fallback="🌅"><img src="img/series/Daybreak.png" alt="Daybreak" loading="lazy"></div>
+                        <div class="card-img" data-fallback="🌅"><img src="img/series/Daybreak.jpg" alt="Daybreak" loading="lazy"></div>
                         <div class="card-info"><h3>Daybreak</h3><p>Adolescentes sobreviven en un mundo post-apocalíptico.</p><span class="card-tag tag-verde">Comedia</span></div>
                     </a>
                     <a href="series/Reality-Z.html" class="card">
@@ -207,6 +231,6 @@
         <p>Contenido con doblaje al español neutro 🇲🇽</p>
     </footer>
 
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=6"></script>
 </body>
 </html>
