@@ -1,162 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Zombie-TK - Peliculas</title>
-	<meta charset="utf-8">
-	<link rel="icon" href="img\simbolo.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="js\javascript.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a0000">
+    <title>Zombie-TK | Películas de Zombies</title>
+    <meta name="description" content="Explora el catálogo alfabético de películas de zombies en Zombie-TK, con doblaje al español neutro.">
+    <link rel="stylesheet" href="styles.css?v=6">
+    <noscript>
+        <style>
+            @media (max-width:1024px){
+                .menu{position:static;transform:none;visibility:visible;height:auto;width:auto;flex-direction:row;flex-wrap:wrap;padding:10px;border-left:none}
+                .btn-hamburguesa{display:none}
+            }
+            .limpiar-x{display:none!important}
+        </style>
+    </noscript>
 </head>
 <body>
-	<div id="contenedor" class="header2">
-		<li class="logo"><a></a></li>
-		<ul class="nav" id="wrapper">
-			<li><a href="index.html">Inicio</a></li>
-			<li><a href="libros.html">Libros</a>
-				<ul>
-					<li><a href="libros\0-9.html">0 - 9</a></li>
-					<li><a href="libros\A-B.html">A - B</a></li>
-					<li><a href="libros\C-D.html">C - D</a></li>
-					<li><a href="libros\E-F.html">E - F</a></li>
-					<li><a href="libros\G-H.html">G - H</a></li>
-					<li><a href="libros\I-J.html">I - J</a></li>
-					<li><a href="libros\K-L.html">K - L</a></li>
-					<li><a href="libros\M-N.html">M - N</a></li>
-					<li><a href="libros\O-P.html">O - P</a></li>
-					<li><a href="libros\Q-R.html">Q - R</a></li>
-					<li><a href="libros\S-T.html">S - T</a></li>
-					<li><a href="libros\U-V.html">U - V</a></li>
-					<li><a href="libros\W-X.html">W - X</a></li>
-					<li><a href="libros\Y-Z.html">Y - Z</a></li>
-				</ul>
-			</li>
-			<li><a href="peliculas.html">Peliculas</a>
-				<ul>
-					<li><a href="peliculas\0-9.html">0 - 9</a></li>
-					<li><a href="peliculas\A-B.html">A - B</a></li>
-					<li><a href="peliculas\C-D.html">C - D</a></li>
-					<li><a href="peliculas\E-F.html">E - F</a></li>
-					<li><a href="peliculas\G-H.html">G - H</a></li>
-					<li><a href="peliculas\I-J.html">I - J</a></li>
-					<li><a href="peliculas\K-L.html">K - L</a></li>
-					<li><a href="peliculas\M-N.html">M - N</a></li>
-					<li><a href="peliculas\O-P.html">O - P</a></li>
-					<li><a href="peliculas\Q-R.html">Q - R</a></li>
-					<li><a href="peliculas\S-T.html">S - T</a></li>
-					<li><a href="peliculas\U-V.html">U - V</a></li>
-					<li><a href="peliculas\W-X.html">W - X</a></li>
-					<li><a href="peliculas\Y-Z.html">Y - Z</a></li>
-				</ul>
-			</li>
-			<li><a href="series.html">Series</a>
-				<ul>
-					<li><a href="series\Black-Summer.html">Black Summer</a></li>
-					<li><a href="series\Daybreak.html">Daybreak</a></li>
-					<li><a href="series\Dead-Set.html">Dead Set</a></li>
-					<li><a href="series\I-Zombie.html">I Zombie</a></li>
-					<li><a href="series\Kingdom.html">Kingdom</a></li>
-					<li><a href="series\Plantas-Vs-Zombies.html">Plantas Vs Zombies</a></li>
-					<li><a href="series\Reality-Z.html">Reality Z</a></li>
-					<li><a href="series\The-Walking-Dead.html">The Walking Dead</a></li>
-					<li><a href="series\Z-Nation.html">Z Nation</a></li>
-				</ul>
-			</li>
-			<li><a href="animes.html">Animes</a>
-				<ul>
-					<li><a href="animes\Gakkou-Gurashi.html">Gakkou Gurashi!</a></li>
-					<li><a href="animes\Highschool-of-the-Dead.html">Highschool<br>of the Dead</a></li>
-					<li><a href="animes\Kore-wa-Zombie-Desu-ka.html">Kore wa Zombie<br>Desu ka?</a></li>
-					<li><a href="animes\Koutetsujou-no-Kabaneri.html">Koutetsujou<br>no Kabaneri</a></li>
-					<li><a href="animes\Shikabane-Hime-Aka.html">Shikabane<br>Hime: Aka</a></li>
-					<li><a href="animes\Zombieland-Saga.html">Zombieland Saga</a></li>
-				</ul>
-			</li>
-			<li><a href="comics.html">Comic´s</a>	
-				<ul>
-					<li><a href="comics\The-Walking-Dead-Comic.html">The Walking Dead</a></li>
-				</ul>
-			</li>
-			<li><a href="tutoriales.html">Tutoriales</a></li>
-			<li><a href="cortometrajes.html">Cortometrajes</a></li>
-			<li><a href="relatos.html">Relatos</a></li>
-			<li><a href="juegos.html">Juegos</a></li>
-		</ul>
-	</div>
-	<header>
-		<hr border="3px" color="#ff0000">
-		<div class="encabezado">
-			<a>
-				<img src="img\ztk.png" height="120px" style=""/>
-			</a>
-			<a>
-				<img src="img\peliculas.png" height="130px" style="padding-top:15px"/>
-			</a>
-			<a>
-				<img src="img\ztk.png" height="120px" style="padding-top:15px"/>
-			</a>
-		</div>
-	</header>
-	<br>
-	<div class="redessociales">
-		<ul>
-			<li><a href="https://www.facebook.com/Zombie.TK.Oficial/" target="_blank" class="social-facebook"><img src="img\facebook.png" title="Zombie.TK.Oficial" width="48px" height="48px"></a></li>
-			<li><a href="https://www.instagram.com/zombie.tk_oficial/" target="_blank" class="social-instagram"><img src="img\instagram.png" title="zombie.te_oficial" width="48px" height="48px"></a></li>
-			<li><a href="https://www.twitter.com/" target="_blank" class="social-twitter"><img src="img\twitter.png" title="Twitter" width="48px" height="48px"></a></li>
-			<li><a href="https://www.youtube.com/channel/UCsa11dIwjO2Zah77JPwQ0_Q" target="_blank" class="social-youtube"><img src="img\youtube.png" title="Zombie-TK" width="48px" height="48px"></a></li>
-			<li><a href="mailto:punk_dead_rp@hotmail.com" class="social-mail"><img src="img\mail.png" alt="Correo" title="Correo" width="48px" height="48px"></a></li>
-		</ul>
-	</div>
-	<br>
-	<div class="espacios"><hr border="4px" color="#ff0000" width="90%" align="center"></div>
-	<br>
-	<h3 class="descripcion" style="color:#ff0">En Zombie-TK encontraras muchas peliculas del genero Zombie, <br> solo tienes que dar click en alguno de los botones que se encuentran aquí abajo. <br>▼</h3>
-	<br>
-	<div class="espacios"><hr border="4px" color="#ff0000" width="90%" align="center"></div>
-	<br>
-	<br>
-	<div class="columna-principal">
-		<div>
-			<a href="peliculas\0-9.html" class="botones">0 - 9</a>
-			<a>    </a>
-			<a href="peliculas\A-B.html" class="botones">A - B</a>
-			<a>    </a>
-			<a href="peliculas\C-D.html" class="botones">C - D</a>
-			<a>    </a>
-			<a href="peliculas\E-F.html" class="botones">E - F</a>
-			<a>    </a>
-			<a href="peliculas\G-H.html" class="botones">G - H</a>
-			<br>
-			<br>
-			<br>
-			<a href="peliculas\I-J.html" class="botones">I - J</a>
-			<a>    </a>
-			<a href="peliculas\K-L.html" class="botones">K - L</a>
-			<a>    </a>
-			<a href="peliculas\M-N.html" class="botones">M - N</a>
-			<a>    </a>
-			<a href="peliculas\O-P.html" class="botones">O - P</a>
-			<a>    </a>
-			<a href="peliculas\Q-R.html" class="botones">Q - R</a>
-			<br>
-			<br>
-			<br>
-			<a href="peliculas\S-T.html" class="botones">S - T</a>
-			<a>    </a>
-			<a href="peliculas\U-V.html" class="botones">U - V</a>
-			<a>    </a>
-			<a href="peliculas\W-X.html" class="botones">W - X</a>
-			<a>    </a>
-			<a href="peliculas\Y-Z.html" class="botones">Y - Z</a>
-			<br>
-			<br>
-		</div>
-	</div>
-	<br>	
-	<div class="espacios"><hr border="4px" color="#ff0000" width="90%" align="center"></div>
-	<br>
-	<footer>
-		<div class="pie">
-		</div>
-	</footer>
+
+    <header class="header-fijo">
+        <div class="header-superior">
+            <div class="logo-container">
+                <div class="logo-img" data-fallback="🧟">
+                    <img src="img/logo.png" alt="Logo Zombie-TK">
+                </div>
+                <div class="titulo-header">
+                    <h1>ZOMBIE-TK</h1>
+                    <p>Películas, Series, Animes, Cómics y Libros</p>
+                </div>
+            </div>
+            <button type="button" class="btn-hamburguesa" id="btnHamburguesa" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuNav">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <nav class="menu" id="menuNav">
+            <a href="index.html">Inicio</a>
+            <a href="peliculas.html" class="activo">Películas</a>
+            <a href="series.html">Series</a>
+            <a href="animes.html">Animes</a>
+            <a href="comics.html">Cómics</a>
+            <a href="libros.html">Libros</a>
+            <a href="tutoriales.html">Tutoriales</a>
+            <a href="cortometrajes.html">Cortometrajes</a>
+            <a href="relatos.html">Relatos</a>
+            <a href="juegos.html">Juegos</a>
+            <a href="revista.html">Revista</a>
+        </nav>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+
+        <div class="breadcrumb"><a href="index.html">Inicio</a> &gt; Películas</div>
+
+        <section class="seccion reveal">
+            <h2>🎬 PELÍCULAS DE ZOMBIES</h2>
+            <div class="descripcion-seccion">
+                En Zombie-TK encontrarás muchas películas del género zombie.
+                Solo tienes que dar clic en alguno de los botones que se encuentran aquí abajo. ▼
+            </div>
+        </section>
+
+        <section class="seccion reveal">
+            <h2>🔤 EXPLORA POR LETRA</h2>
+
+            <div class="barra-catalogo">
+                <div class="campo-busqueda">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                        <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+                    </svg>
+                    <input type="text" id="buscadorCatalogo" placeholder="Busca un título o una letra… ej. «Tren» o «T»" autocomplete="off" aria-label="Buscar películas destacadas y ubicar su letra en el catálogo">
+                    <button type="button" class="limpiar-x" data-limpiar-busqueda aria-label="Limpiar búsqueda">×</button>
+                </div>
+                <span class="contador" id="contadorCatalogo">8 destacadas</span>
+            </div>
+
+            <p class="pista-letra" id="pistaLetra" role="status"></p>
+
+            <div class="grid-alfabeto">
+                <a href="peliculas/0-9.html" class="tile-letra" data-desde="0" data-hasta="9">
+                    <span class="rango">0 – 9</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/A-B.html" class="tile-letra tono-ambar" data-desde="A" data-hasta="B">
+                    <span class="rango">A – B</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/C-D.html" class="tile-letra" data-desde="C" data-hasta="D">
+                    <span class="rango">C – D</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/E-F.html" class="tile-letra tono-verde" data-desde="E" data-hasta="F">
+                    <span class="rango">E – F</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/G-H.html" class="tile-letra" data-desde="G" data-hasta="H">
+                    <span class="rango">G – H</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/I-J.html" class="tile-letra tono-ambar" data-desde="I" data-hasta="J">
+                    <span class="rango">I – J</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/K-L.html" class="tile-letra" data-desde="K" data-hasta="L">
+                    <span class="rango">K – L</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/M-N.html" class="tile-letra tono-verde" data-desde="M" data-hasta="N">
+                    <span class="rango">M – N</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/O-P.html" class="tile-letra" data-desde="O" data-hasta="P">
+                    <span class="rango">O – P</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/Q-R.html" class="tile-letra tono-ambar" data-desde="Q" data-hasta="R">
+                    <span class="rango">Q – R</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/S-T.html" class="tile-letra" data-desde="S" data-hasta="T">
+                    <span class="rango">S – T</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/U-V.html" class="tile-letra tono-verde" data-desde="U" data-hasta="V">
+                    <span class="rango">U – V</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/W-X.html" class="tile-letra" data-desde="W" data-hasta="X">
+                    <span class="rango">W – X</span><span class="accion">Ver títulos →</span>
+                </a>
+                <a href="peliculas/Y-Z.html" class="tile-letra tono-ambar" data-desde="Y" data-hasta="Z">
+                    <span class="rango">Y – Z</span><span class="accion">Ver títulos →</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="seccion reveal">
+            <h2>🔥 DESTACADAS</h2>
+            <div class="carrusel-container">
+                <button type="button" class="btn-nav btn-prev" aria-label="Anterior">‹</button>
+                <div class="carrusel" id="carrusel-destacadas">
+                    <a href="peliculas/A-B.html" class="card" data-titulo="28 Days Later">
+                        <div class="card-img" data-fallback="🎬"><img src="img/peliculas/28-Days-Later.jpg" alt="28 Days Later" loading="lazy"></div>
+                        <div class="card-info"><h3>28 Days Later</h3><p>Un virus desata el apocalipsis zombie en Londres.</p><span class="card-tag">Terror</span></div>
+                    </a>
+                    <a href="peliculas/C-D.html" class="card" data-titulo="Dawn of the Dead">
+                        <div class="card-img" data-fallback="🧟"><img src="img/peliculas/Dawn-of-the-Dead.jpg" alt="Dawn of the Dead" loading="lazy"></div>
+                        <div class="card-info"><h3>Dawn of the Dead</h3><p>Sobrevivientes en un centro comercial rodeado de zombies.</p><span class="card-tag tag-ambar">Clásico</span></div>
+                    </a>
+                    <a href="peliculas/E-F.html" class="card" data-titulo="El Ejército de los Muertos">
+                        <div class="card-img" data-fallback="💀"><img src="img/peliculas/El-Ejercito-de-los-Muertos.jpg" alt="El Ejército de los Muertos" loading="lazy"></div>
+                        <div class="card-info"><h3>El Ejército de los Muertos</h3><p>Un atraco en Las Vegas infestada de zombies.</p><span class="card-tag">Acción</span></div>
+                    </a>
+                    <a href="peliculas/G-H.html" class="card" data-titulo="Guerra Mundial Z">
+                        <div class="card-img" data-fallback="🩸"><img src="img/peliculas/Guerra-Mundial-Z.jpg" alt="Guerra Mundial Z" loading="lazy"></div>
+                        <div class="card-info"><h3>Guerra Mundial Z</h3><p>Una pandemia zombie amenaza con destruir la humanidad.</p><span class="card-tag">Thriller</span></div>
+                    </a>
+                    <a href="peliculas/I-J.html" class="card" data-titulo="Soy Leyenda">
+                        <div class="card-img" data-fallback="🧠"><img src="img/peliculas/Soy-Leyenda.jpg" alt="Soy Leyenda" loading="lazy"></div>
+                        <div class="card-info"><h3>Soy Leyenda</h3><p>El último hombre en una Nueva York post-apocalíptica.</p><span class="card-tag">Drama</span></div>
+                    </a>
+                    <a href="peliculas/K-L.html" class="card" data-titulo="La Noche de los Muertos Vivientes">
+                        <div class="card-img" data-fallback="🌆"><img src="img/peliculas/La-Noche-de-los-Muertos-Vivientes.jpg" alt="La Noche de los Muertos Vivientes" loading="lazy"></div>
+                        <div class="card-info"><h3>La Noche de los Muertos Vivientes</h3><p>El clásico que inició el género zombie moderno.</p><span class="card-tag tag-ambar">Clásico</span></div>
+                    </a>
+                    <a href="peliculas/M-N.html" class="card" data-titulo="Tren a Busan">
+                        <div class="card-img" data-fallback="🚂"><img src="img/peliculas/Tren-a-Busan.jpg" alt="Tren a Busan" loading="lazy"></div>
+                        <div class="card-info"><h3>Tren a Busan</h3><p>Un tren se convierte en el último refugio humano.</p><span class="card-tag">Acción</span></div>
+                    </a>
+                    <a href="peliculas/O-P.html" class="card" data-titulo="Planeta Zombie">
+                        <div class="card-img" data-fallback="🏚️"><img src="img/peliculas/Planeta-Zombie.jpg" alt="Planeta Zombie" loading="lazy"></div>
+                        <div class="card-info"><h3>Planeta Zombie</h3><p>La humanidad lucha por sobrevivir en un mundo infectado.</p><span class="card-tag">Terror</span></div>
+                    </a>
+                </div>
+                <button type="button" class="btn-nav btn-next" aria-label="Siguiente">›</button>
+            </div>
+
+            <div class="vacio-catalogo" id="vacioCatalogo">
+                <span class="vacio-emoji" aria-hidden="true">🧟‍♀️</span>
+                <div class="vacio-texto">
+                    <strong>Ningún título destacado coincide con tu búsqueda.</strong>
+                    <p>Prueba con otra letra o revisa el catálogo alfabético de arriba: ahí está todo el arsenal.</p>
+                </div>
+                <button type="button" class="ver-todo" data-limpiar-busqueda>Limpiar búsqueda</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Zombie-TK | Todos los derechos reservados</p>
+        <p>Contenido con doblaje al español neutro 🇲🇽</p>
+    </footer>
+
+    <script src="script.js?v=5"></script>
 </body>
 </html>
