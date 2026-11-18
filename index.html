@@ -5,313 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zombie-TK | Películas, Series, Animes, Cómics y Libros de Zombies</title>
     <meta name="description" content="Zombie-TK: Tu sitio de películas, series, animes, cómics y libros de zombies con doblaje al español neutro.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        /* HEADER */
-        header {
-            background: linear-gradient(135deg, #1a0000 0%, #3d0000 100%);
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 3px solid #8b0000;
-        }
-
-        header h1 {
-            color: #ff1a1a;
-            font-size: 3em;
-            text-shadow: 2px 2px 8px #000;
-            letter-spacing: 5px;
-            font-family: 'Impact', sans-serif;
-        }
-
-        header p {
-            color: #ccc;
-            margin-top: 10px;
-            font-size: 1.1em;
-        }
-
-        /* NAVEGACIÓN */
-        nav {
-            background-color: #1a1a1a;
-            padding: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            border-bottom: 2px solid #8b0000;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: #ff4444;
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid #8b0000;
-            border-radius: 5px;
-            transition: all 0.3s;
-            font-weight: bold;
-            font-size: 0.95em;
-        }
-
-        nav a:hover {
-            background-color: #8b0000;
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.4);
-        }
-
-        /* CONTENIDO PRINCIPAL */
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-
-        /* SECCIONES DE CARRUSEL */
-        .seccion {
-            margin-bottom: 50px;
-        }
-
-        .seccion h2 {
-            color: #ff1a1a;
-            font-size: 2em;
-            margin-bottom: 20px;
-            padding-left: 15px;
-            border-left: 5px solid #8b0000;
-            font-family: 'Impact', sans-serif;
-            letter-spacing: 2px;
-        }
-
-        .carrusel-container {
-            position: relative;
-        }
-
-        .carrusel {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px 10px;
-            scrollbar-width: thin;
-            scrollbar-color: #8b0000 #1a1a1a;
-        }
-
-        .carrusel::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .carrusel::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            border-radius: 4px;
-        }
-
-        .carrusel::-webkit-scrollbar-thumb {
-            background: #8b0000;
-            border-radius: 4px;
-        }
-
-        .carrusel::-webkit-scrollbar-thumb:hover {
-            background: #ff1a1a;
-        }
-
-        /* TARJETAS */
-        .card {
-            min-width: 220px;
-            max-width: 220px;
-            background: #1a1a1a;
-            border: 2px solid #8b0000;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.6);
-            border-color: #ff1a1a;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #2a0000, #4a0000);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4em;
-            color: #ff1a1a;
-            position: relative;
-        }
-
-        .card-img::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(to top, #1a1a1a, transparent);
-        }
-
-        .card-info {
-            padding: 15px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-info h3 {
-            color: #ff4444;
-            font-size: 1.1em;
-            margin-bottom: 8px;
-        }
-
-        .card-info p {
-            color: #aaa;
-            font-size: 0.85em;
-        }
-
-        .card-tag {
-            display: inline-block;
-            background: #8b0000;
-            color: #fff;
-            padding: 3px 8px;
-            border-radius: 3px;
-            font-size: 0.75em;
-            margin-top: 10px;
-            align-self: flex-start;
-        }
-
-        /* BOTONES DE NAVEGACIÓN DEL CARRUSEL */
-        .btn-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(139, 0, 0, 0.8);
-            color: #fff;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 1.5em;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-nav:hover {
-            background: #ff1a1a;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .btn-prev { left: -10px; }
-        .btn-next { right: -10px; }
-
-        /* FOOTER */
-        footer {
-            background: #1a0000;
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-            border-top: 3px solid #8b0000;
-            color: #888;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
-
-            nav {
-                gap: 5px;
-            }
-
-            nav a {
-                padding: 6px 10px;
-                font-size: 0.85em;
-            }
-
-            .seccion h2 {
-                font-size: 1.5em;
-            }
-
-            .card {
-                min-width: 180px;
-                max-width: 180px;
-            }
-
-            .card-img {
-                height: 250px;
-            }
-
-            .btn-nav {
-                width: 35px;
-                height: 35px;
-                font-size: 1.2em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .card {
-                min-width: 160px;
-                max-width: 160px;
-            }
-
-            .card-img {
-                height: 220px;
-                font-size: 3em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header>
-        <h1>🧟 ZOMBIE-TK 🧟</h1>
-        <p>Películas, Series, Animes, Cómics y Libros de Zombies</p>
+    <!-- HEADER FIJO -->
+    <header class="header-fijo">
+        <div class="header-superior">
+            <div class="logo-container">
+                <div class="logo-img">🧟</div>
+                <div class="titulo-header">
+                    <h1>ZOMBIE-TK</h1>
+                    <p>Películas, Series, Animes, Cómics y Libros</p>
+                </div>
+            </div>
+            <button class="btn-hamburguesa" id="btnHamburguesa" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <nav id="menuNav">
+            <a href="index.html" class="activo">Inicio</a>
+            <a href="peliculas.html">Películas</a>
+            <a href="series.html">Series</a>
+            <a href="animes.html">Animes</a>
+            <a href="comics.html">Cómics</a>
+            <a href="libros.html">Libros</a>
+            <a href="tutoriales.html">Tutoriales</a>
+            <a href="cortometrajes.html">Cortometrajes</a>
+            <a href="relatos.html">Relatos</a>
+            <a href="juegos.html">Juegos</a>
+            <a href="revista.html">Revista</a>
+        </nav>
     </header>
 
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="peliculas.html">Películas</a>
-        <a href="series.html">Series</a>
-        <a href="animes.html">Animes</a>
-        <a href="comics.html">Cómics</a>
-        <a href="libros.html">Libros</a>
-        <a href="tutoriales.html">Tutoriales</a>
-        <a href="cortometrajes.html">Cortometrajes</a>
-        <a href="relatos.html">Relatos</a>
-        <a href="juegos.html">Juegos</a>
-        <a href="revista.html">Revista</a>
-    </nav>
+    <!-- Overlay para cerrar menú al hacer clic fuera -->
+    <div class="overlay" id="overlay"></div>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
 
         <!-- CARRUSEL DE PELÍCULAS -->
@@ -355,7 +88,7 @@
                     <a href="peliculas/I-J.html" class="card">
                         <div class="card-img">🧠</div>
                         <div class="card-info">
-                            <h3>Io sono leggenda</h3>
+                            <h3>Soy Leyenda</h3>
                             <p>El último hombre en una Nueva York post-apocalíptica.</p>
                             <span class="card-tag">Drama</span>
                         </div>
@@ -371,7 +104,7 @@
                     <a href="peliculas/M-N.html" class="card">
                         <div class="card-img">🚂</div>
                         <div class="card-info">
-                            <h3>Mundo Z</h3>
+                            <h3>Tren a Busan</h3>
                             <p>Un tren se convierte en el último refugio humano.</p>
                             <span class="card-tag">Acción</span>
                         </div>
@@ -546,20 +279,6 @@
         <p>Contenido con doblaje al español neutro 🇲🇽</p>
     </footer>
 
-    <script>
-        function scrollCarrusel(id, distancia) {
-            const carrusel = document.getElementById(id);
-            carrusel.scrollBy({
-                left: distancia,
-                behavior: 'smooth'
-            });
-        }
-
-        // Scroll automático suave al cargar (opcional)
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('🧟 Zombie-TK cargado correctamente');
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
