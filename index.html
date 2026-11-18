@@ -13,6 +13,7 @@
                 .menu{position:static;transform:none;visibility:visible;height:auto;width:auto;flex-direction:row;flex-wrap:wrap;padding:10px;border-left:none}
                 .btn-hamburguesa{display:none}
             }
+            .barra-busqueda,.capa-busqueda{display:none!important}
         </style>
     </noscript>
 </head>
@@ -46,36 +47,34 @@
             <a href="relatos.html">Relatos</a>
             <a href="juegos.html">Juegos</a>
             <a href="revista.html">Revista</a>
-            <a href="buscar.html" class="enlace-buscar">🔍 Buscar</a>
         </nav>
+
+        <div class="barra-busqueda">
+            <form id="formBusquedaGlobal" role="search" autocomplete="off">
+                <div class="campo-busqueda">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                        <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+                    </svg>
+                    <input type="text" id="buscadorGlobal" placeholder="Busca en el arsenal… ej. «Kingdom», «Tren», «Apocalipsis»" aria-label="Buscar títulos en Zombie-TK">
+                </div>
+                <button type="submit" class="btn-buscar" id="btnBuscarGlobal">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+                        <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+                    </svg>
+                    Buscar
+                </button>
+                <span class="atajo" aria-hidden="true" title="Atajo: pulsa / para buscar">/</span>
+                <p class="mensaje-busqueda" id="mensajeBusqueda" role="status"></p>
+            </form>
+            <span class="arsenal" id="arsenalConteo"></span>
+        </div>
     </header>
 
     <div class="overlay" id="overlay"></div>
 
     <main>
-
-        <section class="buscador-hero reveal">
-            <h2 class="hero-titulo">ENCUENTRA TU PRÓXIMA PESADILLA</h2>
-            <p class="hero-sub">Un solo buscador para todo el arsenal: películas, series, libros, animes y cómics con doblaje al español neutro.</p>
-            <form class="form-busqueda" id="formBuscadorIndex" action="buscar.html" method="get" role="search">
-                <div class="campo-busqueda campo-grande">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
-                        <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-                    </svg>
-                    <input type="text" id="qIndex" name="q" placeholder="Escribe un título… ej. «Walking», «Tren», «Kingdom»" autocomplete="off" aria-label="Buscar en todo Zombie-TK">
-                </div>
-                <button type="submit" class="btn-buscar">BUSCAR</button>
-            </form>
-            <div class="populares">
-                <span class="populares-label">Búsquedas populares:</span>
-                <a class="chip-pop" href="buscar.html?q=The%20Walking%20Dead">The Walking Dead</a>
-                <a class="chip-pop" href="buscar.html?q=Tren%20a%20Busan">Tren a Busan</a>
-                <a class="chip-pop" href="buscar.html?q=Kingdom">Kingdom</a>
-                <a class="chip-pop" href="buscar.html?q=Apocalipsis%20Z">Apocalipsis Z</a>
-                <a class="chip-pop" href="buscar.html?q=Zombieland%20Saga">Zombieland Saga</a>
-            </div>
-        </section>
 
         <section class="seccion reveal">
             <div class="cabecera-seccion">
@@ -143,7 +142,7 @@
                         <div class="card-info"><h3>The Walking Dead</h3><p>Un grupo de sobrevivientes lucha en un mundo post-apocalíptico.</p><span class="card-tag">Drama</span></div>
                     </a>
                     <a href="series/Z-Nation.html" class="card">
-                        <div class="card-img" data-fallback="🇺"><img src="img/series/Z-Nation.jpg" alt="Z Nation" loading="lazy"></div>
+                        <div class="card-img" data-fallback="🇺🇸"><img src="img/series/Z-Nation.jpg" alt="Z Nation" loading="lazy"></div>
                         <div class="card-info"><h3>Z Nation</h3><p>Una misión para transportar al único inmune conocido.</p><span class="card-tag">Acción</span></div>
                     </a>
                     <a href="series/Black-Summer.html" class="card">
@@ -228,9 +227,52 @@
 
     <footer>
         <p>© 2026 Zombie-TK | Todos los derechos reservados</p>
-        <p>Contenido con doblaje al español neutro 🇲🇽</p>
+        <p>Contenido con doblaje al español neutro 🇲</p>
     </footer>
 
+    <!-- ===== VENTANA DE RESULTADOS DE BÚSQUEDA ===== -->
+    <div class="capa-busqueda" id="capaBusqueda" hidden>
+        <div class="busqueda-scrim" id="scrimBusqueda"></div>
+
+        <section class="ventana-busqueda" id="ventanaBusqueda" role="dialog" aria-modal="true" aria-labelledby="tituloBusqueda">
+            <header class="vb-cabecera">
+                <div class="vb-titulo">
+                    <span class="vb-pulso" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="tituloBusqueda">RASTREO COMPLETADO</h2>
+                        <p class="vb-consulta">Objetivo: <span id="consultaBusqueda"></span></p>
+                    </div>
+                </div>
+                <button type="button" class="vb-cerrar" id="btnCerrarBusqueda" aria-label="Cerrar resultados y volver a la página">×</button>
+            </header>
+
+            <div class="vb-filtros" id="filtrosBusqueda" role="group" aria-label="Filtrar resultados por categoría"></div>
+
+            <div class="vb-cuerpo">
+                <ul class="vb-lista" id="listaResultados"></ul>
+
+                <div class="vb-vacio" id="vacioBusqueda">
+                    <span class="vacio-emoji" aria-hidden="true">🧟‍♀️</span>
+                    <strong>Sin coincidencias para <span class="vacio-consulta"></span></strong>
+                    <p>El arsenal no tiene ese título… todavía. Prueba con otra pista:</p>
+                    <div class="vb-sugerencias">
+                        <button type="button" class="chip" data-sugerencia="Kingdom">Kingdom</button>
+                        <button type="button" class="chip" data-sugerencia="Walking Dead">Walking Dead</button>
+                        <button type="button" class="chip" data-sugerencia="Tren">Tren a Busan</button>
+                        <button type="button" class="chip" data-sugerencia="Apocalipsis">Apocalipsis Z</button>
+                        <button type="button" class="chip" data-sugerencia="Zombieland">Zombieland Saga</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="vb-pie">
+                <span class="vb-conteo" id="conteoBusqueda" role="status"></span>
+                <button type="button" class="vb-continuar" id="btnContinuarBusqueda">Cerrar y continuar</button>
+            </footer>
+        </section>
+    </div>
+
+    <script src="catalogo.js?v=1"></script>
     <script src="script.js?v=6"></script>
 </body>
 </html>
