@@ -9,7 +9,7 @@ body {
     background-color: #0a0a0a;
     color: #e0e0e0;
     line-height: 1.6;
-    padding-top: 100px; /* Ajustado para el header de PC */
+    padding-top: 140px;
 }
 
 /* ========== HEADER FIJO ========== */
@@ -28,7 +28,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border-bottom: 2px solid #5a0000;
 }
 
@@ -39,8 +39,8 @@ body {
 }
 
 .logo-img {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     border: 2px solid #ff1a1a;
     background: #000;
@@ -71,9 +71,9 @@ body {
     margin-top: 3px;
 }
 
-/* ========== BOTÓN HAMBURGUESA (Oculto en PC) ========== */
+/* ========== BOTÓN HAMBURGUESA ========== */
 .btn-hamburguesa {
-    display: none; /* Solo aparece en tablet/móvil */
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     width: 35px;
@@ -95,28 +95,30 @@ body {
     box-shadow: 0 0 5px rgba(255, 26, 26, 0.6);
 }
 
-.btn-hamburguesa.activo span:nth-child(1) { transform: translateY(12.5px) rotate(45deg); }
-.btn-hamburguesa.activo span:nth-child(2) { opacity: 0; }
-.btn-hamburguesa.activo span:nth-child(3) { transform: translateY(-12.5px) rotate(-45deg); }
+.btn-hamburguesa.activo span:nth-child(1) {
+    transform: translateY(12.5px) rotate(45deg);
+}
 
-/* ========== MENÚ DE NAVEGACIÓN (Estilo PC por defecto) ========== */
-nav {
+.btn-hamburguesa.activo span:nth-child(2) {
+    opacity: 0;
+}
+
+.btn-hamburguesa.activo span:nth-child(3) {
+    transform: translateY(-12.5px) rotate(-45deg);
+}
+
+/* ========== MENÚ DESKTOP (PC) ========== */
+.nav-desktop {
     background-color: #120000;
     padding: 12px 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    /* Propiedades de escritorio */
-    position: relative;
-    width: 100%;
-    right: auto;
-    height: auto;
-    border-left: none;
+    gap: 8px;
+    border-top: 1px solid #5a0000;
 }
 
-nav a {
+.nav-desktop a {
     color: #ff4444;
     text-decoration: none;
     padding: 8px 16px;
@@ -125,15 +127,23 @@ nav a {
     transition: all 0.3s;
     font-weight: bold;
     font-size: 0.95em;
-    width: auto;
-    text-align: center;
 }
 
-nav a:hover, nav a.activo {
+.nav-desktop a:hover {
     background-color: #8b0000;
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(139, 0, 0, 0.4);
+}
+
+.nav-desktop a.activo {
+    background-color: #8b0000;
+    color: #fff;
+}
+
+/* ========== MENÚ MÓVIL/TABLET ========== */
+.nav-mobile {
+    display: none;
 }
 
 /* ========== CONTENIDO PRINCIPAL ========== */
@@ -143,7 +153,10 @@ main {
     padding: 30px 20px;
 }
 
-.seccion { margin-bottom: 50px; }
+/* ========== SECCIONES DE CARRUSEL ========== */
+.seccion {
+    margin-bottom: 50px;
+}
 
 .seccion h2 {
     color: #ff1a1a;
@@ -155,7 +168,9 @@ main {
     letter-spacing: 2px;
 }
 
-.carrusel-container { position: relative; }
+.carrusel-container {
+    position: relative;
+}
 
 .carrusel {
     display: flex;
@@ -167,10 +182,23 @@ main {
     scrollbar-color: #8b0000 #1a1a1a;
 }
 
-.carrusel::-webkit-scrollbar { height: 8px; }
-.carrusel::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 4px; }
-.carrusel::-webkit-scrollbar-thumb { background: #8b0000; border-radius: 4px; }
-.carrusel::-webkit-scrollbar-thumb:hover { background: #ff1a1a; }
+.carrusel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carrusel::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.carrusel::-webkit-scrollbar-thumb {
+    background: #8b0000;
+    border-radius: 4px;
+}
+
+.carrusel::-webkit-scrollbar-thumb:hover {
+    background: #ff1a1a;
+}
 
 /* ========== TARJETAS ========== */
 .card {
@@ -209,7 +237,9 @@ main {
 .card-img::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 50%;
     background: linear-gradient(to top, #1a1a1a, transparent);
 }
@@ -222,8 +252,16 @@ main {
     justify-content: space-between;
 }
 
-.card-info h3 { color: #ff4444; font-size: 1.1em; margin-bottom: 8px; }
-.card-info p { color: #aaa; font-size: 0.85em; }
+.card-info h3 {
+    color: #ff4444;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.card-info p {
+    color: #aaa;
+    font-size: 0.85em;
+}
 
 .card-tag {
     display: inline-block;
@@ -236,7 +274,7 @@ main {
     align-self: flex-start;
 }
 
-/* ========== BOTONES CARRUSEL ========== */
+/* ========== BOTONES DE NAVEGACIÓN DEL CARRUSEL ========== */
 .btn-nav {
     position: absolute;
     top: 50%;
@@ -256,7 +294,11 @@ main {
     justify-content: center;
 }
 
-.btn-nav:hover { background: #ff1a1a; transform: translateY(-50%) scale(1.1); }
+.btn-nav:hover {
+    background: #ff1a1a;
+    transform: translateY(-50%) scale(1.1);
+}
+
 .btn-prev { left: -10px; }
 .btn-next { right: -10px; }
 
@@ -269,30 +311,45 @@ footer {
     border-top: 3px solid #8b0000;
     color: #888;
 }
-footer p { margin: 5px 0; }
 
-/* ========== OVERLAY ========== */
+footer p {
+    margin: 5px 0;
+}
+
+/* ========== OVERLAY PARA CERRAR MENÚ ========== */
 .overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 999;
 }
-.overlay.activo { display: block; }
 
-/* =========================================
-   📱 RESPONSIVE: TABLETS Y MÓVILES (<= 1024px)
-   ========================================= */
+.overlay.activo {
+    display: block;
+}
+
+/* ========== RESPONSIVE: TABLETS ========== */
 @media (max-width: 1024px) {
-    body { padding-top: 110px; }
+    body {
+        padding-top: 120px;
+    }
 
-    /* Mostrar botón hamburguesa */
-    .btn-hamburguesa { display: flex; }
+    .btn-hamburguesa {
+        display: flex;
+    }
 
-    /* Transformar el menú en panel lateral */
-    nav {
+    /* Ocultar menú desktop en tablets */
+    .nav-desktop {
+        display: none;
+    }
+
+    /* Mostrar menú móvil en tablets */
+    .nav-mobile {
+        display: block;
         position: fixed;
         top: 0;
         right: -100%;
@@ -310,52 +367,128 @@ footer p { margin: 5px 0; }
         z-index: 1050;
     }
 
-    nav.abierto { right: 0; }
+    .nav-mobile.abierto {
+        right: 0;
+    }
 
-    nav a {
+    .nav-mobile a {
         width: 100%;
         text-align: center;
         padding: 7px 8px;
         font-size: 0.88em;
         border-radius: 4px;
+        color: #ff4444;
+        text-decoration: none;
+        border: 1px solid #8b0000;
+        transition: all 0.3s;
+        font-weight: bold;
+        display: block;
     }
 
-    .header-superior { padding: 8px 15px; }
-    .titulo-header h1 { font-size: 1.4em; }
-    .titulo-header p { font-size: 0.7em; }
-    .logo-img { width: 42px; height: 42px; font-size: 1.3em; }
+    .nav-mobile a:hover,
+    .nav-mobile a.activo {
+        background-color: #8b0000;
+        color: #fff;
+    }
+
+    .header-superior {
+        padding: 8px 15px;
+    }
+
+    .titulo-header h1 {
+        font-size: 1.4em;
+    }
+
+    .titulo-header p {
+        font-size: 0.7em;
+    }
+
+    .logo-img {
+        width: 42px;
+        height: 42px;
+        font-size: 1.3em;
+    }
 }
 
-/* =========================================
-   📱 RESPONSIVE: MÓVILES (<= 768px)
-   ========================================= */
+/* ========== RESPONSIVE: MÓVILES ========== */
 @media (max-width: 768px) {
-    body { padding-top: 95px; }
+    body {
+        padding-top: 100px;
+    }
 
-    .header-superior { padding: 6px 12px; }
-    .titulo-header h1 { font-size: 1.2em; }
-    .titulo-header p { font-size: 0.65em; }
-    .logo-img { width: 38px; height: 38px; font-size: 1.1em; }
+    .header-superior {
+        padding: 6px 12px;
+    }
 
-    .seccion h2 { font-size: 1.5em; }
-    .card { min-width: 180px; max-width: 180px; }
-    .card-img { height: 250px; }
-    .btn-nav { width: 35px; height: 35px; font-size: 1.2em; }
+    .titulo-header h1 {
+        font-size: 1.2em;
+    }
 
-    nav {
-        width: 100%; /* Menú a pantalla completa en móviles */
+    .titulo-header p {
+        font-size: 0.65em;
+    }
+
+    .logo-img {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1em;
+    }
+
+    .seccion h2 {
+        font-size: 1.5em;
+    }
+
+    .card {
+        min-width: 180px;
+        max-width: 180px;
+    }
+
+    .card-img {
+        height: 250px;
+    }
+
+    .btn-nav {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2em;
+    }
+
+    .nav-mobile {
+        width: 100%;
         right: -100%;
         padding: 70px 10px 10px;
         gap: 3px;
     }
 
-    nav a { padding: 6px 8px; font-size: 0.85em; }
+    .nav-mobile a {
+        padding: 6px 8px;
+        font-size: 0.85em;
+    }
 }
 
 @media (max-width: 480px) {
-    .card { min-width: 160px; max-width: 160px; }
-    .card-img { height: 220px; font-size: 3em; }
-    .titulo-header h1 { font-size: 1.1em; letter-spacing: 1px; }
-    nav { padding: 65px 8px 8px; gap: 2px; }
-    nav a { padding: 5px 6px; font-size: 0.82em; }
+    .card {
+        min-width: 160px;
+        max-width: 160px;
+    }
+
+    .card-img {
+        height: 220px;
+        font-size: 3em;
+    }
+
+    .titulo-header h1 {
+        font-size: 1.1em;
+        letter-spacing: 1px;
+    }
+
+    .nav-mobile {
+        padding: 65px 8px 8px;
+        gap: 2px;
+    }
+
+    .nav-mobile a {
+        padding: 5px 6px;
+        font-size: 0.82em;
+    }
 }
