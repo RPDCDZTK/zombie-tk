@@ -1,225 +1,565 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Zombie-TK</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="En zombie-TK encontraras mucho contenido sobre el genero Zombie, entre películas, series, libros, videojuegos, animes">
-	<meta name="author" content="RegePunk">
-	<script src="https://kit.fontawesome.com/b83cb8ca80.js" crossorigin="anonymous"></script>
-	<link rel="icon" href="img/simbolo.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="js/javascript.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie-TK | Películas, Series, Animes, Cómics y Libros de Zombies</title>
+    <meta name="description" content="Zombie-TK: Tu sitio de películas, series, animes, cómics y libros de zombies con doblaje al español neutro.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #1a0000 0%, #3d0000 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid #8b0000;
+        }
+
+        header h1 {
+            color: #ff1a1a;
+            font-size: 3em;
+            text-shadow: 2px 2px 8px #000;
+            letter-spacing: 5px;
+            font-family: 'Impact', sans-serif;
+        }
+
+        header p {
+            color: #ccc;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        /* NAVEGACIÓN */
+        nav {
+            background-color: #1a1a1a;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            border-bottom: 2px solid #8b0000;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #ff4444;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid #8b0000;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        nav a:hover {
+            background-color: #8b0000;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.4);
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* SECCIONES DE CARRUSEL */
+        .seccion {
+            margin-bottom: 50px;
+        }
+
+        .seccion h2 {
+            color: #ff1a1a;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #8b0000;
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .carrusel-container {
+            position: relative;
+        }
+
+        .carrusel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 10px;
+            scrollbar-width: thin;
+            scrollbar-color: #8b0000 #1a1a1a;
+        }
+
+        .carrusel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .carrusel::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 4px;
+        }
+
+        .carrusel::-webkit-scrollbar-thumb {
+            background: #8b0000;
+            border-radius: 4px;
+        }
+
+        .carrusel::-webkit-scrollbar-thumb:hover {
+            background: #ff1a1a;
+        }
+
+        /* TARJETAS */
+        .card {
+            min-width: 220px;
+            max-width: 220px;
+            background: #1a1a1a;
+            border: 2px solid #8b0000;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.6);
+            border-color: #ff1a1a;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #2a0000, #4a0000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: #ff1a1a;
+            position: relative;
+        }
+
+        .card-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, #1a1a1a, transparent);
+        }
+
+        .card-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-info h3 {
+            color: #ff4444;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .card-info p {
+            color: #aaa;
+            font-size: 0.85em;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background: #8b0000;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+        /* BOTONES DE NAVEGACIÓN DEL CARRUSEL */
+        .btn-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(139, 0, 0, 0.8);
+            color: #fff;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-nav:hover {
+            background: #ff1a1a;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .btn-prev { left: -10px; }
+        .btn-next { right: -10px; }
+
+        /* FOOTER */
+        footer {
+            background: #1a0000;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            border-top: 3px solid #8b0000;
+            color: #888;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav {
+                gap: 5px;
+            }
+
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.85em;
+            }
+
+            .seccion h2 {
+                font-size: 1.5em;
+            }
+
+            .card {
+                min-width: 180px;
+                max-width: 180px;
+            }
+
+            .card-img {
+                height: 250px;
+            }
+
+            .btn-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                min-width: 160px;
+                max-width: 160px;
+            }
+
+            .card-img {
+                height: 220px;
+                font-size: 3em;
+            }
+        }
+    </style>
 </head>
 <body>
-	<div id="contenedor" class="header2">
-		<aside class="logo"><a></a></aside>
-		<ul class="nav" id="wrapper">
-			<li><a href="index.html">Inicio</a></li>
-			<li><a href="libros.html">Libros</a>
-				<ul>
-					<li><a href="libros/0-9.html">0 - 9</a></li>
-					<li><a href="libros/A-B.html">A - B</a></li>
-					<li><a href="libros/C-D.html">C - D</a></li>
-					<li><a href="libros/E-F.html">E - F</a></li>
-					<li><a href="libros/G-H.html">G - H</a></li>
-					<li><a href="libros/I-J.html">I - J</a></li>
-					<li><a href="libros/K-L.html">K - L</a></li>
-					<li><a href="libros/M-N.html">M - N</a></li>
-					<li><a href="libros/O-P.html">O - P</a></li>
-					<li><a href="libros/Q-R.html">Q - R</a></li>
-					<li><a href="libros/S-T.html">S - T</a></li>
-					<li><a href="libros/U-V.html">U - V</a></li>
-					<li><a href="libros/W-X.html">W - X</a></li>
-					<li><a href="libros/Y-Z.html">Y - Z</a></li>
-				</ul>
-			</li>
-			<li><a href="peliculas.html">Peliculas</a>
-				<ul>
-					<li><a href="peliculas/0-9.html">0 - 9</a></li>
-					<li><a href="peliculas/A-B.html">A - B</a></li>
-					<li><a href="peliculas/C-D.html">C - D</a></li>
-					<li><a href="peliculas/E-F.html">E - F</a></li>
-					<li><a href="peliculas/G-H.html">G - H</a></li>
-					<li><a href="peliculas/I-J.html">I - J</a></li>
-					<li><a href="peliculas/K-L.html">K - L</a></li>
-					<li><a href="peliculas/M-N.html">M - N</a></li>
-					<li><a href="peliculas/O-P.html">O - P</a></li>
-					<li><a href="peliculas/Q-R.html">Q - R</a></li>
-					<li><a href="peliculas/S-T.html">S - T</a></li>
-					<li><a href="peliculas/U-V.html">U - V</a></li>
-					<li><a href="peliculas/W-X.html">W - X</a></li>
-					<li><a href="peliculas/Y-Z.html">Y - Z</a></li>
-				</ul>
-			</li>
-			<li><a href="series.html">Series</a>
-				<ul>
-					<li><a href="series/Black-Summer.html">Black Summer</a></li>
-					<li><a href="series/Daybreak.html">Daybreak</a></li>
-					<li><a href="series/Dead-Set.html">Dead Set</a></li>
-					<li><a href="series/I-Zombie.html">I Zombie</a></li>
-					<li><a href="series/Kingdom.html">Kingdom</a></li>
-					<li><a href="series/Plantas-Vs-Zombies.html">Plantas Vs Zombies</a></li>
-					<li><a href="series/Reality-Z.html">Reality Z</a></li>
-					<li><a href="series/The-Walking-Dead.html">The Walking Dead</a></li>
-					<li><a href="series/Z-Nation.html">Z Nation</a></li>
-				</ul>
-			</li>
-			<li><a href="animes.html">Animes</a>
-				<ul>
-					<li><a href="animes/Gakkou-Gurashi.html">Gakkou Gurashi!</a></li>
-					<li><a href="animes/Highschool-of-the-Dead.html">Highschool<br>of the Dead</a></li>
-					<li><a href="animes/Kore-wa-Zombie-Desu-ka.html">Kore wa Zombie<br>Desu ka?</a></li>
-					<li><a href="animes/Koutetsujou-no-Kabaneri.html">Koutetsujou<br>no Kabaneri</a></li>
-					<li><a href="animes/Shikabane-Hime-Aka.html">Shikabane<br>Hime: Aka</a></li>
-					<li><a href="animes/Zombieland-Saga.html">Zombieland Saga</a></li>
-				</ul>
-			</li>
-			<li><a href="comics.html">Comic´s</a>	
-				<ul>
-					<li><a href="comics/The-Walking-Dead-Comic.html">The Walking Dead</a></li>
-				</ul>
-			</li>
-			<li><a href="tutoriales.html">Tutoriales</a></li>
-			<li><a href="cortometrajes.html">Cortometrajes</a></li>
-			<li><a href="relatos.html">Relatos</a></li>
-			<li><a href="juegos.html">Juegos</a></li>
-			<li><a href="revista.html">Revista</a></li>
-		</ul>
-	</div>
-	<header>
-		<a><img src="img/simbolo.png" alt="Simbolo" width="120"></a>
-		<a><img src="img/ZombieTK.png" alt="Zombie-TK" style="background-color:#242424" width="600" height="100"></a>
-		<a><img src="img/simbolo.png" alt="Simbolo" width="120"></a>
-		<br>
-	</header>
-	<br>
-	<div class="redessociales">
-		<ul>
-			<li><a href="https://www.facebook.com/Zombie.TK.Oficial/" target="_blank" class="social-facebook"><img src="img/facebook.png" title="Zombie.TK.Oficial" width="48" height="48"></a></li>
-			<li><a href="https://www.instagram.com/zombie.tk_oficial/" target="_blank" class="social-instagram"><img src="img/instagram.png" title="zombie.te_oficial" width="48" height="48"></a></li>
-			<li><a href="https://www.twitter.com/" target="_blank" class="social-twitter"><img src="img/twitter.png" title="Twitter" width="48" height="48"></a></li>
-			<li><a href="https://www.youtube.com/channel/UCsa11dIwjO2Zah77JPwQ0_Q" target="_blank" class="social-youtube"><img src="img/youtube.png" title="Zombie-TK" width="48" height="48"></a></li>
-			<li><a href="mailto:punk_dead_rp@hotmail.com" class="social-mail"><img src="img/mail.png" alt="Correo" title="Correo" width="48" height="48"></a></li>
-		</ul>
-	</div>
-	<div id="article">
-		<div>
-			<p class="adblock">Para poder visualizar mejor el contenido de la pagina se recomienda el uso de la extension para Google Chrome <a href="https://chrome.google.com/webstore/detail/adblock-%E2%80%94-best-ad-blocker/gighmmpiobklfepjocnamgkkbiglidom?hl=es" target="_blank">"AdBlock"</a></p>
-		</div>
-		<br>
-		<div class="espacios"><hr></div>
-		<br>
-		<h2>PELICULAS</h2>
-		<a href="peliculas.html" style="text-decoration:none"><img src="img/ztk.png" alt="ZTK" height="35"/><img src="img/ztk.png" alt="ZTK" height="35"/></a>
-		<br>
-		<br>
-		<div class="imagenes">
-			<div class="div-imagen">
-				<a href="peliculas/C-D.html#dawn-of-the-dead"><img class="desvanecer" src="img/peliculas/Dawn-Of-The-Dead-(1978).jpg" alt="Dawn Of The Dead" title="Dawn Of The Dead (1978)"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="peliculas/0-9.html#28-days-later"><img class="desvanecer" src="img/peliculas/28-Days-Later-(2002).jpg" alt="28 Days Later" title="28 Days Later (2002)"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="peliculas/S-T.html#state-of-emergency"><img class="desvanecer" src="img/peliculas/State-Of-Emergency-(2010).jpg" alt="State Of Emergency" title="State Of Emergency (2010)"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="peliculas/Y-Z.html#zombieland-double-tap"><img class="desvanecer" src="img/peliculas/Zombieland-Double-Tap-(2019).jpg" alt="Zombieland" title="Zombieland: Double Tap (2019)"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="peliculas/K-L.html#les-affames"><img class="desvanecer" src="img/peliculas/Les-Affames-(2017).jpg" alt="Les Affamés" title="Les Affamés (2017)"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="peliculas/Y-Z.html#zombeavers"><img class="desvanecer" src="img/peliculas/Zombeavers-(2014).jpg" alt="Zombeavers" title="Zombeavers (2014)"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="peliculas/S-T.html#train-to-busan-2-peninsula"><img class="desvanecer" src="img/peliculas/Train-To-Busan-2-Peninsula-(2020).jpg" alt="Train To Busan 2: Peninsula" title="Train To Busan 2: Peninsula (2020)"></a>
-			</div>
-		</div>
-		<br>
-		<div class="espacios"><hr></div>
-		<br>
-		<a href="series.html" style="text-decoration:none"><img src="img/ztk.png" alt="ZTK" height="35"/> SERIES <img src="img/ztk.png" alt="ZTK" height="35"/></a>
-		<br>
-		<br>
-		<div class="imagenes">
-			<div class="div-imagen">
-				<a href="series/Dead-Set.html"><img class="desvanecer" src="img/series/Dead-Set.jpg" alt="Dead Set" title="Dead Set"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="series/The-Walking-Dead.html"><img class="desvanecer" src="img/series/The-Walking-Dead.jpg" alt="The Walking Dead" title="The Walking Dead"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="series/Z-Nation.html"><img class="desvanecer" src="img/series/Z-Nation.png" alt="Z Nation" title="Z Nation"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="series/Kingdom.html"><img class="desvanecer" src="img/series/kingdom.jpg" alt="Kingdom" title="Kingdom"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="series/Daybreak.html"><img class="desvanecer" src="img/series/Daybreak.png" alt="Daybreak" title="Daybreak"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="series/Black-Summer.html"><img class="desvanecer" src="img/series/Black-Summer.jpg" alt="Black Summer" title="Black Summer"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="series/Reality-Z.html"><img class="desvanecer" src="img/series/Reality-Z.jpg" alt="Reality Z" title="Reality Z"></a>
-			</div>
-		</div>
-		<br>
-		<div class="espacios"><hr></div>
-		<br>
-		<a href="libros.html" style="text-decoration:none"><img src="img/ztk.png" alt="ZTK" height="35"/> LIBROS <img src="img/ztk.png" alt="ZTK" height="35"/></a>
-		<br>
-		<br>
-		<div class="imagenes">
-			<div class="div-imagen">
-				<a href="libros/A-B.html#apocalipsis-island-1"><img class="desvanecer" src="img/libros/Apocalipsis-Island-I-Vicente-Garcia.png" alt="Apocalipsis Island I" title="Apocalipsis Island I"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="libros/A-B.html#apocalipsis-z-1-el-principio-del-fin"><img class="desvanecer" src="img/libros/Apocalipsis-Z-El-Principio-Del-Fin-Manuel-Loureiro.jpg" alt="Apocalipsis Z - El Principio Del Fin" title="Apocalipsis Z &#10;El Principio del Fin"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="libros/I-J.html#i-hispano-antologia-zombie"><img class="desvanecer" src="img/libros/I-Hispano-Antologia-Zombie.png" alt="I Hispano Antologia Zombie" title="I Hispano Antologia Zombie"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="libros/O-P.html#orgullo-y-prejuicio-el-amanecer-de-los-zombis"><img class="desvanecer" src="img/libros/Orgullo-Y-Prejuicio-El-Amanecer-De-Los-Zombis-Steve-Hockensmith.png" alt="Orgullo y Prejuicio - El Amanecer De Los Zombis" title="Orgullo y Prejuicio &#10;El Amanecer de los Zombis"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="libros/Y-Z.html#zombie-1-zombie-island"><img class="desvanecer" src="img/libros/Zombie-01-Zombie-Island-David-Wellington.jpg" alt="Zombie 1 - Zombie Island" title="Zombie Island"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="libros/Q-R.html#reset"><img class="desvanecer" src="img/libros/Reset-Raul-Valcarcel.png" alt="Reset" title="Reset"></a>
-			</div>
-			<a> </a>
-			<div class="div-imagen">
-				<a href="libros/K-L.html#la-muerte-escarlata"><img class="desvanecer" src="img/libros/La-Muerte-Escarlata-Antonio-Calzado.png" alt="La Muerte Escarlata" title="La Muerte Escarlata"></a>
-			</div>
-		</div>
-		<br>
-		<div class="espacios"><hr></div>
-		<br>
-	</div>
-	<footer>
-		<div class="pie">
-		</div>
-	</footer>
+
+    <header>
+        <h1>🧟 ZOMBIE-TK 🧟</h1>
+        <p>Películas, Series, Animes, Cómics y Libros de Zombies</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="peliculas.html">Películas</a>
+        <a href="series.html">Series</a>
+        <a href="animes.html">Animes</a>
+        <a href="comics.html">Cómics</a>
+        <a href="libros.html">Libros</a>
+        <a href="tutoriales.html">Tutoriales</a>
+        <a href="cortometrajes.html">Cortometrajes</a>
+        <a href="relatos.html">Relatos</a>
+        <a href="juegos.html">Juegos</a>
+        <a href="revista.html">Revista</a>
+    </nav>
+
+    <main>
+
+        <!-- CARRUSEL DE PELÍCULAS -->
+        <section class="seccion">
+            <h2>🎬 PELÍCULAS</h2>
+            <div class="carrusel-container">
+                <button class="btn-nav btn-prev" onclick="scrollCarrusel('carrusel-peliculas', -250)">‹</button>
+                <div class="carrusel" id="carrusel-peliculas">
+                    <a href="peliculas/A-B.html" class="card">
+                        <div class="card-img">🎬</div>
+                        <div class="card-info">
+                            <h3>28 Days Later</h3>
+                            <p>Un virus desata el apocalipsis zombie en Londres.</p>
+                            <span class="card-tag">Terror</span>
+                        </div>
+                    </a>
+                    <a href="peliculas/C-D.html" class="card">
+                        <div class="card-img">🧟</div>
+                        <div class="card-info">
+                            <h3>Dawn of the Dead</h3>
+                            <p>Sobrevivientes en un centro comercial rodeado de zombies.</p>
+                            <span class="card-tag">Clásico</span>
+                        </div>
+                    </a>
+                    <a href="peliculas/E-F.html" class="card">
+                        <div class="card-img">💀</div>
+                        <div class="card-info">
+                            <h3>El Ejército de los Muertos</h3>
+                            <p>Un atraco en Las Vegas infestada de zombies.</p>
+                            <span class="card-tag">Acción</span>
+                        </div>
+                    </a>
+                    <a href="peliculas/G-H.html" class="card">
+                        <div class="card-img">🩸</div>
+                        <div class="card-info">
+                            <h3>Guerra Mundial Z</h3>
+                            <p>Una pandemia zombie amenaza con destruir la humanidad.</p>
+                            <span class="card-tag">Thriller</span>
+                        </div>
+                    </a>
+                    <a href="peliculas/I-J.html" class="card">
+                        <div class="card-img">🧠</div>
+                        <div class="card-info">
+                            <h3>Io sono leggenda</h3>
+                            <p>El último hombre en una Nueva York post-apocalíptica.</p>
+                            <span class="card-tag">Drama</span>
+                        </div>
+                    </a>
+                    <a href="peliculas/K-L.html" class="card">
+                        <div class="card-img">🌆</div>
+                        <div class="card-info">
+                            <h3>La Noche de los Muertos Vivientes</h3>
+                            <p>El clásico que inició el género zombie moderno.</p>
+                            <span class="card-tag">Clásico</span>
+                        </div>
+                    </a>
+                    <a href="peliculas/M-N.html" class="card">
+                        <div class="card-img">🚂</div>
+                        <div class="card-info">
+                            <h3>Mundo Z</h3>
+                            <p>Un tren se convierte en el último refugio humano.</p>
+                            <span class="card-tag">Acción</span>
+                        </div>
+                    </a>
+                    <a href="peliculas/O-P.html" class="card">
+                        <div class="card-img">🏚️</div>
+                        <div class="card-info">
+                            <h3>Planeta Zombie</h3>
+                            <p>La humanidad lucha por sobrevivir en un mundo infectado.</p>
+                            <span class="card-tag">Terror</span>
+                        </div>
+                    </a>
+                </div>
+                <button class="btn-nav btn-next" onclick="scrollCarrusel('carrusel-peliculas', 250)">›</button>
+            </div>
+        </section>
+
+        <!-- CARRUSEL DE SERIES -->
+        <section class="seccion">
+            <h2>📺 SERIES</h2>
+            <div class="carrusel-container">
+                <button class="btn-nav btn-prev" onclick="scrollCarrusel('carrusel-series', -250)">‹</button>
+                <div class="carrusel" id="carrusel-series">
+                    <a href="series/The-Walking-Dead.html" class="card">
+                        <div class="card-img">🚶</div>
+                        <div class="card-info">
+                            <h3>The Walking Dead</h3>
+                            <p>Un grupo de sobrevivientes lucha en un mundo post-apocalíptico.</p>
+                            <span class="card-tag">Drama</span>
+                        </div>
+                    </a>
+                    <a href="series/Z-Nation.html" class="card">
+                        <div class="card-img">🇺🇸</div>
+                        <div class="card-info">
+                            <h3>Z Nation</h3>
+                            <p>Una misión para transportar al único inmune conocido.</p>
+                            <span class="card-tag">Acción</span>
+                        </div>
+                    </a>
+                    <a href="series/Black-Summer.html" class="card">
+                        <div class="card-img">🌑</div>
+                        <div class="card-info">
+                            <h3>Black Summer</h3>
+                            <p>Los primeros días caóticos del apocalipsis zombie.</p>
+                            <span class="card-tag">Intenso</span>
+                        </div>
+                    </a>
+                    <a href="series/Kingdom.html" class="card">
+                        <div class="card-img">👑</div>
+                        <div class="card-info">
+                            <h3>Kingdom</h3>
+                            <p>Intrigas políticas y zombies en la Corea medieval.</p>
+                            <span class="card-tag">Histórico</span>
+                        </div>
+                    </a>
+                    <a href="series/I-Zombie.html" class="card">
+                        <div class="card-img">🔍</div>
+                        <div class="card-info">
+                            <h3>iZombie</h3>
+                            <p>Una médica zombie resuelve crímenes comiendo cerebros.</p>
+                            <span class="card-tag">Misterio</span>
+                        </div>
+                    </a>
+                    <a href="series/Daybreak.html" class="card">
+                        <div class="card-img">🌅</div>
+                        <div class="card-info">
+                            <h3>Daybreak</h3>
+                            <p>Adolescentes sobreviven en un mundo post-apocalíptico.</p>
+                            <span class="card-tag">Comedia</span>
+                        </div>
+                    </a>
+                    <a href="series/Reality-Z.html" class="card">
+                        <div class="card-img">📺</div>
+                        <div class="card-info">
+                            <h3>Reality Z</h3>
+                            <p>Un reality show se convierte en una lucha por la vida.</p>
+                            <span class="card-tag">Terror</span>
+                        </div>
+                    </a>
+                    <a href="series/Dead-Set.html" class="card">
+                        <div class="card-img">🎭</div>
+                        <div class="card-info">
+                            <h3>Dead Set</h3>
+                            <p>Concursantes de Big Brother atrapados durante el apocalipsis.</p>
+                            <span class="card-tag">Británico</span>
+                        </div>
+                    </a>
+                </div>
+                <button class="btn-nav btn-next" onclick="scrollCarrusel('carrusel-series', 250)">›</button>
+            </div>
+        </section>
+
+        <!-- CARRUSEL DE LIBROS -->
+        <section class="seccion">
+            <h2>📚 LIBROS</h2>
+            <div class="carrusel-container">
+                <button class="btn-nav btn-prev" onclick="scrollCarrusel('carrusel-libros', -250)">‹</button>
+                <div class="carrusel" id="carrusel-libros">
+                    <a href="libros/A-B.html" class="card">
+                        <div class="card-img">📖</div>
+                        <div class="card-info">
+                            <h3>Apocalipsis Z</h3>
+                            <p>El inicio del fin de la humanidad contado en primera persona.</p>
+                            <span class="card-tag">Novela</span>
+                        </div>
+                    </a>
+                    <a href="libros/C-D.html" class="card">
+                        <div class="card-img">🧟‍♂️</div>
+                        <div class="card-info">
+                            <h3>Diario de un Zombie</h3>
+                            <p>La vida cotidiana desde la perspectiva de un no-muerto.</p>
+                            <span class="card-tag">Comedia</span>
+                        </div>
+                    </a>
+                    <a href="libros/E-F.html" class="card">
+                        <div class="card-img">🌍</div>
+                        <div class="card-info">
+                            <h3>Guerra Mundial Z</h3>
+                            <p>Testimonios de sobrevivientes de la guerra zombie global.</p>
+                            <span class="card-tag">Documental</span>
+                        </div>
+                    </a>
+                    <a href="libros/G-H.html" class="card">
+                        <div class="card-img">🏥</div>
+                        <div class="card-info">
+                            <h3>Hospital de los Muertos</h3>
+                            <p>El brote comienza en un hospital aparentemente normal.</p>
+                            <span class="card-tag">Suspenso</span>
+                        </div>
+                    </a>
+                    <a href="libros/I-J.html" class="card">
+                        <div class="card-img">🌆</div>
+                        <div class="card-info">
+                            <h3>Infección</h3>
+                            <p>Una ciudad entera cae en 24 horas ante el virus.</p>
+                            <span class="card-tag">Thriller</span>
+                        </div>
+                    </a>
+                    <a href="libros/K-L.html" class="card">
+                        <div class="card-img">📕</div>
+                        <div class="card-info">
+                            <h3>La Carretera</h3>
+                            <p>Un padre y su hijo viajan por un mundo devastado.</p>
+                            <span class="card-tag">Drama</span>
+                        </div>
+                    </a>
+                    <a href="libros/M-N.html" class="card">
+                        <div class="card-img">🌙</div>
+                        <div class="card-info">
+                            <h3>Noche de Muertos</h3>
+                            <p>Relatos de terror ambientados en la noche más oscura.</p>
+                            <span class="card-tag">Antología</span>
+                        </div>
+                    </a>
+                    <a href="libros/O-P.html" class="card">
+                        <div class="card-img">📗</div>
+                        <div class="card-info">
+                            <h3>Paciente Cero</h3>
+                            <p>La historia del origen de la pandemia zombie.</p>
+                            <span class="card-tag">Ciencia Ficción</span>
+                        </div>
+                    </a>
+                </div>
+                <button class="btn-nav btn-next" onclick="scrollCarrusel('carrusel-libros', 250)">›</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Zombie-TK | Todos los derechos reservados</p>
+        <p>Contenido con doblaje al español neutro 🇲🇽</p>
+    </footer>
+
+    <script>
+        function scrollCarrusel(id, distancia) {
+            const carrusel = document.getElementById(id);
+            carrusel.scrollBy({
+                left: distancia,
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll automático suave al cargar (opcional)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🧟 Zombie-TK cargado correctamente');
+        });
+    </script>
+
 </body>
 </html>
