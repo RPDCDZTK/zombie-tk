@@ -12,7 +12,7 @@
   <div id="homePage" class="page active">
     <div class="header">
       <div class="site-branding">
-        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo Zombie-TK" class="site-logo">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo" class="site-logo">
         <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
       </div>
       <div class="header-icons">
@@ -29,7 +29,6 @@
       <button>Activar</button>
     </div>
 
-    <!-- Hero Banner -->
     <div class="hero-banner">
       <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&q=80" alt="Zombie Apocalypse" class="hero-bg-img">
       <div class="hero-overlay"></div>
@@ -43,474 +42,461 @@
       </div>
     </div>
 
-    <!-- Nuevos Episodios -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Nuevos Episodios</div>
       </div>
       <div class="horizontal-scroll">
-        <div class="card card-wide" data-id="twd-11-24" data-title="The Walking Dead · T11E24" data-type="Serie">
+        <div class="card card-wide" data-id="ep1" data-title="The Walking Dead · T11E24" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80">
           <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="The Walking Dead" class="card-img-real">
           <div class="card-title-overlay">The Walking Dead · T11E24</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="zn-5-13" data-title="Z Nation · T5E13" data-type="Serie">
+        <div class="card card-wide" data-id="ep2" data-title="Z Nation · T5E13" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80">
           <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="Z Nation" class="card-img-real">
           <div class="card-title-overlay">Z Nation · T5E13</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="bs-2-8" data-title="Black Summer · T2E8" data-type="Serie">
+        <div class="card card-wide" data-id="ep3" data-title="Black Summer · T2E8" data-type="Serie" data-img="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80">
           <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80" alt="Black Summer" class="card-img-real">
           <div class="card-title-overlay">Black Summer · T2E8</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Películas Destacadas -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Películas Destacadas</div>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="wwz" data-title="World War Z" data-type="Película">
+        <div class="card" data-id="m1" data-title="World War Z" data-type="Película" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="World War Z" class="card-img-real">
             <span class="card-number">1</span>
             <div class="card-title-overlay">World War Z</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="zombieland" data-title="Zombieland" data-type="Película">
+        <div class="card" data-id="m2" data-title="Zombieland" data-type="Película" data-img="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80" alt="Zombieland" class="card-img-real">
             <span class="card-number">2</span>
             <div class="card-title-overlay">Zombieland</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="re" data-title="Resident Evil" data-type="Película">
+        <div class="card" data-id="m3" data-title="Resident Evil" data-type="Película" data-img="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80" alt="Resident Evil" class="card-img-real">
             <span class="card-number">3</span>
             <div class="card-title-overlay">Resident Evil</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="dotd" data-title="Dawn of the Dead" data-type="Película">
+        <div class="card" data-id="m4" data-title="Dawn of the Dead" data-type="Película" data-img="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80" alt="Dawn of the Dead" class="card-img-real">
             <span class="card-number">4</span>
             <div class="card-title-overlay">Dawn of the Dead</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="28dl" data-title="28 Days Later" data-type="Película">
+        <div class="card" data-id="m5" data-title="28 Days Later" data-type="Película" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="28 Days Later" class="card-img-real">
             <span class="card-number">5</span>
             <div class="card-title-overlay">28 Days Later</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Series Principales -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Series Principales</div>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="twd" data-title="The Walking Dead" data-type="Serie">
+        <div class="card" data-id="s1" data-title="The Walking Dead" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80" alt="The Walking Dead" class="card-img-real">
             <span class="card-number">1</span>
             <div class="card-title-overlay">The Walking Dead</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="zn" data-title="Z Nation" data-type="Serie">
+        <div class="card" data-id="s2" data-title="Z Nation" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="Z Nation" class="card-img-real">
             <span class="card-number">2</span>
             <div class="card-title-overlay">Z Nation</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="kingdom" data-title="Kingdom" data-type="Serie">
+        <div class="card" data-id="s3" data-title="Kingdom" data-type="Serie" data-img="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300&q=80" alt="Kingdom" class="card-img-real">
             <span class="card-number">3</span>
             <div class="card-title-overlay">Kingdom</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Lo último en Zombie-TK -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Lo último en Zombie-TK</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card card-wide" data-id="gsz" data-title="Guía de Supervivencia Zombie" data-type="Libro">
-          <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" alt="Guía de Supervivencia" class="card-img-real">
+        <div class="card card-wide" data-id="n1" data-title="Guía de Supervivencia Zombie" data-type="Libro" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" alt="Guía" class="card-img-real">
           <div class="card-title-overlay">Guía de Supervivencia Zombie</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="dz" data-title="Diario de un Zombi" data-type="Libro">
-          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80" alt="Diario de un Zombi" class="card-img-real">
+        <div class="card card-wide" data-id="n2" data-title="Diario de un Zombi" data-type="Libro" data-img="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80" alt="Diario" class="card-img-real">
           <div class="card-title-overlay">Diario de un Zombi</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="l4d3" data-title="Left 4 Dead 3" data-type="Juego">
-          <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&q=80" alt="Left 4 Dead 3" class="card-img-real">
+        <div class="card card-wide" data-id="n3" data-title="Left 4 Dead 3" data-type="Juego" data-img="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&q=80" alt="L4D3" class="card-img-real">
           <div class="card-title-overlay">Left 4 Dead 3</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Libros Zombie -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">📚 Libros Zombie</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="wwz-book" data-title="World War Z (Libro)" data-type="Libro">
+        <div class="card" data-id="b1" data-title="World War Z (Libro)" data-type="Libro" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80" alt="World War Z Libro" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80" alt="WWZ" class="card-img-real">
             <div class="card-title-overlay">World War Z (Libro)</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="gs" data-title="Guía de Supervivencia" data-type="Libro">
+        <div class="card" data-id="b2" data-title="Guía de Supervivencia" data-type="Libro" data-img="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80" alt="Guía de Supervivencia" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80" alt="Guía" class="card-img-real">
             <div class="card-title-overlay">Guía de Supervivencia</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="zsg" data-title="Zombie Survival Guide" data-type="Libro">
+        <div class="card" data-id="b3" data-title="Zombie Survival Guide" data-type="Libro" data-img="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=300&q=80" alt="Zombie Survival Guide" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=300&q=80" alt="ZSG" class="card-img-real">
             <div class="card-title-overlay">Zombie Survival Guide</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="pz" data-title="Patient Zero" data-type="Libro">
+        <div class="card" data-id="b4" data-title="Patient Zero" data-type="Libro" data-img="https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&q=80" alt="Patient Zero" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&q=80" alt="PZ" class="card-img-real">
             <div class="card-title-overlay">Patient Zero</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Cómics -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">📖 Cómics</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="twd-comic" data-title="The Walking Dead Comics" data-type="Cómic">
+        <div class="card" data-id="c1" data-title="The Walking Dead Comics" data-type="Cómic" data-img="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=300&q=80" alt="The Walking Dead Comics" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=300&q=80" alt="TWD Comics" class="card-img-real">
             <div class="card-title-overlay">The Walking Dead Comics</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="mz" data-title="Marvel Zombies" data-type="Cómic">
+        <div class="card" data-id="c2" data-title="Marvel Zombies" data-type="Cómic" data-img="https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=300&q=80" alt="Marvel Zombies" class="card-img-real">
             <div class="card-title-overlay">Marvel Zombies</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="iz" data-title="I, Zombie" data-type="Cómic">
+        <div class="card" data-id="c3" data-title="I, Zombie" data-type="Cómic" data-img="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=300&q=80" alt="I, Zombie" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=300&q=80" alt="I Zombie" class="card-img-real">
             <div class="card-title-overlay">I, Zombie</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Juegos -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">🎮 Juegos</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="l4d2" data-title="Left 4 Dead 2" data-type="Juego">
+        <div class="card" data-id="g1" data-title="Left 4 Dead 2" data-type="Juego" data-img="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80" alt="Left 4 Dead 2" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80" alt="L4D2" class="card-img-real">
             <div class="card-title-overlay">Left 4 Dead 2</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="rev" data-title="Resident Evil Village" data-type="Juego">
+        <div class="card" data-id="g2" data-title="Resident Evil Village" data-type="Juego" data-img="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300&q=80" alt="Resident Evil Village" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300&q=80" alt="RE Village" class="card-img-real">
             <div class="card-title-overlay">Resident Evil Village</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="dg" data-title="Days Gone" data-type="Juego">
+        <div class="card" data-id="g3" data-title="Days Gone" data-type="Juego" data-img="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&q=80" alt="Days Gone" class="card-img-real">
             <div class="card-title-overlay">Days Gone</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="dl2" data-title="Dying Light 2" data-type="Juego">
+        <div class="card" data-id="g4" data-title="Dying Light 2" data-type="Juego" data-img="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&q=80" alt="Dying Light 2" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&q=80" alt="DL2" class="card-img-real">
             <div class="card-title-overlay">Dying Light 2</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Música Zombie -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">🎵 Música Zombie</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="thriller" data-title="Thriller - Michael Jackson" data-type="Música">
+        <div class="card" data-id="mu1" data-title="Thriller - Michael Jackson" data-type="Música" data-img="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80" alt="Thriller" class="card-img-real">
             <div class="card-title-overlay">Thriller - Michael Jackson</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="zombie-cr" data-title="Zombie - The Cranberries" data-type="Música">
+        <div class="card" data-id="mu2" data-title="Zombie - The Cranberries" data-type="Música" data-img="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=300&q=80" alt="Zombie Cranberries" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=300&q=80" alt="Zombie" class="card-img-real">
             <div class="card-title-overlay">Zombie - The Cranberries</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="dmp" data-title="Dead Man's Party" data-type="Música">
+        <div class="card" data-id="mu3" data-title="Dead Man's Party" data-type="Música" data-img="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80" alt="Dead Man's Party" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80" alt="Dead Party" class="card-img-real">
             <div class="card-title-overlay">Dead Man's Party</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tutoriales -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">🎓 Tutoriales de Supervivencia</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card card-wide" data-id="tut1" data-title="Cómo sobrevivir a un apocalipsis zombie" data-type="Tutorial">
-          <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=400&q=80" alt="Cómo sobrevivir" class="card-img-real">
+        <div class="card card-wide" data-id="t1" data-title="Cómo sobrevivir a un apocalipsis zombie" data-type="Tutorial" data-img="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=400&q=80" alt="Survive" class="card-img-real">
           <div class="card-title-overlay">Cómo sobrevivir a un apocalipsis zombie</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="tut2" data-title="Refugios seguros: Guía completa" data-type="Tutorial">
-          <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80" alt="Refugios seguros" class="card-img-real">
+        <div class="card card-wide" data-id="t2" data-title="Refugios seguros: Guía completa" data-type="Tutorial" data-img="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80" alt="Refugios" class="card-img-real">
           <div class="card-title-overlay">Refugios seguros: Guía completa</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="tut3" data-title="Armas caseras contra zombies" data-type="Tutorial">
-          <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=400&q=80" alt="Armas caseras" class="card-img-real">
+        <div class="card card-wide" data-id="t3" data-title="Armas caseras contra zombies" data-type="Tutorial" data-img="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=400&q=80" alt="Armas" class="card-img-real">
           <div class="card-title-overlay">Armas caseras contra zombies</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Cortometrajes -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">🎬 Cortometrajes</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="ppz" data-title="Pride and Prejudice and Zombies" data-type="Cortometraje">
+        <div class="card" data-id="co1" data-title="Pride and Prejudice and Zombies" data-type="Cortometraje" data-img="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300&q=80" alt="Pride and Prejudice and Zombies" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300&q=80" alt="PPZ" class="card-img-real">
             <div class="card-title-overlay">Pride and Prejudice and Zombies</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="sotd" data-title="Shaun of the Dead" data-type="Cortometraje">
+        <div class="card" data-id="co2" data-title="Shaun of the Dead" data-type="Cortometraje" data-img="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300&q=80" alt="Shaun of the Dead" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300&q=80" alt="Shaun" class="card-img-real">
             <div class="card-title-overlay">Shaun of the Dead</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="cvz" data-title="Cockneys vs Zombies" data-type="Cortometraje">
+        <div class="card" data-id="co3" data-title="Cockneys vs Zombies" data-type="Cortometraje" data-img="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300&q=80" alt="Cockneys vs Zombies" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300&q=80" alt="Cockneys" class="card-img-real">
             <div class="card-title-overlay">Cockneys vs Zombies</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Revistas -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">📰 Revistas</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="zm" data-title="Zombie Monthly" data-type="Revista">
+        <div class="card" data-id="r1" data-title="Zombie Monthly" data-type="Revista" data-img="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&q=80" alt="Zombie Monthly" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&q=80" alt="ZM" class="card-img-real">
             <div class="card-title-overlay">Zombie Monthly</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="ut" data-title="Undead Times" data-type="Revista">
+        <div class="card" data-id="r2" data-title="Undead Times" data-type="Revista" data-img="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=300&q=80" alt="Undead Times" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=300&q=80" alt="UT" class="card-img-real">
             <div class="card-title-overlay">Undead Times</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="sw" data-title="Survival Weekly" data-type="Revista">
+        <div class="card" data-id="r3" data-title="Survival Weekly" data-type="Revista" data-img="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&q=80" alt="Survival Weekly" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&q=80" alt="SW" class="card-img-real">
             <div class="card-title-overlay">Survival Weekly</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Cuentos -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">✍️ Cuentos</div>
         <a class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="els" data-title="El último superviviente" data-type="Cuento">
+        <div class="card" data-id="cu1" data-title="El último superviviente" data-type="Cuento" data-img="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80" alt="El último superviviente" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80" alt="Último" class="card-img-real">
             <div class="card-title-overlay">El último superviviente</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="ndm" data-title="Noche de muertos" data-type="Cuento">
+        <div class="card" data-id="cu2" data-title="Noche de muertos" data-type="Cuento" data-img="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80" alt="Noche de muertos" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80" alt="Noche" class="card-img-real">
             <div class="card-title-overlay">Noche de muertos</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="lcp" data-title="La cura perdida" data-type="Cuento">
+        <div class="card" data-id="cu3" data-title="La cura perdida" data-type="Cuento" data-img="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80" alt="La cura perdida" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80" alt="Cura" class="card-img-real">
             <div class="card-title-overlay">La cura perdida</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Personalidades Populares -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Personalidades Populares</div>
@@ -544,54 +530,52 @@
       </div>
     </div>
 
-    <!-- Seguir Viendo -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Seguir Viendo</div>
       </div>
       <div class="horizontal-scroll">
-        <div class="card card-wide" data-id="twd-11-8" data-title="The Walking Dead · T11:E8" data-type="Serie">
-          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="The Walking Dead T11E8" class="card-img-real">
+        <div class="card card-wide" data-id="sv1" data-title="The Walking Dead · T11:E8" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="TWD" class="card-img-real">
           <div class="card-title-overlay">The Walking Dead · T11:E8</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="zn-3-5" data-title="Z Nation · T3:E5" data-type="Serie">
-          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="Z Nation T3E5" class="card-img-real">
+        <div class="card card-wide" data-id="sv2" data-title="Z Nation · T3:E5" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="ZN" class="card-img-real">
           <div class="card-title-overlay">Z Nation · T3:E5</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Colecciones -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Colecciones</div>
       </div>
       <div class="horizontal-scroll">
-        <div class="card card-wide" data-id="re-saga" data-title="Saga Completa: Resident Evil" data-type="Colección">
-          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80" alt="Resident Evil Saga" class="card-img-real">
+        <div class="card card-wide" data-id="col1" data-title="Saga Completa: Resident Evil" data-type="Colección" data-img="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80" alt="RE Saga" class="card-img-real">
           <div class="card-title-overlay">Saga Completa: Resident Evil</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="notld-saga" data-title="Saga: Night of the Living Dead" data-type="Colección">
-          <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400&q=80" alt="Night of the Living Dead" class="card-img-real">
+        <div class="card card-wide" data-id="col2" data-title="Saga: Night of the Living Dead" data-type="Colección" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400&q=80" alt="NOTLD" class="card-img-real">
           <div class="card-title-overlay">Saga: Night of the Living Dead</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-        <div class="card card-wide" data-id="zc" data-title="Zombies Clásicos" data-type="Colección">
-          <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=400&q=80" alt="Zombies Clásicos" class="card-img-real">
+        <div class="card card-wide" data-id="col3" data-title="Zombies Clásicos" data-type="Colección" data-img="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=400&q=80" alt="Clásicos" class="card-img-real">
           <div class="card-title-overlay">Zombies Clásicos</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
       </div>
@@ -601,7 +585,10 @@
   <!-- SEARCH PAGE -->
   <div id="searchPage" class="page">
     <div class="header">
-      <div class="user-name" style="font-size: 20px;">Buscar</div>
+      <div class="site-branding">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo" class="site-logo">
+        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
     </div>
     <div class="search-container">
       <div class="search-box">
@@ -619,140 +606,109 @@
         <button class="filter-btn" onclick="setFilter(this)">Tutoriales</button>
       </div>
       <div class="content-grid" id="searchResults">
-        <div class="card" data-id="wwz" data-title="World War Z" data-type="Película">
+        <div class="card" data-id="sm1" data-title="World War Z" data-type="Película" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="World War Z" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="WWZ" class="card-img-real">
             <div class="card-title-overlay">World War Z</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="zombieland" data-title="Zombieland" data-type="Película">
+        <div class="card" data-id="sm2" data-title="Zombieland" data-type="Película" data-img="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80" alt="Zombieland" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80" alt="ZL" class="card-img-real">
             <div class="card-title-overlay">Zombieland</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="re" data-title="Resident Evil" data-type="Película">
+        <div class="card" data-id="sm3" data-title="Resident Evil" data-type="Película" data-img="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80" alt="Resident Evil" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80" alt="RE" class="card-img-real">
             <div class="card-title-overlay">Resident Evil</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="twd" data-title="The Walking Dead" data-type="Serie">
+        <div class="card" data-id="sm4" data-title="The Walking Dead" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80" alt="The Walking Dead" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80" alt="TWD" class="card-img-real">
             <div class="card-title-overlay">The Walking Dead</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="28dl" data-title="28 Days Later" data-type="Película">
+        <div class="card" data-id="sm5" data-title="28 Days Later" data-type="Película" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="28 Days Later" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="28DL" class="card-img-real">
             <div class="card-title-overlay">28 Days Later</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="l4d2" data-title="Left 4 Dead 2" data-type="Juego">
+        <div class="card" data-id="sm6" data-title="Left 4 Dead 2" data-type="Juego" data-img="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80" alt="Left 4 Dead 2" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80" alt="L4D2" class="card-img-real">
             <div class="card-title-overlay">Left 4 Dead 2</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-        <div class="card" data-id="gs" data-title="Guía de Supervivencia" data-type="Libro">
+        <div class="card" data-id="sm7" data-title="Guía de Supervivencia" data-type="Libro" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80">
           <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80" alt="Guía de Supervivencia" class="card-img-real">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80" alt="Guía" class="card-img-real">
             <div class="card-title-overlay">Guía de Supervivencia</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </button>
           </div>
         </div>
-
-        <!-- FAVORITES PAGE -->
-  <div id="favoritesPage" class="page">
-    <div class="header">
-      <div class="user-name" style="font-size: 20px;">⭐ Mis Favoritos</div>
-    </div>
-    <div class="favorites-container" id="favoritesContainer">
-      <div class="favorites-empty" id="favoritesEmpty">
-        <div class="favorites-empty-icon">⭐</div>
-        <h2>Aún no tienes favoritos</h2>
-        <p>Toca la estrella de cualquier contenido para añadirlo aquí</p>
+        <div class="card" data-id="sm8" data-title="Thriller" data-type="Música" data-img="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80" alt="Thriller" class="card-img-real">
+            <div class="card-title-overlay">Thriller</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm9" data-title="Dawn of the Dead" data-type="Película" data-img="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80" alt="DOTD" class="card-img-real">
+            <div class="card-title-overlay">Dawn of the Dead</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="favorites-grid" id="favoritesGrid"></div>
     </div>
   </div>
 
-  <!-- ACCOUNT PAGE -->
-  <div id="accountPage" class="page">
+  <!-- FAVORITES PAGE -->
+  <div id="favoritesPage" class="page">
     <div class="header">
-      <div class="user-info">
-        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=8b0000" alt="ZombieFan" class="account-avatar-img">
-        <div class="user-name">ZombieFan</div>
-      </div>
-      <div class="header-icons">
-        <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
-        <button onclick="showSettings()"><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
+      <div class="site-branding">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo" class="site-logo">
+        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
       </div>
     </div>
-
-    <div class="notif-banner">
-      <div class="notif-banner-text">
-        <h3>Activar notificaciones</h3>
-        <p>Entérate antes que nadie de los estrenos de Zombie-TK+</p>
+    <div class="favorites-container">
+      <div class="favorites-header">
+        <h2>⭐ Mis Favoritos</h2>
+        <p class="favorites-count" id="favoritesCount">0 ítems guardados</p>
       </div>
-      <button>Activar</button>
-    </div>
-
-    <div class="account-page">
-      <div class="section-header" style="padding: 0; margin-bottom: 15px;">
-        <div class="section-title">Continuar viendo</div>
-      </div>
-      <div class="horizontal-scroll" style="padding: 0; margin-bottom: 30px;">
-        <div class="card card-wide" data-id="twd-11-8" data-title="The Walking Dead · T11:E8" data-type="Serie">
-          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="The Walking Dead T11E8" class="card-img-real">
-          <div class="card-title-overlay">The Walking Dead · T11:E8</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
-        <div class="card card-wide" data-id="zn-3-5" data-title="Z Nation · T3:E5" data-type="Serie">
-          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="Z Nation T3E5" class="card-img-real">
-          <div class="card-title-overlay">Z Nation · T3:E5</div>
-          <button class="favorite-btn" aria-label="Añadir a favoritos">
-            <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="section-header" style="padding: 0; margin-bottom: 15px;">
-        <div class="section-title">Watchlist</div>
-        <a class="section-link">Ver todo ›</a>
-      </div>
-      <div class="horizontal-scroll" style="padding: 0;">
-        <div class="card" data-id="wwz" data-title="World War Z" data-type="Película">
-          <div class="card-img-container">
-            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="World War Z" class="card-img-real">
-            <div class="card-title-overlay">World War Z</div>
-            <button class="favorite-btn" aria-label="Añadir a favoritos">
-              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </button>
-          </div>
+      <div class="favorites-grid" id="favoritesGrid">
+        <div class="empty-favorites" id="emptyFavorites">
+          <div class="empty-star">⭐</div>
+          <h3>No tienes favoritos aún</h3>
+          <p>Toca la estrella en cualquier contenido para agregarlo aquí</p>
         </div>
       </div>
     </div>
@@ -802,16 +758,6 @@
           </div>
           <div class="settings-item">
             <div class="settings-item-left">
-              <img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png" alt="Descargas" class="settings-icon-img">
-              <div class="settings-item-text">
-                <h4>Descargas</h4>
-                <p>Calidad, carpetas y Wi-Fi</p>
-              </div>
-            </div>
-            <span>›</span>
-          </div>
-          <div class="settings-item">
-            <div class="settings-item-left">
               <img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="settings-icon-img">
               <div class="settings-item-text">
                 <h4>Notificaciones</h4>
@@ -849,16 +795,6 @@
               <img src="https://cdn-icons-png.flaticon.com/512/189/189653.png" alt="Acerca de" class="settings-icon-img">
               <div class="settings-item-text">
                 <h4>Acerca de</h4>
-              </div>
-            </div>
-            <span>›</span>
-          </div>
-          <div class="settings-item">
-            <div class="settings-item-left">
-              <img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png" alt="Actualizaciones" class="settings-icon-img">
-              <div class="settings-item-text">
-                <h4>Buscar actualizaciones</h4>
-                <p>Versión 1.0.43</p>
               </div>
             </div>
             <span>›</span>
