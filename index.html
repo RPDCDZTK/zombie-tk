@@ -1,278 +1,874 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1a0000">
-    <title>Zombie-TK | Películas, Series, Animes, Cómics y Libros de Zombies</title>
-    <meta name="description" content="Zombie-TK: Tu sitio de películas, series, animes, cómics y libros de zombies con doblaje al español neutro.">
-    <link rel="stylesheet" href="styles.css?v=7">
-    <noscript>
-        <style>
-            @media (max-width:1024px){
-                .menu{position:static;transform:none;visibility:visible;height:auto;width:auto;flex-direction:row;flex-wrap:wrap;padding:10px;border-left:none}
-                .btn-hamburguesa{display:none}
-            }
-            .barra-busqueda,.capa-busqueda{display:none!important}
-        </style>
-    </noscript>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie - TK</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header class="header-fijo">
-        <div class="header-superior">
-            <div class="logo-container">
-                <div class="logo-img" data-fallback="🧟">
-                    <img src="img/logo.png" alt="Logo Zombie-TK">
-                </div>
-                <div class="titulo-header">
-                    <h1>ZOMBIE-TK</h1>
-                    <p>Películas, Series, Animes, Cómics y Libros</p>
-                </div>
-            </div>
-            <button type="button" class="btn-hamburguesa" id="btnHamburguesa" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuNav">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-
-        <nav class="menu" id="menuNav">
-            <a href="index.html" class="activo">Inicio</a>
-            <a href="peliculas.html">Películas</a>
-            <a href="series.html">Series</a>
-            <a href="animes.html">Animes</a>
-            <a href="comics.html">Cómics</a>
-            <a href="libros.html">Libros</a>
-            <a href="tutoriales.html">Tutoriales</a>
-            <a href="cortometrajes.html">Cortometrajes</a>
-            <a href="relatos.html">Relatos</a>
-            <a href="juegos.html">Juegos</a>
-            <a href="revista.html">Revista</a>
-        </nav>
-
-        <div class="barra-busqueda">
-            <form id="formBusquedaGlobal" role="search" autocomplete="off">
-                <div class="campo-busqueda">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
-                        <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-                    </svg>
-                    <input type="text" id="buscadorGlobal" placeholder="Busca en el arsenal… ej. «Kingdom», «Tren», «Apocalipsis»" aria-label="Buscar títulos en Zombie-TK">
-                </div>
-                <button type="submit" class="btn-buscar" id="btnBuscarGlobal">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
-                        <circle cx="10.5" cy="10.5" r="6.5"></circle>
-                        <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
-                    </svg>
-                    Buscar
-                </button>
-                <span class="atajo" aria-hidden="true" title="Atajo: pulsa / para buscar">/</span>
-                <p class="mensaje-busqueda" id="mensajeBusqueda" role="status"></p>
-            </form>
-            <span class="arsenal" id="arsenalConteo"></span>
-        </div>
-    </header>
-
-    <div class="overlay" id="overlay"></div>
-
-    <main>
-
-        <section class="seccion reveal">
-            <div class="cabecera-seccion">
-                <h2>
-                    <a class="enlace-seccion" href="peliculas.html">
-                        🎬 PELÍCULAS <span class="flecha" aria-hidden="true">→</span>
-                    </a>
-                </h2>
-                <a class="ver-todo" href="peliculas.html">Ver todo →</a>
-            </div>
-            <div class="carrusel-container">
-                <button type="button" class="btn-nav btn-prev" aria-label="Anterior">‹</button>
-                <div class="carrusel">
-                    <a href="peliculas/A-B.html" class="card">
-                        <div class="card-img" data-fallback="🎬"><img src="img/peliculas/28-Days-Later.jpg" alt="28 Days Later" loading="lazy"></div>
-                        <div class="card-info"><h3>28 Days Later</h3><p>Un virus desata el apocalipsis zombie en Londres.</p><span class="card-tag">Terror</span></div>
-                    </a>
-                    <a href="peliculas/C-D.html" class="card">
-                        <div class="card-img" data-fallback="🧟"><img src="img/peliculas/Dawn-of-the-Dead.jpg" alt="Dawn of the Dead" loading="lazy"></div>
-                        <div class="card-info"><h3>Dawn of the Dead</h3><p>Sobrevivientes en un centro comercial rodeado de zombies.</p><span class="card-tag tag-ambar">Clásico</span></div>
-                    </a>
-                    <a href="peliculas/E-F.html" class="card">
-                        <div class="card-img" data-fallback="💀"><img src="img/peliculas/El-Ejercito-de-los-Muertos.jpg" alt="El Ejército de los Muertos" loading="lazy"></div>
-                        <div class="card-info"><h3>El Ejército de los Muertos</h3><p>Un atraco en Las Vegas infestada de zombies.</p><span class="card-tag">Acción</span></div>
-                    </a>
-                    <a href="peliculas/G-H.html" class="card">
-                        <div class="card-img" data-fallback="🩸"><img src="img/peliculas/Guerra-Mundial-Z.jpg" alt="Guerra Mundial Z" loading="lazy"></div>
-                        <div class="card-info"><h3>Guerra Mundial Z</h3><p>Una pandemia zombie amenaza con destruir la humanidad.</p><span class="card-tag">Thriller</span></div>
-                    </a>
-                    <a href="peliculas/I-J.html" class="card">
-                        <div class="card-img" data-fallback="🧠"><img src="img/peliculas/Soy-Leyenda.jpg" alt="Soy Leyenda" loading="lazy"></div>
-                        <div class="card-info"><h3>Soy Leyenda</h3><p>El último hombre en una Nueva York post-apocalíptica.</p><span class="card-tag">Drama</span></div>
-                    </a>
-                    <a href="peliculas/K-L.html" class="card">
-                        <div class="card-img" data-fallback="🌆"><img src="img/peliculas/La-Noche-de-los-Muertos-Vivientes.jpg" alt="La Noche de los Muertos Vivientes" loading="lazy"></div>
-                        <div class="card-info"><h3>La Noche de los Muertos Vivientes</h3><p>El clásico que inició el género zombie moderno.</p><span class="card-tag tag-ambar">Clásico</span></div>
-                    </a>
-                    <a href="peliculas/M-N.html" class="card">
-                        <div class="card-img" data-fallback="🚂"><img src="img/peliculas/Tren-a-Busan.jpg" alt="Tren a Busan" loading="lazy"></div>
-                        <div class="card-info"><h3>Tren a Busan</h3><p>Un tren se convierte en el último refugio humano.</p><span class="card-tag">Acción</span></div>
-                    </a>
-                    <a href="peliculas/O-P.html" class="card">
-                        <div class="card-img" data-fallback="🏚️"><img src="img/peliculas/Planeta-Zombie.jpg" alt="Planeta Zombie" loading="lazy"></div>
-                        <div class="card-info"><h3>Planeta Zombie</h3><p>La humanidad lucha por sobrevivir en un mundo infectado.</p><span class="card-tag">Terror</span></div>
-                    </a>
-                </div>
-                <button type="button" class="btn-nav btn-next" aria-label="Siguiente">›</button>
-            </div>
-        </section>
-
-        <section class="seccion reveal">
-            <div class="cabecera-seccion">
-                <h2>
-                    <a class="enlace-seccion" href="series.html">
-                        📺 SERIES <span class="flecha" aria-hidden="true">→</span>
-                    </a>
-                </h2>
-                <a class="ver-todo" href="series.html">Ver todo →</a>
-            </div>
-            <div class="carrusel-container">
-                <button type="button" class="btn-nav btn-prev" aria-label="Anterior">‹</button>
-                <div class="carrusel">
-                    <a href="series/The-Walking-Dead.html" class="card">
-                        <div class="card-img" data-fallback="🚶"><img src="img/series/The-Walking-Dead.jpg" alt="The Walking Dead" loading="lazy"></div>
-                        <div class="card-info"><h3>The Walking Dead</h3><p>Un grupo de sobrevivientes lucha en un mundo post-apocalíptico.</p><span class="card-tag">Drama</span></div>
-                    </a>
-                    <a href="series/Z-Nation.html" class="card">
-                        <div class="card-img" data-fallback="🇺🇸"><img src="img/series/Z-Nation.jpg" alt="Z Nation" loading="lazy"></div>
-                        <div class="card-info"><h3>Z Nation</h3><p>Una misión para transportar al único inmune conocido.</p><span class="card-tag">Acción</span></div>
-                    </a>
-                    <a href="series/Black-Summer.html" class="card">
-                        <div class="card-img" data-fallback="🌑"><img src="img/series/Black-Summer.jpg" alt="Black Summer" loading="lazy"></div>
-                        <div class="card-info"><h3>Black Summer</h3><p>Los primeros días caóticos del apocalipsis zombie.</p><span class="card-tag">Intenso</span></div>
-                    </a>
-                    <a href="series/Kingdom.html" class="card">
-                        <div class="card-img" data-fallback="👑"><img src="img/series/Kingdom.jpg" alt="Kingdom" loading="lazy"></div>
-                        <div class="card-info"><h3>Kingdom</h3><p>Intrigas políticas y zombies en la Corea medieval.</p><span class="card-tag tag-ambar">Histórico</span></div>
-                    </a>
-                    <a href="series/I-Zombie.html" class="card">
-                        <div class="card-img" data-fallback="🔍"><img src="img/series/I-Zombie.jpg" alt="iZombie" loading="lazy"></div>
-                        <div class="card-info"><h3>iZombie</h3><p>Una médica zombie resuelve crímenes comiendo cerebros.</p><span class="card-tag">Misterio</span></div>
-                    </a>
-                    <a href="series/Daybreak.html" class="card">
-                        <div class="card-img" data-fallback="🌅"><img src="img/series/Daybreak.jpg" alt="Daybreak" loading="lazy"></div>
-                        <div class="card-info"><h3>Daybreak</h3><p>Adolescentes sobreviven en un mundo post-apocalíptico.</p><span class="card-tag tag-verde">Comedia</span></div>
-                    </a>
-                    <a href="series/Reality-Z.html" class="card">
-                        <div class="card-img" data-fallback="📺"><img src="img/series/Reality-Z.jpg" alt="Reality Z" loading="lazy"></div>
-                        <div class="card-info"><h3>Reality Z</h3><p>Un reality show se convierte en una lucha por la vida.</p><span class="card-tag">Terror</span></div>
-                    </a>
-                    <a href="series/Dead-Set.html" class="card">
-                        <div class="card-img" data-fallback="🎭"><img src="img/series/Dead-Set.jpg" alt="Dead Set" loading="lazy"></div>
-                        <div class="card-info"><h3>Dead Set</h3><p>Concursantes de Big Brother atrapados durante el apocalipsis.</p><span class="card-tag tag-ambar">Británico</span></div>
-                    </a>
-                </div>
-                <button type="button" class="btn-nav btn-next" aria-label="Siguiente">›</button>
-            </div>
-        </section>
-
-        <section class="seccion reveal">
-            <div class="cabecera-seccion">
-                <h2>
-                    <a class="enlace-seccion" href="libros.html">
-                        📚 LIBROS <span class="flecha" aria-hidden="true">→</span>
-                    </a>
-                </h2>
-                <a class="ver-todo" href="libros.html">Ver todo →</a>
-            </div>
-            <div class="carrusel-container">
-                <button type="button" class="btn-nav btn-prev" aria-label="Anterior">‹</button>
-                <div class="carrusel">
-                    <a href="libros/A-B.html" class="card">
-                        <div class="card-img" data-fallback="📖"><img src="img/libros/Apocalipsis-Z.jpg" alt="Apocalipsis Z" loading="lazy"></div>
-                        <div class="card-info"><h3>Apocalipsis Z</h3><p>El inicio del fin de la humanidad contado en primera persona.</p><span class="card-tag">Novela</span></div>
-                    </a>
-                    <a href="libros/C-D.html" class="card">
-                        <div class="card-img" data-fallback="🧟‍♂️"><img src="img/libros/Diario-de-un-Zombie.jpg" alt="Diario de un Zombie" loading="lazy"></div>
-                        <div class="card-info"><h3>Diario de un Zombie</h3><p>La vida cotidiana desde la perspectiva de un no-muerto.</p><span class="card-tag tag-verde">Comedia</span></div>
-                    </a>
-                    <a href="libros/E-F.html" class="card">
-                        <div class="card-img" data-fallback="🌍"><img src="img/libros/Guerra-Mundial-Z.jpg" alt="Guerra Mundial Z" loading="lazy"></div>
-                        <div class="card-info"><h3>Guerra Mundial Z</h3><p>Testimonios de sobrevivientes de la guerra zombie global.</p><span class="card-tag">Documental</span></div>
-                    </a>
-                    <a href="libros/G-H.html" class="card">
-                        <div class="card-img" data-fallback="🏥"><img src="img/libros/Hospital-de-los-Muertos.jpg" alt="Hospital de los Muertos" loading="lazy"></div>
-                        <div class="card-info"><h3>Hospital de los Muertos</h3><p>El brote comienza en un hospital aparentemente normal.</p><span class="card-tag">Suspenso</span></div>
-                    </a>
-                    <a href="libros/I-J.html" class="card">
-                        <div class="card-img" data-fallback="🌆"><img src="img/libros/Infeccion.jpg" alt="Infección" loading="lazy"></div>
-                        <div class="card-info"><h3>Infección</h3><p>Una ciudad entera cae en 24 horas ante el virus.</p><span class="card-tag">Thriller</span></div>
-                    </a>
-                    <a href="libros/K-L.html" class="card">
-                        <div class="card-img" data-fallback="📕"><img src="img/libros/La-Carretera.jpg" alt="La Carretera" loading="lazy"></div>
-                        <div class="card-info"><h3>La Carretera</h3><p>Un padre y su hijo viajan por un mundo devastado.</p><span class="card-tag">Drama</span></div>
-                    </a>
-                    <a href="libros/M-N.html" class="card">
-                        <div class="card-img" data-fallback="🌙"><img src="img/libros/Noche-de-Muertos.jpg" alt="Noche de Muertos" loading="lazy"></div>
-                        <div class="card-info"><h3>Noche de Muertos</h3><p>Relatos de terror ambientados en la noche más oscura.</p><span class="card-tag tag-ambar">Antología</span></div>
-                    </a>
-                    <a href="libros/O-P.html" class="card">
-                        <div class="card-img" data-fallback="📗"><img src="img/libros/Paciente-Cero.jpg" alt="Paciente Cero" loading="lazy"></div>
-                        <div class="card-info"><h3>Paciente Cero</h3><p>La historia del origen de la pandemia zombie.</p><span class="card-tag tag-verde">Ciencia Ficción</span></div>
-                    </a>
-                </div>
-                <button type="button" class="btn-nav btn-next" aria-label="Siguiente">›</button>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>© 2026 Zombie-TK | Todos los derechos reservados</p>
-        <p>Contenido con doblaje al español neutro 🇲</p>
-    </footer>
-
-    <!-- ===== VENTANA DE RESULTADOS DE BÚSQUEDA ===== -->
-    <div class="capa-busqueda" id="capaBusqueda" hidden>
-        <div class="busqueda-scrim" id="scrimBusqueda"></div>
-
-        <section class="ventana-busqueda" id="ventanaBusqueda" role="dialog" aria-modal="true" aria-labelledby="tituloBusqueda">
-            <header class="vb-cabecera">
-                <div class="vb-titulo">
-                    <span class="vb-pulso" aria-hidden="true"></span>
-                    <div>
-                        <h2 id="tituloBusqueda">RASTREO COMPLETADO</h2>
-                        <p class="vb-consulta">Objetivo: <span id="consultaBusqueda"></span></p>
-                    </div>
-                </div>
-                <button type="button" class="vb-cerrar" id="btnCerrarBusqueda" aria-label="Cerrar resultados y volver a la página">×</button>
-            </header>
-
-            <div class="vb-filtros" id="filtrosBusqueda" role="group" aria-label="Filtrar resultados por categoría"></div>
-
-            <div class="vb-cuerpo">
-                <ul class="vb-lista" id="listaResultados"></ul>
-
-                <div class="vb-vacio" id="vacioBusqueda">
-                    <span class="vacio-emoji" aria-hidden="true">🧟‍♀️</span>
-                    <strong>Sin coincidencias para <span class="vacio-consulta"></span></strong>
-                    <p>El arsenal no tiene ese título… todavía. Prueba con otra pista:</p>
-                    <div class="vb-sugerencias">
-                        <button type="button" class="chip" data-sugerencia="Kingdom">Kingdom</button>
-                        <button type="button" class="chip" data-sugerencia="Walking Dead">Walking Dead</button>
-                        <button type="button" class="chip" data-sugerencia="Tren">Tren a Busan</button>
-                        <button type="button" class="chip" data-sugerencia="Apocalipsis">Apocalipsis Z</button>
-                        <button type="button" class="chip" data-sugerencia="Zombieland">Zombieland Saga</button>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="vb-pie">
-                <span class="vb-conteo" id="conteoBusqueda" role="status"></span>
-                <button type="button" class="vb-continuar" id="btnContinuarBusqueda">Cerrar y continuar</button>
-            </footer>
-        </section>
+  <!-- HOME PAGE -->
+  <div id="homePage" class="page active">
+    <div class="header">
+      <div class="user-info">
+        <div class="user-avatar">🧟</div>
+        <div class="user-name">ZombieFan</div>
+      </div>
+      <div class="header-icons">
+        <button>🔔</button>
+        <button>⚙️</button>
+      </div>
     </div>
 
-    <script src="catalogo.js?v=1"></script>
-    <script src="script.js?v=6"></script>
+    <div class="notif-banner">
+      <div class="notif-banner-text">
+        <h3>🧟 Nuevos contenidos zombie</h3>
+        <p>Descubre los últimos estrenos de Zombie-TK</p>
+      </div>
+      <button>Activar</button>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-title blood-drip">ZOMBIE APOCALYPSE</div>
+        <div class="hero-subtitle">La humanidad está al borde del colapso. Los no-muertos caminan entre nosotros.</div>
+        <div class="hero-buttons">
+          <button class="btn-play">▶ Reproducir</button>
+          <button class="btn-list">+ Mi lista</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Nuevos Episodios -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Nuevos Episodios</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide">
+          <div class="card-img" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <div class="card-title">The Walking Dead · T11E24</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <div class="card-title">Z Nation · T5E13</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <div class="card-title">Black Summer · T2E8</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Películas Destacadas -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Películas Destacadas</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="card-number">1</span>
+            <span class="emoji-big">🧟</span>
+            <div class="card-title">World War Z</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="card-number">2</span>
+            <span class="emoji-big">💀</span>
+            <div class="card-title">Zombieland</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="card-number">3</span>
+            <span class="emoji-big">☠️</span>
+            <div class="card-title">Resident Evil</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #1a3a1a, #000);">
+            <span class="card-number">4</span>
+            <span class="emoji-big">🧟‍♀️</span>
+            <div class="card-title">Dawn of the Dead</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #5c0000, #000);">
+            <span class="card-number">5</span>
+            <span class="emoji-big">🩸</span>
+            <div class="card-title">28 Days Later</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Series Principales -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Series Principales</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="card-number">1</span>
+            <span class="emoji-big">🧟</span>
+            <div class="card-title">The Walking Dead</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="card-number">2</span>
+            <span class="emoji-big">💀</span>
+            <div class="card-title">Z Nation</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="card-number">3</span>
+            <span class="emoji-big">☠️</span>
+            <div class="card-title">Kingdom</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lo último en Zombie-TK -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Lo último en Zombie-TK</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🧟‍♂️</span>
+            <div class="card-title">Guía de Supervivencia Zombie</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">📚</span>
+            <div class="card-title">Diario de un Zombi</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">🎮</span>
+            <div class="card-title">Left 4 Dead 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Libros Zombie -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📚 Libros Zombie</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #1a1a1a, #8b0000);">
+            <span class="emoji-big">📖</span>
+            <div class="card-title">World War Z (Libro)</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">📕</span>
+            <div class="card-title">Guía de Supervivencia</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">📗</span>
+            <div class="card-title">Zombie Survival Guide</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #5c0000, #000);">
+            <span class="emoji-big">📘</span>
+            <div class="card-title">Patient Zero</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cómics -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📖 Cómics</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🦸</span>
+            <div class="card-title">The Walking Dead Comics</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">💥</span>
+            <div class="card-title">Marvel Zombies</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">📚</span>
+            <div class="card-title">I, Zombie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Juegos -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎮 Juegos</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #1a3a1a, #000);">
+            <span class="emoji-big">🎯</span>
+            <div class="card-title">Left 4 Dead 2</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🧟</span>
+            <div class="card-title">Resident Evil Village</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">💀</span>
+            <div class="card-title">Days Gone</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">☠️</span>
+            <div class="card-title">Dying Light 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Música Zombie -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎵 Música Zombie</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🎸</span>
+            <div class="card-title">Thriller - Michael Jackson</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">🎤</span>
+            <div class="card-title">Zombie - The Cranberries</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">🎧</span>
+            <div class="card-title">Dead Man's Party</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutoriales -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎓 Tutoriales de Supervivencia</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">🔪</span>
+            <div class="card-title">Cómo sobrevivir a un apocalipsis zombie</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🏚️</span>
+            <div class="card-title">Refugios seguros: Guía completa</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">🎯</span>
+            <div class="card-title">Armas caseras contra zombies</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cortometrajes -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎬 Cortometrajes</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #1a1a1a, #8b0000);">
+            <span class="emoji-big">🎥</span>
+            <div class="card-title">Pride and Prejudice and Zombies</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">🎞️</span>
+            <div class="card-title">Shaun of the Dead</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">📽️</span>
+            <div class="card-title">Cockneys vs Zombies</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revistas -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📰 Revistas</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">📰</span>
+            <div class="card-title">Zombie Monthly</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">📑</span>
+            <div class="card-title">Undead Times</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">📋</span>
+            <div class="card-title">Survival Weekly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuentos -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">✍️ Cuentos</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #1a1a1a, #8b0000);">
+            <span class="emoji-big">📝</span>
+            <div class="card-title">El último superviviente</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">📜</span>
+            <div class="card-title">Noche de muertos</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">📖</span>
+            <div class="card-title">La cura perdida</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personalidades Populares -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Personalidades Populares</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="personality">
+          <div class="personality-img" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🧟</span>
+          </div>
+          <div class="personality-name">George Romero</div>
+          <div class="personality-role">Director</div>
+        </div>
+        <div class="personality">
+          <div class="personality-img" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">🎬</span>
+          </div>
+          <div class="personality-name">Robert Kirkman</div>
+          <div class="personality-role">Creador</div>
+        </div>
+        <div class="personality">
+          <div class="personality-img" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">🎭</span>
+          </div>
+          <div class="personality-name">Andrew Lincoin</div>
+          <div class="personality-role">Actor</div>
+        </div>
+        <div class="personality">
+          <div class="personality-img" style="background: linear-gradient(135deg, #5c0000, #000);">
+            <span class="emoji-big">🎨</span>
+          </div>
+          <div class="personality-name">Max Brooks</div>
+          <div class="personality-role">Escritor</div>
+        </div>
+        <div class="personality">
+          <div class="personality-img" style="background: linear-gradient(135deg, #1a3a1a, #000);">
+            <span class="emoji-big">🎮</span>
+          </div>
+          <div class="personality-name">Hideo Kojima</div>
+          <div class="personality-role">Game Dev</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seguir Viendo -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Seguir Viendo</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">🧟</span>
+            <div class="card-title">The Walking Dead · T11:E8</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">💀</span>
+            <div class="card-title">Z Nation · T3:E5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colecciones -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Colecciones</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🩸</span>
+            <div class="card-title">Saga Completa: Resident Evil</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">🧟‍♂️</span>
+            <div class="card-title">Saga: Night of the Living Dead</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">☠️</span>
+            <div class="card-title">Zombies Clásicos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- SEARCH PAGE -->
+  <div id="searchPage" class="page">
+    <div class="header">
+      <div class="user-name" style="font-size: 20px;">Buscar</div>
+    </div>
+    <div class="search-container">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Programas, películas y más...">
+      </div>
+      <div class="search-filters">
+        <button class="filter-btn active" onclick="setFilter(this)">Populares</button>
+        <button class="filter-btn" onclick="setFilter(this)">Películas</button>
+        <button class="filter-btn" onclick="setFilter(this)">Series</button>
+        <button class="filter-btn" onclick="setFilter(this)">Libros</button>
+        <button class="filter-btn" onclick="setFilter(this)">Cómics</button>
+        <button class="filter-btn" onclick="setFilter(this)">Juegos</button>
+        <button class="filter-btn" onclick="setFilter(this)">Música</button>
+        <button class="filter-btn" onclick="setFilter(this)">Tutoriales</button>
+      </div>
+      <div class="content-grid" id="searchResults">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🧟</span>
+            <div class="card-title">World War Z</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">💀</span>
+            <div class="card-title">Zombieland</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">☠️</span>
+            <div class="card-title">Resident Evil</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #1a3a1a, #000);">
+            <span class="emoji-big">🧟‍♀️</span>
+            <div class="card-title">The Walking Dead</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #5c0000, #000);">
+            <span class="emoji-big">🩸</span>
+            <div class="card-title">28 Days Later</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🎮</span>
+            <div class="card-title">Left 4 Dead 2</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">📚</span>
+            <div class="card-title">Guía de Supervivencia</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #4a0e0e, #000);">
+            <span class="emoji-big">🎵</span>
+            <div class="card-title">Thriller</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #1a1a1a, #8b0000);">
+            <span class="emoji-big">🎬</span>
+            <div class="card-title">Dawn of the Dead</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- DOWNLOADS PAGE -->
+  <div id="downloadsPage" class="page">
+    <div class="header">
+      <div class="user-name" style="font-size: 20px;">Descargas</div>
+    </div>
+    <div class="downloads-page">
+      <div class="downloads-icon">⭐</div>
+      <h2>Descarga dentro de la app</h2>
+      <p>Descargas dentro de la app, sin otra app</p>
+      <button class="btn-upgrade" onclick="showPlans()">Mejorar mi plan →</button>
+    </div>
+  </div>
+
+  <!-- PLANS MODAL -->
+  <div id="plansModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closePlans()">←</button>
+        <div style="font-size: 20px; font-weight: bold;">ZOMBIE-TK+</div>
+      </div>
+      <div class="plans-container">
+        <h2 style="margin-bottom: 20px; font-size: 28px;">Planes</h2>
+        
+        <div class="plan-card">
+          <div class="plan-name">Basic</div>
+          <div class="plan-price">2,99 US$ <span>un mes</span></div>
+          <div class="plan-features">
+            <div class="plan-feature"><span>Resolución máxima</span><span>720p</span></div>
+            <div class="plan-feature"><span>Sin anuncios</span><span>✓</span></div>
+            <div class="plan-feature"><span>Descargas</span><span>3 un mes</span></div>
+            <div class="plan-feature"><span>Ancho de banda</span><span>40 GB un mes</span></div>
+            <div class="plan-feature"><span>Descarga de libros</span><span>Ilimitado</span></div>
+            <div class="plan-feature"><span>Servidor dedicado</span><span>✓</span></div>
+            <div class="plan-feature"><span>Listas personalizadas</span><span>5</span></div>
+            <div class="plan-feature"><span>Límite de velocidad</span><span>5 Mbps</span></div>
+            <div class="plan-feature"><span>Descargas nativas</span><span>✓</span></div>
+            <div class="plan-feature"><span>Soporte</span><span>✓</span></div>
+            <div class="plan-feature"><span>Seats</span><span>3</span></div>
+          </div>
+          <button class="plan-btn">Elegir Basic</button>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-name">Standard</div>
+          <div class="plan-price">8,99 US$ <span>un mes</span></div>
+          <div class="plan-features">
+            <div class="plan-feature"><span>Resolución máxima</span><span>1080p</span></div>
+            <div class="plan-feature"><span>Sin anuncios</span><span>✓</span></div>
+            <div class="plan-feature"><span>Descargas</span><span>8 un mes</span></div>
+            <div class="plan-feature"><span>Ancho de banda</span><span>80 GB un mes</span></div>
+            <div class="plan-feature"><span>Descarga de libros</span><span>Ilimitado</span></div>
+            <div class="plan-feature"><span>Acceso a TV y Escritorio</span><span>✓</span></div>
+            <div class="plan-feature"><span>Servidor dedicado</span><span>✓</span></div>
+            <div class="plan-feature"><span>Listas personalizadas</span><span>10</span></div>
+            <div class="plan-feature"><span>Límite de velocidad</span><span>10 Mbps</span></div>
+            <div class="plan-feature"><span>Descargas nativas</span><span>✓</span></div>
+            <div class="plan-feature"><span>Soporte</span><span>✓</span></div>
+            <div class="plan-feature"><span>Seats</span><span>4</span></div>
+          </div>
+          <button class="plan-btn">Elegir Standard</button>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">11,99 US$ <span>un mes</span></div>
+          <div class="plan-features">
+            <div class="plan-feature"><span>Resolución máxima</span><span>4K</span></div>
+            <div class="plan-feature"><span>Sin anuncios</span><span>✓</span></div>
+            <div class="plan-feature"><span>Descargas</span><span>Ilimitado</span></div>
+            <div class="plan-feature"><span>Ancho de banda</span><span>100 GB un mes</span></div>
+            <div class="plan-feature"><span>Descarga de libros</span><span>Ilimitado</span></div>
+            <div class="plan-feature"><span>Acceso a TV y Escritorio</span><span>✓</span></div>
+            <div class="plan-feature"><span>Servidor dedicado</span><span>✓</span></div>
+            <div class="plan-feature"><span>Listas personalizadas</span><span>30</span></div>
+            <div class="plan-feature"><span>Descargas nativas</span><span>✓</span></div>
+            <div class="plan-feature"><span>Soporte prioritario</span><span>✓</span></div>
+            <div class="plan-feature"><span>Seats</span><span>5</span></div>
+          </div>
+          <button class="plan-btn">Elegir Premium</button>
+        </div>
+
+        <p style="color: #aaa; font-size: 12px; text-align: center; margin-top: 20px;">Los precios están en dólares estadounidenses.</p>
+      </div>
+    </div>
+  </div>
+
+<!-- ACCOUNT PAGE -->
+  <div id="accountPage" class="page">
+    <div class="header">
+      <div class="user-info">
+        <div class="user-avatar">🧟</div>
+        <div class="user-name">ZombieFan</div>
+      </div>
+      <div class="header-icons">
+        <button>🔔</button>
+        <button onclick="showSettings()">⚙️</button>
+      </div>
+    </div>
+
+    <div class="notif-banner">
+      <div class="notif-banner-text">
+        <h3>Activar notificaciones</h3>
+        <p>Entérate antes que nadie de los estrenos de Zombie-TK+</p>
+      </div>
+      <button>Activar</button>
+    </div>
+
+    <div class="account-page">
+      <div class="section-header" style="padding: 0; margin-bottom: 15px;">
+        <div class="section-title">Continuar viendo</div>
+      </div>
+      <div class="horizontal-scroll" style="padding: 0; margin-bottom: 30px;">
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #2d5016, #000);">
+            <span class="emoji-big">🧟</span>
+            <div class="card-title">The Walking Dead · T11:E8</div>
+          </div>
+        </div>
+        <div class="card card-wide">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">💀</span>
+            <div class="card-title">Z Nation · T3:E5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header" style="padding: 0; margin-bottom: 15px;">
+        <div class="section-title">Watchlist</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll" style="padding: 0;">
+        <div class="card">
+          <div class="card-img card-emoji" style="background: linear-gradient(135deg, #8b0000, #000);">
+            <span class="emoji-big">🧟</span>
+            <div class="card-title">World War Z</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- SETTINGS MODAL -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeSettings()">←</button>
+        <div style="font-size: 20px; font-weight: bold;">Configuración</div>
+      </div>
+      <div class="account-page">
+        <div class="account-header">
+          <div class="account-avatar">🧟</div>
+          <div class="account-info">
+            <h2>ZombieFan</h2>
+            <p>zombiefan@zombie-tk.com</p>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <div class="settings-group-title">Cuenta</div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">👤</div>
+              <div class="settings-item-text">
+                <h4>Mi cuenta</h4>
+                <p>Perfil, plan, dispositivos y soporte</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <div class="settings-group-title">General</div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">🌐</div>
+              <div class="settings-item-text">
+                <h4>Idioma y subtítulos</h4>
+                <p>Idioma de la app, audio y subtítulos</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">⬇️</div>
+              <div class="settings-item-text">
+                <h4>Descargas</h4>
+                <p>Calidad, carpetas y Wi-Fi</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">🔔</div>
+              <div class="settings-item-text">
+                <h4>Notificaciones</h4>
+                <p>Avisos y mensajes del soporte</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">📺</div>
+              <div class="settings-item-text">
+                <h4>Instalar en un TV</h4>
+                <p>Pon la app de TV en tu televisor desde aquí</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">🔞</div>
+              <div class="settings-item-text">
+                <h4>Contenido para adultos</h4>
+                <p>Mostrar títulos para adultos en el catálogo</p>
+              </div>
+            </div>
+            <span class="toggle-switch"></span>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <div class="settings-group-title">Soporte</div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">ℹ️</div>
+              <div class="settings-item-text">
+                <h4>Acerca de</h4>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">📱</div>
+              <div class="settings-item-text">
+                <h4>Buscar actualizaciones</h4>
+                <p>Versión 1.0.43</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <div class="settings-icon">🔄</div>
+              <div class="settings-item-text">
+                <h4>Cambiar de cuenta</h4>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item logout-btn">
+            <div class="settings-item-left">
+              <div class="settings-icon">🚪</div>
+              <div class="settings-item-text">
+                <h4 class="logout-text">Cerrar sesión</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-footer">
+          <div class="logo-emoji">🧟‍♂️</div>
+          <div class="logo-text">Zombie-TK+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="showPage('home', this)">
+      <div class="nav-icon">🏠</div>
+      <div class="nav-label">Inicio</div>
+    </div>
+    <div class="nav-item" onclick="showPage('search', this)">
+      <div class="nav-icon">🔍</div>
+      <div class="nav-label">Buscar</div>
+    </div>
+    <div class="nav-item" onclick="showPage('downloads', this)">
+      <div class="nav-icon">⬇️</div>
+      <div class="nav-label">Descargas</div>
+    </div>
+    <div class="nav-item" onclick="showPage('account', this)">
+      <div class="nav-icon">👤</div>
+      <div class="nav-label">Cuenta</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
