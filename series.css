@@ -104,7 +104,7 @@
   transition: all 0.3s ease;
   text-decoration: none;
   color: #fff;
-  aspect-ratio: 16/10;
+  aspect-ratio: 3/4;
   display: block;
   border: 1px solid #333;
 }
@@ -182,7 +182,7 @@
 .series-card.featured {
   order: -1; /* 🌟 ESTO LA MUEVE VISUALMENTE AL PRINCIPIO */
   grid-column: 1 / -1; /* Ocupa todo el ancho disponible */
-  aspect-ratio: 21/9;
+  aspect-ratio: 3/4;
   border-color: #9370db;
   box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
 }
