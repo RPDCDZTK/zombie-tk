@@ -1,5 +1,5 @@
 /* ============================================
-   ZOMBIE-TK - Sistema de Favoritos
+   ZOMBIE-TK - Script Principal
    ============================================ */
 
 // Cargar favoritos desde localStorage al iniciar
@@ -22,13 +22,32 @@ function showPage(page, element) {
   
   window.scrollTo({ top: 0, behavior: 'smooth' });
   
-  // Si es la página de favoritos, renderizarla
   if (page === 'favorites') {
     renderFavorites();
   }
   
-  // Actualizar estado de estrellas en la página actual
   updateStarStates();
+}
+
+/**
+ * 🔥 NUEVO: Verifica si hay una navegación pendiente desde otra página
+ * Esto permite que al venir de libros.html, series.html, etc.
+ * se abra directamente la sección correcta
+ */
+function checkNavigation() {
+  const navigateTo = sessionStorage.getItem('zombieTK_navigateTo');
+  if (navigateTo) {
+    sessionStorage.removeItem('zombieTK_navigateTo');
+    
+    setTimeout(() => {
+      const navItems = document.querySelectorAll('.nav-item');
+      const pageIndex = { search: 1, favorites: 2, account: 3 };
+      
+      if (navItems[pageIndex[navigateTo]]) {
+        showPage(navigateTo, navItems[pageIndex[navigateTo]]);
+      }
+    }, 100);
+  }
 }
 
 /**
@@ -46,18 +65,15 @@ function toggleFavorite(event, button) {
   const index = favorites.findIndex(f => f.id === id);
   
   if (index === -1) {
-    // Agregar a favoritos
     favorites.push({ id, title, type, img });
     button.classList.add('active');
     showToast('⭐ Agregado a favoritos');
   } else {
-    // Quitar de favoritos
     favorites.splice(index, 1);
     button.classList.remove('active');
     showToast('Removido de favoritos');
   }
   
-  // Guardar en localStorage
   localStorage.setItem('zombieTK_favorites', JSON.stringify(favorites));
 }
 
@@ -91,7 +107,6 @@ function renderFavorites() {
   
   countEl.textContent = `${favorites.length} ítem${favorites.length !== 1 ? 's' : ''} guardado${favorites.length !== 1 ? 's' : ''}`;
   
-  // Limpiar grid (excepto el empty state)
   const existingCards = grid.querySelectorAll('.card');
   existingCards.forEach(c => c.remove());
   
@@ -173,6 +188,48 @@ function closeSettings() {
   }
 }
 
+/* ============================================
+   🍔 MENÚ HAMBURGUESA
+   ============================================ */
+
+/**
+ * Abre el menú hamburguesa
+ */
+function openMenu() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.add('active');
+  if (overlay) overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Cierra el menú hamburguesa
+ */
+function closeMenu() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+/**
+ * Inicializa el menú hamburguesa
+ */
+function initHamburgerMenu() {
+  const overlay = document.getElementById('menuOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeMenu();
+    }
+  });
+}
+
 /**
  * Búsqueda en tiempo real
  */
@@ -223,6 +280,7 @@ function initKeyboardEvents() {
       document.querySelectorAll('.modal.active').forEach(modal => {
         modal.classList.remove('active');
       });
+      closeMenu();
       document.body.style.overflow = 'auto';
     }
   });
@@ -272,7 +330,9 @@ function init() {
   initModalClose();
   initKeyboardEvents();
   initHorizontalScroll();
+  initHamburgerMenu();
   updateStarStates();
+  checkNavigation(); // 🔥 NUEVO: Verificar navegación pendiente
   
   console.log('🧟 Zombie-TK cargado correctamente');
   console.log('⭐ Favoritos cargados:', favorites.length);
