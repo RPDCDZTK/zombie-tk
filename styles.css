@@ -1210,3 +1210,10 @@ body {
     width: 320px;
   }
 }
+
+/* Divisor visual en el menú */
+.menu-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8b0000, transparent);
+  margin: 15px 20px;
+}
