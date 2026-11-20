@@ -1,0 +1,450 @@
+/* ============================================
+   ZOMBIE-TK - Estilos específicos para Juegos
+   Paleta: Verde neón/lima + Negro (estilo gaming)
+   ============================================ */
+
+/* ============================================
+   HERO BANNER DE JUEGOS
+   ============================================ */
+
+.games-hero {
+  position: relative;
+  height: 280px;
+  margin: 0 15px 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #39ff14 0%, #00ff41 30%, #000 100%);
+  display: flex;
+  align-items: flex-end;
+}
+
+.games-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 35%, rgba(57, 255, 20, 0.85) 0%, transparent 50%),
+    radial-gradient(circle at 75% 65%, rgba(0, 255, 65, 0.7) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
+  z-index: 1;
+  animation: gamesGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes gamesGlow {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+.games-hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+}
+
+.games-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+  width: 100%;
+}
+
+.games-hero-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 3px 3px 0 #000;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.games-hero-title span {
+  color: #39ff14;
+  text-shadow: 3px 3px 0 #000, 0 0 20px rgba(57, 255, 20, 0.8);
+}
+
+.games-hero-subtitle {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 5px;
+}
+
+.games-hero-count {
+  font-size: 12px;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* ============================================
+   TEXTO INTRODUCTORIO
+   ============================================ */
+
+.games-intro-text {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============================================
+   SECCIONES DE PLATAFORMA
+   ============================================ */
+
+.platform-section {
+  margin-bottom: 40px;
+}
+
+.platform-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  margin: 0 15px 20px;
+  border-radius: 12px;
+  border-left: 5px solid;
+}
+
+.platform-icon {
+  font-size: 36px;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.platform-info {
+  flex: 1;
+}
+
+.platform-title {
+  font-size: 22px;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.platform-subtitle {
+  font-size: 12px;
+  color: #aaa;
+  margin: 4px 0 0 0;
+}
+
+/* Header PC - Verde neón */
+.pc-header {
+  background: linear-gradient(90deg, rgba(57, 255, 20, 0.15) 0%, rgba(0, 0, 0, 0) 100%);
+  border-left-color: #39ff14;
+}
+
+.pc-header .platform-title {
+  color: #39ff14;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+/* Header Consolas - Azul/púrpura */
+.console-header {
+  background: linear-gradient(90deg, rgba(147, 112, 219, 0.15) 0%, rgba(0, 0, 0, 0) 100%);
+  border-left-color: #9370db;
+}
+
+.console-header .platform-title {
+  color: #9370db;
+  text-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
+}
+
+/* Header Móvil - Naranja/amarillo */
+.mobile-header {
+  background: linear-gradient(90deg, rgba(255, 140, 0, 0.15) 0%, rgba(0, 0, 0, 0) 100%);
+  border-left-color: #ff8c00;
+}
+
+.mobile-header .platform-title {
+  color: #ff8c00;
+  text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+}
+
+/* ============================================
+   GRID DE JUEGOS
+   ============================================ */
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.game-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+  aspect-ratio: 3/4;
+  display: block;
+  border: 1px solid #333;
+}
+
+.game-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: #39ff14;
+  box-shadow: 0 10px 25px rgba(57, 255, 20, 0.5);
+}
+
+.game-card:active {
+  transform: translateY(-2px) scale(1);
+}
+
+.game-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.game-card:hover .game-card-img {
+  transform: scale(1.1);
+}
+
+.game-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(57, 255, 20, 0.15) 100%
+  );
+  z-index: 1;
+}
+
+.game-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.game-card-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  line-height: 1.2;
+}
+
+.game-card-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.game-card-badge {
+  display: inline-block;
+  background: rgba(57, 255, 20, 0.9);
+  color: #000;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.game-card-platform {
+  font-size: 9px;
+  color: #aaa;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Tarjeta destacada (Resident Evil Village) */
+.game-card.featured {
+  order: -1;
+  grid-column: 1 / -1;
+  aspect-ratio: 16/9;
+  border-color: #39ff14;
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.4);
+}
+
+.game-card.featured .game-card-title {
+  font-size: 26px;
+  color: #39ff14;
+  text-shadow: 2px 2px 4px #000, 0 0 15px rgba(57, 255, 20, 0.6);
+}
+
+.game-card.featured .game-card-badge {
+  background: #FFD700;
+  color: #000;
+  font-size: 12px;
+  padding: 4px 14px;
+}
+
+.game-card.featured:hover {
+  border-color: #FFD700;
+  box-shadow: 0 10px 35px rgba(255, 215, 0, 0.5);
+}
+
+/* ============================================
+   NAVEGACIÓN A OTRAS SECCIONES
+   ============================================ */
+
+.section-nav-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.section-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+
+.nav-category-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.nav-category-card:hover {
+  transform: translateY(-3px);
+  border-color: #39ff14;
+  box-shadow: 0 8px 16px rgba(57, 255, 20, 0.3);
+}
+
+.nav-category-card:active {
+  transform: translateY(-1px);
+}
+
+.nav-category-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.nav-category-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.nav-category-count {
+  font-size: 11px;
+  color: #aaa;
+}
+
+/* ============================================
+   BOTÓN VOLVER ARRIBA
+   ============================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #39ff14;
+  border: none;
+  border-radius: 50%;
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(57, 255, 20, 0.5);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.back-to-top.visible {
+  display: flex;
+  animation: fadeInUp 0.3s ease;
+}
+
+.back-to-top:hover {
+  background: #4dff29;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(57, 255, 20, 0.7);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   ANIMACIÓN DE ENTRADA
+   ============================================ */
+
+.animate-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (min-width: 768px) {
+  .games-hero { height: 320px; }
+  .games-hero-title { font-size: 52px; }
+  .games-grid { grid-template-columns: repeat(3, 1fr); }
+  .game-card.featured { grid-column: 1 / -1; }
+  .section-nav-grid { grid-template-columns: repeat(4, 1fr); }
+  
+  .platform-header {
+    padding: 20px 25px;
+    margin: 0 20px 25px;
+  }
+  
+  .platform-title {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .games-hero { height: 350px; }
+  .games-hero-title { font-size: 60px; }
+  .games-grid { grid-template-columns: repeat(4, 1fr); }
+  .game-card.featured { grid-column: 1 / -1; }
+  .section-nav-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+body { padding-bottom: 80px; }
