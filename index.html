@@ -26,8 +26,111 @@
         <button><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
       </div>
     </div>
+  </div>
+
+  <!-- OVERLAY DEL MENÚ -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+  <!-- MENÚ HAMBURGUESA LATERAL -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-logo">
+        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
+        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
     </div>
-    
+
+    <div class="menu-content">
+      <div class="menu-section">
+        <div class="menu-section-title">📚 Contenido</div>
+        <a href="libros.html" class="menu-item">
+          <span class="menu-item-icon">📖</span>
+          <span class="menu-item-text">Libros</span>
+          <span class="menu-item-count">14 categorías</span>
+        </a>
+        <a href="peliculas.html" class="menu-item">
+          <span class="menu-item-icon">🎥</span>
+          <span class="menu-item-text">Películas</span>
+          <span class="menu-item-count">14 categorías</span>
+        </a>
+        <a href="series.html" class="menu-item">
+          <span class="menu-item-icon">📺</span>
+          <span class="menu-item-text">Series</span>
+          <span class="menu-item-count">14 series</span>
+        </a>
+        <a href="animes.html" class="menu-item">
+          <span class="menu-item-icon">🎌</span>
+          <span class="menu-item-text">Animes</span>
+          <span class="menu-item-count">18 animes</span>
+        </a>
+        <a href="comics.html" class="menu-item">
+          <span class="menu-item-icon">💥</span>
+          <span class="menu-item-text">Cómics</span>
+          <span class="menu-item-count">18 cómics</span>
+        </a>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">🎬 Multimedia</div>
+        <a href="cortometrajes.html" class="menu-item">
+          <span class="menu-item-icon">🎬</span>
+          <span class="menu-item-text">Cortometrajes</span>
+          <span class="menu-item-count">14 cortos</span>
+        </a>
+        <a href="relatos.html" class="menu-item">
+          <span class="menu-item-icon">✍️</span>
+          <span class="menu-item-text">Relatos</span>
+          <span class="menu-item-count">6 relatos</span>
+        </a>
+        <a href="musica.html" class="menu-item">
+          <span class="menu-item-icon">🎵</span>
+          <span class="menu-item-text">Música</span>
+          <span class="menu-item-badge">Próximamente</span>
+        </a>
+        <a href="revistas.html" class="menu-item">
+          <span class="menu-item-icon">📰</span>
+          <span class="menu-item-text">Revistas</span>
+          <span class="menu-item-badge">Próximamente</span>
+        </a>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">🎮 Interactivo</div>
+        <a href="juegos.html" class="menu-item">
+          <span class="menu-item-icon">🎮</span>
+          <span class="menu-item-text">Juegos</span>
+          <span class="menu-item-count">27 juegos</span>
+        </a>
+        <a href="tutoriales.html" class="menu-item">
+          <span class="menu-item-icon">🎓</span>
+          <span class="menu-item-text">Tutoriales</span>
+          <span class="menu-item-badge">Próximamente</span>
+        </a>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-title">⚙️ Navegación</div>
+        <a href="#" class="menu-item" onclick="navigateToInternal('search'); return false;">
+          <span class="menu-item-icon">🔍</span>
+          <span class="menu-item-text">Buscar</span>
+        </a>
+        <a href="#" class="menu-item" onclick="navigateToInternal('favorites'); return false;">
+          <span class="menu-item-icon">⭐</span>
+          <span class="menu-item-text">Favoritos</span>
+        </a>
+        <a href="#" class="menu-item" onclick="navigateToInternal('account'); return false;">
+          <span class="menu-item-icon">👤</span>
+          <span class="menu-item-text">Cuenta</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="menu-footer">
+      <div class="menu-footer-logo">🧟</div>
+      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
+    </div>
+  </div>
     <!--
     <div class="notif-banner">
       <div class="notif-banner-text">
