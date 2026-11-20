@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie-TK - Favoritos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="favoritos.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="site-branding">
+      <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+      <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+    </div>
+    <div class="header-icons">
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
+    </div>
+  </div>
+
+  <!-- OVERLAY DEL MENÚ -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+  <!-- MENÚ HAMBURGUESA LATERAL -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-logo">
+        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
+        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <div class="menu-content">
+      <a href="index.html" class="menu-item">
+        <span class="menu-item-icon">🏠</span>
+        <span class="menu-item-text">Inicio</span>
+      </a>
+      
+      <a href="index.html#searchPage" class="menu-item">
+        <span class="menu-item-icon">🔍</span>
+        <span class="menu-item-text">Buscar</span>
+      </a>
+      
+      <a href="favoritos.html" class="menu-item active">
+        <span class="menu-item-icon">⭐</span>
+        <span class="menu-item-text">Favoritos</span>
+      </a>
+      
+      <a href="index.html#accountPage" class="menu-item">
+        <span class="menu-item-icon">👤</span>
+        <span class="menu-item-text">Cuenta</span>
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a href="libros.html" class="menu-item">
+        <span class="menu-item-icon">📖</span>
+        <span class="menu-item-text">Libros</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="peliculas.html" class="menu-item">
+        <span class="menu-item-icon">🎥</span>
+        <span class="menu-item-text">Películas</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="series.html" class="menu-item">
+        <span class="menu-item-icon">📺</span>
+        <span class="menu-item-text">Series</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="animes.html" class="menu-item">
+        <span class="menu-item-icon">🎌</span>
+        <span class="menu-item-text">Animes</span>
+        <span class="menu-item-count">18</span>
+      </a>
+      
+      <a href="comics.html" class="menu-item">
+        <span class="menu-item-icon">💥</span>
+        <span class="menu-item-text">Cómics</span>
+        <span class="menu-item-count">18</span>
+      </a>
+      
+      <a href="cortometrajes.html" class="menu-item">
+        <span class="menu-item-icon">🎬</span>
+        <span class="menu-item-text">Cortometrajes</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="relatos.html" class="menu-item">
+        <span class="menu-item-icon">✍️</span>
+        <span class="menu-item-text">Relatos</span>
+        <span class="menu-item-count">6</span>
+      </a>
+      
+      <a href="juegos.html" class="menu-item">
+        <span class="menu-item-icon">🎮</span>
+        <span class="menu-item-text">Juegos</span>
+        <span class="menu-item-count">27</span>
+      </a>
+      
+      <a href="tutoriales.html" class="menu-item">
+        <span class="menu-item-icon">🎓</span>
+        <span class="menu-item-text">Tutoriales</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      
+      <a href="musica.html" class="menu-item">
+        <span class="menu-item-icon">🎵</span>
+        <span class="menu-item-text">Música</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      
+      <a href="revistas.html" class="menu-item">
+        <span class="menu-item-icon">📰</span>
+        <span class="menu-item-text">Revistas</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+    </div>
+
+    <div class="menu-footer">
+      <div class="menu-footer-logo">🧟</div>
+      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
+    </div>
+  </div>
+
+  <!-- HERO BANNER FAVORITOS -->
+  <div class="favorites-hero">
+    <div class="favorites-hero-bg"></div>
+    <div class="favorites-hero-content">
+      <div class="favorites-hero-title">⭐ Mis <span>Favoritos</span></div>
+      <div class="favorites-hero-subtitle">Aquí encontrarás todo el contenido que has guardado</div>
+      <div class="favorites-hero-count" id="favoritesCount">📌 0 ítems guardados</div>
+    </div>
+  </div>
+
+  <!-- INTRODUCCIÓN -->
+  <div class="section" style="padding: 0 20px; margin-bottom: 25px;">
+    <p class="favorites-intro-text">
+      Toca la estrella en cualquier contenido para agregarlo o removerlo de tus favoritos. Los cambios se guardan automáticamente. 👇
+    </p>
+  </div>
+
+  <!-- CONTENEDOR DE FAVORITOS -->
+  <div class="favorites-container">
+    
+    <!-- Estado vacío -->
+    <div class="empty-favorites" id="emptyFavorites">
+      <div class="empty-star">⭐</div>
+      <h3>No tienes favoritos aún</h3>
+      <p>Explora nuestro catálogo y toca la estrella en cualquier contenido para agregarlo aquí</p>
+      <a href="index.html" class="btn-explore">Explorar catálogo</a>
+    </div>
+
+    <!-- Grid de favoritos -->
+    <div class="favorites-grid" id="favoritesGrid">
+      <!-- Los favoritos se cargan dinámicamente con JavaScript -->
+    </div>
+
+  </div>
+
+  <!-- BOTÓN ELIMINAR TODOS -->
+  <div class="favorites-actions" id="favoritesActions" style="display: none;">
+    <button class="btn-clear-all" onclick="clearAllFavorites()">
+      🗑️ Eliminar todos los favoritos
+    </button>
+  </div>
+
+  <!-- OTRAS SECCIONES -->
+  <div class="section-nav-title">📚 Explora otras secciones</div>
+
+  <div class="section-nav-grid">
+    <a href="libros.html" class="nav-category-card">
+      <div class="nav-category-icon">📖</div>
+      <div class="nav-category-name">Libros</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="peliculas.html" class="nav-category-card">
+      <div class="nav-category-icon">🎥</div>
+      <div class="nav-category-name">Películas</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="series.html" class="nav-category-card">
+      <div class="nav-category-icon">📺</div>
+      <div class="nav-category-name">Series</div>
+      <div class="nav-category-count">14 series</div>
+    </a>
+    
+    <a href="animes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎌</div>
+      <div class="nav-category-name">Animes</div>
+      <div class="nav-category-count">18 animes</div>
+    </a>
+    
+    <a href="comics.html" class="nav-category-card">
+      <div class="nav-category-icon">💥</div>
+      <div class="nav-category-name">Cómics</div>
+      <div class="nav-category-count">18 cómics</div>
+    </a>
+    
+    <a href="cortometrajes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎬</div>
+      <div class="nav-category-name">Cortometrajes</div>
+      <div class="nav-category-count">14 cortos</div>
+    </a>
+    
+    <a href="relatos.html" class="nav-category-card">
+      <div class="nav-category-icon">✍️</div>
+      <div class="nav-category-name">Relatos</div>
+      <div class="nav-category-count">6 relatos</div>
+    </a>
+    
+    <a href="juegos.html" class="nav-category-card">
+      <div class="nav-category-icon">🎮</div>
+      <div class="nav-category-name">Juegos</div>
+      <div class="nav-category-count">27 juegos</div>
+    </a>
+
+    <a href="tutoriales.html" class="nav-category-card">
+      <div class="nav-category-icon">🎓</div>
+      <div class="nav-category-name">Tutoriales</div>
+      <div class="nav-category-count">Próximamente</div>
+    </a>
+
+    <a href="musica.html" class="nav-category-card">
+      <div class="nav-category-icon">🎵</div>
+      <div class="nav-category-name">Música</div>
+      <div class="nav-category-count">Próximamente</div>
+    </a>
+
+    <a href="revistas.html" class="nav-category-card">
+      <div class="nav-category-icon">📰</div>
+      <div class="nav-category-name">Revistas</div>
+      <div class="nav-category-count">Próximamente</div>
+    </a>
+  </div>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <script src="favoritos.js"></script>
+</body>
+</html>
