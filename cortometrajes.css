@@ -63,6 +63,7 @@
   letter-spacing: 2px;
   font-style: italic;
   text-transform: uppercase;
+  position: center;
 }
 
 .corto-hero-title span {
