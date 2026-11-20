@@ -1,112 +1,264 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1a0000">
-    <title>Zombie-TK | Series de Zombies</title>
-    <meta name="description" content="Explora todas las series de zombies disponibles en Zombie-TK con doblaje al español neutro.">
-    <link rel="stylesheet" href="styles.css?v=4">
-    <noscript>
-        <style>
-            @media (max-width:1024px){
-                .menu{position:static;transform:none;visibility:visible;height:auto;width:auto;flex-direction:row;flex-wrap:wrap;padding:10px;border-left:none}
-                .btn-hamburguesa{display:none}
-            }
-        </style>
-    </noscript>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie-TK - Series</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="series.css">
 </head>
 <body>
 
-    <header class="header-fijo">
-        <div class="header-superior">
-            <div class="logo-container">
-                <div class="logo-img" data-fallback="🧟">
-                    <img src="img/logo.png" alt="Logo Zombie-TK">
-                </div>
-                <div class="titulo-header">
-                    <h1>ZOMBIE-TK</h1>
-                    <p>Películas, Series, Animes, Cómics y Libros</p>
-                </div>
-            </div>
-            <button type="button" class="btn-hamburguesa" id="btnHamburguesa" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuNav">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="site-branding">
+      <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo" class="site-logo">
+        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+      </a>
+    </div>
+    <div class="header-icons">
+      <button onclick="window.location.href='index.html'">
+        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Inicio" class="icon-img">
+      </button>
+      <button>
+        <img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img">
+      </button>
+    </div>
+  </div>
 
-        <nav class="menu" id="menuNav">
-            <a href="index.html">Inicio</a>
-            <a href="peliculas.html">Películas</a>
-            <a href="series.html" class="activo">Series</a>
-            <a href="animes.html">Animes</a>
-            <a href="comics.html">Cómics</a>
-            <a href="libros.html">Libros</a>
-            <a href="tutoriales.html">Tutoriales</a>
-            <a href="cortometrajes.html">Cortometrajes</a>
-            <a href="relatos.html">Relatos</a>
-            <a href="juegos.html">Juegos</a>
-            <a href="revista.html">Revista</a>
-        </nav>
-    </header>
+  <!-- HERO BANNER SERIES -->
+  <div class="series-hero">
+    <div class="series-hero-bg"></div>
+    <div class="series-hero-content">
+      <div class="series-hero-title">📺 <span>Series</span> Zombie</div>
+      <div class="series-hero-subtitle">En Zombie-TK encontrarás las mejores series del género Zombie</div>
+      <div class="series-hero-count">🎬 14 series disponibles</div>
+    </div>
+  </div>
 
-    <div class="overlay" id="overlay"></div>
+  <!-- INTRODUCCIÓN -->
+  <div class="section" style="padding: 0 20px; margin-bottom: 25px;">
+    <p class="series-intro-text">
+      Solo tienes que dar click en alguna de las series que se encuentran aquí abajo para explorar su contenido. 👇
+    </p>
+  </div>
 
-    <main>
-        <div class="breadcrumb"><a href="index.html">Inicio</a> &gt; Series</div>
+  <!-- GRID DE SERIES -->
+  <div class="section-header">
+    <div class="section-title">📺 Todas las Series</div>
+  </div>
 
-        <section class="seccion reveal">
-            <h2>📺 SERIES DE ZOMBIES</h2>
-            <div class="descripcion-seccion">
-                En Zombie-TK encontrarás muchas series del género zombie.
-                Solo tienes que dar clic en alguna de las tarjetas para ver más detalles. ▼
-            </div>
+  <div class="series-grid">
+    
+    <!-- The Walking Dead (Destacada) -->
+    <a href="series/The-Walking-Dead.html" class="series-card featured">
+      <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=800&q=80" alt="The Walking Dead" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">The Walking Dead</div>
+        <div class="series-card-badge">⭐ Destacada</div>
+      </div>
+    </a>
 
-            <div class="grid-series">
-                <a href="series/Black-Summer.html" class="card">
-                    <div class="card-img" data-fallback="🌑"><img src="img/series/Black-Summer.jpg" alt="Black Summer" loading="lazy"></div>
-                    <div class="card-info"><h3>Black Summer</h3><p>Los primeros días caóticos del apocalipsis zombie.</p><span class="card-tag">Intenso</span></div>
-                </a>
-                <a href="series/Daybreak.html" class="card">
-                    <div class="card-img" data-fallback="🌅"><img src="img/series/Daybreak.png" alt="Daybreak" loading="lazy"></div>
-                    <div class="card-info"><h3>Daybreak</h3><p>Adolescentes sobreviven en un mundo post-apocalíptico.</p><span class="card-tag tag-verde">Comedia</span></div>
-                </a>
-                <a href="series/Dead-Set.html" class="card">
-                    <div class="card-img" data-fallback="🎭"><img src="img/series/Dead-Set.jpg" alt="Dead Set" loading="lazy"></div>
-                    <div class="card-info"><h3>Dead Set</h3><p>Concursantes de Big Brother atrapados durante el apocalipsis.</p><span class="card-tag tag-ambar">Británico</span></div>
-                </a>
-                <a href="series/I-Zombie.html" class="card">
-                    <div class="card-img" data-fallback="🔍"><img src="img/series/I-Zombie.jpg" alt="I Zombie" loading="lazy"></div>
-                    <div class="card-info"><h3>I Zombie</h3><p>Una médica zombie resuelve crímenes comiendo cerebros.</p><span class="card-tag">Misterio</span></div>
-                </a>
-                <a href="series/Kingdom.html" class="card">
-                    <div class="card-img" data-fallback="👑"><img src="img/series/Kingdom.jpg" alt="Kingdom" loading="lazy"></div>
-                    <div class="card-info"><h3>Kingdom</h3><p>Intrigas políticas y zombies en la Corea medieval.</p><span class="card-tag tag-ambar">Histórico</span></div>
-                </a>
-                <a href="series/Plantas-Vs-Zombies.html" class="card">
-                    <div class="card-img" data-fallback="🌱"><img src="img/series/Plantas-Vs-Zombies.jpg" alt="Plantas Vs Zombies" loading="lazy"></div>
-                    <div class="card-info"><h3>Plantas Vs Zombies</h3><p>La batalla épica entre plantas y zombies.</p><span class="card-tag tag-verde">Animación</span></div>
-                </a>
-                <a href="series/Reality-Z.html" class="card">
-                    <div class="card-img" data-fallback="📺"><img src="img/series/Reality-Z.jpg" alt="Reality Z" loading="lazy"></div>
-                    <div class="card-info"><h3>Reality Z</h3><p>Un reality show se convierte en una lucha por la vida.</p><span class="card-tag">Terror</span></div>
-                </a>
-                <a href="series/The-Walking-Dead.html" class="card">
-                    <div class="card-img" data-fallback="🚶"><img src="img/series/The-Walking-Dead.jpg" alt="The Walking Dead" loading="lazy"></div>
-                    <div class="card-info"><h3>The Walking Dead</h3><p>Un grupo de sobrevivientes lucha en un mundo post-apocalíptico.</p><span class="card-tag">Drama</span></div>
-                </a>
-                <a href="series/Z-Nation.html" class="card">
-                    <div class="card-img" data-fallback="🇺🇸"><img src="img/series/Z-Nation.png" alt="Z Nation" loading="lazy"></div>
-                    <div class="card-info"><h3>Z Nation</h3><p>Una misión para transportar al único inmune conocido.</p><span class="card-tag">Acción</span></div>
-                </a>
-            </div>
-        </section>
-    </main>
+    <!-- Series Originales -->
+    <a href="series/Black-Summer.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80" alt="Black Summer" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Black Summer</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
 
-    <footer>
-        <p>© 2026 Zombie-TK | Todos los derechos reservados</p>
-        <p>Contenido con doblaje al español neutro 🇲🇽</p>
-    </footer>
+    <a href="series/Daybreak.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="Daybreak" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Daybreak</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
 
-    <script src="script.js?v=4"></script>
+    <a href="series/Dead-Set.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80" alt="Dead Set" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Dead Set</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/I-Zombie.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&q=80" alt="I Zombie" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">I Zombie</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/Kingdom.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80" alt="Kingdom" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Kingdom</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/Plantas-Vs-Zombies.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80" alt="Plantas Vs Zombies" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Plantas Vs Zombies</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/Reality-Z.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400&q=80" alt="Reality Z" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Reality Z</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/Z-Nation.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="Z Nation" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Z Nation</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <!-- Series Agregadas -->
+    <a href="series/All-of-Us-Are-Dead.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="All of Us Are Dead" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">All of Us Are Dead</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/Santa-Clarita-Diet.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80" alt="Santa Clarita Diet" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Santa Clarita Diet</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/Zombies.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400&q=80" alt="Zombies" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Zombies</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <!-- 🆕 NUEVAS SERIES AGREGADAS -->
+    <a href="series/Soldados-o-Zombies.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1542259685-610271221992?w=400&q=80" alt="Soldados o Zombies" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Soldados o Zombies</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+    <a href="series/Marvel-Zombies.html" class="series-card">
+      <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&q=80" alt="Marvel Zombies" class="series-card-img">
+      <div class="series-card-overlay"></div>
+      <div class="series-card-content">
+        <div class="series-card-title">Marvel Zombies</div>
+        <div class="series-card-badge">Serie</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- OTRAS SECCIONES -->
+  <div class="section-nav-title">🎬 Explora otras secciones</div>
+
+  <div class="section-nav-grid">
+    <a href="libros.html" class="nav-category-card">
+      <div class="nav-category-icon">📖</div>
+      <div class="nav-category-name">Libros</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="peliculas.html" class="nav-category-card">
+      <div class="nav-category-icon">🎥</div>
+      <div class="nav-category-name">Películas</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="animes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎌</div>
+      <div class="nav-category-name">Animes</div>
+      <div class="nav-category-count">6 animes</div>
+    </a>
+    
+    <a href="comics.html" class="nav-category-card">
+      <div class="nav-category-icon">📕</div>
+      <div class="nav-category-name">Cómics</div>
+      <div class="nav-category-count">1 cómic</div>
+    </a>
+    
+    <a href="tutoriales.html" class="nav-category-card">
+      <div class="nav-category-icon">🎓</div>
+      <div class="nav-category-name">Tutoriales</div>
+      <div class="nav-category-count">Próximamente</div>
+    </a>
+    
+    <a href="cortometrajes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎬</div>
+      <div class="nav-category-name">Cortometrajes</div>
+      <div class="nav-category-count">Próximamente</div>
+    </a>
+    
+    <a href="relatos.html" class="nav-category-card">
+      <div class="nav-category-icon">✍️</div>
+      <div class="nav-category-name">Relatos</div>
+      <div class="nav-category-count">Próximamente</div>
+    </a>
+    
+    <a href="juegos.html" class="nav-category-card">
+      <div class="nav-category-icon">🎮</div>
+      <div class="nav-category-name">Juegos</div>
+      <div class="nav-category-count">Próximamente</div>
+    </a>
+  </div>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Inicio" class="nav-icon-img">
+      <div class="nav-label">Inicio</div>
+    </a>
+    <a href="index.html" class="nav-item" onclick="navigateToSection(event, 'search')">
+      <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" class="nav-icon-img">
+      <div class="nav-label">Buscar</div>
+    </a>
+    <a href="index.html" class="nav-item" onclick="navigateToSection(event, 'favorites')">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Favoritos" class="nav-icon-img">
+      <div class="nav-label">Favoritos</div>
+    </a>
+    <a href="index.html" class="nav-item" onclick="navigateToSection(event, 'account')">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Cuenta" class="nav-icon-img">
+      <div class="nav-label">Cuenta</div>
+    </a>
+  </div>
+
+  <script src="series.js"></script>
 </body>
 </html>
