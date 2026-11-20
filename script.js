@@ -2,6 +2,20 @@
    ZOMBIE-TK - Script Principal
    ============================================ */
 
+/**
+ * Navega a una sección interna desde el menú hamburguesa
+ */
+function navigateToInternal(section) {
+  closeMenu();
+  setTimeout(() => {
+    const navItems = document.querySelectorAll('.nav-item');
+    const pageIndex = { search: 1, favorites: 2, account: 3 };
+    if (navItems[pageIndex[section]]) {
+      showPage(section, navItems[pageIndex[section]]);
+    }
+  }, 300);
+}
+
 // Cargar favoritos desde localStorage al iniciar
 let favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
 
