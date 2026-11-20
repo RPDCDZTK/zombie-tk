@@ -1,0 +1,345 @@
+/* ============================================
+   ZOMBIE-TK - Estilos específicos para Películas
+   ============================================ */
+
+/* ============================================
+   HERO BANNER DE PELÍCULAS
+   ============================================ */
+
+.movies-hero {
+  position: relative;
+  height: 280px;
+  margin: 0 15px 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #8b0000 0%, #000 100%);
+  display: flex;
+  align-items: flex-end;
+}
+
+.movies-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(139, 0, 0, 0.9) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(255, 69, 0, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.movies-hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+}
+
+.movies-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+  width: 100%;
+}
+
+.movies-hero-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 3px 3px 0 #000;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+.movies-hero-title span {
+  color: #ff4500;
+  text-shadow: 3px 3px 0 #000, 0 0 20px rgba(255, 69, 0, 0.6);
+}
+
+.movies-hero-subtitle {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 5px;
+}
+
+.movies-hero-count {
+  font-size: 12px;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* ============================================
+   TEXTO INTRODUCTORIO
+   ============================================ */
+
+.movies-intro-text {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============================================
+   GRID ALFABÉTICO
+   ============================================ */
+
+.alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+
+.alphabet-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.alphabet-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #8b0000, #ff4500);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.alphabet-card:hover {
+  transform: translateY(-5px);
+  border-color: #ff4500;
+  box-shadow: 0 10px 20px rgba(255, 69, 0, 0.3);
+}
+
+.alphabet-card:hover::before {
+  opacity: 1;
+}
+
+.alphabet-card:active {
+  transform: translateY(-2px);
+}
+
+.alphabet-letter {
+  font-size: 28px;
+  font-weight: 900;
+  color: #FFD700;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.alphabet-label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.alphabet-card.featured {
+  grid-column: span 3;
+  background: linear-gradient(135deg, #8b0000 0%, #ff4500 50%, #000 100%);
+  border-color: #ff4500;
+}
+
+.alphabet-card.featured .alphabet-letter {
+  font-size: 36px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.alphabet-card.featured:hover {
+  border-color: #ff6347;
+  box-shadow: 0 10px 25px rgba(255, 69, 0, 0.5);
+}
+
+/* ============================================
+   NAVEGACIÓN A OTRAS SECCIONES
+   ============================================ */
+
+.section-nav-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.section-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+
+.nav-category-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.nav-category-card:hover {
+  transform: translateY(-3px);
+  border-color: #8b0000;
+  box-shadow: 0 8px 16px rgba(139, 0, 0, 0.3);
+}
+
+.nav-category-card:active {
+  transform: translateY(-1px);
+}
+
+.nav-category-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.nav-category-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.nav-category-count {
+  font-size: 11px;
+  color: #aaa;
+}
+
+/* ============================================
+   BOTÓN VOLVER ARRIBA
+   ============================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #8b0000;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.5);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.back-to-top.visible {
+  display: flex;
+  animation: fadeInUp 0.3s ease;
+}
+
+.back-to-top:hover {
+  background: #a00000;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(139, 0, 0, 0.7);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   ANIMACIÓN DE ENTRADA PARA TARJETAS
+   ============================================ */
+
+.animate-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (min-width: 768px) {
+  .movies-hero {
+    height: 320px;
+  }
+
+  .movies-hero-title {
+    font-size: 52px;
+  }
+
+  .alphabet-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .alphabet-card.featured {
+    grid-column: span 4;
+  }
+
+  .section-nav-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .movies-hero {
+    height: 350px;
+  }
+
+  .movies-hero-title {
+    font-size: 60px;
+  }
+
+  .alphabet-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .alphabet-card.featured {
+    grid-column: span 5;
+  }
+
+  .section-nav-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Ajuste para que el bottom nav no tape el contenido */
+body {
+  padding-bottom: 80px;
+}
