@@ -1,0 +1,479 @@
+/* ============================================
+   ZOMBIE-TK - Estilos específicos para Favoritos
+   Paleta: Dorado/Amarillo (estilo estrella)
+   ============================================ */
+
+/* ============================================
+   HERO BANNER DE FAVORITOS
+   ============================================ */
+
+.favorites-hero {
+  position: relative;
+  height: 280px;
+  margin: 0 15px 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #000 100%);
+  display: flex;
+  align-items: flex-end;
+}
+
+.favorites-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 35%, rgba(255, 215, 0, 0.9) 0%, transparent 50%),
+    radial-gradient(circle at 75% 65%, rgba(255, 165, 0, 0.7) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 215, 0, 0.4) 0%, transparent 60%);
+  z-index: 1;
+  animation: favoritesGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes favoritesGlow {
+  from { opacity: 0.75; }
+  to { opacity: 1; }
+}
+
+.favorites-hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+}
+
+.favorites-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+  width: 100%;
+}
+
+.favorites-hero-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 3px 3px 0 #000;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.favorites-hero-title span {
+  color: #FFD700;
+  text-shadow: 3px 3px 0 #000, 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.favorites-hero-subtitle {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 5px;
+}
+
+.favorites-hero-count {
+  font-size: 12px;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* ============================================
+   TEXTO INTRODUCTORIO
+   ============================================ */
+
+.favorites-intro-text {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============================================
+   CONTENEDOR DE FAVORITOS
+   ============================================ */
+
+.favorites-container {
+  padding: 0 20px;
+  margin-bottom: 30px;
+  min-height: 300px;
+}
+
+/* Estado vacío */
+.empty-favorites {
+  text-align: center;
+  padding: 60px 20px;
+  display: block;
+}
+
+.empty-star {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.4;
+  animation: starPulse 2s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+.empty-favorites h3 {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.empty-favorites p {
+  font-size: 14px;
+  color: #aaa;
+  max-width: 400px;
+  margin: 0 auto 25px;
+  line-height: 1.5;
+}
+
+.btn-explore {
+  display: inline-block;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #000;
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-explore:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Grid de favoritos */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.fav-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+  aspect-ratio: 3/4;
+  display: block;
+  border: 1px solid #333;
+  background: #1a1a1a;
+}
+
+.fav-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: #FFD700;
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+}
+
+.fav-card:active {
+  transform: translateY(-2px) scale(1);
+}
+
+.fav-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.fav-card:hover .fav-card-img {
+  transform: scale(1.1);
+}
+
+.fav-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(255, 215, 0, 0.15) 100%
+  );
+  z-index: 1;
+}
+
+.fav-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fav-card-title {
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.fav-card-type {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.9);
+  color: #000;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+
+/* Botón eliminar individual */
+.fav-remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 0, 0, 0.9);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.fav-card:hover .fav-remove-btn {
+  opacity: 1;
+}
+
+.fav-remove-btn:hover {
+  background: #ff0000;
+  transform: scale(1.1);
+}
+
+/* ============================================
+   BOTÓN ELIMINAR TODOS
+   ============================================ */
+
+.favorites-actions {
+  padding: 0 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.btn-clear-all {
+  background: linear-gradient(135deg, #8b0000, #ff0000);
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+}
+
+.btn-clear-all:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 0, 0, 0.6);
+}
+
+.btn-clear-all:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   NAVEGACIÓN A OTRAS SECCIONES
+   ============================================ */
+
+.section-nav-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.section-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+
+.nav-category-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.nav-category-card:hover {
+  transform: translateY(-3px);
+  border-color: #FFD700;
+  box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+}
+
+.nav-category-card:active {
+  transform: translateY(-1px);
+}
+
+.nav-category-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.nav-category-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.nav-category-count {
+  font-size: 11px;
+  color: #aaa;
+}
+
+/* ============================================
+   BOTÓN VOLVER ARRIBA
+   ============================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #FFD700;
+  border: none;
+  border-radius: 50%;
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.back-to-top.visible {
+  display: flex;
+  animation: fadeInUp 0.3s ease;
+}
+
+.back-to-top:hover {
+  background: #FFA500;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.7);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   ANIMACIÓN DE ENTRADA
+   ============================================ */
+
+.animate-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0, 0, 0, 0.95);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  z-index: 3000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  border: 1px solid #FFD700;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (min-width: 768px) {
+  .favorites-hero { height: 320px; }
+  .favorites-hero-title { font-size: 52px; }
+  .favorites-grid { grid-template-columns: repeat(3, 1fr); }
+  .section-nav-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .favorites-hero { height: 350px; }
+  .favorites-hero-title { font-size: 60px; }
+  .favorites-grid { grid-template-columns: repeat(4, 1fr); }
+  .section-nav-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+body { padding-bottom: 20px; }
