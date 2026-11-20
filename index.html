@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zombie - TK</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="hero-carousel.css">
 </head>
 <body>
 
@@ -12,7 +13,7 @@
   <div id="homePage" class="page active">
     <div class="header">
       <div class="site-branding">
-        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo" class="site-logo">
         <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
       </div>
       <div class="header-icons">
@@ -21,19 +22,43 @@
       </div>
     </div>
 
-    <div class="hero-banner">
-      <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&q=80" alt="Zombie Apocalypse" class="hero-bg-img">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div class="hero-title blood-drip">ZOMBIE APOCALYPSE</div>
-        <div class="hero-subtitle">La humanidad está al borde del colapso. Los no-muertos caminan entre nosotros.</div>
-        <div class="hero-buttons">
-          <button class="btn-play">▶ Reproducir</button>
-          <button class="btn-list">+ Mi lista</button>
+    <div class="notif-banner">
+      <div class="notif-banner-text">
+        <h3>🧟 Nuevos contenidos zombie</h3>
+        <p>Descubre los últimos estrenos de Zombie-TK</p>
+      </div>
+      <button>Activar</button>
+    </div>
+
+    <!-- HERO CARRUSEL -->
+    <div class="hero-carousel" id="heroCarousel">
+      <!-- Los slides se generan dinámicamente con JavaScript -->
+    </div>
+
+    <!-- 1. SEGUIR VIENDO -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Seguir Viendo</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide" data-id="sv1" data-title="The Walking Dead · T11:E8" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="TWD" class="card-img-real">
+          <div class="card-title-overlay">The Walking Dead · T11:E8</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="sv2" data-title="Z Nation · T3:E5" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="ZN" class="card-img-real">
+          <div class="card-title-overlay">Z Nation · T3:E5</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
         </div>
       </div>
     </div>
 
+    <!-- 2. NUEVOS EPISODIOS -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Nuevos Episodios</div>
@@ -63,9 +88,11 @@
       </div>
     </div>
 
+    <!-- 3. PELÍCULAS DESTACADAS -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Películas Destacadas</div>
+        <a href="peliculas.html" class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
         <div class="card" data-id="m1" data-title="World War Z" data-type="Película" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80">
@@ -121,9 +148,11 @@
       </div>
     </div>
 
+    <!-- 4. SERIES PRINCIPALES -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Series Principales</div>
+        <a href="series.html" class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
         <div class="card" data-id="s1" data-title="The Walking Dead" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80">
@@ -159,10 +188,11 @@
       </div>
     </div>
 
+    <!-- 5. LO ÚLTIMO EN ZOMBIE-TK -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Lo último en Zombie-TK</div>
-        <a class="section-link">Ver todo ›</a>
+        <a href="libros.html" class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
         <div class="card card-wide" data-id="n1" data-title="Guía de Supervivencia Zombie" data-type="Libro" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80">
@@ -189,6 +219,7 @@
       </div>
     </div>
 
+    <!-- 6. LIBROS ZOMBIE -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">📚 Libros Zombie</div>
@@ -234,6 +265,7 @@
       </div>
     </div>
 
+    <!-- 7. CÓMICS -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">📖 Cómics</div>
@@ -270,6 +302,7 @@
       </div>
     </div>
 
+    <!-- 8. JUEGOS -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">🎮 Juegos</div>
@@ -315,10 +348,11 @@
       </div>
     </div>
 
+    <!-- 9. MÚSICA ZOMBIE -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">🎵 Música Zombie</div>
-        <a href="musica.html" class="section-link">Ver todo ›</a>
+        <a href="#" class="section-link" onclick="showToast('🎵 Próximamente'); return false;">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
         <div class="card" data-id="mu1" data-title="Thriller - Michael Jackson" data-type="Música" data-img="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80">
@@ -351,9 +385,10 @@
       </div>
     </div>
 
+    <!-- 10. TUTORIALES -->
     <div class="section">
       <div class="section-header">
-        <div class="section-title">🎓 Tutoriales</div>
+        <div class="section-title">🎓 Tutoriales de Supervivencia</div>
         <a href="tutoriales.html" class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
@@ -381,6 +416,7 @@
       </div>
     </div>
 
+    <!-- 11. CORTOMETRAJES -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">🎬 Cortometrajes</div>
@@ -417,10 +453,11 @@
       </div>
     </div>
 
+    <!-- 12. REVISTAS -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">📰 Revistas</div>
-        <a href="revistas.html" class="section-link">Ver todo ›</a>
+        <a href="#" class="section-link" onclick="showToast('📰 Próximamente'); return false;">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
         <div class="card" data-id="r1" data-title="Zombie Monthly" data-type="Revista" data-img="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&q=80">
@@ -453,13 +490,14 @@
       </div>
     </div>
 
+    <!-- 13. RELATOS -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">✍️ Relatos</div>
         <a href="relatos.html" class="section-link">Ver todo ›</a>
       </div>
       <div class="horizontal-scroll">
-        <div class="card" data-id="cu1" data-title="El último superviviente" data-type="Cuento" data-img="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80">
+        <div class="card" data-id="cu1" data-title="El último superviviente" data-type="Relato" data-img="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80" alt="Último" class="card-img-real">
             <div class="card-title-overlay">El último superviviente</div>
@@ -468,7 +506,7 @@
             </button>
           </div>
         </div>
-        <div class="card" data-id="cu2" data-title="Noche de muertos" data-type="Cuento" data-img="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80">
+        <div class="card" data-id="cu2" data-title="Noche de muertos" data-type="Relato" data-img="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80" alt="Noche" class="card-img-real">
             <div class="card-title-overlay">Noche de muertos</div>
@@ -477,7 +515,7 @@
             </button>
           </div>
         </div>
-        <div class="card" data-id="cu3" data-title="La cura perdida" data-type="Cuento" data-img="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80">
+        <div class="card" data-id="cu3" data-title="La cura perdida" data-type="Relato" data-img="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80">
           <div class="card-img-container">
             <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80" alt="Cura" class="card-img-real">
             <div class="card-title-overlay">La cura perdida</div>
@@ -489,6 +527,7 @@
       </div>
     </div>
 
+    <!-- 14. PERSONALIDADES POPULARES -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Personalidades Populares</div>
@@ -522,28 +561,7 @@
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title">Seguir Viendo</div>
-      </div>
-      <div class="horizontal-scroll">
-        <div class="card card-wide" data-id="sv1" data-title="The Walking Dead · T11:E8" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80">
-          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="TWD" class="card-img-real">
-          <div class="card-title-overlay">The Walking Dead · T11:E8</div>
-          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
-        <div class="card card-wide" data-id="sv2" data-title="Z Nation · T3:E5" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80">
-          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="ZN" class="card-img-real">
-          <div class="card-title-overlay">Z Nation · T3:E5</div>
-          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
+    <!-- 15. COLECCIONES -->
     <div class="section">
       <div class="section-header">
         <div class="section-title">Colecciones</div>
@@ -578,7 +596,7 @@
   <div id="searchPage" class="page">
     <div class="header">
       <div class="site-branding">
-        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo" class="site-logo">
         <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
       </div>
     </div>
@@ -687,7 +705,7 @@
   <div id="favoritesPage" class="page">
     <div class="header">
       <div class="site-branding">
-        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombie&backgroundColor=8b0000" alt="Logo" class="site-logo">
         <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
       </div>
     </div>
@@ -821,11 +839,11 @@
   <!-- BOTTOM NAV -->
   <div class="bottom-nav">
     <div class="nav-item active" onclick="showPage('home', this)">
-      <img src="img/home.png" alt="Inicio" class="nav-icon-img">
+      <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" alt="Inicio" class="nav-icon-img">
       <div class="nav-label">Inicio</div>
     </div>
     <div class="nav-item" onclick="showPage('search', this)">
-      <img src="img/search.png" alt="Buscar" class="nav-icon-img">
+      <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" class="nav-icon-img">
       <div class="nav-label">Buscar</div>
     </div>
     <div class="nav-item" onclick="showPage('favorites', this)">
@@ -839,5 +857,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="hero-carousel.js"></script>
 </body>
 </html>
