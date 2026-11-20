@@ -178,9 +178,10 @@
   align-self: flex-start;
 }
 
-/* Tarjeta destacada (The Walking Dead) */
+/* Tarjeta destacada */
 .series-card.featured {
-  grid-column: span 2;
+  order: -1; /* 🌟 ESTO LA MUEVE VISUALMENTE AL PRINCIPIO */
+  grid-column: 1 / -1; /* Ocupa todo el ancho disponible */
   aspect-ratio: 21/9;
   border-color: #9370db;
   box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
