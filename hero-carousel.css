@@ -208,17 +208,6 @@
   right: 10px;
 }
 
-/* Barra de progreso */
-.hero-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #8b0000, #FFD700);
-  z-index: 10;
-  transition: width 0.1s linear;
-}
-
 /* Responsive */
 @media (max-width: 480px) {
   .hero-carousel {
