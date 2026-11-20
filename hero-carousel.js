@@ -150,7 +150,6 @@ function buildHeroCarousel() {
     <button class="hero-nav-btn hero-nav-prev" onclick="prevSlide()">‹</button>
     <button class="hero-nav-btn hero-nav-next" onclick="nextSlide()">›</button>
     <div class="hero-indicators">${indicatorsHTML}</div>
-    <div class="hero-progress" id="heroProgress"></div>
   `;
 }
 
@@ -171,8 +170,6 @@ function goToSlide(index) {
   
   slides[currentSlide].classList.add('active');
   indicators[currentSlide].classList.add('active');
-  
-  resetProgress();
 }
 
 /**
@@ -199,8 +196,6 @@ function startCarousel() {
       nextSlide();
     }
   }, SLIDE_DURATION);
-  
-  startProgress();
 }
 
 /**
@@ -215,36 +210,6 @@ function stopCarousel() {
     clearInterval(progressInterval);
     progressInterval = null;
   }
-}
-
-/**
- * Inicia la barra de progreso
- */
-function startProgress() {
-  const progress = document.getElementById('heroProgress');
-  if (!progress) return;
-  
-  let width = 0;
-  const increment = 100 / (SLIDE_DURATION / 100);
-  
-  progressInterval = setInterval(() => {
-    if (!isPaused) {
-      width += increment;
-      if (width >= 100) width = 0;
-      progress.style.width = width + '%';
-    }
-  }, 100);
-}
-
-/**
- * Resetea la barra de progreso
- */
-function resetProgress() {
-  const progress = document.getElementById('heroProgress');
-  if (progress) {
-    progress.style.width = '0%';
-  }
-  startProgress();
 }
 
 /**
