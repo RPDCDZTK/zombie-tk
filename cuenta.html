@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie-TK - Mi Cuenta</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="cuenta.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="site-branding">
+      <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+      <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+    </div>
+    <div class="header-icons">
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
+    </div>
+  </div>
+
+  <!-- OVERLAY DEL MENÚ -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+  <!-- MENÚ HAMBURGUESA LATERAL -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-logo">
+        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
+        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <div class="menu-content">
+      <a href="index.html" class="menu-item">
+        <span class="menu-item-icon">🏠</span>
+        <span class="menu-item-text">Inicio</span>
+      </a>
+      
+      <a href="search.html" class="menu-item">
+        <span class="menu-item-icon">🔍</span>
+        <span class="menu-item-text">Buscar</span>
+      </a>
+      
+      <a href="favoritos.html" class="menu-item">
+        <span class="menu-item-icon">⭐</span>
+        <span class="menu-item-text">Favoritos</span>
+      </a>
+      
+      <a href="cuenta.html" class="menu-item active">
+        <span class="menu-item-icon">👤</span>
+        <span class="menu-item-text">Cuenta</span>
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a href="libros.html" class="menu-item">
+        <span class="menu-item-icon">📖</span>
+        <span class="menu-item-text">Libros</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="peliculas.html" class="menu-item">
+        <span class="menu-item-icon">🎥</span>
+        <span class="menu-item-text">Películas</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="series.html" class="menu-item">
+        <span class="menu-item-icon">📺</span>
+        <span class="menu-item-text">Series</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="animes.html" class="menu-item">
+        <span class="menu-item-icon">🎌</span>
+        <span class="menu-item-text">Animes</span>
+        <span class="menu-item-count">18</span>
+      </a>
+      
+      <a href="comics.html" class="menu-item">
+        <span class="menu-item-icon">💥</span>
+        <span class="menu-item-text">Cómics</span>
+        <span class="menu-item-count">18</span>
+      </a>
+      
+      <a href="cortometrajes.html" class="menu-item">
+        <span class="menu-item-icon">🎬</span>
+        <span class="menu-item-text">Cortometrajes</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="relatos.html" class="menu-item">
+        <span class="menu-item-icon">✍️</span>
+        <span class="menu-item-text">Relatos</span>
+        <span class="menu-item-count">6</span>
+      </a>
+      
+      <a href="juegos.html" class="menu-item">
+        <span class="menu-item-icon">🎮</span>
+        <span class="menu-item-text">Juegos</span>
+        <span class="menu-item-count">27</span>
+      </a>
+      
+      <a href="tutoriales.html" class="menu-item">
+        <span class="menu-item-icon">🎓</span>
+        <span class="menu-item-text">Tutoriales</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      
+      <a href="musica.html" class="menu-item">
+        <span class="menu-item-icon">🎵</span>
+        <span class="menu-item-text">Música</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      
+      <a href="revistas.html" class="menu-item">
+        <span class="menu-item-icon">📰</span>
+        <span class="menu-item-text">Revistas</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+    </div>
+
+    <div class="menu-footer">
+      <div class="menu-footer-logo">🧟</div>
+      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
+    </div>
+  </div>
+
+  <!-- HERO BANNER CUENTA -->
+  <div class="account-hero">
+    <div class="account-hero-bg"></div>
+    <div class="account-hero-content">
+      <div class="account-hero-title">👤 Mi <span>Cuenta</span></div>
+      <div class="account-hero-subtitle">Gestiona tu perfil, preferencias y estadísticas</div>
+      <div class="account-hero-badge">Miembro Zombie-TK</div>
+    </div>
+  </div>
+
+  <!-- PERFIL DEL USUARIO -->
+  <div class="profile-section">
+    <div class="profile-card">
+      <div class="profile-avatar">
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95" alt="Avatar" class="profile-avatar-img">
+        <button class="profile-edit-avatar" title="Cambiar avatar">📷</button>
+      </div>
+      <div class="profile-info">
+        <h2 class="profile-name" id="profileName">ZombieFan</h2>
+        <p class="profile-email" id="profileEmail">zombiefan@zombie-tk.com</p>
+        <div class="profile-meta">
+          <span class="profile-join-date">📅 Miembro desde: <strong id="joinDate">Noviembre 2024</strong></span>
+          <span class="profile-plan">💎 Plan: <strong>Gratuito</strong></span>
+        </div>
+      </div>
+      <button class="profile-edit-btn" onclick="editProfile()">✏️ Editar perfil</button>
+    </div>
+  </div>
+
+  <!-- ESTADÍSTICAS -->
+  <div class="section-header">
+    <div class="section-title">📊 Mis Estadísticas</div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">⭐</div>
+      <div class="stat-value" id="statFavorites">0</div>
+      <div class="stat-label">Favoritos</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">👁️</div>
+      <div class="stat-value" id="statViewed">0</div>
+      <div class="stat-label">Contenido visto</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">📚</div>
+      <div class="stat-value">131</div>
+      <div class="stat-label">Total disponible</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-value" id="statLevel">Novato</div>
+      <div class="stat-label">Nivel</div>
+    </div>
+  </div>
+
+  <!-- CONFIGURACIÓN -->
+  <div class="section-header">
+    <div class="section-title">⚙️ Configuración</div>
+  </div>
+
+  <div class="settings-list">
+    <div class="settings-item" onclick="openSettingsModal('idioma')">
+      <div class="settings-item-left">
+        <div class="settings-icon">🌐</div>
+        <div class="settings-item-text">
+          <h4>Idioma y subtítulos</h4>
+          <p>Idioma de la app, audio y subtítulos</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('notificaciones')">
+      <div class="settings-item-left">
+        <div class="settings-icon">🔔</div>
+        <div class="settings-item-text">
+          <h4>Notificaciones</h4>
+          <p>Avisos y mensajes del soporte</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('privacidad')">
+      <div class="settings-item-left">
+        <div class="settings-icon">🔒</div>
+        <div class="settings-item-text">
+          <h4>Privacidad</h4>
+          <p>Controla quién puede ver tu actividad</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('adultos')">
+      <div class="settings-item-left">
+        <div class="settings-icon">🔞</div>
+        <div class="settings-item-text">
+          <h4>Contenido para adultos</h4>
+          <p>Mostrar títulos para adultos en el catálogo</p>
+        </div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="adultContentToggle">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('descargas')">
+      <div class="settings-item-left">
+        <div class="settings-icon">⬇️</div>
+        <div class="settings-item-text">
+          <h4>Descargas</h4>
+          <p>Calidad, carpetas y Wi-Fi</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('tv')">
+      <div class="settings-item-left">
+        <div class="settings-icon">📺</div>
+        <div class="settings-item-text">
+          <h4>Instalar en un TV</h4>
+          <p>Pon la app de TV en tu televisor desde aquí</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+  </div>
+
+  <!-- SOPORTE -->
+  <div class="section-header">
+    <div class="section-title">🛟 Soporte</div>
+  </div>
+
+  <div class="settings-list">
+    <div class="settings-item" onclick="openSettingsModal('acerca')">
+      <div class="settings-item-left">
+        <div class="settings-icon">ℹ️</div>
+        <div class="settings-item-text">
+          <h4>Acerca de</h4>
+          <p>Información sobre Zombie-TK</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('actualizar')">
+      <div class="settings-item-left">
+        <div class="settings-icon">📱</div>
+        <div class="settings-item-text">
+          <h4>Buscar actualizaciones</h4>
+          <p>Versión 1.0.43</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('contacto')">
+      <div class="settings-item-left">
+        <div class="settings-icon">✉️</div>
+        <div class="settings-item-text">
+          <h4>Contactar soporte</h4>
+          <p>¿Tienes algún problema? Escríbenos</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item" onclick="openSettingsModal('cambiar-cuenta')">
+      <div class="settings-item-left">
+        <div class="settings-icon">🔄</div>
+        <div class="settings-item-text">
+          <h4>Cambiar de cuenta</h4>
+          <p>Inicia sesión con otra cuenta</p>
+        </div>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+
+    <div class="settings-item logout-item" onclick="logout()">
+      <div class="settings-item-left">
+        <div class="settings-icon logout-icon">🚪</div>
+        <div class="settings-item-text">
+          <h4 class="logout-text">Cerrar sesión</h4>
+          <p class="logout-subtext">Salir de tu cuenta actual</p>
+        </div>
+      </div>
+      <span class="settings-arrow logout-arrow">›</span>
+    </div>
+  </div>
+
+  <!-- LOGO FOOTER -->
+  <div class="logo-footer">
+    <div class="logo-footer-emoji"><img src="img/logo-zombietk.png" alt="Logo" class="site-logo"></div>
+    <div class="logo-footer-text">Zombie-TK+</div>
+    <div class="logo-footer-version">Versión 1.0</div>
+  </div>
+
+  <!-- OTRAS SECCIONES -->
+  <div class="section-nav-title">📚 Explora otras secciones</div>
+
+  <div class="section-nav-grid">
+    <a href="libros.html" class="nav-category-card">
+      <div class="nav-category-icon">📖</div>
+      <div class="nav-category-name">Libros</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="peliculas.html" class="nav-category-card">
+      <div class="nav-category-icon">🎥</div>
+      <div class="nav-category-name">Películas</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="series.html" class="nav-category-card">
+      <div class="nav-category-icon">📺</div>
+      <div class="nav-category-name">Series</div>
+      <div class="nav-category-count">14 series</div>
+    </a>
+    
+    <a href="animes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎌</div>
+      <div class="nav-category-name">Animes</div>
+      <div class="nav-category-count">18 animes</div>
+    </a>
+    
+    <a href="comics.html" class="nav-category-card">
+      <div class="nav-category-icon">💥</div>
+      <div class="nav-category-name">Cómics</div>
+      <div class="nav-category-count">18 cómics</div>
+    </a>
+    
+    <a href="cortometrajes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎬</div>
+      <div class="nav-category-name">Cortometrajes</div>
+      <div class="nav-category-count">14 cortos</div>
+    </a>
+    
+    <a href="relatos.html" class="nav-category-card">
+      <div class="nav-category-icon">✍️</div>
+      <div class="nav-category-name">Relatos</div>
+      <div class="nav-category-count">6 relatos</div>
+    </a>
+    
+    <a href="juegos.html" class="nav-category-card">
+      <div class="nav-category-icon">🎮</div>
+      <div class="nav-category-name">Juegos</div>
+      <div class="nav-category-count">27 juegos</div>
+    </a>
+  </div>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <!-- MODAL DE CONFIGURACIÓN -->
+  <div class="settings-modal" id="settingsModal">
+    <div class="settings-modal-content">
+      <div class="settings-modal-header">
+        <h3 id="settingsModalTitle">Configuración</h3>
+        <button class="settings-modal-close" onclick="closeSettingsModal()">✕</button>
+      </div>
+      <div class="settings-modal-body" id="settingsModalBody">
+        <!-- Contenido dinámico -->
+      </div>
+    </div>
+  </div>
+
+  <script src="cuenta.js"></script>
+</body>
+</html>
