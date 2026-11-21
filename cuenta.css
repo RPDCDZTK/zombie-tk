@@ -865,3 +865,135 @@
 }
 
 body { padding-bottom: 20px; }
+
+/* ============================================
+   AVATARES SUBIDOS POR EL USUARIO
+   ============================================ */
+
+.user-avatars-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.user-avatars-header h4 {
+  font-size: 16px;
+  color: #a78bfa;
+  margin: 0;
+  font-weight: bold;
+}
+
+.clear-all-btn {
+  background: rgba(220, 38, 38, 0.2);
+  border: 1px solid #dc2626;
+  color: #ef4444;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.clear-all-btn:hover {
+  background: #dc2626;
+  color: #fff;
+}
+
+/* Contenedor de avatar subido (con botón de eliminar) */
+.avatar-option-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.avatar-option-wrapper .avatar-option {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #10b981; /* Verde para indicar que es subido */
+  cursor: pointer;
+  transition: all 0.3s;
+  object-fit: cover;
+  background: #312e81;
+}
+
+.avatar-option-wrapper .avatar-option:hover {
+  transform: scale(1.1);
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.avatar-option-wrapper .avatar-option.selected {
+  border-color: #FFD700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  transform: scale(1.05);
+}
+
+/* Botón de eliminar (X) sobre el avatar subido */
+.avatar-delete-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 24px;
+  height: 24px;
+  background: #dc2626;
+  border: 2px solid #1e1b4b;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s;
+  z-index: 10;
+  line-height: 1;
+}
+
+.avatar-option-wrapper:hover .avatar-delete-btn {
+  opacity: 1;
+}
+
+.avatar-delete-btn:hover {
+  background: #ff0000;
+  transform: scale(1.2) rotate(90deg);
+}
+
+/* Indicador de "subido" en la esquina */
+.avatar-uploaded-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid #1e1b4b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  z-index: 5;
+}
+
+/* Botón de upload deshabilitado */
+.upload-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.upload-limit-warning {
+  color: #ef4444;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(220, 38, 38, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
