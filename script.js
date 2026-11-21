@@ -2,6 +2,16 @@
    ZOMBIE-TK - Script Principal
    ============================================ */
 
+  // Cargar avatar del usuario en el header
+  (function() {
+    const avatarImg = document.getElementById('headerAvatarImg');
+    if (avatarImg) {
+      const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
+        'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
+      avatarImg.src = savedAvatar;
+    }
+  })();
+
 /**
  * Navega a una sección interna desde el menú hamburguesa
  */
