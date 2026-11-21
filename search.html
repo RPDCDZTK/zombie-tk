@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie-TK - Buscar</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="site-branding">
+      <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+      <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+    </div>
+    <div class="header-icons">
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
+    </div>
+  </div>
+
+  <!-- OVERLAY DEL MENÚ -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+  <!-- MENÚ HAMBURGUESA LATERAL -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-logo">
+        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
+        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <div class="menu-content">
+      <a href="index.html" class="menu-item">
+        <span class="menu-item-icon">🏠</span>
+        <span class="menu-item-text">Inicio</span>
+      </a>
+      
+      <a href="search.html" class="menu-item active">
+        <span class="menu-item-icon">🔍</span>
+        <span class="menu-item-text">Buscar</span>
+      </a>
+      
+      <a href="favoritos.html" class="menu-item">
+        <span class="menu-item-icon">⭐</span>
+        <span class="menu-item-text">Favoritos</span>
+      </a>
+      
+      <a href="index.html#accountPage" class="menu-item">
+        <span class="menu-item-icon">👤</span>
+        <span class="menu-item-text">Cuenta</span>
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a href="libros.html" class="menu-item">
+        <span class="menu-item-icon">📖</span>
+        <span class="menu-item-text">Libros</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="peliculas.html" class="menu-item">
+        <span class="menu-item-icon">🎥</span>
+        <span class="menu-item-text">Películas</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="series.html" class="menu-item">
+        <span class="menu-item-icon">📺</span>
+        <span class="menu-item-text">Series</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="animes.html" class="menu-item">
+        <span class="menu-item-icon">🎌</span>
+        <span class="menu-item-text">Animes</span>
+        <span class="menu-item-count">18</span>
+      </a>
+      
+      <a href="comics.html" class="menu-item">
+        <span class="menu-item-icon">💥</span>
+        <span class="menu-item-text">Cómics</span>
+        <span class="menu-item-count">18</span>
+      </a>
+      
+      <a href="cortometrajes.html" class="menu-item">
+        <span class="menu-item-icon">🎬</span>
+        <span class="menu-item-text">Cortometrajes</span>
+        <span class="menu-item-count">14</span>
+      </a>
+      
+      <a href="relatos.html" class="menu-item">
+        <span class="menu-item-icon">✍️</span>
+        <span class="menu-item-text">Relatos</span>
+        <span class="menu-item-count">6</span>
+      </a>
+      
+      <a href="juegos.html" class="menu-item">
+        <span class="menu-item-icon">🎮</span>
+        <span class="menu-item-text">Juegos</span>
+        <span class="menu-item-count">27</span>
+      </a>
+      
+      <a href="tutoriales.html" class="menu-item">
+        <span class="menu-item-icon">🎓</span>
+        <span class="menu-item-text">Tutoriales</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      
+      <a href="musica.html" class="menu-item">
+        <span class="menu-item-icon">🎵</span>
+        <span class="menu-item-text">Música</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      
+      <a href="revistas.html" class="menu-item">
+        <span class="menu-item-icon">📰</span>
+        <span class="menu-item-text">Revistas</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+    </div>
+
+    <div class="menu-footer">
+      <div class="menu-footer-logo">🧟</div>
+      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
+    </div>
+  </div>
+
+  <!-- HERO BANNER BÚSQUEDA -->
+  <div class="search-hero">
+    <div class="search-hero-bg"></div>
+    <div class="search-hero-content">
+      <div class="search-hero-title">🔍 <span>Buscar</span> Contenido</div>
+      <div class="search-hero-subtitle">Encuentra cualquier libro, película, serie, anime, cómic, juego y más</div>
+      <div class="search-hero-count" id="searchCount">📊 0 resultados encontrados</div>
+    </div>
+  </div>
+
+  <!-- BARRA DE BÚSQUEDA -->
+  <div class="search-bar-container">
+    <div class="search-bar">
+      <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" class="search-bar-icon">
+      <input 
+        type="text" 
+        id="searchInput" 
+        class="search-bar-input" 
+        placeholder="Escribe el nombre de lo que buscas..."
+        autocomplete="off"
+      >
+      <button class="search-clear-btn" id="clearBtn" onclick="clearSearch()" style="display: none;">✕</button>
+    </div>
+  </div>
+
+  <!-- FILTROS POR SECCIÓN -->
+  <div class="filters-container">
+    <div class="filters-scroll">
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">
+        <span class="filter-icon">🌐</span>
+        <span class="filter-text">Todos</span>
+        <span class="filter-count" id="count-all">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="libro" onclick="setFilter('libro', this)">
+        <span class="filter-icon">📖</span>
+        <span class="filter-text">Libros</span>
+        <span class="filter-count" id="count-libro">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="pelicula" onclick="setFilter('pelicula', this)">
+        <span class="filter-icon">🎥</span>
+        <span class="filter-text">Películas</span>
+        <span class="filter-count" id="count-pelicula">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="serie" onclick="setFilter('serie', this)">
+        <span class="filter-icon">📺</span>
+        <span class="filter-text">Series</span>
+        <span class="filter-count" id="count-serie">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="anime" onclick="setFilter('anime', this)">
+        <span class="filter-icon">🎌</span>
+        <span class="filter-text">Animes</span>
+        <span class="filter-count" id="count-anime">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="comic" onclick="setFilter('comic', this)">
+        <span class="filter-icon">💥</span>
+        <span class="filter-text">Cómics</span>
+        <span class="filter-count" id="count-comic">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="cortometraje" onclick="setFilter('cortometraje', this)">
+        <span class="filter-icon">🎬</span>
+        <span class="filter-text">Cortos</span>
+        <span class="filter-count" id="count-cortometraje">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="relato" onclick="setFilter('relato', this)">
+        <span class="filter-icon">✍️</span>
+        <span class="filter-text">Relatos</span>
+        <span class="filter-count" id="count-relato">0</span>
+      </button>
+      
+      <button class="filter-btn" data-filter="juego" onclick="setFilter('juego', this)">
+        <span class="filter-icon">🎮</span>
+        <span class="filter-text">Juegos</span>
+        <span class="filter-count" id="count-juego">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DE RESULTADOS -->
+  <div class="results-container">
+    
+    <!-- Estado inicial (sin búsqueda) -->
+    <div class="search-empty" id="searchEmpty">
+      <div class="empty-icon">🔍</div>
+      <h3>¿Qué estás buscando?</h3>
+      <p>Escribe el nombre de un libro, película, serie, anime, cómic, juego o relato zombie para encontrarlo</p>
+      <div class="search-suggestions">
+        <div class="suggestion-title">💡 Sugerencias populares:</div>
+        <div class="suggestion-tags">
+          <button class="suggestion-tag" onclick="quickSearch('Walking Dead')">Walking Dead</button>
+          <button class="suggestion-tag" onclick="quickSearch('Resident Evil')">Resident Evil</button>
+          <button class="suggestion-tag" onclick="quickSearch('Zombie')">Zombie</button>
+          <button class="suggestion-tag" onclick="quickSearch('Dead')">Dead</button>
+          <button class="suggestion-tag" onclick="quickSearch('Marvel')">Marvel</button>
+          <button class="suggestion-tag" onclick="quickSearch('Thriller')">Thriller</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estado sin resultados -->
+    <div class="no-results" id="noResults" style="display: none;">
+      <div class="no-results-icon">😵</div>
+      <h3>No se encontraron resultados</h3>
+      <p id="noResultsText">No hay contenido que coincida con tu búsqueda</p>
+      <button class="btn-clear-search" onclick="clearSearch()">Limpiar búsqueda</button>
+    </div>
+
+    <!-- Grid de resultados -->
+    <div class="results-grid" id="resultsGrid" style="display: none;">
+      <!-- Los resultados se cargan dinámicamente -->
+    </div>
+
+  </div>
+
+  <!-- OTRAS SECCIONES -->
+  <div class="section-nav-title">📚 Explora otras secciones</div>
+
+  <div class="section-nav-grid">
+    <a href="libros.html" class="nav-category-card">
+      <div class="nav-category-icon">📖</div>
+      <div class="nav-category-name">Libros</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="peliculas.html" class="nav-category-card">
+      <div class="nav-category-icon">🎥</div>
+      <div class="nav-category-name">Películas</div>
+      <div class="nav-category-count">14 categorías</div>
+    </a>
+    
+    <a href="series.html" class="nav-category-card">
+      <div class="nav-category-icon">📺</div>
+      <div class="nav-category-name">Series</div>
+      <div class="nav-category-count">14 series</div>
+    </a>
+    
+    <a href="animes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎌</div>
+      <div class="nav-category-name">Animes</div>
+      <div class="nav-category-count">18 animes</div>
+    </a>
+    
+    <a href="comics.html" class="nav-category-card">
+      <div class="nav-category-icon">💥</div>
+      <div class="nav-category-name">Cómics</div>
+      <div class="nav-category-count">18 cómics</div>
+    </a>
+    
+    <a href="cortometrajes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎬</div>
+      <div class="nav-category-name">Cortometrajes</div>
+      <div class="nav-category-count">14 cortos</div>
+    </a>
+    
+    <a href="relatos.html" class="nav-category-card">
+      <div class="nav-category-icon">✍️</div>
+      <div class="nav-category-name">Relatos</div>
+      <div class="nav-category-count">6 relatos</div>
+    </a>
+    
+    <a href="juegos.html" class="nav-category-card">
+      <div class="nav-category-icon">🎮</div>
+      <div class="nav-category-name">Juegos</div>
+      <div class="nav-category-count">27 juegos</div>
+    </a>
+  </div>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <script src="search.js"></script>
+</body>
+</html>
