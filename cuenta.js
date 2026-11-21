@@ -1,8 +1,9 @@
 /* ============================================
    ZOMBIE-TK - Funcionalidad para página de Cuenta
+   Sistema de avatares con límite de 3 fotos
    ============================================ */
 
-// Avatares predefinidos (puedes cambiar estas URLs por las tuyas)
+// Avatares predefinidos (NO se pueden eliminar)
 const PREDEFINED_AVATARS = [
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie1&backgroundColor=4c1d95',
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie2&backgroundColor=6d28d9',
@@ -14,11 +15,32 @@ const PREDEFINED_AVATARS = [
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie8&backgroundColor=00b4d8',
 ];
 
-// Avatar por defecto si no hay ninguno guardado
+// Avatar por defecto
 const DEFAULT_AVATAR = 'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
+
+// Límite de fotos subidas
+const MAX_USER_AVATARS = 3;
 
 // Cargar favoritos desde localStorage
 const favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
+
+/**
+ * Obtiene los avatares subidos por el usuario
+ */
+function getUserAvatars() {
+  try {
+    return JSON.parse(localStorage.getItem('zombieTK_userAvatars')) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+/**
+ * Guarda los avatares subidos en localStorage
+ */
+function saveUserAvatars(avatars) {
+  localStorage.setItem('zombieTK_userAvatars', JSON.stringify(avatars));
+}
 
 /**
  * Obtiene el avatar actual del usuario
@@ -28,7 +50,7 @@ function getCurrentAvatar() {
 }
 
 /**
- * Guarda el avatar en localStorage
+ * Guarda el avatar seleccionado en localStorage
  */
 function saveAvatar(avatarUrl) {
   localStorage.setItem('zombieTK_avatar', avatarUrl);
@@ -91,24 +113,87 @@ function closeMenu() {
 function openAvatarModal() {
   const modal = document.getElementById('avatarModal');
   const grid = document.getElementById('avatarGrid');
+  const userGrid = document.getElementById('userAvatarGrid');
+  const userSection = document.getElementById('userAvatarsSection');
+  const userCount = document.getElementById('userAvatarsCount');
+  const uploadBtn = document.getElementById('uploadBtnLabel');
+  const uploadHint = document.getElementById('uploadHint');
+  const uploadWarning = document.getElementById('uploadLimitWarning');
   
   if (!modal || !grid) return;
   
-  // Generar avatares predefinidos
-  grid.innerHTML = '';
   const currentAvatar = getCurrentAvatar();
+  const userAvatars = getUserAvatars();
   
+  // ===== GENERAR AVATARES PREDEFINIDOS =====
+  grid.innerHTML = '';
   PREDEFINED_AVATARS.forEach((avatarUrl, index) => {
     const img = document.createElement('img');
     img.src = avatarUrl;
-    img.alt = `Avatar ${index + 1}`;
+    img.alt = `Avatar predefinido ${index + 1}`;
     img.className = 'avatar-option';
     if (avatarUrl === currentAvatar) {
       img.classList.add('selected');
     }
-    img.onclick = () => selectPredefinedAvatar(avatarUrl, img);
+    img.onclick = () => selectAvatar(avatarUrl, img, 'predefined');
     grid.appendChild(img);
   });
+  
+  // ===== GENERAR AVATARES SUBIDOS =====
+  userGrid.innerHTML = '';
+  
+  if (userAvatars.length > 0) {
+    userSection.style.display = 'block';
+    userCount.textContent = userAvatars.length;
+    
+    userAvatars.forEach((avatarUrl, index) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'avatar-option-wrapper';
+      
+      const img = document.createElement('img');
+      img.src = avatarUrl;
+      img.alt = `Mi foto ${index + 1}`;
+      img.className = 'avatar-option';
+      if (avatarUrl === currentAvatar) {
+        img.classList.add('selected');
+      }
+      img.onclick = () => selectAvatar(avatarUrl, img, 'user', index);
+      
+      // Botón de eliminar
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'avatar-delete-btn';
+      deleteBtn.innerHTML = '✕';
+      deleteBtn.title = 'Eliminar esta foto';
+      deleteBtn.onclick = (e) => {
+        e.stopPropagation();
+        deleteUserAvatar(index);
+      };
+      
+      // Badge indicador
+      const badge = document.createElement('div');
+      badge.className = 'avatar-uploaded-badge';
+      badge.innerHTML = '📸';
+      badge.title = 'Foto subida por ti';
+      
+      wrapper.appendChild(img);
+      wrapper.appendChild(deleteBtn);
+      wrapper.appendChild(badge);
+      userGrid.appendChild(wrapper);
+    });
+  } else {
+    userSection.style.display = 'none';
+  }
+  
+  // ===== CONTROLAR LÍMITE DE UPLOAD =====
+  if (userAvatars.length >= MAX_USER_AVATARS) {
+    uploadBtn.classList.add('disabled');
+    uploadHint.style.display = 'none';
+    uploadWarning.style.display = 'block';
+  } else {
+    uploadBtn.classList.remove('disabled');
+    uploadHint.style.display = 'block';
+    uploadWarning.style.display = 'none';
+  }
   
   // Mostrar avatar actual
   const currentImg = document.getElementById('avatarCurrentImg');
@@ -132,10 +217,10 @@ function closeAvatarModal() {
 }
 
 /**
- * Selecciona un avatar predefinido
+ * Selecciona un avatar (predefinido o subido)
  */
-function selectPredefinedAvatar(avatarUrl, element) {
-  // Quitar selección de todos
+function selectAvatar(avatarUrl, element, type, userIndex = null) {
+  // Quitar selección de todos los avatares
   document.querySelectorAll('.avatar-option').forEach(opt => {
     opt.classList.remove('selected');
   });
@@ -154,21 +239,85 @@ function selectPredefinedAvatar(avatarUrl, element) {
 }
 
 /**
+ * Elimina un avatar subido por el usuario
+ */
+function deleteUserAvatar(index) {
+  const userAvatars = getUserAvatars();
+  const currentAvatar = getCurrentAvatar();
+  const avatarToDelete = userAvatars[index];
+  
+  // Confirmar eliminación
+  const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta foto?');
+  if (!confirmDelete) return;
+  
+  // Si el avatar eliminado es el actual, cambiar al default
+  if (avatarToDelete === currentAvatar) {
+    saveAvatar(DEFAULT_AVATAR);
+    showToast('🗑️ Foto eliminada. Avatar restablecido al predeterminado.');
+  } else {
+    showToast('🗑️ Foto eliminada correctamente');
+  }
+  
+  // Eliminar del array
+  userAvatars.splice(index, 1);
+  saveUserAvatars(userAvatars);
+  
+  // Re-renderizar modal
+  openAvatarModal();
+}
+
+/**
+ * Elimina TODOS los avatares subidos
+ */
+function clearAllUserAvatars() {
+  const userAvatars = getUserAvatars();
+  if (userAvatars.length === 0) return;
+  
+  const currentAvatar = getCurrentAvatar();
+  const isCurrentUserAvatar = userAvatars.includes(currentAvatar);
+  
+  const confirmDelete = confirm(`¿Eliminar las ${userAvatars.length} fotos subidas?`);
+  if (!confirmDelete) return;
+  
+  // Si el avatar actual es uno de los subidos, cambiar al default
+  if (isCurrentUserAvatar) {
+    saveAvatar(DEFAULT_AVATAR);
+  }
+  
+  saveUserAvatars([]);
+  showToast('🗑️ Todas las fotos han sido eliminadas');
+  
+  // Re-renderizar modal
+  openAvatarModal();
+}
+
+/**
  * Maneja la subida de imagen desde la galería
  */
 function handleAvatarUpload(event) {
   const file = event.target.files[0];
   if (!file) return;
   
+  const userAvatars = getUserAvatars();
+  
+  // Validar límite
+  if (userAvatars.length >= MAX_USER_AVATARS) {
+    showToast(`⚠️ Límite alcanzado: máximo ${MAX_USER_AVATARS} fotos`);
+    event.target.value = '';
+    return;
+  }
+  
   // Validar tipo
   if (!file.type.startsWith('image/')) {
     showToast('❌ Solo se permiten imágenes');
+    event.target.value = '';
     return;
   }
   
   // Validar tamaño (2MB)
   if (file.size > 2 * 1024 * 1024) {
     showToast('❌ La imagen es muy grande (máx 2MB)');
+    event.target.value = '';
     return;
   }
   
@@ -177,20 +326,30 @@ function handleAvatarUpload(event) {
   reader.onload = function(e) {
     const dataUrl = e.target.result;
     
-    // Quitar selección de avatares predefinidos
-    document.querySelectorAll('.avatar-option').forEach(opt => {
-      opt.classList.remove('selected');
-    });
+    // Verificar si ya existe (evitar duplicados)
+    if (userAvatars.includes(dataUrl)) {
+      showToast('⚠️ Esta imagen ya está en tu galería');
+      event.target.value = '';
+      return;
+    }
     
-    // Guardar y aplicar
+    // Agregar al array
+    userAvatars.push(dataUrl);
+    saveUserAvatars(userAvatars);
+    
+    // Seleccionar automáticamente el nuevo avatar
     saveAvatar(dataUrl);
-    showToast('✅ Avatar subido correctamente');
+    showToast(`✅ Foto subida correctamente (${userAvatars.length}/${MAX_USER_AVATARS})`);
     
+    // Re-renderizar modal para mostrar la nueva foto
     setTimeout(() => {
-      closeAvatarModal();
+      openAvatarModal();
     }, 500);
   };
   reader.readAsDataURL(file);
+  
+  // Limpiar input para permitir subir la misma imagen otra vez si se elimina
+  event.target.value = '';
 }
 
 /**
@@ -472,6 +631,7 @@ function init() {
   
   console.log('👤 Página de Cuenta Zombie-TK cargada');
   console.log('🖼️ Avatar actual:', currentAvatar);
+  console.log('📸 Avatares subidos:', getUserAvatars().length);
 }
 
 if (document.readyState === 'loading') {
