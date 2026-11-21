@@ -961,17 +961,31 @@
     </div>
   </div>
 
-  <script>
-  // Cargar avatar del usuario en el header
+  <!-- SCRIPT DE CARGA DE AVATAR -->
+<script>
+  // Cargar avatar del usuario en todos los headers
   (function() {
-    const avatarImg = document.getElementById('headerAvatarImg');
-    if (avatarImg) {
-      const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
-        'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
-      avatarImg.src = savedAvatar;
+    const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
+      'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
+    
+    // Actualizar todos los avatares del header
+    const avatarImgs = document.querySelectorAll('.header-avatar-img');
+    avatarImgs.forEach(img => {
+      img.src = savedAvatar;
+    });
+    
+    // Actualizar avatar en settings
+    const settingsAvatar = document.getElementById('settingsAvatarImg');
+    if (settingsAvatar) settingsAvatar.src = savedAvatar;
+    
+    // Cargar nombre de usuario
+    const savedName = localStorage.getItem('zombieTK_username');
+    const settingsUserName = document.getElementById('settingsUserName');
+    if (savedName && settingsUserName) {
+      settingsUserName.textContent = savedName;
     }
   })();
-  </script>
+</script>
   <script src="script.js"></script>
   <script src="hero-carousel.js"></script>
 </body>
