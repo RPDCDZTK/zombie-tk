@@ -2,8 +2,51 @@
    ZOMBIE-TK - Funcionalidad para página de Cuenta
    ============================================ */
 
+// Avatares predefinidos (puedes cambiar estas URLs por las tuyas)
+const PREDEFINED_AVATARS = [
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie1&backgroundColor=4c1d95',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie2&backgroundColor=6d28d9',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie3&backgroundColor=a78bfa',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie4&backgroundColor=8b0000',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie5&backgroundColor=2d5016',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie6&backgroundColor=ff006e',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie7&backgroundColor=ff8c00',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=zombie8&backgroundColor=00b4d8',
+];
+
+// Avatar por defecto si no hay ninguno guardado
+const DEFAULT_AVATAR = 'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
+
 // Cargar favoritos desde localStorage
 const favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
+
+/**
+ * Obtiene el avatar actual del usuario
+ */
+function getCurrentAvatar() {
+  return localStorage.getItem('zombieTK_avatar') || DEFAULT_AVATAR;
+}
+
+/**
+ * Guarda el avatar en localStorage
+ */
+function saveAvatar(avatarUrl) {
+  localStorage.setItem('zombieTK_avatar', avatarUrl);
+  updateAvatarEverywhere(avatarUrl);
+}
+
+/**
+ * Actualiza el avatar en todas las imágenes de la página
+ */
+function updateAvatarEverywhere(avatarUrl) {
+  const profileImg = document.getElementById('profileAvatarImg');
+  const headerImg = document.getElementById('headerAvatarImg');
+  const currentImg = document.getElementById('avatarCurrentImg');
+  
+  if (profileImg) profileImg.src = avatarUrl;
+  if (headerImg) headerImg.src = avatarUrl;
+  if (currentImg) currentImg.src = avatarUrl;
+}
 
 /**
  * Muestra u oculta el botón "Volver arriba"
@@ -43,23 +86,128 @@ function closeMenu() {
 }
 
 /**
+ * Abre el modal de selección de avatar
+ */
+function openAvatarModal() {
+  const modal = document.getElementById('avatarModal');
+  const grid = document.getElementById('avatarGrid');
+  
+  if (!modal || !grid) return;
+  
+  // Generar avatares predefinidos
+  grid.innerHTML = '';
+  const currentAvatar = getCurrentAvatar();
+  
+  PREDEFINED_AVATARS.forEach((avatarUrl, index) => {
+    const img = document.createElement('img');
+    img.src = avatarUrl;
+    img.alt = `Avatar ${index + 1}`;
+    img.className = 'avatar-option';
+    if (avatarUrl === currentAvatar) {
+      img.classList.add('selected');
+    }
+    img.onclick = () => selectPredefinedAvatar(avatarUrl, img);
+    grid.appendChild(img);
+  });
+  
+  // Mostrar avatar actual
+  const currentImg = document.getElementById('avatarCurrentImg');
+  if (currentImg) {
+    currentImg.src = currentAvatar;
+  }
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Cierra el modal de avatar
+ */
+function closeAvatarModal() {
+  const modal = document.getElementById('avatarModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+}
+
+/**
+ * Selecciona un avatar predefinido
+ */
+function selectPredefinedAvatar(avatarUrl, element) {
+  // Quitar selección de todos
+  document.querySelectorAll('.avatar-option').forEach(opt => {
+    opt.classList.remove('selected');
+  });
+  
+  // Seleccionar el actual
+  if (element) element.classList.add('selected');
+  
+  // Guardar y aplicar
+  saveAvatar(avatarUrl);
+  showToast('✅ Avatar actualizado correctamente');
+  
+  // Cerrar modal después de un momento
+  setTimeout(() => {
+    closeAvatarModal();
+  }, 500);
+}
+
+/**
+ * Maneja la subida de imagen desde la galería
+ */
+function handleAvatarUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  // Validar tipo
+  if (!file.type.startsWith('image/')) {
+    showToast('❌ Solo se permiten imágenes');
+    return;
+  }
+  
+  // Validar tamaño (2MB)
+  if (file.size > 2 * 1024 * 1024) {
+    showToast('❌ La imagen es muy grande (máx 2MB)');
+    return;
+  }
+  
+  // Leer la imagen
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const dataUrl = e.target.result;
+    
+    // Quitar selección de avatares predefinidos
+    document.querySelectorAll('.avatar-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    
+    // Guardar y aplicar
+    saveAvatar(dataUrl);
+    showToast('✅ Avatar subido correctamente');
+    
+    setTimeout(() => {
+      closeAvatarModal();
+    }, 500);
+  };
+  reader.readAsDataURL(file);
+}
+
+/**
  * Actualiza las estadísticas del usuario
  */
 function updateStats() {
-  // Favoritos
   const statFavorites = document.getElementById('statFavorites');
   if (statFavorites) {
     statFavorites.textContent = favorites.length;
   }
   
-  // Contenido visto (simulado - en producción vendría de localStorage)
   const statViewed = document.getElementById('statViewed');
   const viewedCount = parseInt(localStorage.getItem('zombieTK_viewed') || '0');
   if (statViewed) {
     statViewed.textContent = viewedCount;
   }
   
-  // Nivel basado en favoritos
   const statLevel = document.getElementById('statLevel');
   if (statLevel) {
     let level = 'Novato';
@@ -75,7 +223,8 @@ function updateStats() {
  * Edita el perfil del usuario
  */
 function editProfile() {
-  const newName = prompt('Ingresa tu nuevo nombre:', document.getElementById('profileName').textContent);
+  const currentName = document.getElementById('profileName').textContent;
+  const newName = prompt('Ingresa tu nuevo nombre:', currentName);
   if (newName && newName.trim()) {
     document.getElementById('profileName').textContent = newName.trim();
     localStorage.setItem('zombieTK_username', newName.trim());
@@ -128,8 +277,6 @@ function getSettingsContent(section) {
           <li>🇧🇷 Português</li>
           <li>🇫🇷 Français</li>
         </ul>
-        <h4>Subtítulos</h4>
-        <p>Configura el idioma y estilo de los subtítulos para videos y cortometrajes.</p>
         <p><strong>Nota:</strong> Esta función estará disponible en la próxima actualización.</p>
       `
     },
@@ -143,8 +290,6 @@ function getSettingsContent(section) {
           <li>✅ Mensajes del soporte técnico</li>
           <li>✅ Ofertas y promociones especiales</li>
         </ul>
-        <h4>Frecuencia</h4>
-        <p>Puedes elegir recibir notificaciones diarias, semanales o solo las más importantes.</p>
         <p><strong>Estado actual:</strong> Notificaciones desactivadas</p>
       `
     },
@@ -159,23 +304,6 @@ function getSettingsContent(section) {
           <li>📊 Estadísticas de visualización</li>
           <li>🔍 Historial de búsqueda</li>
         </ul>
-        <h4>Datos personales</h4>
-        <p>Tus datos están protegidos y no se comparten con terceros. Puedes solicitar la eliminación de tu cuenta en cualquier momento contactando a soporte.</p>
-      `
-    },
-    adultos: {
-      title: '🔞 Contenido para adultos',
-      body: `
-        <h4>Configuración actual</h4>
-        <p>El contenido para adultos está actualmente <strong>desactivado</strong>.</p>
-        <h4>¿Qué incluye?</h4>
-        <p>Al activar esta opción, verás títulos con clasificación +18 en el catálogo y búsquedas, incluyendo:</p>
-        <ul>
-          <li>Películas de terror extremo</li>
-          <li>Cómics con contenido explícito</li>
-          <li>Relatos con temáticas maduras</li>
-        </ul>
-        <p><strong>Nota:</strong> Debes ser mayor de 18 años para activar esta opción.</p>
       `
     },
     descargas: {
@@ -187,10 +315,7 @@ function getSettingsContent(section) {
           <li>💻 Media (720p) - Balance calidad/tamaño</li>
           <li>🖥️ Alta (1080p) - Máxima calidad</li>
         </ul>
-        <h4>Almacenamiento</h4>
-        <p>Las descargas se guardan en la carpeta: <code>/ZombieTK/Downloads/</code></p>
-        <h4>Wi-Fi only</h4>
-        <p>Actualmente las descargas solo se realizan cuando estás conectado a Wi-Fi para evitar consumo de datos móviles.</p>
+        <p>Las descargas se guardan en: <code>/ZombieTK/Downloads/</code></p>
       `
     },
     tv: {
@@ -204,24 +329,18 @@ function getSettingsContent(section) {
           <li>🖥️ Android TV / Apple TV</li>
         </ul>
         <h4>Código de vinculación</h4>
-        <p>Para vincular tu TV, abre la app en tu televisor e ingresa el siguiente código:</p>
         <p style="font-size: 24px; text-align: center; color: #a78bfa; font-weight: bold; padding: 15px; background: rgba(109, 40, 217, 0.2); border-radius: 8px;">ZTK-2024-XXXX</p>
-        <p><strong>Nota:</strong> El código expira en 10 minutos.</p>
       `
     },
     acerca: {
       title: 'ℹ️ Acerca de Zombie-TK',
       body: `
         <h4>Zombie-TK+</h4>
-        <p>La plataforma definitiva para fans del género zombie. Encuentra libros, películas, series, animes, cómics, cortometrajes, relatos, juegos y más.</p>
+        <p>La plataforma definitiva para fans del género zombie.</p>
         <h4>Versión</h4>
-        <p><strong>Versión 1.0.43</strong> (Última actualización: Noviembre 2024)</p>
-        <h4>Desarrollado por</h4>
-        <p>Zombie-TK Team</p>
+        <p><strong>Versión 1.0.43</strong> (Noviembre 2024)</p>
         <h4>Contacto</h4>
         <p>📧 punk_dead_rp@hotmail.com</p>
-        <h4>Créditos</h4>
-        <p>Todas las imágenes y contenido pertenecen a sus respectivos autores. Zombie-TK no almacena contenido protegido por derechos de autor.</p>
       `
     },
     actualizar: {
@@ -229,33 +348,19 @@ function getSettingsContent(section) {
       body: `
         <h4>Versión actual</h4>
         <p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0.43</p>
-        <h4>Estado</h4>
-        <p>✅ Estás usando la versión más reciente de Zombie-TK.</p>
-        <h4>Últimas mejoras</h4>
-        <ul>
-          <li>✨ Nuevo diseño de página de cuenta</li>
-          <li>🔍 Búsqueda mejorada con filtros</li>
-          <li>⭐ Sistema de favoritos persistente</li>
-          <li>📱 Menú hamburguesa optimizado</li>
-          <li>🎨 Paletas de colores únicas por sección</li>
-        </ul>
-        <button onclick="checkForUpdates()" style="width: 100%; padding: 12px; background: #6d28d9; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Buscar actualizaciones manualmente</button>
+        <p>✅ Estás usando la versión más reciente.</p>
+        <button onclick="checkForUpdates()" style="width: 100%; padding: 12px; background: #6d28d9; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Buscar actualizaciones</button>
       `
     },
     contacto: {
       title: '✉️ Contactar soporte',
       body: `
-        <h4>¿Necesitas ayuda?</h4>
-        <p>Nuestro equipo de soporte está disponible para ayudarte con cualquier problema o pregunta.</p>
         <h4>Métodos de contacto</h4>
         <ul>
           <li>📧 Email: <a href="mailto:punk_dead_rp@hotmail.com" style="color: #a78bfa;">punk_dead_rp@hotmail.com</a></li>
           <li>💬 Telegram: @ZombieTKSupport</li>
-          <li>🐦 Twitter: @ZombieTK_Official</li>
         </ul>
-        <h4>Horario de atención</h4>
-        <p>Lunes a Viernes: 9:00 AM - 6:00 PM (GMT-6)</p>
-        <p>Tiempo de respuesta promedio: 24-48 horas</p>
+        <p>Tiempo de respuesta: 24-48 horas</p>
       `
     },
     'cambiar-cuenta': {
@@ -264,8 +369,6 @@ function getSettingsContent(section) {
         <h4>Cuenta actual</h4>
         <p><strong>Usuario:</strong> ZombieFan</p>
         <p><strong>Email:</strong> zombiefan@zombie-tk.com</p>
-        <h4>Cambiar de cuenta</h4>
-        <p>Para cambiar de cuenta, primero debes cerrar sesión e iniciar sesión con otra cuenta.</p>
         <button onclick="logout()" style="width: 100%; padding: 12px; background: #dc2626; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Cerrar sesión</button>
       `
     }
@@ -275,7 +378,7 @@ function getSettingsContent(section) {
 }
 
 /**
- * Busca actualizaciones manualmente
+ * Busca actualizaciones
  */
 function checkForUpdates() {
   showToast('🔍 Buscando actualizaciones...');
@@ -317,7 +420,7 @@ function showToast(message) {
 }
 
 /**
- * Carga el nombre de usuario desde localStorage
+ * Carga el perfil del usuario
  */
 function loadUserProfile() {
   const savedName = localStorage.getItem('zombieTK_username');
@@ -334,19 +437,28 @@ function init() {
   updateStats();
   loadUserProfile();
   
+  // Cargar y mostrar avatar en todas partes
+  const currentAvatar = getCurrentAvatar();
+  updateAvatarEverywhere(currentAvatar);
+  
   // Menú hamburguesa
   const overlay = document.getElementById('menuOverlay');
   if (overlay) {
     overlay.addEventListener('click', closeMenu);
   }
   
-  // Cerrar modal al hacer clic fuera
-  const modal = document.getElementById('settingsModal');
-  if (modal) {
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        closeSettingsModal();
-      }
+  // Cerrar modales al hacer clic fuera
+  const settingsModal = document.getElementById('settingsModal');
+  if (settingsModal) {
+    settingsModal.addEventListener('click', function(e) {
+      if (e.target === settingsModal) closeSettingsModal();
+    });
+  }
+  
+  const avatarModal = document.getElementById('avatarModal');
+  if (avatarModal) {
+    avatarModal.addEventListener('click', function(e) {
+      if (e.target === avatarModal) closeAvatarModal();
     });
   }
   
@@ -354,12 +466,12 @@ function init() {
     if (e.key === 'Escape') {
       closeMenu();
       closeSettingsModal();
+      closeAvatarModal();
     }
   });
   
-  console.log('👤 Página de Cuenta Zombie-TK cargada correctamente');
-  console.log('📅 Fecha:', new Date().toLocaleDateString('es-ES'));
-  console.log('⭐ Favoritos:', favorites.length);
+  console.log('👤 Página de Cuenta Zombie-TK cargada');
+  console.log('🖼️ Avatar actual:', currentAvatar);
 }
 
 if (document.readyState === 'loading') {
