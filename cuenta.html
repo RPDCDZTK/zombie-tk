@@ -374,7 +374,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE SELECCIÓN DE AVATAR -->
+<!-- MODAL DE SELECCIÓN DE AVATAR -->
   <div class="avatar-modal" id="avatarModal">
     <div class="avatar-modal-content">
       <div class="avatar-modal-header">
@@ -382,27 +382,51 @@
         <button class="avatar-modal-close" onclick="closeAvatarModal()">✕</button>
       </div>
       <div class="avatar-modal-body">
+        
+        <!-- AVATARES PREDEFINIDOS -->
         <div class="avatar-section">
           <h4>🎨 Avatares predefinidos</h4>
           <div class="avatar-grid" id="avatarGrid">
             <!-- Se generan dinámicamente -->
           </div>
         </div>
+
+        <!-- AVATARES SUBIDOS POR EL USUARIO -->
+        <div class="avatar-section" id="userAvatarsSection" style="display: none;">
+          <div class="user-avatars-header">
+            <h4>📸 Mis fotos subidas (<span id="userAvatarsCount">0</span>/3)</h4>
+            <button class="clear-all-btn" onclick="clearAllUserAvatars()" title="Eliminar todas mis fotos">🗑️</button>
+          </div>
+          <div class="avatar-grid" id="userAvatarGrid">
+            <!-- Se generan dinámicamente -->
+          </div>
+          <p class="upload-hint" style="margin-top: 10px;">💡 Mantén presionado o haz clic en la ✕ para eliminar</p>
+        </div>
+
+        <!-- SEPARADOR -->
         <div class="avatar-divider">
           <span>O</span>
         </div>
+
+        <!-- SUBIR NUEVA IMAGEN -->
         <div class="avatar-section">
           <h4>📁 Subir desde tu galería</h4>
-          <label class="upload-btn" for="avatarUpload">
+          <label class="upload-btn" for="avatarUpload" id="uploadBtnLabel">
             <span>📤 Elegir imagen</span>
           </label>
           <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
-          <p class="upload-hint">Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB</p>
+          <p class="upload-hint" id="uploadHint">Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB</p>
+          <p class="upload-limit-warning" id="uploadLimitWarning" style="display: none;">
+            ⚠️ Has alcanzado el límite de 3 fotos. Elimina una para subir otra.
+          </p>
         </div>
+
+        <!-- AVATAR ACTUAL -->
         <div class="avatar-current">
           <h4>👤 Avatar actual</h4>
           <img src="" alt="Actual" class="avatar-current-img" id="avatarCurrentImg">
         </div>
+
       </div>
     </div>
   </div>
