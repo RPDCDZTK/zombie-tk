@@ -961,29 +961,52 @@
     </div>
   </div>
 
-  <!-- SCRIPT DE CARGA DE AVATAR -->
+<!-- SCRIPT DE CARGA DE AVATAR (MEJORADO) -->
 <script>
-  // Cargar avatar del usuario en todos los headers
   (function() {
-    const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
-      'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
+    console.log('🧟 Iniciando carga de avatar...');
+    
+    // Avatar por defecto (emoji como fallback seguro)
+    const DEFAULT_AVATAR = 'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
+    const FALLBACK_AVATAR = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%234c1d95"/><text x="50" y="60" font-size="40" text-anchor="middle" fill="white">🧟</text></svg>';
+    
+    // Obtener avatar guardado o usar el por defecto
+    let avatarUrl = localStorage.getItem('zombieTK_avatar') || DEFAULT_AVATAR;
+    console.log('🖼️ Avatar URL:', avatarUrl);
     
     // Actualizar todos los avatares del header
     const avatarImgs = document.querySelectorAll('.header-avatar-img');
-    avatarImgs.forEach(img => {
-      img.src = savedAvatar;
+    console.log('📸 Avatares encontrados:', avatarImgs.length);
+    
+    avatarImgs.forEach((img, index) => {
+      img.src = avatarUrl;
+      img.alt = 'Foto de perfil';
+      
+      // Si la imagen falla al cargar, usar el fallback
+      img.onerror = function() {
+        console.warn('⚠️ Imagen falló, usando fallback para avatar #' + index);
+        this.src = FALLBACK_AVATAR;
+      };
     });
     
-    // Actualizar avatar en settings
+    // Actualizar avatar en el modal de settings
     const settingsAvatar = document.getElementById('settingsAvatarImg');
-    if (settingsAvatar) settingsAvatar.src = savedAvatar;
+    if (settingsAvatar) {
+      settingsAvatar.src = avatarUrl;
+      settingsAvatar.onerror = function() {
+        this.src = FALLBACK_AVATAR;
+      };
+    }
     
     // Cargar nombre de usuario
     const savedName = localStorage.getItem('zombieTK_username');
     const settingsUserName = document.getElementById('settingsUserName');
     if (savedName && settingsUserName) {
       settingsUserName.textContent = savedName;
+      console.log('👤 Nombre cargado:', savedName);
     }
+    
+    console.log('✅ Carga de avatar completada');
   })();
 </script>
   <script src="script.js"></script>
