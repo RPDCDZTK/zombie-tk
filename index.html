@@ -24,7 +24,7 @@
       <div class="header-icons">
         <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
         <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
-        <img src="" alt="Perfil" class="header-avatar-img" id="headerAvatarImg">
+          <img src="" alt="Perfil" class="header-avatar-img" id="headerAvatarImg">
         </div>
       </div>
     </div>
@@ -961,6 +961,17 @@
     </div>
   </div>
 
+  <script>
+  // Cargar avatar del usuario en el header
+  (function() {
+    const avatarImg = document.getElementById('headerAvatarImg');
+    if (avatarImg) {
+      const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
+        'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
+      avatarImg.src = savedAvatar;
+    }
+  })();
+  </script>
   <script src="script.js"></script>
   <script src="hero-carousel.js"></script>
 </body>
