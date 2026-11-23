@@ -1,5 +1,5 @@
 /* ============================================
-   ZOMBIE-TK - search.js (VERSIÓN CORREGIDA)
+   ZOMBIE-TK - search.js (VERSIÓN FINAL CON DATOS REALES)
    ============================================ */
 
 // Función auxiliar para determinar el archivo alfabético
@@ -25,35 +25,59 @@ function getAlphaFile(name, type) {
   return `${type}/${range}.html`;
 }
 
-// Base de datos de contenido (versión simplificada para probar)
+// Base de datos de contenido REAL
 const contentDatabase = [
-  // 📚 LIBROS (ejemplos)
-  { id: 'b1', title: 'Apocalipsis Z', type: 'libro', typeLabel: 'Libro', author: 'Manel Loureiro', img: 'img/libros/portada-generica.jpg', url: 'libros/A-B.html' },
-  { id: 'b2', title: 'Guerra Mundial Z', type: 'libro', typeLabel: 'Libro', author: 'Max Brooks', img: 'img/libros/portada-generica.jpg', url: 'libros/G-H.html' },
-  { id: 'b3', title: 'The Walking Dead', type: 'libro', typeLabel: 'Libro', author: 'Kirkman', img: 'img/libros/portada-generica.jpg', url: 'libros/S-T.html' },
+  // 📚 LIBROS (organizados alfabéticamente)
+  { id: 'b1', title: 'Apocalipsis Z', type: 'libro', typeLabel: 'Libro', author: 'Manel Loureiro', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('Apocalipsis', 'libros') },
+  { id: 'b2', title: 'Guerra Mundial Z', type: 'libro', typeLabel: 'Libro', author: 'Max Brooks', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('Guerra', 'libros') },
+  { id: 'b3', title: 'The Walking Dead', type: 'libro', typeLabel: 'Libro', author: 'Kirkman', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('The', 'libros') },
+  { id: 'b4', title: 'Zombie Survival Guide', type: 'libro', typeLabel: 'Libro', author: 'Max Brooks', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('Zombie', 'libros') },
+  { id: 'b5', title: 'World War Z', type: 'libro', typeLabel: 'Libro', author: 'Max Brooks', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('World', 'libros') },
+  { id: 'b6', title: 'I Am Legend', type: 'libro', typeLabel: 'Libro', author: 'Richard Matheson', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('I', 'libros') },
+  { id: 'b7', title: 'Cell', type: 'libro', typeLabel: 'Libro', author: 'Stephen King', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('Cell', 'libros') },
+  { id: 'b8', title: 'The Stand', type: 'libro', typeLabel: 'Libro', author: 'Stephen King', img: 'img/libros/portada-generica.jpg', url: getAlphaFile('The', 'libros') },
   
-  // 🎬 PELÍCULAS (ejemplos)
-  { id: 'm1', title: 'World War Z', type: 'pelicula', typeLabel: 'Película', year: '2013', img: 'img/peliculas/World-War-Z.jpg', url: 'peliculas/W-X.html' },
-  { id: 'm2', title: 'Zombieland', type: 'pelicula', typeLabel: 'Película', year: '2009', img: 'img/peliculas/Zombieland.jpg', url: 'peliculas/Y-Z.html' },
-  { id: 'm3', title: 'Resident Evil', type: 'pelicula', typeLabel: 'Película', year: '2002', img: 'img/peliculas/Resident-Evil.jpg', url: 'peliculas/Q-R.html' },
-  { id: 'm4', title: '28 Days Later', type: 'pelicula', typeLabel: 'Película', year: '2002', img: 'img/peliculas/28-Days-Later.jpg', url: 'peliculas/0-9.html' },
-  { id: 'm5', title: 'Shaun of the Dead', type: 'pelicula', typeLabel: 'Película', year: '2004', img: 'img/peliculas/Shaun-of-the-Dead.jpg', url: 'peliculas/S-T.html' },
+  // 🎬 PELÍCULAS (organizadas alfabéticamente)
+  { id: 'm1', title: '28 Days Later', type: 'pelicula', typeLabel: 'Película', year: '2002', img: 'img/peliculas/28-Days-Later.jpg', url: getAlphaFile('28', 'peliculas') },
+  { id: 'm2', title: '28 Weeks Later', type: 'pelicula', typeLabel: 'Película', year: '2007', img: 'img/peliculas/28-Weeks-Later.jpg', url: getAlphaFile('28', 'peliculas') },
+  { id: 'm3', title: 'Dawn of the Dead', type: 'pelicula', typeLabel: 'Película', year: '1978', img: 'img/peliculas/Dawn-of-the-Dead.jpg', url: getAlphaFile('Dawn', 'peliculas') },
+  { id: 'm4', title: 'Night of the Living Dead', type: 'pelicula', typeLabel: 'Película', year: '1968', img: 'img/peliculas/Night-of-the-Living-Dead.jpg', url: getAlphaFile('Night', 'peliculas') },
+  { id: 'm5', title: 'Resident Evil', type: 'pelicula', typeLabel: 'Película', year: '2002', img: 'img/peliculas/Resident-Evil.jpg', url: getAlphaFile('Resident', 'peliculas') },
+  { id: 'm6', title: 'Shaun of the Dead', type: 'pelicula', typeLabel: 'Película', year: '2004', img: 'img/peliculas/Shaun-of-the-Dead.jpg', url: getAlphaFile('Shaun', 'peliculas') },
+  { id: 'm7', title: 'World War Z', type: 'pelicula', typeLabel: 'Película', year: '2013', img: 'img/peliculas/World-War-Z.jpg', url: getAlphaFile('World', 'peliculas') },
+  { id: 'm8', title: 'Zombieland', type: 'pelicula', typeLabel: 'Película', year: '2009', img: 'img/peliculas/Zombieland.jpg', url: getAlphaFile('Zombieland', 'peliculas') },
+  { id: 'm9', title: 'Train to Busan', type: 'pelicula', typeLabel: 'Película', year: '2016', img: 'img/peliculas/Train-to-Busan.jpg', url: getAlphaFile('Train', 'peliculas') },
+  { id: 'm10', title: 'The Walking Dead', type: 'pelicula', typeLabel: 'Película', year: '-', img: 'img/peliculas/The-Walking-Dead.jpg', url: getAlphaFile('The', 'peliculas') },
   
   // 📺 SERIES
-  { id: 's1', title: 'The Walking Dead', type: 'serie', typeLabel: 'Serie', img: 'img/series/The-Walking-Dead.jpg', url: 'series/The-Walking-Dead.html' },
-  { id: 's2', title: 'Z Nation', type: 'serie', typeLabel: 'Serie', img: 'img/series/Z-Nation.jpg', url: 'series/Z-Nation.html' },
-  { id: 's3', title: 'Black Summer', type: 'serie', typeLabel: 'Serie', img: 'img/series/Black-Summer.jpg', url: 'series/Black-Summer.html' },
+  { id: 's1', title: 'Black Summer', type: 'serie', typeLabel: 'Serie', img: 'img/series/Black-Summer.jpg', url: 'series/Black-Summer.html' },
+  { id: 's2', title: 'Daybreak', type: 'serie', typeLabel: 'Serie', img: 'img/series/Daybreak.png', url: 'series/Daybreak.html' },
+  { id: 's3', title: 'Dead Set', type: 'serie', typeLabel: 'Serie', img: 'img/series/Dead-Set.jpg', url: 'series/Dead-Set.html' },
+  { id: 's4', title: 'I Zombie', type: 'serie', typeLabel: 'Serie', img: 'img/series/I-Zombie.jpg', url: 'series/I-Zombie.html' },
+  { id: 's5', title: 'Kingdom', type: 'serie', typeLabel: 'Serie', img: 'img/series/kingdom.jpg', url: 'series/Kingdom.html' },
+  { id: 's6', title: 'Plantas Vs Zombies', type: 'serie', typeLabel: 'Serie', img: 'img/series/Plantas-Vs-Zombies.png', url: 'series/Plantas-Vs-Zombies.html' },
+  { id: 's7', title: 'Reality Z', type: 'serie', typeLabel: 'Serie', img: 'img/series/Reality-Z.png', url: 'series/Reality-Z.html' },
+  { id: 's8', title: 'The Walking Dead', type: 'serie', typeLabel: 'Serie', img: 'img/series/The-Walking-Dead.jpg', url: 'series/The-Walking-Dead.html' },
+  { id: 's9', title: 'Z Nation', type: 'serie', typeLabel: 'Serie', img: 'img/series/Z-Nation.png', url: 'series/Z-Nation.html' },
   
   // 🎌 ANIMES
-  { id: 'a1', title: 'Highschool of the Dead', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Highschool-of-the-Dead.jpg', url: 'animes/Highschool-of-the-Dead.html' },
-  { id: 'a2', title: 'Zombieland Saga', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Zombieland-Saga.jpg', url: 'animes/Zombieland-Saga.html' },
+  { id: 'a1', title: 'Gakkou Gurashi!', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Gakkou-Gurashi.png', url: 'animes/Gakkou-Gurashi.html' },
+  { id: 'a2', title: 'Highschool of the Dead', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Highschool-of-the-Dead.png', url: 'animes/Highschool-of-the-Dead.html' },
+  { id: 'a3', title: 'Kore wa Zombie Desu ka?', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Kore-wa-Zombie-Desu-ka.png', url: 'animes/Kore-wa-Zombie-Desu-ka.html' },
+  { id: 'a4', title: 'Koutetsujou no Kabaneri', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Koutetsujou-no-Kabaneri.png', url: 'animes/Koutetsujou-no-Kabaneri.html' },
+  { id: 'a5', title: 'Shikabane Hime: Aka', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Shikabane-Hime-Aka.png', url: 'animes/Shikabane-Hime-Aka.html' },
+  { id: 'a6', title: 'Zombieland Saga', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Zombieland-Saga.png', url: 'animes/Zombieland-Saga.html' },
   
   // 💥 CÓMICS
   { id: 'c1', title: 'The Walking Dead', type: 'comic', typeLabel: 'Cómic', img: 'img/comics/The-Walking-Dead.jpg', url: 'comics/The-Walking-Dead-Comic.html' },
   
   // 🎬 CORTOMETRAJES
-  { id: 'co1', title: 'Cargo', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://video.maga.host/static/thumbnails/c71d5fb6.jpg', url: 'cortometrajes/Cargo.html' },
-  { id: 'co2', title: 'Hope', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://i.ytimg.com/vi/bUTJC7UdMy4/maxresdefault.jpg', url: 'cortometrajes/Hope.html' },
+  { id: 'co1', title: 'Cargo', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://video.maga.host/static/thumbnails/c71d5fb6-6e04-4b90-bbdc-57ebb12857e1.jpg', url: 'cortometrajes/Cargo.html' },
+  { id: 'co2', title: 'Hope', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://i.ytimg.com/vi_webp/bUTJC7UdMy4/maxresdefault.webp', url: 'cortometrajes/Hope.html' },
+  { id: 'co3', title: 'Make It Until Morning', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://video.maga.host/static/thumbnails/33b29291-5e94-4360-96db-d877f8dd0d5e.jpg', url: 'cortometrajes/Make-It-Until-Morning.html' },
+  { id: 'co4', title: 'Soy un Zombie', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://i.ytimg.com/vi/IGfdVXkoe_c/maxresdefault.jpg', url: 'cortometrajes/Soy-un-Zombie.html' },
+  { id: 'co5', title: 'Still', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://video.maga.host/static/thumbnails/d923e46f-79da-47e4-952a-0c35a8484c27.jpg', url: 'cortometrajes/Still.html' },
+  { id: 'co6', title: 'Zombie Doom', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://video.maga.host/static/thumbnails/f47aea1f-bb63-448b-9aa2-f62fb14f7703.jpg', url: 'cortometrajes/Zombie-Doom.html' },
 ];
 
 // Variables globales
@@ -102,13 +126,11 @@ function closeMenu() {
 function setFilter(filter, button) {
   currentFilter = filter;
   
-  // Actualizar botones activos
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.classList.remove('active');
   });
   if (button) button.classList.add('active');
   
-  // Re-renderizar resultados
   renderResults();
 }
 
@@ -146,7 +168,6 @@ function performSearch() {
   
   currentQuery = input.value.trim().toLowerCase();
   
-  // Mostrar/ocultar botón de limpiar
   if (clearBtn) {
     clearBtn.style.display = currentQuery ? 'flex' : 'none';
   }
@@ -174,14 +195,12 @@ function renderResults() {
     return;
   }
   
-  // Filtrar por categoría
   let filtered = contentDatabase;
   if (currentFilter !== 'all') {
     filtered = filtered.filter(item => item.type === currentFilter);
     console.log(`📂 Filtrado por ${currentFilter}: ${filtered.length} ítems`);
   }
   
-  // Filtrar por texto de búsqueda
   if (currentQuery) {
     filtered = filtered.filter(item => {
       const titleMatch = item.title.toLowerCase().includes(currentQuery);
@@ -191,21 +210,16 @@ function renderResults() {
     console.log(`🔎 Después de buscar "${currentQuery}": ${filtered.length} resultados`);
   }
   
-  // Actualizar contadores
   updateFilterCounts();
   
-  // Actualizar contador general
   if (countEl) {
     const total = currentQuery ? filtered.length : contentDatabase.length;
     countEl.textContent = `📊 ${total} resultado${total !== 1 ? 's' : ''} encontrado${total !== 1 ? 's' : ''}`;
   }
   
-  // Limpiar grid
   grid.innerHTML = '';
   
-  // Mostrar estado correspondiente
   if (!currentQuery && currentFilter === 'all') {
-    // Estado inicial
     if (emptyEl) emptyEl.style.display = 'block';
     if (noResultsEl) noResultsEl.style.display = 'none';
     grid.style.display = 'none';
@@ -216,7 +230,6 @@ function renderResults() {
   if (emptyEl) emptyEl.style.display = 'none';
   
   if (filtered.length === 0) {
-    // Sin resultados
     if (noResultsEl) noResultsEl.style.display = 'block';
     if (noResultsText) {
       noResultsText.textContent = `No se encontró "${currentQuery}" en ${currentFilter === 'all' ? 'ninguna sección' : 'la sección de ' + currentFilter + 's'}`;
@@ -226,7 +239,6 @@ function renderResults() {
     return;
   }
   
-  // Mostrar resultados
   if (noResultsEl) noResultsEl.style.display = 'none';
   grid.style.display = 'grid';
   
@@ -254,9 +266,8 @@ function renderResults() {
 }
 
 function updateFilterCounts() {
-  const types = ['libro', 'pelicula', 'serie', 'anime', 'comic', 'cortometraje', 'relato', 'juego'];
+  const types = ['libro', 'pelicula', 'serie', 'anime', 'comic', 'cortometraje'];
   
-  // Contador total
   let totalFiltered = contentDatabase;
   if (currentQuery) {
     totalFiltered = totalFiltered.filter(item => 
@@ -267,7 +278,6 @@ function updateFilterCounts() {
   const countAll = document.getElementById('count-all');
   if (countAll) countAll.textContent = totalFiltered.length;
   
-  // Contadores por tipo
   types.forEach(type => {
     let filtered = contentDatabase.filter(item => item.type === type);
     if (currentQuery) {
@@ -289,7 +299,6 @@ function init() {
   console.log('🚀 Inicializando página de búsqueda...');
   console.log('📊 Total de ítems en base de datos:', contentDatabase.length);
   
-  // Verificar que existan los elementos necesarios
   const searchInput = document.getElementById('searchInput');
   const resultsGrid = document.getElementById('resultsGrid');
   const searchEmpty = document.getElementById('searchEmpty');
@@ -304,23 +313,17 @@ function init() {
     console.error('❌ No se encontró el elemento searchEmpty');
   }
   
-  // Event listener para scroll
   window.addEventListener('scroll', handleScroll);
   
-  // Event listener para búsqueda
   if (searchInput) {
     searchInput.addEventListener('input', performSearch);
     searchInput.focus();
     console.log('✅ Input de búsqueda configurado');
   }
   
-  // Inicializar contadores
   updateFilterCounts();
-  
-  // Renderizar resultados iniciales
   renderResults();
   
-  // Menú hamburguesa
   const overlay = document.getElementById('menuOverlay');
   if (overlay) {
     overlay.addEventListener('click', closeMenu);
@@ -335,7 +338,6 @@ function init() {
   console.log('✅ Página de búsqueda inicializada correctamente');
 }
 
-// Ejecutar cuando el DOM esté listo
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
