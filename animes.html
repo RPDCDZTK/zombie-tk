@@ -9,139 +9,120 @@
 </head>
 <body>
 
-  <!-- HOME PAGE -->
-  <div id="homePage" class="page active">
-    <div class="header">
-      <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-      <div class="site-branding">
-        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
-        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
-      </div>
-      <div class="header-icons">
-        <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
-        <button><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
+  <!-- HEADER -->
+  <div class="header">
+    <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="site-branding">
+      <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+      <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+    </div>
+    <div class="header-icons">
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+      <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
+        <img src="" alt="Perfil" class="header-avatar-img" id="headerAvatarImg">
       </div>
     </div>
   </div>
 
   <!-- OVERLAY DEL MENÚ -->
-<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-<!-- MENÚ HAMBURGUESA LATERAL (SIN SECCIONES) -->
-<div class="hamburger-menu" id="hamburgerMenu">
-  <div class="menu-header">
-    <div class="menu-logo">
-      <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
-      <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+  <!-- MENÚ HAMBURGUESA -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-logo">
+        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
+        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
     </div>
-    <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
+
+    <div class="menu-content">
+      <a href="index.html" class="menu-item">
+        <span class="menu-item-icon">🏠</span>
+        <span class="menu-item-text">Inicio</span>
+      </a>
+      <a href="search.html" class="menu-item">
+        <span class="menu-item-icon">🔍</span>
+        <span class="menu-item-text">Buscar</span>
+      </a>
+      <a href="favoritos.html" class="menu-item">
+        <span class="menu-item-icon">⭐</span>
+        <span class="menu-item-text">Favoritos</span>
+      </a>
+      <a href="cuenta.html" class="menu-item">
+        <span class="menu-item-icon">👤</span>
+        <span class="menu-item-text">Cuenta</span>
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a href="libros.html" class="menu-item">
+        <span class="menu-item-icon">📖</span>
+        <span class="menu-item-text">Libros</span>
+        <span class="menu-item-count" id="menu-count-libros">0</span>
+      </a>
+      <a href="peliculas.html" class="menu-item">
+        <span class="menu-item-icon">🎥</span>
+        <span class="menu-item-text">Películas</span>
+        <span class="menu-item-count" id="menu-count-peliculas">0</span>
+      </a>
+      <a href="series.html" class="menu-item">
+        <span class="menu-item-icon">📺</span>
+        <span class="menu-item-text">Series</span>
+        <span class="menu-item-count" id="menu-count-series">0</span>
+      </a>
+      <a href="animes.html" class="menu-item active">
+        <span class="menu-item-icon">🎌</span>
+        <span class="menu-item-text">Animes</span>
+        <span class="menu-item-count" id="menu-count-animes">0</span>
+      </a>
+      <a href="comics.html" class="menu-item">
+        <span class="menu-item-icon">💥</span>
+        <span class="menu-item-text">Cómics</span>
+        <span class="menu-item-count" id="menu-count-comics">0</span>
+      </a>
+      <a href="cortometrajes.html" class="menu-item">
+        <span class="menu-item-icon">🎬</span>
+        <span class="menu-item-text">Cortometrajes</span>
+        <span class="menu-item-count" id="menu-count-cortos">0</span>
+      </a>
+      <a href="relatos.html" class="menu-item">
+        <span class="menu-item-icon">✍️</span>
+        <span class="menu-item-text">Relatos</span>
+        <span class="menu-item-count">6</span>
+      </a>
+      <a href="juegos.html" class="menu-item">
+        <span class="menu-item-icon">🎮</span>
+        <span class="menu-item-text">Juegos</span>
+        <span class="menu-item-count">27</span>
+      </a>
+      <a href="tutoriales.html" class="menu-item">
+        <span class="menu-item-icon">🎓</span>
+        <span class="menu-item-text">Tutoriales</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      <a href="musica.html" class="menu-item">
+        <span class="menu-item-icon">🎵</span>
+        <span class="menu-item-text">Música</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      <a href="revistas.html" class="menu-item">
+        <span class="menu-item-icon">📰</span>
+        <span class="menu-item-text">Revistas</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+    </div>
+
+    <div class="menu-footer">
+      <div class="menu-footer-logo">🧟</div>
+      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
+    </div>
   </div>
-
-  <div class="menu-content">
-    <!-- Navegación principal -->
-    <a href="index.html" class="menu-item">
-      <span class="menu-item-icon">🏠</span>
-      <span class="menu-item-text">Inicio</span>
-    </a>
-    
-    <a href="search.html" class="menu-item">
-      <span class="menu-item-icon">🔍</span>
-      <span class="menu-item-text">Buscar</span>
-    </a>
-    
-    <a href="favoritos.html" class="menu-item">
-      <span class="menu-item-icon">⭐</span>
-      <span class="menu-item-text">Favoritos</span>
-    </a>
-    
-    <a href="cuenta.html" class="menu-item">
-      <span class="menu-item-icon">👤</span>
-      <span class="menu-item-text">Cuenta</span>
-    </a>
-
-    <!-- Separador visual -->
-    <div class="menu-divider"></div>
-
-    <!-- Contenido -->
-    <a href="libros.html" class="menu-item">
-      <span class="menu-item-icon">📖</span>
-      <span class="menu-item-text">Libros</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="peliculas.html" class="menu-item">
-      <span class="menu-item-icon">🎥</span>
-      <span class="menu-item-text">Películas</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="series.html" class="menu-item">
-      <span class="menu-item-icon">📺</span>
-      <span class="menu-item-text">Series</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="animes.html" class="menu-item">
-      <span class="menu-item-icon">🎌</span>
-      <span class="menu-item-text">Animes</span>
-      <span class="menu-item-count">18</span>
-    </a>
-    
-    <a href="comics.html" class="menu-item">
-      <span class="menu-item-icon">💥</span>
-      <span class="menu-item-text">Cómics</span>
-      <span class="menu-item-count">18</span>
-    </a>
-    
-    <a href="cortometrajes.html" class="menu-item">
-      <span class="menu-item-icon">🎬</span>
-      <span class="menu-item-text">Cortometrajes</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="relatos.html" class="menu-item">
-      <span class="menu-item-icon">✍️</span>
-      <span class="menu-item-text">Relatos</span>
-      <span class="menu-item-count">6</span>
-    </a>
-    
-    <a href="juegos.html" class="menu-item">
-      <span class="menu-item-icon">🎮</span>
-      <span class="menu-item-text">Juegos</span>
-      <span class="menu-item-count">27</span>
-    </a>
-    
-    <a href="tutoriales.html" class="menu-item">
-      <span class="menu-item-icon">🎓</span>
-      <span class="menu-item-text">Tutoriales</span>
-      <span class="menu-item-badge">Próximamente</span>
-    </a>
-    
-    <a href="musica.html" class="menu-item">
-      <span class="menu-item-icon">🎵</span>
-      <span class="menu-item-text">Música</span>
-      <span class="menu-item-badge">Próximamente</span>
-    </a>
-    
-    <a href="revistas.html" class="menu-item">
-      <span class="menu-item-icon">📰</span>
-      <span class="menu-item-text">Revistas</span>
-      <span class="menu-item-badge">Próximamente</span>
-    </a>
-    
-    <!-- Separador visual -->
-    <div class="menu-divider"></div>
-    
-    <a class="menu-item">
-      <div class="menu-item-logo"><img src="img/logo-zombietk.png" alt="Logo" class="site-logo"></div>
-      <div class="menu-item-text">Zombie-TK+ v1.0</div>
-    </a>
-  </div>
-</div>
 
   <!-- HERO BANNER ANIMES -->
   <div class="animes-hero">
@@ -160,14 +141,12 @@
     </p>
   </div>
 
-  <!-- GRID DE ANIMES (Ordenado Alfabéticamente) -->
+  <!-- GRID DE ANIMES -->
   <div class="section-header">
     <div class="section-title">🎌 Todos los Animes</div>
   </div>
 
   <div class="animes-grid">
-    
-    <!-- A -->
     <a href="animes/Another.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80" alt="Another" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -186,7 +165,6 @@
       </div>
     </a>
 
-    <!-- C -->
     <a href="animes/Corpse-Party.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&q=80" alt="Corpse Party" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -196,7 +174,6 @@
       </div>
     </a>
 
-    <!-- G -->
     <a href="animes/Gakkou-Gurashi.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1560972550-aba3456b5564?w=400&q=80" alt="Gakkou Gurashi!" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -206,7 +183,6 @@
       </div>
     </a>
 
-    <!-- H -->
     <a href="animes/Hellsing-Ultimate.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" alt="Hellsing Ultimate" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -216,7 +192,6 @@
       </div>
     </a>
 
-    <!-- Highschool of the Dead (Destacado) -->
     <a href="animes/Highschool-of-the-Dead.html" class="anime-card featured">
       <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=800&q=80" alt="Highschool of the Dead" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -226,7 +201,6 @@
       </div>
     </a>
 
-    <!-- I -->
     <a href="animes/I-Am-a-Hero.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80" alt="I Am a Hero" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -236,7 +210,6 @@
       </div>
     </a>
 
-    <!-- K -->
     <a href="animes/Kore-wa-Zombie-Desu-ka.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1541562232579-512a21360020?w=400&q=80" alt="Kore wa Zombie Desu ka?" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -255,7 +228,6 @@
       </div>
     </a>
 
-    <!-- P -->
     <a href="animes/Parasyte.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1560972550-aba3456b5564?w=400&q=80" alt="Parasyte: The Maxim" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -274,7 +246,6 @@
       </div>
     </a>
 
-    <!-- S -->
     <a href="animes/Seraph-of-the-End.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=400&q=80" alt="Seraph of the End" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -302,7 +273,6 @@
       </div>
     </a>
 
-    <!-- T -->
     <a href="animes/Tokyo-Ghoul.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&q=80" alt="Tokyo Ghoul" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -312,7 +282,6 @@
       </div>
     </a>
 
-    <!-- U -->
     <a href="animes/Undead-Unluck.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1560972550-aba3456b5564?w=400&q=80" alt="Undead Unluck" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -322,7 +291,6 @@
       </div>
     </a>
 
-    <!-- Z -->
     <a href="animes/Zom-100.html" class="anime-card">
       <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" alt="Zom 100" class="anime-card-img">
       <div class="anime-card-overlay"></div>
@@ -340,7 +308,6 @@
         <div class="anime-card-badge">Anime</div>
       </div>
     </a>
-
   </div>
 
   <!-- OTRAS SECCIONES -->
@@ -350,61 +317,37 @@
     <a href="libros.html" class="nav-category-card">
       <div class="nav-category-icon">📖</div>
       <div class="nav-category-name">Libros</div>
-      <div class="nav-category-count">14 categorías</div>
+      <div class="nav-category-count">211 libros</div>
     </a>
-    
     <a href="peliculas.html" class="nav-category-card">
       <div class="nav-category-icon">🎥</div>
       <div class="nav-category-name">Películas</div>
-      <div class="nav-category-count">14 categorías</div>
+      <div class="nav-category-count">191 películas</div>
     </a>
-    
     <a href="series.html" class="nav-category-card">
       <div class="nav-category-icon">📺</div>
       <div class="nav-category-name">Series</div>
       <div class="nav-category-count">14 series</div>
     </a>
-    
     <a href="comics.html" class="nav-category-card">
-      <div class="nav-category-icon">📕</div>
+      <div class="nav-category-icon">💥</div>
       <div class="nav-category-name">Cómics</div>
-      <div class="nav-category-count">1 cómic</div>
+      <div class="nav-category-count">18 cómics</div>
     </a>
-    
-    <a href="tutoriales.html" class="nav-category-card">
-      <div class="nav-category-icon">🎓</div>
-      <div class="nav-category-name">Tutoriales</div>
-      <div class="nav-category-count">Próximamente</div>
-    </a>
-    
     <a href="cortometrajes.html" class="nav-category-card">
       <div class="nav-category-icon">🎬</div>
       <div class="nav-category-name">Cortometrajes</div>
-      <div class="nav-category-count">Próximamente</div>
+      <div class="nav-category-count">14 cortos</div>
     </a>
-    
     <a href="relatos.html" class="nav-category-card">
       <div class="nav-category-icon">✍️</div>
       <div class="nav-category-name">Relatos</div>
-      <div class="nav-category-count">Próximamente</div>
+      <div class="nav-category-count">6 relatos</div>
     </a>
-    
     <a href="juegos.html" class="nav-category-card">
       <div class="nav-category-icon">🎮</div>
       <div class="nav-category-name">Juegos</div>
-      <div class="nav-category-count">Próximamente</div>
-    </a>
-
-    <a href="musica.html" class="nav-category-card">
-      <div class="nav-category-icon">🎵</div>
-      <div class="nav-category-name">Música</div>
-      <div class="nav-category-count">Próximamente</div>
-    </a>
-
-    <a href="revistas.html" class="nav-category-card">
-      <div class="nav-category-icon">📰</div>
-      <div class="nav-category-name">Revistas</div>
-      <div class="nav-category-count">Próximamente</div>
+      <div class="nav-category-count">27 juegos</div>
     </a>
   </div>
 
@@ -412,5 +355,16 @@
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
   <script src="animes.js"></script>
+  <script src="search.js"></script>
+  <script>
+    (function() {
+      const avatarImg = document.getElementById('headerAvatarImg');
+      if (avatarImg) {
+        const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
+          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%234c1d95"/><text x="50" y="65" font-size="45" text-anchor="middle">🧟</text></svg>';
+        avatarImg.src = savedAvatar;
+      }
+    })();
+  </script>
 </body>
 </html>
