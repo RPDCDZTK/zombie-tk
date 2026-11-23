@@ -27,14 +27,25 @@ function scrollToTop() {
 }
 
 /**
- * Navega a una sección específica de la página principal
- * @param {Event} event - Evento del click
- * @param {string} section - Nombre de la sección (search, favorites, account)
+ * Abre el menú hamburguesa
  */
-function navigateToSection(event, section) {
-  event.preventDefault();
-  sessionStorage.setItem('zombieTK_navigateTo', section);
-  window.location.href = 'index.html';
+function openMenu() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.add('active');
+  if (overlay) overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Cierra el menú hamburguesa
+ */
+function closeMenu() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
 }
 
 /**
@@ -102,6 +113,18 @@ function init() {
   window.addEventListener('scroll', handleScroll);
   initCardAnimations();
   initRippleEffect();
+  
+  // Inicializar menú hamburguesa
+  const overlay = document.getElementById('menuOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeMenu();
+    }
+  });
   
   console.log('🎌 Página de Animes Zombie-TK cargada correctamente');
   console.log('📅 Fecha:', new Date().toLocaleDateString('es-ES'));
