@@ -22,7 +22,6 @@
     </div>
     <div class="header-icons">
       <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
-      <!-- Foto de perfil circular en el header -->
       <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
         <img src="" alt="Perfil" class="header-avatar-img" id="headerAvatarImg">
       </div>
@@ -32,7 +31,7 @@
   <!-- OVERLAY DEL MENÚ -->
   <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-  <!-- MENÚ HAMBURGUESA LATERAL -->
+  <!-- MENÚ HAMBURGUESA -->
   <div class="hamburger-menu" id="hamburgerMenu">
     <div class="menu-header">
       <div class="menu-logo">
@@ -65,32 +64,32 @@
       <a href="libros.html" class="menu-item">
         <span class="menu-item-icon">📖</span>
         <span class="menu-item-text">Libros</span>
-        <span class="menu-item-count">14</span>
+        <span class="menu-item-count" id="menu-count-libros">0</span>
       </a>
       <a href="peliculas.html" class="menu-item">
         <span class="menu-item-icon">🎥</span>
         <span class="menu-item-text">Películas</span>
-        <span class="menu-item-count">14</span>
+        <span class="menu-item-count" id="menu-count-peliculas">0</span>
       </a>
       <a href="series.html" class="menu-item">
         <span class="menu-item-icon">📺</span>
         <span class="menu-item-text">Series</span>
-        <span class="menu-item-count">14</span>
+        <span class="menu-item-count" id="menu-count-series">0</span>
       </a>
       <a href="animes.html" class="menu-item">
         <span class="menu-item-icon">🎌</span>
         <span class="menu-item-text">Animes</span>
-        <span class="menu-item-count">18</span>
+        <span class="menu-item-count" id="menu-count-animes">0</span>
       </a>
       <a href="comics.html" class="menu-item">
         <span class="menu-item-icon">💥</span>
         <span class="menu-item-text">Cómics</span>
-        <span class="menu-item-count">18</span>
+        <span class="menu-item-count" id="menu-count-comics">0</span>
       </a>
       <a href="cortometrajes.html" class="menu-item">
         <span class="menu-item-icon">🎬</span>
         <span class="menu-item-text">Cortometrajes</span>
-        <span class="menu-item-count">14</span>
+        <span class="menu-item-count" id="menu-count-cortos">0</span>
       </a>
       <a href="relatos.html" class="menu-item">
         <span class="menu-item-icon">✍️</span>
@@ -125,6 +124,16 @@
     </div>
   </div>
 
+  <!-- HERO BANNER CUENTA -->
+  <div class="account-hero">
+    <div class="account-hero-bg"></div>
+    <div class="account-hero-content">
+      <div class="account-hero-title">👤 Mi <span>Cuenta</span></div>
+      <div class="account-hero-subtitle">Gestiona tu perfil, preferencias y estadísticas</div>
+      <div class="account-hero-badge">Miembro Zombie-TK</div>
+    </div>
+  </div>
+
   <!-- PERFIL DEL USUARIO -->
   <div class="profile-section">
     <div class="profile-card">
@@ -139,7 +148,6 @@
           <span class="profile-join-date">📅 Miembro desde: <strong id="joinDate">Noviembre 2024</strong></span>
           <span class="profile-plan">💎 Plan: <strong>Gratuito</strong></span>
         </div>
-        <!-- Botón editar perfil movido debajo del plan -->
         <button class="profile-edit-btn" onclick="editProfile()">✏️ Editar perfil</button>
       </div>
     </div>
@@ -163,7 +171,7 @@
     </div>
     <div class="stat-card">
       <div class="stat-icon">📚</div>
-      <div class="stat-value">131</div>
+      <div class="stat-value">421</div>
       <div class="stat-label">Total disponible</div>
     </div>
     <div class="stat-card">
@@ -173,7 +181,7 @@
     </div>
   </div>
 
-  <!-- CONFIGURACIÓN (sin la opción de adultos) -->
+  <!-- CONFIGURACIÓN -->
   <div class="section-header">
     <div class="section-title">⚙️ Configuración</div>
   </div>
@@ -299,9 +307,55 @@
 
   <!-- LOGO FOOTER -->
   <div class="logo-footer">
-    <div class="logo-footer-emoji"><img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img"></div>
+    <div class="logo-footer-emoji">🧟‍♂️</div>
     <div class="logo-footer-text">Zombie-TK+</div>
-    <div class="logo-footer-version">Versión 1.0</div>
+    <div class="logo-footer-version">Versión 1.0.43</div>
+  </div>
+
+  <!-- OTRAS SECCIONES -->
+  <div class="section-nav-title">📚 Explora otras secciones</div>
+
+  <div class="section-nav-grid">
+    <a href="libros.html" class="nav-category-card">
+      <div class="nav-category-icon">📖</div>
+      <div class="nav-category-name">Libros</div>
+      <div class="nav-category-count">211 libros</div>
+    </a>
+    <a href="peliculas.html" class="nav-category-card">
+      <div class="nav-category-icon">🎥</div>
+      <div class="nav-category-name">Películas</div>
+      <div class="nav-category-count">191 películas</div>
+    </a>
+    <a href="series.html" class="nav-category-card">
+      <div class="nav-category-icon">📺</div>
+      <div class="nav-category-name">Series</div>
+      <div class="nav-category-count">14 series</div>
+    </a>
+    <a href="animes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎌</div>
+      <div class="nav-category-name">Animes</div>
+      <div class="nav-category-count">18 animes</div>
+    </a>
+    <a href="comics.html" class="nav-category-card">
+      <div class="nav-category-icon">💥</div>
+      <div class="nav-category-name">Cómics</div>
+      <div class="nav-category-count">18 cómics</div>
+    </a>
+    <a href="cortometrajes.html" class="nav-category-card">
+      <div class="nav-category-icon">🎬</div>
+      <div class="nav-category-name">Cortometrajes</div>
+      <div class="nav-category-count">14 cortos</div>
+    </a>
+    <a href="relatos.html" class="nav-category-card">
+      <div class="nav-category-icon">✍️</div>
+      <div class="nav-category-name">Relatos</div>
+      <div class="nav-category-count">6 relatos</div>
+    </a>
+    <a href="juegos.html" class="nav-category-card">
+      <div class="nav-category-icon">🎮</div>
+      <div class="nav-category-name">Juegos</div>
+      <div class="nav-category-count">27 juegos</div>
+    </a>
   </div>
 
   <!-- BOTÓN VOLVER ARRIBA -->
@@ -318,7 +372,7 @@
     </div>
   </div>
 
-<!-- MODAL DE SELECCIÓN DE AVATAR -->
+  <!-- MODAL DE SELECCIÓN DE AVATAR -->
   <div class="avatar-modal" id="avatarModal">
     <div class="avatar-modal-content">
       <div class="avatar-modal-header">
@@ -326,55 +380,38 @@
         <button class="avatar-modal-close" onclick="closeAvatarModal()">✕</button>
       </div>
       <div class="avatar-modal-body">
-        
-        <!-- AVATARES PREDEFINIDOS -->
         <div class="avatar-section">
           <h4>🎨 Avatares predefinidos</h4>
-          <div class="avatar-grid" id="avatarGrid">
-            <!-- Se generan dinámicamente -->
-          </div>
+          <div class="avatar-grid" id="avatarGrid"></div>
         </div>
-
-        <!-- AVATARES SUBIDOS POR EL USUARIO -->
-        <div class="avatar-section" id="userAvatarsSection" style="display: none;">
-          <div class="user-avatars-header">
-            <h4>📸 Mis fotos subidas (<span id="userAvatarsCount">0</span>/3)</h4>
-            <button class="clear-all-btn" onclick="clearAllUserAvatars()" title="Eliminar todas mis fotos">🗑️</button>
-          </div>
-          <div class="avatar-grid" id="userAvatarGrid">
-            <!-- Se generan dinámicamente -->
-          </div>
-          <p class="upload-hint" style="margin-top: 10px;">💡 Mantén presionado o haz clic en la ✕ para eliminar</p>
-        </div>
-
-        <!-- SEPARADOR -->
-        <div class="avatar-divider">
-          <span>O</span>
-        </div>
-
-        <!-- SUBIR NUEVA IMAGEN -->
+        <div class="avatar-divider"><span>O</span></div>
         <div class="avatar-section">
           <h4>📁 Subir desde tu galería</h4>
-          <label class="upload-btn" for="avatarUpload" id="uploadBtnLabel">
+          <label class="upload-btn" for="avatarUpload">
             <span>📤 Elegir imagen</span>
           </label>
           <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
-          <p class="upload-hint" id="uploadHint">Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB</p>
-          <p class="upload-limit-warning" id="uploadLimitWarning" style="display: none;">
-            ⚠️ Has alcanzado el límite de 3 fotos. Elimina una para subir otra.
-          </p>
+          <p class="upload-hint">Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB</p>
         </div>
-
-        <!-- AVATAR ACTUAL -->
         <div class="avatar-current">
           <h4>👤 Avatar actual</h4>
           <img src="" alt="Actual" class="avatar-current-img" id="avatarCurrentImg">
         </div>
-
       </div>
     </div>
   </div>
 
   <script src="cuenta.js"></script>
+  <script src="search.js"></script>
+  <script>
+    (function() {
+      const avatarImg = document.getElementById('headerAvatarImg');
+      if (avatarImg) {
+        const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
+          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%234c1d95"/><text x="50" y="65" font-size="45" text-anchor="middle">🧟</text></svg>';
+        avatarImg.src = savedAvatar;
+      }
+    })();
+  </script>
 </body>
 </html>
