@@ -1,9 +1,7 @@
 /* ============================================
    ZOMBIE-TK - cuenta.js (VERSIÓN CORREGIDA)
-   Sistema de avatares con debug visual
    ============================================ */
 
-// Avatares predefinidos
 const PREDEFINED_AVATARS = [
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie1&backgroundColor=4c1d95',
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie2&backgroundColor=6d28d9',
@@ -18,65 +16,6 @@ const PREDEFINED_AVATARS = [
 const DEFAULT_AVATAR = 'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
 const MAX_USER_AVATARS = 3;
 const favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
-
-// ============================================
-// PANEL DE DEBUG VISUAL (para móvil)
-// ============================================
-
-function showDebug(message, type) {
-  let debugPanel = document.getElementById('debugPanel');
-  if (!debugPanel) {
-    debugPanel = document.createElement('div');
-    debugPanel.id = 'debugPanel';
-    debugPanel.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      max-height: 200px;
-      overflow-y: auto;
-      background: rgba(0,0,0,0.95);
-      color: #0f0;
-      font-family: monospace;
-      font-size: 11px;
-      padding: 10px;
-      z-index: 999999;
-      border-bottom: 2px solid #0f0;
-      display: none;
-    `;
-    document.body.appendChild(debugPanel);
-    
-    const toggleBtn = document.createElement('button');
-    toggleBtn.textContent = '🔍 DEBUG';
-    toggleBtn.style.cssText = `
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: #ff0000;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 20px;
-      font-weight: bold;
-      z-index: 9999999;
-      cursor: pointer;
-    `;
-    toggleBtn.onclick = function() {
-      debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
-    };
-    document.body.appendChild(toggleBtn);
-  }
-  
-  const colors = { error: '#ff4444', warn: '#ffaa00', info: '#00ff00', success: '#00ff88' };
-  const color = colors[type] || '#fff';
-  const time = new Date().toLocaleTimeString();
-  debugPanel.innerHTML += `<div style="color:${color};margin:2px 0;">[${time}] ${message}</div>`;
-  debugPanel.scrollTop = debugPanel.scrollHeight;
-}
-
-// ============================================
-// FUNCIONES DE AVATAR
-// ============================================
 
 function getUserAvatars() {
   try {
@@ -109,35 +48,17 @@ function updateAvatarEverywhere(avatarUrl) {
   if (currentImg) currentImg.src = avatarUrl;
 }
 
-// ============================================
-// FUNCIÓN CORREGIDA: Abrir Modal de Avatar
-// ============================================
-
 function openAvatarModal() {
-  showDebug('🔓 Intentando abrir modal de avatar...', 'info');
-  
   const modal = document.getElementById('avatarModal');
-  
-  if (!modal) {
-    showDebug('❌ ERROR: No existe el elemento avatarModal', 'error');
-    showToast('❌ Error: Modal de avatar no encontrado');
-    return;
-  }
-  
-  showDebug('✅ Modal encontrado', 'success');
-  
   const grid = document.getElementById('avatarGrid');
-  if (!grid) {
-    showDebug('❌ ERROR: No existe avatarGrid', 'error');
-    showToast('❌ Error: Grid de avatares no encontrado');
+  
+  if (!modal || !grid) {
+    console.error('❌ Modal o grid no encontrados');
     return;
   }
   
   const currentAvatar = getCurrentAvatar();
   const userAvatars = getUserAvatars();
-  
-  showDebug(`📊 Avatar actual: ${currentAvatar.substring(0, 50)}...`, 'info');
-  showDebug(`📸 Avatares subidos: ${userAvatars.length}`, 'info');
   
   // ===== GENERAR AVATARES PREDEFINIDOS =====
   grid.innerHTML = '';
@@ -149,16 +70,17 @@ function openAvatarModal() {
     if (avatarUrl === currentAvatar) {
       img.classList.add('selected');
     }
-    img.onclick = () => selectAvatar(avatarUrl, img, 'predefined');
+    img.onclick = () => selectAvatar(avatarUrl, img);
     grid.appendChild(img);
   });
   
-  showDebug(`✅ ${PREDEFINED_AVATARS.length} avatares predefinidos cargados`, 'success');
-  
-  // ===== GENERAR AVATARES SUBIDOS (si existe el contenedor) =====
+  // ===== GENERAR AVATARES SUBIDOS =====
   const userGrid = document.getElementById('userAvatarGrid');
   const userSection = document.getElementById('userAvatarsSection');
   const userCount = document.getElementById('userAvatarsCount');
+  const uploadBtn = document.getElementById('uploadBtnLabel');
+  const uploadHint = document.getElementById('uploadHint');
+  const uploadWarning = document.getElementById('uploadLimitWarning');
   
   if (userGrid && userSection) {
     userGrid.innerHTML = '';
@@ -178,7 +100,7 @@ function openAvatarModal() {
         if (avatarUrl === currentAvatar) {
           img.classList.add('selected');
         }
-        img.onclick = () => selectAvatar(avatarUrl, img, 'user', index);
+        img.onclick = () => selectAvatar(avatarUrl, img);
         
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'avatar-delete-btn';
@@ -199,18 +121,12 @@ function openAvatarModal() {
         wrapper.appendChild(badge);
         userGrid.appendChild(wrapper);
       });
-      
-      showDebug(`✅ ${userAvatars.length} avatares de usuario cargados`, 'success');
     } else {
       userSection.style.display = 'none';
     }
   }
   
   // ===== CONTROLAR LÍMITE DE UPLOAD =====
-  const uploadBtn = document.getElementById('uploadBtnLabel');
-  const uploadHint = document.getElementById('uploadHint');
-  const uploadWarning = document.getElementById('uploadLimitWarning');
-  
   if (uploadBtn && uploadHint && uploadWarning) {
     if (userAvatars.length >= MAX_USER_AVATARS) {
       uploadBtn.classList.add('disabled');
@@ -229,12 +145,8 @@ function openAvatarModal() {
     currentImg.src = currentAvatar;
   }
   
-  // ===== ABRIR MODAL =====
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  
-  showDebug('✅ Modal de avatar abierto correctamente', 'success');
-  showToast('📷 Modal de avatar abierto');
 }
 
 function closeAvatarModal() {
@@ -245,7 +157,7 @@ function closeAvatarModal() {
   }
 }
 
-function selectAvatar(avatarUrl, element, type, userIndex = null) {
+function selectAvatar(avatarUrl, element) {
   document.querySelectorAll('.avatar-option').forEach(opt => {
     opt.classList.remove('selected');
   });
@@ -270,13 +182,33 @@ function deleteUserAvatar(index) {
   
   if (avatarToDelete === currentAvatar) {
     saveAvatar(DEFAULT_AVATAR);
-    showToast('🗑️ Foto eliminada. Avatar restablecido al predeterminado.');
+    showToast('🗑️ Foto eliminada. Avatar restablecido.');
   } else {
     showToast('🗑️ Foto eliminada correctamente');
   }
   
   userAvatars.splice(index, 1);
   saveUserAvatars(userAvatars);
+  
+  openAvatarModal();
+}
+
+function clearAllUserAvatars() {
+  const userAvatars = getUserAvatars();
+  if (userAvatars.length === 0) return;
+  
+  const currentAvatar = getCurrentAvatar();
+  const isCurrentUserAvatar = userAvatars.includes(currentAvatar);
+  
+  const confirmDelete = confirm(`¿Eliminar las ${userAvatars.length} fotos subidas?`);
+  if (!confirmDelete) return;
+  
+  if (isCurrentUserAvatar) {
+    saveAvatar(DEFAULT_AVATAR);
+  }
+  
+  saveUserAvatars([]);
+  showToast('🗑️ Todas las fotos han sido eliminadas');
   
   openAvatarModal();
 }
@@ -329,10 +261,6 @@ function handleAvatarUpload(event) {
   
   event.target.value = '';
 }
-
-// ============================================
-// OTRAS FUNCIONES
-// ============================================
 
 function handleScroll() {
   const backToTop = document.getElementById('backToTop');
@@ -496,21 +424,13 @@ function loadUserProfile() {
   }
 }
 
-// ============================================
-// INICIALIZACIÓN
-// ============================================
-
 function init() {
-  showDebug('🚀 Iniciando página de cuenta...', 'info');
-  
   window.addEventListener('scroll', handleScroll);
   updateStats();
   loadUserProfile();
   
   const currentAvatar = getCurrentAvatar();
   updateAvatarEverywhere(currentAvatar);
-  
-  showDebug(`🖼️ Avatar cargado: ${currentAvatar.substring(0, 50)}...`, 'success');
   
   const overlay = document.getElementById('menuOverlay');
   if (overlay) {
@@ -529,9 +449,6 @@ function init() {
     avatarModal.addEventListener('click', function(e) {
       if (e.target === avatarModal) closeAvatarModal();
     });
-    showDebug('✅ Modal de avatar encontrado en el DOM', 'success');
-  } else {
-    showDebug('❌ ERROR: Modal de avatar NO encontrado en el DOM', 'error');
   }
   
   document.addEventListener('keydown', function(e) {
@@ -542,7 +459,9 @@ function init() {
     }
   });
   
-  showDebug('✅ Página de cuenta inicializada', 'success');
+  console.log('👤 Página de Cuenta Zombie-TK cargada');
+  console.log('🖼️ Avatar actual:', currentAvatar);
+  console.log('📸 Avatares subidos:', getUserAvatars().length);
 }
 
 if (document.readyState === 'loading') {
