@@ -1,48 +1,92 @@
 /* ============================================
-   ZOMBIE-TK - search.js (VERSIÓN ROBUSTA)
+   ZOMBIE-TK - search.js (VERSIÓN MÓVIL CON DIAGNÓSTICO)
    ============================================ */
 
-// Función auxiliar para determinar el archivo alfabético
+// Panel de diagnóstico visible en pantalla
+function showDebug(message, type) {
+  let debugPanel = document.getElementById('debugPanel');
+  if (!debugPanel) {
+    debugPanel = document.createElement('div');
+    debugPanel.id = 'debugPanel';
+    debugPanel.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.95);
+      color: #0f0;
+      font-family: monospace;
+      font-size: 11px;
+      padding: 10px;
+      z-index: 99999;
+      border-bottom: 2px solid #0f0;
+      display: none;
+    `;
+    document.body.appendChild(debugPanel);
+    
+    // Botón para mostrar/ocultar
+    const toggleBtn = document.createElement('button');
+    toggleBtn.textContent = '🔍 DEBUG';
+    toggleBtn.style.cssText = `
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #ff0000;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      z-index: 999999;
+      cursor: pointer;
+    `;
+    toggleBtn.onclick = function() {
+      debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+    };
+    document.body.appendChild(toggleBtn);
+  }
+  
+  const colors = { error: '#ff4444', warn: '#ffaa00', info: '#00ff00', success: '#00ff88' };
+  const color = colors[type] || '#fff';
+  const time = new Date().toLocaleTimeString();
+  debugPanel.innerHTML += `<div style="color:${color};margin:2px 0;">[${time}] ${message}</div>`;
+  debugPanel.scrollTop = debugPanel.scrollHeight;
+  console.log(`[${type.toUpperCase()}] ${message}`);
+}
+
+// Función auxiliar para archivos alfabéticos
 function getAlphaFile(name, type) {
-  if (!name) return type + '/0-9.html';
-  const firstChar = name.charAt(0).toUpperCase();
-  let range = '';
-  
-  if (/[0-9]/.test(firstChar)) range = '0-9';
-  else if (['A','B'].includes(firstChar)) range = 'A-B';
-  else if (['C','D'].includes(firstChar)) range = 'C-D';
-  else if (['E','F'].includes(firstChar)) range = 'E-F';
-  else if (['G','H'].includes(firstChar)) range = 'G-H';
-  else if (['I','J'].includes(firstChar)) range = 'I-J';
-  else if (['K','L'].includes(firstChar)) range = 'K-L';
-  else if (['M','N'].includes(firstChar)) range = 'M-N';
-  else if (['O','P'].includes(firstChar)) range = 'O-P';
-  else if (['Q','R'].includes(firstChar)) range = 'Q-R';
-  else if (['S','T'].includes(firstChar)) range = 'S-T';
-  else if (['U','V'].includes(firstChar)) range = 'U-V';
-  else if (['W','X'].includes(firstChar)) range = 'W-X';
-  else if (['Y','Z'].includes(firstChar)) range = 'Y-Z';
-  
-  return type + '/' + range + '.html';
+  try {
+    if (!name) return type + '/0-9.html';
+    const firstChar = name.charAt(0).toUpperCase();
+    let range = '0-9';
+    
+    if (/[A-B]/.test(firstChar)) range = 'A-B';
+    else if (/[C-D]/.test(firstChar)) range = 'C-D';
+    else if (/[E-F]/.test(firstChar)) range = 'E-F';
+    else if (/[G-H]/.test(firstChar)) range = 'G-H';
+    else if (/[I-J]/.test(firstChar)) range = 'I-J';
+    else if (/[K-L]/.test(firstChar)) range = 'K-L';
+    else if (/[M-N]/.test(firstChar)) range = 'M-N';
+    else if (/[O-P]/.test(firstChar)) range = 'O-P';
+    else if (/[Q-R]/.test(firstChar)) range = 'Q-R';
+    else if (/[S-T]/.test(firstChar)) range = 'S-T';
+    else if (/[U-V]/.test(firstChar)) range = 'U-V';
+    else if (/[W-X]/.test(firstChar)) range = 'W-X';
+    else if (/[Y-Z]/.test(firstChar)) range = 'Y-Z';
+    
+    return type + '/' + range + '.html';
+  } catch (e) {
+    showDebug('Error en getAlphaFile: ' + e.message, 'error');
+    return type + '/0-9.html';
+  }
 }
 
 // ============================================
-// BASE DE DATOS SEPARADA POR CATEGORÍAS
-// (Más fácil de mantener y menos propensa a errores)
+// BASE DE DATOS SEPARADA (más fácil de mantener)
 // ============================================
-
-const librosDB = [
-  // 📚 Agrega tus libros aquí, uno por línea
-  { id: 'b1', title: 'Apocalipsis Z', author: 'Manel Loureiro' },
-  { id: 'b2', title: 'Guerra Mundial Z', author: 'Max Brooks' },
-  { id: 'b3', title: 'The Walking Dead', author: 'Kirkman' },
-  { id: 'b4', title: 'Zombie Survival Guide', author: 'Max Brooks' },
-  { id: 'b5', title: 'World War Z', author: 'Max Brooks' },
-  { id: 'b6', title: 'I Am Legend', author: 'Richard Matheson' },
-  { id: 'b7', title: 'Cell', author: 'Stephen King' },
-  { id: 'b8', title: 'The Stand', author: 'Stephen King' },
-  // 👇 AGREGA MÁS LIBROS AQUÍ 👇
-];
 
 const peliculasDB = [
   { id: 'm1', title: '13 Eerie', year: '2013' },
@@ -273,115 +317,105 @@ const cortosDB = [
 ];
 
 // ============================================
-// CONSTRUCTOR AUTOMÁTICO DE LA BASE DE DATOS
-// (No necesitas escribir todo manualmente)
+// CONSTRUCTOR DE BASE DE DATOS
 // ============================================
 
 function buildDatabase() {
   const db = [];
   
-  // Procesar libros
-  librosDB.forEach(item => {
-    db.push({
-      id: item.id,
-      title: item.title,
-      type: 'libro',
-      typeLabel: 'Libro',
-      author: item.author || '-',
-      year: null,
-      img: 'img/libros/portada-generica.jpg',
-      url: getAlphaFile(item.title, 'libros')
+  try {
+    peliculasDB.forEach(item => {
+      db.push({
+        id: item.id,
+        title: item.title,
+        type: 'pelicula',
+        typeLabel: 'Película',
+        year: item.year || '-',
+        img: 'img/peliculas/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg',
+        url: getAlphaFile(item.title, 'peliculas')
+      });
     });
-  });
+    showDebug('✅ Películas cargadas: ' + peliculasDB.length, 'success');
+  } catch (e) {
+    showDebug('❌ Error en películas: ' + e.message, 'error');
+  }
   
-  // Procesar películas
-  peliculasDB.forEach(item => {
-    db.push({
-      id: item.id,
-      title: item.title,
-      type: 'pelicula',
-      typeLabel: 'Película',
-      author: null,
-      year: item.year || '-',
-      img: 'img/peliculas/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg',
-      url: getAlphaFile(item.title, 'peliculas')
+  try {
+    seriesDB.forEach(item => {
+      db.push({
+        id: item.id,
+        title: item.title,
+        type: 'serie',
+        typeLabel: 'Serie',
+        img: 'img/series/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg',
+        url: 'series/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.html'
+      });
     });
-  });
+    showDebug('✅ Series cargadas: ' + seriesDB.length, 'success');
+  } catch (e) {
+    showDebug('❌ Error en series: ' + e.message, 'error');
+  }
   
-  // Procesar series
-  seriesDB.forEach(item => {
-    db.push({
-      id: item.id,
-      title: item.title,
-      type: 'serie',
-      typeLabel: 'Serie',
-      author: null,
-      year: null,
-      img: 'img/series/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg',
-      url: 'series/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.html'
+  try {
+    animesDB.forEach(item => {
+      db.push({
+        id: item.id,
+        title: item.title,
+        type: 'anime',
+        typeLabel: 'Anime',
+        img: 'img/animes/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.png',
+        url: 'animes/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.html'
+      });
     });
-  });
+    showDebug('✅ Animes cargados: ' + animesDB.length, 'success');
+  } catch (e) {
+    showDebug('❌ Error en animes: ' + e.message, 'error');
+  }
   
-  // Procesar animes
-  animesDB.forEach(item => {
-    db.push({
-      id: item.id,
-      title: item.title,
-      type: 'anime',
-      typeLabel: 'Anime',
-      author: null,
-      year: null,
-      img: 'img/animes/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.png',
-      url: 'animes/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.html'
+  try {
+    comicsDB.forEach(item => {
+      db.push({
+        id: item.id,
+        title: item.title,
+        type: 'comic',
+        typeLabel: 'Cómic',
+        img: 'img/comics/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg',
+        url: 'comics/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '-Comic.html'
+      });
     });
-  });
+    showDebug('✅ Cómics cargados: ' + comicsDB.length, 'success');
+  } catch (e) {
+    showDebug('❌ Error en cómics: ' + e.message, 'error');
+  }
   
-  // Procesar cómics
-  comicsDB.forEach(item => {
-    db.push({
-      id: item.id,
-      title: item.title,
-      type: 'comic',
-      typeLabel: 'Cómic',
-      author: null,
-      year: null,
-      img: 'img/comics/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg',
-      url: 'comics/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '-Comic.html'
+  try {
+    cortosDB.forEach(item => {
+      db.push({
+        id: item.id,
+        title: item.title,
+        type: 'cortometraje',
+        typeLabel: 'Cortometraje',
+        img: 'https://via.placeholder.com/300x400/333/FFD700?text=' + encodeURIComponent(item.title),
+        url: 'cortometrajes/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.html'
+      });
     });
-  });
-  
-  // Procesar cortometrajes
-  cortosDB.forEach(item => {
-    db.push({
-      id: item.id,
-      title: item.title,
-      type: 'cortometraje',
-      typeLabel: 'Cortometraje',
-      author: null,
-      year: null,
-      img: 'https://via.placeholder.com/300x400/333/FFD700?text=' + encodeURIComponent(item.title),
-      url: 'cortometrajes/' + item.title.replace(/[^a-zA-Z0-9]/g, '-') + '.html'
-    });
-  });
+    showDebug('✅ Cortos cargados: ' + cortosDB.length, 'success');
+  } catch (e) {
+    showDebug('❌ Error en cortos: ' + e.message, 'error');
+  }
   
   return db;
 }
 
-// Construir la base de datos con manejo de errores
+// Construir base de datos
 let contentDatabase = [];
 try {
   contentDatabase = buildDatabase();
-  console.log('✅ Base de datos construida correctamente');
+  showDebug('📊 Total de ítems: ' + contentDatabase.length, 'success');
 } catch (error) {
-  console.error('❌ Error al construir la base de datos:', error);
+  showDebug('❌ Error fatal: ' + error.message, 'error');
   contentDatabase = [];
 }
-
-console.log('📊 Total de ítems:', contentDatabase.length);
-console.log('📚 Libros:', contentDatabase.filter(i => i.type === 'libro').length);
-console.log('🎬 Películas:', contentDatabase.filter(i => i.type === 'pelicula').length);
-console.log('📺 Series:', contentDatabase.filter(i => i.type === 'serie').length);
-console.log('🎌 Animes:', contentDatabase.filter(i => i.type === 'anime').length);
 
 // ============================================
 // VARIABLES GLOBALES
@@ -450,179 +484,4 @@ function clearSearch() {
 function highlightText(text, query) {
   if (!query || !text) return text || '';
   try {
-    const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-    return text.replace(regex, '<span class="highlight">$1</span>');
-  } catch (e) {
-    return text;
-  }
-}
-
-function performSearch() {
-  const input = document.getElementById('searchInput');
-  const clearBtn = document.getElementById('clearBtn');
-  
-  if (!input) {
-    console.error('❌ No se encontró el input de búsqueda');
-    return;
-  }
-  
-  currentQuery = input.value.trim().toLowerCase();
-  
-  if (clearBtn) {
-    clearBtn.style.display = currentQuery ? 'flex' : 'none';
-  }
-  
-  renderResults();
-}
-
-// ============================================
-// RENDERIZADO DE RESULTADOS
-// ============================================
-
-function renderResults() {
-  const grid = document.getElementById('resultsGrid');
-  const emptyEl = document.getElementById('searchEmpty');
-  const noResultsEl = document.getElementById('noResults');
-  const countEl = document.getElementById('searchCount');
-  const noResultsText = document.getElementById('noResultsText');
-  
-  if (!grid) {
-    console.error('❌ No se encontró resultsGrid');
-    return;
-  }
-  
-  // Filtrar
-  let filtered = contentDatabase;
-  if (currentFilter !== 'all') {
-    filtered = filtered.filter(item => item.type === currentFilter);
-  }
-  
-  if (currentQuery) {
-    filtered = filtered.filter(item => {
-      const titleMatch = item.title && item.title.toLowerCase().includes(currentQuery);
-      const authorMatch = item.author && item.author.toLowerCase().includes(currentQuery);
-      return titleMatch || authorMatch;
-    });
-  }
-  
-  // Actualizar contadores
-  updateFilterCounts();
-  
-  if (countEl) {
-    const total = currentQuery ? filtered.length : contentDatabase.length;
-    countEl.textContent = '📊 ' + total + ' resultado' + (total !== 1 ? 's' : '') + ' encontrado' + (total !== 1 ? 's' : '');
-  }
-  
-  grid.innerHTML = '';
-  
-  // Estado inicial
-  if (!currentQuery && currentFilter === 'all') {
-    if (emptyEl) emptyEl.style.display = 'block';
-    if (noResultsEl) noResultsEl.style.display = 'none';
-    grid.style.display = 'none';
-    return;
-  }
-  
-  if (emptyEl) emptyEl.style.display = 'none';
-  
-  // Sin resultados
-  if (filtered.length === 0) {
-    if (noResultsEl) noResultsEl.style.display = 'block';
-    if (noResultsText) {
-      noResultsText.textContent = 'No se encontró "' + currentQuery + '" en ' + (currentFilter === 'all' ? 'ninguna sección' : 'la sección de ' + currentFilter + 's');
-    }
-    grid.style.display = 'none';
-    return;
-  }
-  
-  // Mostrar resultados
-  if (noResultsEl) noResultsEl.style.display = 'none';
-  grid.style.display = 'grid';
-  
-  filtered.forEach((item, index) => {
-    try {
-      const card = document.createElement('a');
-      card.className = 'result-card';
-      card.href = item.url || '#';
-      card.style.animationDelay = (index * 0.03) + 's';
-      
-      const extraInfo = item.author ? ' • ' + item.author : (item.year ? ' (' + item.year + ')' : '');
-      
-      const fallbackImg = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23333" width="100" height="100"/><text x="50" y="55" font-size="40" text-anchor="middle" fill="%23FFD700">🧟</text></svg>';
-      
-      card.innerHTML = '<img src="' + (item.img || fallbackImg) + '" alt="' + (item.title || '') + '" class="result-card-img" onerror="this.src=\'' + fallbackImg + '\'">' +
-        '<div class="result-card-overlay"></div>' +
-        '<div class="result-card-content">' +
-          '<div class="result-card-title">' + highlightText(item.title, currentQuery) + highlightText(extraInfo, currentQuery) + '</div>' +
-          '<div class="result-card-type">' + (item.typeLabel || '') + '</div>' +
-        '</div>';
-      
-      grid.appendChild(card);
-    } catch (error) {
-      console.error('❌ Error al crear tarjeta:', item, error);
-    }
-  });
-}
-
-function updateFilterCounts() {
-  const types = ['libro', 'pelicula', 'serie', 'anime', 'comic', 'cortometraje', 'relato', 'juego'];
-  
-  let totalFiltered = contentDatabase;
-  if (currentQuery) {
-    totalFiltered = totalFiltered.filter(item => 
-      (item.title && item.title.toLowerCase().includes(currentQuery)) ||
-      (item.author && item.author.toLowerCase().includes(currentQuery))
-    );
-  }
-  const countAll = document.getElementById('count-all');
-  if (countAll) countAll.textContent = totalFiltered.length;
-  
-  types.forEach(type => {
-    let filtered = contentDatabase.filter(item => item.type === type);
-    if (currentQuery) {
-      filtered = filtered.filter(item => 
-        (item.title && item.title.toLowerCase().includes(currentQuery)) ||
-        (item.author && item.author.toLowerCase().includes(currentQuery))
-      );
-    }
-    const countEl = document.getElementById('count-' + type);
-    if (countEl) countEl.textContent = filtered.length;
-  });
-}
-
-// ============================================
-// INICIALIZACIÓN
-// ============================================
-
-function init() {
-  console.log('🚀 Inicializando búsqueda...');
-  
-  window.addEventListener('scroll', handleScroll);
-  
-  const searchInput = document.getElementById('searchInput');
-  if (searchInput) {
-    searchInput.addEventListener('input', performSearch);
-    searchInput.focus();
-    console.log('✅ Input configurado');
-  }
-  
-  updateFilterCounts();
-  renderResults();
-  
-  const overlay = document.getElementById('menuOverlay');
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
-  
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeMenu();
-  });
-  
-  console.log('✅ Búsqueda lista');
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
+    const regex = new RegExp('(' + query.replace(/[.*+?^${}(
