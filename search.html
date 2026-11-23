@@ -1,316 +1,343 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zombie-TK - Buscar</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="search.css">
-</head>
-<body>
+/* ============================================
+   ZOMBIE-TK - search.js (VERSIÓN CORREGIDA)
+   ============================================ */
 
-  <!-- HEADER -->
-  <div class="header">
-    <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <div class="site-branding">
-      <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
-      <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
-    </div>
-    <div class="header-icons">
-      <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
-      <button><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
-    </div>
-  </div>
+// Función auxiliar para determinar el archivo alfabético
+function getAlphaFile(name, type) {
+  const firstChar = name.charAt(0).toUpperCase();
+  let range = '';
+  
+  if (/[0-9]/.test(firstChar)) range = '0-9';
+  else if (['A','B'].includes(firstChar)) range = 'A-B';
+  else if (['C','D'].includes(firstChar)) range = 'C-D';
+  else if (['E','F'].includes(firstChar)) range = 'E-F';
+  else if (['G','H'].includes(firstChar)) range = 'G-H';
+  else if (['I','J'].includes(firstChar)) range = 'I-J';
+  else if (['K','L'].includes(firstChar)) range = 'K-L';
+  else if (['M','N'].includes(firstChar)) range = 'M-N';
+  else if (['O','P'].includes(firstChar)) range = 'O-P';
+  else if (['Q','R'].includes(firstChar)) range = 'Q-R';
+  else if (['S','T'].includes(firstChar)) range = 'S-T';
+  else if (['U','V'].includes(firstChar)) range = 'U-V';
+  else if (['W','X'].includes(firstChar)) range = 'W-X';
+  else if (['Y','Z'].includes(firstChar)) range = 'Y-Z';
+  
+  return `${type}/${range}.html`;
+}
 
-  <!-- OVERLAY DEL MENÚ -->
-  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+// Base de datos de contenido (versión simplificada para probar)
+const contentDatabase = [
+  // 📚 LIBROS (ejemplos)
+  { id: 'b1', title: 'Apocalipsis Z', type: 'libro', typeLabel: 'Libro', author: 'Manel Loureiro', img: 'img/libros/portada-generica.jpg', url: 'libros/A-B.html' },
+  { id: 'b2', title: 'Guerra Mundial Z', type: 'libro', typeLabel: 'Libro', author: 'Max Brooks', img: 'img/libros/portada-generica.jpg', url: 'libros/G-H.html' },
+  { id: 'b3', title: 'The Walking Dead', type: 'libro', typeLabel: 'Libro', author: 'Kirkman', img: 'img/libros/portada-generica.jpg', url: 'libros/S-T.html' },
+  
+  // 🎬 PELÍCULAS (ejemplos)
+  { id: 'm1', title: 'World War Z', type: 'pelicula', typeLabel: 'Película', year: '2013', img: 'img/peliculas/World-War-Z.jpg', url: 'peliculas/W-X.html' },
+  { id: 'm2', title: 'Zombieland', type: 'pelicula', typeLabel: 'Película', year: '2009', img: 'img/peliculas/Zombieland.jpg', url: 'peliculas/Y-Z.html' },
+  { id: 'm3', title: 'Resident Evil', type: 'pelicula', typeLabel: 'Película', year: '2002', img: 'img/peliculas/Resident-Evil.jpg', url: 'peliculas/Q-R.html' },
+  { id: 'm4', title: '28 Days Later', type: 'pelicula', typeLabel: 'Película', year: '2002', img: 'img/peliculas/28-Days-Later.jpg', url: 'peliculas/0-9.html' },
+  { id: 'm5', title: 'Shaun of the Dead', type: 'pelicula', typeLabel: 'Película', year: '2004', img: 'img/peliculas/Shaun-of-the-Dead.jpg', url: 'peliculas/S-T.html' },
+  
+  // 📺 SERIES
+  { id: 's1', title: 'The Walking Dead', type: 'serie', typeLabel: 'Serie', img: 'img/series/The-Walking-Dead.jpg', url: 'series/The-Walking-Dead.html' },
+  { id: 's2', title: 'Z Nation', type: 'serie', typeLabel: 'Serie', img: 'img/series/Z-Nation.jpg', url: 'series/Z-Nation.html' },
+  { id: 's3', title: 'Black Summer', type: 'serie', typeLabel: 'Serie', img: 'img/series/Black-Summer.jpg', url: 'series/Black-Summer.html' },
+  
+  // 🎌 ANIMES
+  { id: 'a1', title: 'Highschool of the Dead', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Highschool-of-the-Dead.jpg', url: 'animes/Highschool-of-the-Dead.html' },
+  { id: 'a2', title: 'Zombieland Saga', type: 'anime', typeLabel: 'Anime', img: 'img/animes/Zombieland-Saga.jpg', url: 'animes/Zombieland-Saga.html' },
+  
+  // 💥 CÓMICS
+  { id: 'c1', title: 'The Walking Dead', type: 'comic', typeLabel: 'Cómic', img: 'img/comics/The-Walking-Dead.jpg', url: 'comics/The-Walking-Dead-Comic.html' },
+  
+  // 🎬 CORTOMETRAJES
+  { id: 'co1', title: 'Cargo', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://video.maga.host/static/thumbnails/c71d5fb6.jpg', url: 'cortometrajes/Cargo.html' },
+  { id: 'co2', title: 'Hope', type: 'cortometraje', typeLabel: 'Cortometraje', img: 'https://i.ytimg.com/vi/bUTJC7UdMy4/maxresdefault.jpg', url: 'cortometrajes/Hope.html' },
+];
 
-  <!-- MENÚ HAMBURGUESA LATERAL -->
-  <div class="hamburger-menu" id="hamburgerMenu">
-    <div class="menu-header">
-      <div class="menu-logo">
-        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
-        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+// Variables globales
+let currentFilter = 'all';
+let currentQuery = '';
+
+// ============================================
+// FUNCIONES DE NAVEGACIÓN
+// ============================================
+
+function handleScroll() {
+  const backToTop = document.getElementById('backToTop');
+  if (!backToTop) return;
+  
+  if (window.scrollY > 300) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openMenu() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.add('active');
+  if (overlay) overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// ============================================
+// FUNCIONES DE BÚSQUEDA
+// ============================================
+
+function setFilter(filter, button) {
+  currentFilter = filter;
+  
+  // Actualizar botones activos
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  if (button) button.classList.add('active');
+  
+  // Re-renderizar resultados
+  renderResults();
+}
+
+function quickSearch(query) {
+  const input = document.getElementById('searchInput');
+  if (input) {
+    input.value = query;
+    input.focus();
+    performSearch();
+  }
+}
+
+function clearSearch() {
+  const input = document.getElementById('searchInput');
+  if (input) input.value = '';
+  currentQuery = '';
+  renderResults();
+}
+
+function highlightText(text, query) {
+  if (!query) return text;
+  
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  return text.replace(regex, '<span class="highlight">$1</span>');
+}
+
+function performSearch() {
+  const input = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearBtn');
+  
+  if (!input) {
+    console.error('❌ No se encontró el input de búsqueda');
+    return;
+  }
+  
+  currentQuery = input.value.trim().toLowerCase();
+  
+  // Mostrar/ocultar botón de limpiar
+  if (clearBtn) {
+    clearBtn.style.display = currentQuery ? 'flex' : 'none';
+  }
+  
+  renderResults();
+}
+
+// ============================================
+// RENDERIZADO DE RESULTADOS
+// ============================================
+
+function renderResults() {
+  console.log('🔍 Renderizando resultados...');
+  console.log('📊 Filtro actual:', currentFilter);
+  console.log('🔎 Query actual:', currentQuery);
+  
+  const grid = document.getElementById('resultsGrid');
+  const emptyEl = document.getElementById('searchEmpty');
+  const noResultsEl = document.getElementById('noResults');
+  const countEl = document.getElementById('searchCount');
+  const noResultsText = document.getElementById('noResultsText');
+  
+  if (!grid) {
+    console.error('❌ No se encontró el elemento resultsGrid');
+    return;
+  }
+  
+  // Filtrar por categoría
+  let filtered = contentDatabase;
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(item => item.type === currentFilter);
+    console.log(`📂 Filtrado por ${currentFilter}: ${filtered.length} ítems`);
+  }
+  
+  // Filtrar por texto de búsqueda
+  if (currentQuery) {
+    filtered = filtered.filter(item => {
+      const titleMatch = item.title.toLowerCase().includes(currentQuery);
+      const authorMatch = item.author && item.author.toLowerCase().includes(currentQuery);
+      return titleMatch || authorMatch;
+    });
+    console.log(`🔎 Después de buscar "${currentQuery}": ${filtered.length} resultados`);
+  }
+  
+  // Actualizar contadores
+  updateFilterCounts();
+  
+  // Actualizar contador general
+  if (countEl) {
+    const total = currentQuery ? filtered.length : contentDatabase.length;
+    countEl.textContent = `📊 ${total} resultado${total !== 1 ? 's' : ''} encontrado${total !== 1 ? 's' : ''}`;
+  }
+  
+  // Limpiar grid
+  grid.innerHTML = '';
+  
+  // Mostrar estado correspondiente
+  if (!currentQuery && currentFilter === 'all') {
+    // Estado inicial
+    if (emptyEl) emptyEl.style.display = 'block';
+    if (noResultsEl) noResultsEl.style.display = 'none';
+    grid.style.display = 'none';
+    console.log('📋 Mostrando estado inicial (vacío)');
+    return;
+  }
+  
+  if (emptyEl) emptyEl.style.display = 'none';
+  
+  if (filtered.length === 0) {
+    // Sin resultados
+    if (noResultsEl) noResultsEl.style.display = 'block';
+    if (noResultsText) {
+      noResultsText.textContent = `No se encontró "${currentQuery}" en ${currentFilter === 'all' ? 'ninguna sección' : 'la sección de ' + currentFilter + 's'}`;
+    }
+    grid.style.display = 'none';
+    console.log('😕 No se encontraron resultados');
+    return;
+  }
+  
+  // Mostrar resultados
+  if (noResultsEl) noResultsEl.style.display = 'none';
+  grid.style.display = 'grid';
+  
+  console.log(`✅ Renderizando ${filtered.length} tarjetas`);
+  
+  filtered.forEach((item, index) => {
+    const card = document.createElement('a');
+    card.className = 'result-card';
+    card.href = item.url;
+    card.style.animationDelay = `${index * 0.03}s`;
+    
+    const extraInfo = item.author ? ` • ${item.author}` : (item.year ? ` (${item.year})` : '');
+    
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.title}" class="result-card-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23333%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23FFD700%22>🧟</text></svg>'">
+      <div class="result-card-overlay"></div>
+      <div class="result-card-content">
+        <div class="result-card-title">${highlightText(item.title, currentQuery)}${highlightText(extraInfo, currentQuery)}</div>
+        <div class="result-card-type">${item.typeLabel}</div>
       </div>
-      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
-    </div>
-
-    <div class="menu-content">
-      <a href="index.html" class="menu-item">
-        <span class="menu-item-icon">🏠</span>
-        <span class="menu-item-text">Inicio</span>
-      </a>
-      
-      <a href="search.html" class="menu-item active">
-        <span class="menu-item-icon">🔍</span>
-        <span class="menu-item-text">Buscar</span>
-      </a>
-      
-      <a href="favoritos.html" class="menu-item">
-        <span class="menu-item-icon">⭐</span>
-        <span class="menu-item-text">Favoritos</span>
-      </a>
-      
-      <a href="index.html#accountPage" class="menu-item">
-        <span class="menu-item-icon">👤</span>
-        <span class="menu-item-text">Cuenta</span>
-      </a>
-
-      <div class="menu-divider"></div>
-
-      <a href="libros.html" class="menu-item">
-        <span class="menu-item-icon">📖</span>
-        <span class="menu-item-text">Libros</span>
-        <span class="menu-item-count">14</span>
-      </a>
-      
-      <a href="peliculas.html" class="menu-item">
-        <span class="menu-item-icon">🎥</span>
-        <span class="menu-item-text">Películas</span>
-        <span class="menu-item-count">14</span>
-      </a>
-      
-      <a href="series.html" class="menu-item">
-        <span class="menu-item-icon">📺</span>
-        <span class="menu-item-text">Series</span>
-        <span class="menu-item-count">14</span>
-      </a>
-      
-      <a href="animes.html" class="menu-item">
-        <span class="menu-item-icon">🎌</span>
-        <span class="menu-item-text">Animes</span>
-        <span class="menu-item-count">18</span>
-      </a>
-      
-      <a href="comics.html" class="menu-item">
-        <span class="menu-item-icon">💥</span>
-        <span class="menu-item-text">Cómics</span>
-        <span class="menu-item-count">18</span>
-      </a>
-      
-      <a href="cortometrajes.html" class="menu-item">
-        <span class="menu-item-icon">🎬</span>
-        <span class="menu-item-text">Cortometrajes</span>
-        <span class="menu-item-count">14</span>
-      </a>
-      
-      <a href="relatos.html" class="menu-item">
-        <span class="menu-item-icon">✍️</span>
-        <span class="menu-item-text">Relatos</span>
-        <span class="menu-item-count">6</span>
-      </a>
-      
-      <a href="juegos.html" class="menu-item">
-        <span class="menu-item-icon">🎮</span>
-        <span class="menu-item-text">Juegos</span>
-        <span class="menu-item-count">27</span>
-      </a>
-      
-      <a href="tutoriales.html" class="menu-item">
-        <span class="menu-item-icon">🎓</span>
-        <span class="menu-item-text">Tutoriales</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-      
-      <a href="musica.html" class="menu-item">
-        <span class="menu-item-icon">🎵</span>
-        <span class="menu-item-text">Música</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-      
-      <a href="revistas.html" class="menu-item">
-        <span class="menu-item-icon">📰</span>
-        <span class="menu-item-text">Revistas</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-    </div>
-
-    <div class="menu-footer">
-      <div class="menu-footer-logo">🧟</div>
-      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
-    </div>
-  </div>
-
-  <!-- HERO BANNER BÚSQUEDA -->
-  <div class="search-hero">
-    <div class="search-hero-bg"></div>
-    <div class="search-hero-content">
-      <div class="search-hero-title">🔍 <span>Buscar</span> Contenido</div>
-      <div class="search-hero-subtitle">Encuentra cualquier libro, película, serie, anime, cómic, juego y más</div>
-      <div class="search-hero-count" id="searchCount">📊 0 resultados encontrados</div>
-    </div>
-  </div>
-
-  <!-- BARRA DE BÚSQUEDA -->
-  <div class="search-bar-container">
-    <div class="search-bar">
-      <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" class="search-bar-icon">
-      <input 
-        type="text" 
-        id="searchInput" 
-        class="search-bar-input" 
-        placeholder="Escribe el nombre de lo que buscas..."
-        autocomplete="off"
-      >
-      <button class="search-clear-btn" id="clearBtn" onclick="clearSearch()" style="display: none;">✕</button>
-    </div>
-  </div>
-
-  <!-- FILTROS POR SECCIÓN -->
-  <div class="filters-container">
-    <div class="filters-scroll">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">
-        <span class="filter-icon">🌐</span>
-        <span class="filter-text">Todos</span>
-        <span class="filter-count" id="count-all">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="libro" onclick="setFilter('libro', this)">
-        <span class="filter-icon">📖</span>
-        <span class="filter-text">Libros</span>
-        <span class="filter-count" id="count-libro">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="pelicula" onclick="setFilter('pelicula', this)">
-        <span class="filter-icon">🎥</span>
-        <span class="filter-text">Películas</span>
-        <span class="filter-count" id="count-pelicula">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="serie" onclick="setFilter('serie', this)">
-        <span class="filter-icon">📺</span>
-        <span class="filter-text">Series</span>
-        <span class="filter-count" id="count-serie">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="anime" onclick="setFilter('anime', this)">
-        <span class="filter-icon">🎌</span>
-        <span class="filter-text">Animes</span>
-        <span class="filter-count" id="count-anime">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="comic" onclick="setFilter('comic', this)">
-        <span class="filter-icon">💥</span>
-        <span class="filter-text">Cómics</span>
-        <span class="filter-count" id="count-comic">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="cortometraje" onclick="setFilter('cortometraje', this)">
-        <span class="filter-icon">🎬</span>
-        <span class="filter-text">Cortos</span>
-        <span class="filter-count" id="count-cortometraje">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="relato" onclick="setFilter('relato', this)">
-        <span class="filter-icon">✍️</span>
-        <span class="filter-text">Relatos</span>
-        <span class="filter-count" id="count-relato">0</span>
-      </button>
-      
-      <button class="filter-btn" data-filter="juego" onclick="setFilter('juego', this)">
-        <span class="filter-icon">🎮</span>
-        <span class="filter-text">Juegos</span>
-        <span class="filter-count" id="count-juego">0</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- CONTENEDOR DE RESULTADOS -->
-  <div class="results-container">
+    `;
     
-    <!-- Estado inicial (sin búsqueda) -->
-    <div class="search-empty" id="searchEmpty">
-      <div class="empty-icon">🔍</div>
-      <h3>¿Qué estás buscando?</h3>
-      <p>Escribe el nombre de un libro, película, serie, anime, cómic, juego o relato zombie para encontrarlo</p>
-      <div class="search-suggestions">
-        <div class="suggestion-title">💡 Sugerencias populares:</div>
-        <div class="suggestion-tags">
-          <button class="suggestion-tag" onclick="quickSearch('Walking Dead')">Walking Dead</button>
-          <button class="suggestion-tag" onclick="quickSearch('Resident Evil')">Resident Evil</button>
-          <button class="suggestion-tag" onclick="quickSearch('Zombie')">Zombie</button>
-          <button class="suggestion-tag" onclick="quickSearch('Dead')">Dead</button>
-          <button class="suggestion-tag" onclick="quickSearch('Marvel')">Marvel</button>
-          <button class="suggestion-tag" onclick="quickSearch('Thriller')">Thriller</button>
-        </div>
-      </div>
-    </div>
+    grid.appendChild(card);
+  });
+}
 
-    <!-- Estado sin resultados -->
-    <div class="no-results" id="noResults" style="display: none;">
-      <div class="no-results-icon">😵</div>
-      <h3>No se encontraron resultados</h3>
-      <p id="noResultsText">No hay contenido que coincida con tu búsqueda</p>
-      <button class="btn-clear-search" onclick="clearSearch()">Limpiar búsqueda</button>
-    </div>
+function updateFilterCounts() {
+  const types = ['libro', 'pelicula', 'serie', 'anime', 'comic', 'cortometraje', 'relato', 'juego'];
+  
+  // Contador total
+  let totalFiltered = contentDatabase;
+  if (currentQuery) {
+    totalFiltered = totalFiltered.filter(item => 
+      item.title.toLowerCase().includes(currentQuery) ||
+      (item.author && item.author.toLowerCase().includes(currentQuery))
+    );
+  }
+  const countAll = document.getElementById('count-all');
+  if (countAll) countAll.textContent = totalFiltered.length;
+  
+  // Contadores por tipo
+  types.forEach(type => {
+    let filtered = contentDatabase.filter(item => item.type === type);
+    if (currentQuery) {
+      filtered = filtered.filter(item => 
+        item.title.toLowerCase().includes(currentQuery) ||
+        (item.author && item.author.toLowerCase().includes(currentQuery))
+      );
+    }
+    const countEl = document.getElementById(`count-${type}`);
+    if (countEl) countEl.textContent = filtered.length;
+  });
+}
 
-    <!-- Grid de resultados -->
-    <div class="results-grid" id="resultsGrid" style="display: none;">
-      <!-- Los resultados se cargan dinámicamente -->
-    </div>
+// ============================================
+// INICIALIZACIÓN
+// ============================================
 
-  </div>
+function init() {
+  console.log('🚀 Inicializando página de búsqueda...');
+  console.log('📊 Total de ítems en base de datos:', contentDatabase.length);
+  
+  // Verificar que existan los elementos necesarios
+  const searchInput = document.getElementById('searchInput');
+  const resultsGrid = document.getElementById('resultsGrid');
+  const searchEmpty = document.getElementById('searchEmpty');
+  
+  if (!searchInput) {
+    console.error('❌ No se encontró el elemento searchInput');
+  }
+  if (!resultsGrid) {
+    console.error('❌ No se encontró el elemento resultsGrid');
+  }
+  if (!searchEmpty) {
+    console.error('❌ No se encontró el elemento searchEmpty');
+  }
+  
+  // Event listener para scroll
+  window.addEventListener('scroll', handleScroll);
+  
+  // Event listener para búsqueda
+  if (searchInput) {
+    searchInput.addEventListener('input', performSearch);
+    searchInput.focus();
+    console.log('✅ Input de búsqueda configurado');
+  }
+  
+  // Inicializar contadores
+  updateFilterCounts();
+  
+  // Renderizar resultados iniciales
+  renderResults();
+  
+  // Menú hamburguesa
+  const overlay = document.getElementById('menuOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeMenu();
+    }
+  });
+  
+  console.log('✅ Página de búsqueda inicializada correctamente');
+}
 
-  <!-- OTRAS SECCIONES -->
-  <div class="section-nav-title">📚 Explora otras secciones</div>
-
-  <div class="section-nav-grid">
-    <a href="libros.html" class="nav-category-card">
-      <div class="nav-category-icon">📖</div>
-      <div class="nav-category-name">Libros</div>
-      <div class="nav-category-count">14 categorías</div>
-    </a>
-    
-    <a href="peliculas.html" class="nav-category-card">
-      <div class="nav-category-icon">🎥</div>
-      <div class="nav-category-name">Películas</div>
-      <div class="nav-category-count">14 categorías</div>
-    </a>
-    
-    <a href="series.html" class="nav-category-card">
-      <div class="nav-category-icon">📺</div>
-      <div class="nav-category-name">Series</div>
-      <div class="nav-category-count">14 series</div>
-    </a>
-    
-    <a href="animes.html" class="nav-category-card">
-      <div class="nav-category-icon">🎌</div>
-      <div class="nav-category-name">Animes</div>
-      <div class="nav-category-count">18 animes</div>
-    </a>
-    
-    <a href="comics.html" class="nav-category-card">
-      <div class="nav-category-icon">💥</div>
-      <div class="nav-category-name">Cómics</div>
-      <div class="nav-category-count">18 cómics</div>
-    </a>
-    
-    <a href="cortometrajes.html" class="nav-category-card">
-      <div class="nav-category-icon">🎬</div>
-      <div class="nav-category-name">Cortometrajes</div>
-      <div class="nav-category-count">14 cortos</div>
-    </a>
-    
-    <a href="relatos.html" class="nav-category-card">
-      <div class="nav-category-icon">✍️</div>
-      <div class="nav-category-name">Relatos</div>
-      <div class="nav-category-count">6 relatos</div>
-    </a>
-    
-    <a href="juegos.html" class="nav-category-card">
-      <div class="nav-category-icon">🎮</div>
-      <div class="nav-category-name">Juegos</div>
-      <div class="nav-category-count">27 juegos</div>
-    </a>
-  </div>
-
-  <!-- BOTÓN VOLVER ARRIBA -->
-  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
-  <script src="search.js"></script>
-</body>
-</html>
+// Ejecutar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+} si
