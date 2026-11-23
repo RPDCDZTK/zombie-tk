@@ -9,139 +9,120 @@
 </head>
 <body>
 
-    <!-- HOME PAGE -->
-  <div id="homePage" class="page active">
-    <div class="header">
-      <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-      <div class="site-branding">
-        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
-        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
-      </div>
-      <div class="header-icons">
-        <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
-        <button><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Configuración" class="icon-img"></button>
+  <!-- HEADER -->
+  <div class="header">
+    <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="site-branding">
+      <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+      <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+    </div>
+    <div class="header-icons">
+      <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+      <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
+        <img src="" alt="Perfil" class="header-avatar-img" id="headerAvatarImg">
       </div>
     </div>
   </div>
 
   <!-- OVERLAY DEL MENÚ -->
-<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-<!-- MENÚ HAMBURGUESA LATERAL (SIN SECCIONES) -->
-<div class="hamburger-menu" id="hamburgerMenu">
-  <div class="menu-header">
-    <div class="menu-logo">
-      <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
-      <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+  <!-- MENÚ HAMBURGUESA -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-logo">
+        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
+        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
     </div>
-    <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
+
+    <div class="menu-content">
+      <a href="index.html" class="menu-item">
+        <span class="menu-item-icon">🏠</span>
+        <span class="menu-item-text">Inicio</span>
+      </a>
+      <a href="search.html" class="menu-item">
+        <span class="menu-item-icon">🔍</span>
+        <span class="menu-item-text">Buscar</span>
+      </a>
+      <a href="favoritos.html" class="menu-item">
+        <span class="menu-item-icon">⭐</span>
+        <span class="menu-item-text">Favoritos</span>
+      </a>
+      <a href="cuenta.html" class="menu-item">
+        <span class="menu-item-icon">👤</span>
+        <span class="menu-item-text">Cuenta</span>
+      </a>
+
+      <div class="menu-divider"></div>
+
+      <a href="libros.html" class="menu-item">
+        <span class="menu-item-icon">📖</span>
+        <span class="menu-item-text">Libros</span>
+        <span class="menu-item-count" id="menu-count-libros">0</span>
+      </a>
+      <a href="peliculas.html" class="menu-item">
+        <span class="menu-item-icon">🎥</span>
+        <span class="menu-item-text">Películas</span>
+        <span class="menu-item-count" id="menu-count-peliculas">0</span>
+      </a>
+      <a href="series.html" class="menu-item">
+        <span class="menu-item-icon">📺</span>
+        <span class="menu-item-text">Series</span>
+        <span class="menu-item-count" id="menu-count-series">0</span>
+      </a>
+      <a href="animes.html" class="menu-item">
+        <span class="menu-item-icon">🎌</span>
+        <span class="menu-item-text">Animes</span>
+        <span class="menu-item-count" id="menu-count-animes">0</span>
+      </a>
+      <a href="comics.html" class="menu-item">
+        <span class="menu-item-icon">💥</span>
+        <span class="menu-item-text">Cómics</span>
+        <span class="menu-item-count" id="menu-count-comics">0</span>
+      </a>
+      <a href="cortometrajes.html" class="menu-item active">
+        <span class="menu-item-icon">🎬</span>
+        <span class="menu-item-text">Cortometrajes</span>
+        <span class="menu-item-count" id="menu-count-cortos">0</span>
+      </a>
+      <a href="relatos.html" class="menu-item">
+        <span class="menu-item-icon">✍️</span>
+        <span class="menu-item-text">Relatos</span>
+        <span class="menu-item-count">6</span>
+      </a>
+      <a href="juegos.html" class="menu-item">
+        <span class="menu-item-icon">🎮</span>
+        <span class="menu-item-text">Juegos</span>
+        <span class="menu-item-count">27</span>
+      </a>
+      <a href="tutoriales.html" class="menu-item">
+        <span class="menu-item-icon">🎓</span>
+        <span class="menu-item-text">Tutoriales</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      <a href="musica.html" class="menu-item">
+        <span class="menu-item-icon">🎵</span>
+        <span class="menu-item-text">Música</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      <a href="revistas.html" class="menu-item">
+        <span class="menu-item-icon">📰</span>
+        <span class="menu-item-text">Revistas</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+    </div>
+
+    <div class="menu-footer">
+      <div class="menu-footer-logo">🧟</div>
+      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
+    </div>
   </div>
-
-  <div class="menu-content">
-    <!-- Navegación principal -->
-    <a href="index.html" class="menu-item">
-      <span class="menu-item-icon">🏠</span>
-      <span class="menu-item-text">Inicio</span>
-    </a>
-    
-    <a href="search.html" class="menu-item">
-      <span class="menu-item-icon">🔍</span>
-      <span class="menu-item-text">Buscar</span>
-    </a>
-    
-    <a href="favoritos.html" class="menu-item">
-      <span class="menu-item-icon">⭐</span>
-      <span class="menu-item-text">Favoritos</span>
-    </a>
-    
-    <a href="cuenta.html" class="menu-item">
-      <span class="menu-item-icon">👤</span>
-      <span class="menu-item-text">Cuenta</span>
-    </a>
-
-    <!-- Separador visual -->
-    <div class="menu-divider"></div>
-
-    <!-- Contenido -->
-    <a href="libros.html" class="menu-item">
-      <span class="menu-item-icon">📖</span>
-      <span class="menu-item-text">Libros</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="peliculas.html" class="menu-item">
-      <span class="menu-item-icon">🎥</span>
-      <span class="menu-item-text">Películas</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="series.html" class="menu-item">
-      <span class="menu-item-icon">📺</span>
-      <span class="menu-item-text">Series</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="animes.html" class="menu-item">
-      <span class="menu-item-icon">🎌</span>
-      <span class="menu-item-text">Animes</span>
-      <span class="menu-item-count">18</span>
-    </a>
-    
-    <a href="comics.html" class="menu-item">
-      <span class="menu-item-icon">💥</span>
-      <span class="menu-item-text">Cómics</span>
-      <span class="menu-item-count">18</span>
-    </a>
-    
-    <a href="cortometrajes.html" class="menu-item">
-      <span class="menu-item-icon">🎬</span>
-      <span class="menu-item-text">Cortometrajes</span>
-      <span class="menu-item-count">14</span>
-    </a>
-    
-    <a href="relatos.html" class="menu-item">
-      <span class="menu-item-icon">✍️</span>
-      <span class="menu-item-text">Relatos</span>
-      <span class="menu-item-count">6</span>
-    </a>
-    
-    <a href="juegos.html" class="menu-item">
-      <span class="menu-item-icon">🎮</span>
-      <span class="menu-item-text">Juegos</span>
-      <span class="menu-item-count">27</span>
-    </a>
-    
-    <a href="tutoriales.html" class="menu-item">
-      <span class="menu-item-icon">🎓</span>
-      <span class="menu-item-text">Tutoriales</span>
-      <span class="menu-item-badge">Próximamente</span>
-    </a>
-    
-    <a href="musica.html" class="menu-item">
-      <span class="menu-item-icon">🎵</span>
-      <span class="menu-item-text">Música</span>
-      <span class="menu-item-badge">Próximamente</span>
-    </a>
-    
-    <a href="revistas.html" class="menu-item">
-      <span class="menu-item-icon">📰</span>
-      <span class="menu-item-text">Revistas</span>
-      <span class="menu-item-badge">Próximamente</span>
-    </a>
-    
-    <!-- Separador visual -->
-    <div class="menu-divider"></div>
-    
-    <a class="menu-item">
-      <div class="menu-item-logo"><img src="img/logo-zombietk.png" alt="Logo" class="site-logo"></div>
-      <div class="menu-item-text">Zombie-TK+ v1.0</div>
-    </a>
-  </div>
-</div>
 
   <!-- HERO BANNER CORTOMETRAJES -->
   <div class="corto-hero">
@@ -160,14 +141,12 @@
     </p>
   </div>
 
-  <!-- GRID DE CORTOMETRAJES (Ordenado Alfabéticamente) -->
+  <!-- GRID DE CORTOMETRAJES -->
   <div class="section-header">
     <div class="section-title">🎬 Todos los Cortometrajes</div>
   </div>
 
   <div class="corto-grid">
-    
-    <!-- 2 Hours -->
     <a href="cortometrajes/2-Hours.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1536440136628-849c42c93d0c?w=500&q=80" alt="2 Hours" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -181,7 +160,6 @@
       </div>
     </a>
 
-    <!-- Best Friends -->
     <a href="cortometrajes/Best-Friends.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=500&q=80" alt="Best Friends" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -194,7 +172,6 @@
       </div>
     </a>
 
-    <!-- Cargo (Destacado) -->
     <a href="cortometrajes/Cargo.html" class="corto-card featured">
       <img src="https://video.maga.host/static/thumbnails/c71d5fb6-6e04-4b90-bbdc-57ebb12857e1.jpg" alt="Cargo" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -208,7 +185,6 @@
       </div>
     </a>
 
-    <!-- Hope -->
     <a href="cortometrajes/Hope.html" class="corto-card">
       <img src="https://i.ytimg.com/vi_webp/bUTJC7UdMy4/maxresdefault.webp" alt="Hope" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -221,7 +197,6 @@
       </div>
     </a>
 
-    <!-- Make It Until Morning -->
     <a href="cortometrajes/Make-It-Until-Morning.html" class="corto-card">
       <img src="https://video.maga.host/static/thumbnails/33b29291-5e94-4360-96db-d877f8dd0d5e.jpg" alt="Make It Until Morning" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -234,7 +209,6 @@
       </div>
     </a>
 
-    <!-- Rising Up -->
     <a href="cortometrajes/Rising-Up.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80" alt="Rising Up" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -247,7 +221,6 @@
       </div>
     </a>
 
-    <!-- Scary or Die -->
     <a href="cortometrajes/Scary-or-Die.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=500&q=80" alt="Scary or Die" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -260,7 +233,6 @@
       </div>
     </a>
 
-    <!-- Soy un Zombie -->
     <a href="cortometrajes/Soy-un-Zombie.html" class="corto-card">
       <img src="https://i.ytimg.com/vi/IGfdVXkoe_c/maxresdefault.jpg" alt="Soy un Zombie" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -273,7 +245,6 @@
       </div>
     </a>
 
-    <!-- Still -->
     <a href="cortometrajes/Still.html" class="corto-card">
       <img src="https://video.maga.host/static/thumbnails/d923e46f-79da-47e4-952a-0c35a8484c27.jpg" alt="Still" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -286,7 +257,6 @@
       </div>
     </a>
 
-    <!-- The Gravedigger -->
     <a href="cortometrajes/The-Gravedigger.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=500&q=80" alt="The Gravedigger" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -299,7 +269,6 @@
       </div>
     </a>
 
-    <!-- Thriller -->
     <a href="cortometrajes/Thriller.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=500&q=80" alt="Thriller" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -312,7 +281,6 @@
       </div>
     </a>
 
-    <!-- Zombie Day Apocalypse -->
     <a href="cortometrajes/Zombie-Day-Apocalypse.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=500&q=80" alt="Zombie Day Apocalypse" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -325,7 +293,6 @@
       </div>
     </a>
 
-    <!-- Zombie Doom -->
     <a href="cortometrajes/Zombie-Doom.html" class="corto-card">
       <img src="https://video.maga.host/static/thumbnails/f47aea1f-bb63-448b-9aa2-f62fb14f7703.jpg" alt="Zombie Doom" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -338,7 +305,6 @@
       </div>
     </a>
 
-    <!-- Zombie in a Penguin Suit -->
     <a href="cortometrajes/Zombie-in-a-Penguin-Suit.html" class="corto-card">
       <img src="https://images.unsplash.com/photo-1550978934-490278542c93?w=500&q=80" alt="Zombie in a Penguin Suit" class="corto-card-img">
       <div class="corto-card-overlay"></div>
@@ -350,13 +316,12 @@
         </div>
       </div>
     </a>
-
   </div>
 
   <!-- AVISO LEGAL -->
   <div class="legal-notice">
     <p>
-      ⚠️ <strong>Zombie-TK</strong> no almacena ningún libro, película o video protegido por derechos de autor, solo proporciona al internauta el vínculo para poder disfrutar del contenido. Si deseas que algún elemento se elimine de la página por violación de los derechos de autor, favor de enviar su solicitud al correo: <a href="mailto:zombie-tk-regepunk@outlook.com">zombie-tk-regepunk@outlook.com ⚠️</a>
+      ⚠️ <strong>Zombie-TK</strong> no almacena ningún libro, película o video protegido por derechos de autor, solo proporciona al internauta el vínculo para poder disfrutar del contenido. Si deseas que algún elemento se elimine de la página, favor de contactarse al correo: <a href="mailto:punk_dead_rp@hotmail.com">punk_dead_rp@hotmail.com</a>
     </p>
   </div>
 
@@ -367,61 +332,37 @@
     <a href="libros.html" class="nav-category-card">
       <div class="nav-category-icon">📖</div>
       <div class="nav-category-name">Libros</div>
-      <div class="nav-category-count">14 categorías</div>
+      <div class="nav-category-count">211 libros</div>
     </a>
-    
     <a href="peliculas.html" class="nav-category-card">
       <div class="nav-category-icon">🎥</div>
       <div class="nav-category-name">Películas</div>
-      <div class="nav-category-count">14 categorías</div>
+      <div class="nav-category-count">191 películas</div>
     </a>
-    
     <a href="series.html" class="nav-category-card">
       <div class="nav-category-icon">📺</div>
       <div class="nav-category-name">Series</div>
       <div class="nav-category-count">14 series</div>
     </a>
-    
     <a href="animes.html" class="nav-category-card">
       <div class="nav-category-icon">🎌</div>
       <div class="nav-category-name">Animes</div>
       <div class="nav-category-count">18 animes</div>
     </a>
-    
     <a href="comics.html" class="nav-category-card">
       <div class="nav-category-icon">💥</div>
       <div class="nav-category-name">Cómics</div>
       <div class="nav-category-count">18 cómics</div>
     </a>
-    
-    <a href="tutoriales.html" class="nav-category-card">
-      <div class="nav-category-icon">🎓</div>
-      <div class="nav-category-name">Tutoriales</div>
-      <div class="nav-category-count">Próximamente</div>
-    </a>
-    
     <a href="relatos.html" class="nav-category-card">
       <div class="nav-category-icon">✍️</div>
       <div class="nav-category-name">Relatos</div>
-      <div class="nav-category-count">Próximamente</div>
+      <div class="nav-category-count">6 relatos</div>
     </a>
-    
     <a href="juegos.html" class="nav-category-card">
       <div class="nav-category-icon">🎮</div>
       <div class="nav-category-name">Juegos</div>
-      <div class="nav-category-count">Próximamente</div>
-    </a>
-
-    <a href="musica.html" class="nav-category-card">
-      <div class="nav-category-icon">🎵</div>
-      <div class="nav-category-name">Música</div>
-      <div class="nav-category-count">Próximamente</div>
-    </a>
-
-    <a href="revistas.html" class="nav-category-card">
-      <div class="nav-category-icon">📰</div>
-      <div class="nav-category-name">Revistas</div>
-      <div class="nav-category-count">Próximamente</div>
+      <div class="nav-category-count">27 juegos</div>
     </a>
   </div>
 
@@ -429,5 +370,16 @@
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
   <script src="cortometrajes.js"></script>
+  <script src="search.js"></script>
+  <script>
+    (function() {
+      const avatarImg = document.getElementById('headerAvatarImg');
+      if (avatarImg) {
+        const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
+          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%234c1d95"/><text x="50" y="65" font-size="45" text-anchor="middle">🧟</text></svg>';
+        avatarImg.src = savedAvatar;
+      }
+    })();
+  </script>
 </body>
 </html>
