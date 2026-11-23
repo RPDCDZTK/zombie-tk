@@ -140,11 +140,13 @@ function openAvatarModal() {
   });
   
   // ===== GENERAR AVATARES SUBIDOS =====
-  userGrid.innerHTML = '';
+  if (userGrid) {
+    userGrid.innerHTML = '';
+  }
   
   if (userAvatars.length > 0) {
-    userSection.style.display = 'block';
-    userCount.textContent = userAvatars.length;
+    if (userSection) userSection.style.display = 'block';
+    if (userCount) userCount.textContent = userAvatars.length;
     
     userAvatars.forEach((avatarUrl, index) => {
       const wrapper = document.createElement('div');
@@ -181,18 +183,20 @@ function openAvatarModal() {
       userGrid.appendChild(wrapper);
     });
   } else {
-    userSection.style.display = 'none';
+    if (userSection) userSection.style.display = 'none';
   }
   
   // ===== CONTROLAR LÍMITE DE UPLOAD =====
-  if (userAvatars.length >= MAX_USER_AVATARS) {
-    uploadBtn.classList.add('disabled');
-    uploadHint.style.display = 'none';
-    uploadWarning.style.display = 'block';
-  } else {
-    uploadBtn.classList.remove('disabled');
-    uploadHint.style.display = 'block';
-    uploadWarning.style.display = 'none';
+  if (uploadBtn && uploadHint && uploadWarning) {
+    if (userAvatars.length >= MAX_USER_AVATARS) {
+      uploadBtn.classList.add('disabled');
+      uploadHint.style.display = 'none';
+      uploadWarning.style.display = 'block';
+    } else {
+      uploadBtn.classList.remove('disabled');
+      uploadHint.style.display = 'block';
+      uploadWarning.style.display = 'none';
+    }
   }
   
   // Mostrar avatar actual
@@ -427,109 +431,91 @@ function getSettingsContent(section) {
   const contents = {
     idioma: {
       title: '🌐 Idioma y subtítulos',
-      body: `
-        <h4>Idioma de la aplicación</h4>
-        <p>Selecciona el idioma en el que deseas ver Zombie-TK:</p>
-        <ul>
-          <li>🇪🇸 Español (Actual)</li>
-          <li>🇺🇸 English</li>
-          <li>🇧🇷 Português</li>
-          <li>🇫🇷 Français</li>
-        </ul>
-        <p><strong>Nota:</strong> Esta función estará disponible en la próxima actualización.</p>
-      `
+      body: `<h4>Idioma de la aplicación</h4>
+             <p>Selecciona el idioma en el que deseas ver Zombie-TK:</p>
+             <ul>
+               <li>🇪🇸 Español (Actual)</li>
+               <li>🇺🇸 English</li>
+               <li>🇧🇷 Português</li>
+               <li>🇫🇷 Français</li>
+             </ul>
+             <p><strong>Nota:</strong> Esta función estará disponible en la próxima actualización.</p>`
     },
     notificaciones: {
       title: '🔔 Notificaciones',
-      body: `
-        <h4>Tipos de notificaciones</h4>
-        <ul>
-          <li>✅ Nuevos estrenos y lanzamientos</li>
-          <li>✅ Actualizaciones de contenido favorito</li>
-          <li>✅ Mensajes del soporte técnico</li>
-          <li>✅ Ofertas y promociones especiales</li>
-        </ul>
-        <p><strong>Estado actual:</strong> Notificaciones desactivadas</p>
-      `
+      body: `<h4>Tipos de notificaciones</h4>
+             <ul>
+               <li>✅ Nuevos estrenos y lanzamientos</li>
+               <li>✅ Actualizaciones de contenido favorito</li>
+               <li>✅ Mensajes del soporte técnico</li>
+               <li>✅ Ofertas y promociones especiales</li>
+             </ul>
+             <p><strong>Estado actual:</strong> Notificaciones desactivadas</p>`
     },
     privacidad: {
       title: '🔒 Privacidad',
-      body: `
-        <h4>Control de privacidad</h4>
-        <p>Gestiona quién puede ver tu actividad en Zombie-TK:</p>
-        <ul>
-          <li>👁️ Perfil público/privado</li>
-          <li>⭐ Lista de favoritos visible</li>
-          <li>📊 Estadísticas de visualización</li>
-          <li>🔍 Historial de búsqueda</li>
-        </ul>
-      `
+      body: `<h4>Control de privacidad</h4>
+             <p>Gestiona quién puede ver tu actividad en Zombie-TK:</p>
+             <ul>
+               <li>👁️ Perfil público/privado</li>
+               <li>⭐ Lista de favoritos visible</li>
+               <li>📊 Estadísticas de visualización</li>
+               <li>🔍 Historial de búsqueda</li>
+             </ul>`
     },
     descargas: {
       title: '⬇️ Descargas',
-      body: `
-        <h4>Calidad de descarga</h4>
-        <ul>
-          <li>📱 Baja (480p) - Ahorra datos</li>
-          <li>💻 Media (720p) - Balance calidad/tamaño</li>
-          <li>🖥️ Alta (1080p) - Máxima calidad</li>
-        </ul>
-        <p>Las descargas se guardan en: <code>/ZombieTK/Downloads/</code></p>
-      `
+      body: `<h4>Calidad de descarga</h4>
+             <ul>
+               <li>📱 Baja (480p) - Ahorra datos</li>
+               <li>💻 Media (720p) - Balance calidad/tamaño</li>
+               <li>🖥️ Alta (1080p) - Máxima calidad</li>
+             </ul>
+             <p>Las descargas se guardan en: <code>/ZombieTK/Downloads/</code></p>`
     },
     tv: {
       title: '📺 Instalar en un TV',
-      body: `
-        <h4>Dispositivos compatibles</h4>
-        <ul>
-          <li>📺 Smart TV (Samsung, LG, Sony)</li>
-          <li>🎮 Consolas (PlayStation, Xbox)</li>
-          <li>📱 Chromecast / AirPlay</li>
-          <li>🖥️ Android TV / Apple TV</li>
-        </ul>
-        <h4>Código de vinculación</h4>
-        <p style="font-size: 24px; text-align: center; color: #a78bfa; font-weight: bold; padding: 15px; background: rgba(109, 40, 217, 0.2); border-radius: 8px;">ZTK-2024-XXXX</p>
-      `
+      body: `<h4>Dispositivos compatibles</h4>
+             <ul>
+               <li>📺 Smart TV (Samsung, LG, Sony)</li>
+               <li>🎮 Consolas (PlayStation, Xbox)</li>
+               <li>📱 Chromecast / AirPlay</li>
+               <li>🖥️ Android TV / Apple TV</li>
+             </ul>
+             <h4>Código de vinculación</h4>
+             <p style="font-size: 24px; text-align: center; color: #a78bfa; font-weight: bold; padding: 15px; background: rgba(109, 40, 217, 0.2); border-radius: 8px;">ZTK-2024-XXXX</p>`
     },
     acerca: {
       title: 'ℹ️ Acerca de Zombie-TK',
-      body: `
-        <h4>Zombie-TK+</h4>
-        <p>La plataforma definitiva para fans del género zombie.</p>
-        <h4>Versión</h4>
-        <p><strong>Versión 1.0.43</strong> (Noviembre 2024)</p>
-        <h4>Contacto</h4>
-        <p>📧 punk_dead_rp@hotmail.com</p>
-      `
+      body: `<h4>Zombie-TK+</h4>
+             <p>La plataforma definitiva para fans del género zombie.</p>
+             <h4>Versión</h4>
+             <p><strong>Versión 1.0.43</strong> (Noviembre 2024)</p>
+             <h4>Contacto</h4>
+             <p>📧 punk_dead_rp@hotmail.com</p>`
     },
     actualizar: {
       title: '📱 Buscar actualizaciones',
-      body: `
-        <h4>Versión actual</h4>
-        <p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0.43</p>
-        <p>✅ Estás usando la versión más reciente.</p>
-        <button onclick="checkForUpdates()" style="width: 100%; padding: 12px; background: #6d28d9; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Buscar actualizaciones</button>
-      `
+      body: `<h4>Versión actual</h4>
+             <p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0.43</p>
+             <p>✅ Estás usando la versión más reciente.</p>
+             <button onclick="checkForUpdates()" style="width: 100%; padding: 12px; background: #6d28d9; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Buscar actualizaciones</button>`
     },
     contacto: {
       title: '✉️ Contactar soporte',
-      body: `
-        <h4>Métodos de contacto</h4>
-        <ul>
-          <li>📧 Email: <a href="mailto:punk_dead_rp@hotmail.com" style="color: #a78bfa;">punk_dead_rp@hotmail.com</a></li>
-          <li>💬 Telegram: @ZombieTKSupport</li>
-        </ul>
-        <p>Tiempo de respuesta: 24-48 horas</p>
-      `
+      body: `<h4>Métodos de contacto</h4>
+             <ul>
+               <li>📧 Email: <a href="mailto:punk_dead_rp@hotmail.com" style="color: #a78bfa;">punk_dead_rp@hotmail.com</a></li>
+               <li>💬 Telegram: @ZombieTKSupport</li>
+             </ul>
+             <p>Tiempo de respuesta: 24-48 horas</p>`
     },
     'cambiar-cuenta': {
       title: '🔄 Cambiar de cuenta',
-      body: `
-        <h4>Cuenta actual</h4>
-        <p><strong>Usuario:</strong> ZombieFan</p>
-        <p><strong>Email:</strong> zombiefan@zombie-tk.com</p>
-        <button onclick="logout()" style="width: 100%; padding: 12px; background: #dc2626; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Cerrar sesión</button>
-      `
+      body: `<h4>Cuenta actual</h4>
+             <p><strong>Usuario:</strong> ZombieFan</p>
+             <p><strong>Email:</strong> zombiefan@zombie-tk.com</p>
+             <button onclick="logout()" style="width: 100%; padding: 12px; background: #dc2626; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Cerrar sesión</button>`
     }
   };
   
