@@ -8,33 +8,28 @@ import {
   updateProfile
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// Elementos del DOM
-const loginForm = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
-const forgotForm = document.getElementById('forgotForm');
-const messageEl = document.getElementById('loginMessage');
-
-// Funciones de navegación entre formularios
+// Hacer las funciones globales para que el HTML pueda llamarlas
 window.showRegister = () => {
-  loginForm.classList.remove('active');
-  registerForm.classList.add('active');
-  messageEl.className = 'login-message';
+  document.getElementById('loginForm').classList.remove('active');
+  document.getElementById('registerForm').classList.add('active');
+  document.getElementById('loginMessage').className = 'login-message';
 };
 
 window.showLogin = () => {
-  registerForm.classList.remove('active');
-  forgotForm.classList.remove('active');
-  loginForm.classList.add('active');
-  messageEl.className = 'login-message';
+  document.getElementById('registerForm').classList.remove('active');
+  document.getElementById('forgotForm').classList.remove('active');
+  document.getElementById('loginForm').classList.add('active');
+  document.getElementById('loginMessage').className = 'login-message';
 };
 
 window.showForgotPassword = () => {
-  loginForm.classList.remove('active');
-  forgotForm.classList.add('active');
-  messageEl.className = 'login-message';
+  document.getElementById('loginForm').classList.remove('active');
+  document.getElementById('forgotForm').classList.add('active');
+  document.getElementById('loginMessage').className = 'login-message';
 };
 
 function showMessage(msg, type) {
+  const messageEl = document.getElementById('loginMessage');
   messageEl.textContent = msg;
   messageEl.className = `login-message ${type}`;
   setTimeout(() => { messageEl.className = 'login-message'; }, 5000);
@@ -49,6 +44,8 @@ window.handleLogin = async (e) => {
   const password = document.getElementById('loginPassword').value;
 
   try {
+    showMessage('🔄 Iniciando sesión...', 'success');
+    
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
@@ -58,10 +55,16 @@ window.handleLogin = async (e) => {
       window.location.href = 'index.html';
     }, 1500);
   } catch (error) {
+    console.error('Error de login:', error);
     let msg = '❌ Error al iniciar sesión';
+    
     if (error.code === 'auth/user-not-found') msg = '❌ Usuario no encontrado';
-    if (error.code === 'auth/wrong-password') msg = '❌ Contraseña incorrecta';
-    if (error.code === 'auth/invalid-email') msg = '❌ Correo inválido';
+    else if (error.code === 'auth/wrong-password') msg = '❌ Contraseña incorrecta';
+    else if (error.code === 'auth/invalid-email') msg = '❌ Correo inválido';
+    else if (error.code === 'auth/invalid-credential') msg = '❌ Credenciales inválidas';
+    else if (error.code === 'auth/too-many-requests') msg = '⚠️ Demasiados intentos. Intenta más tarde';
+    else msg = `❌ Error: ${error.message}`;
+    
     showMessage(msg, 'error');
   }
 };
@@ -86,6 +89,8 @@ window.handleRegister = async (e) => {
   }
 
   try {
+    showMessage('🔄 Creando cuenta...', 'success');
+    
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
@@ -98,18 +103,25 @@ window.handleRegister = async (e) => {
       window.location.href = 'index.html';
     }, 2000);
   } catch (error) {
+    console.error('Error de registro:', error);
     let msg = '❌ Error al crear la cuenta';
+    
     if (error.code === 'auth/email-already-in-use') msg = '❌ Este correo ya está registrado';
-    if (error.code === 'auth/weak-password') msg = '❌ Contraseña demasiado débil';
+    else if (error.code === 'auth/weak-password') msg = '❌ Contraseña demasiado débil (mínimo 6 caracteres)';
+    else if (error.code === 'auth/invalid-email') msg = '❌ Correo inválido';
+    else msg = `❌ Error: ${error.message}`;
+    
     showMessage(msg, 'error');
   }
 };
 
 // ==========================================
-// RECUPERAR CONTRASEÑA (Simulado visualmente)
+// RECUPERAR CONTRASEÑA
 // ==========================================
 window.handleForgotPassword = (e) => {
   e.preventDefault();
-  showMessage('📧 En un entorno real, Firebase enviaría un correo de recuperación.', 'success');
+  showMessage('📧 Función de recuperación en desarrollo', 'success');
   setTimeout(() => showLogin(), 3000);
 };
+
+console.log('🔐 Sistema de autenticación Zombie-TK cargado');
