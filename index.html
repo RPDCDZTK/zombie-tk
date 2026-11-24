@@ -5,7 +5,181 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zombie - TK</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="hero-carousel.css">
+  <style>
+    /* Estilos críticos para el index */
+    .horizontal-scroll {
+      display: flex !important;
+      overflow-x: auto !important;
+      gap: 12px !important;
+      padding: 0 20px !important;
+      scrollbar-width: none !important;
+      scroll-behavior: smooth !important;
+    }
+    .horizontal-scroll::-webkit-scrollbar {
+      display: none !important;
+    }
+    .card {
+      flex-shrink: 0 !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      cursor: pointer !important;
+      transition: transform 0.2s !important;
+      position: relative !important;
+    }
+    .card:hover {
+      transform: scale(1.05) !important;
+    }
+    .card-img-container {
+      width: 140px !important;
+      height: 200px !important;
+      position: relative !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+    }
+    .card-img-container img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+    .card-wide {
+      width: 280px !important;
+      height: 160px !important;
+      position: relative !important;
+      flex-shrink: 0 !important;
+    }
+    .card-wide img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 12px !important;
+    }
+    .content-type-badge {
+      position: absolute !important;
+      top: 8px !important;
+      left: 8px !important;
+      padding: 4px 10px !important;
+      border-radius: 12px !important;
+      font-size: 10px !important;
+      font-weight: bold !important;
+      z-index: 5 !important;
+      background: rgba(139, 0, 0, 0.9) !important;
+      color: #fff !important;
+    }
+    .card-title-overlay {
+      position: absolute !important;
+      bottom: 8px !important;
+      left: 8px !important;
+      right: 8px !important;
+      font-size: 12px !important;
+      font-weight: bold !important;
+      z-index: 2 !important;
+      text-shadow: 1px 1px 2px #000 !important;
+      color: #fff !important;
+    }
+    .card-number {
+      position: absolute !important;
+      top: 10px !important;
+      right: 10px !important;
+      font-size: 24px !important;
+      font-weight: bold !important;
+      z-index: 3 !important;
+      color: #fff !important;
+      text-shadow: 2px 2px 4px #000 !important;
+    }
+    .favorite-btn {
+      position: absolute !important;
+      top: 8px !important;
+      right: 8px !important;
+      background: rgba(0, 0, 0, 0.6) !important;
+      border: none !important;
+      border-radius: 50% !important;
+      width: 32px !important;
+      height: 32px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      z-index: 10 !important;
+    }
+    .star-icon {
+      width: 20px !important;
+      height: 20px !important;
+      fill: transparent !important;
+      stroke: #FFD700 !important;
+      stroke-width: 1.5 !important;
+    }
+    .favorite-btn.active .star-icon {
+      fill: #FFD700 !important;
+      stroke: #FFD700 !important;
+    }
+    .section {
+      margin-bottom: 30px !important;
+    }
+    .section-header {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 0 20px !important;
+      margin-bottom: 15px !important;
+    }
+    .section-title {
+      font-size: 20px !important;
+      font-weight: bold !important;
+    }
+    .section-link {
+      color: #aaa !important;
+      font-size: 14px !important;
+      text-decoration: none !important;
+    }
+    /* Hero Banner */
+    .hero-banner {
+      position: relative !important;
+      height: 450px !important;
+      margin: 0 15px 20px !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      background: linear-gradient(135deg, #8b0000 0%, #000 100%) !important;
+      display: flex !important;
+      align-items: flex-end !important;
+    }
+    .hero-content {
+      position: relative !important;
+      z-index: 3 !important;
+      padding: 30px !important;
+      width: 100% !important;
+    }
+    .hero-title {
+      font-size: 48px !important;
+      font-weight: 900 !important;
+      color: #ff0000 !important;
+      text-shadow: 3px 3px 0 #000 !important;
+      margin-bottom: 10px !important;
+    }
+    .hero-subtitle {
+      font-size: 14px !important;
+      color: #ccc !important;
+      margin-bottom: 20px !important;
+    }
+    .hero-buttons {
+      display: flex !important;
+      gap: 10px !important;
+    }
+    .btn-play, .btn-list {
+      padding: 12px 24px !important;
+      border-radius: 25px !important;
+      font-weight: bold !important;
+      cursor: pointer !important;
+      border: none !important;
+    }
+    .btn-play {
+      background: #fff !important;
+      color: #000 !important;
+    }
+    .btn-list {
+      background: rgba(255,255,255,0.2) !important;
+      color: #fff !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -20,12 +194,6 @@
       if (user) {
         document.body.style.visibility = 'visible';
         console.log('✅ Usuario autenticado:', user.email);
-        window.ZOMBIE_USER = {
-          email: user.email,
-          name: user.displayName || 'ZombieFan',
-          uid: user.uid
-        };
-        window.dispatchEvent(new CustomEvent('zombieAuthReady', { detail: user }));
       } else {
         console.log('❌ Sin sesión, redirigiendo...');
         window.location.href = 'login.html';
@@ -125,21 +293,6 @@
         <span class="menu-item-text">Juegos</span>
         <span class="menu-item-count" id="menu-count-juegos">0</span>
       </a>
-      <a href="tutoriales.html" class="menu-item">
-        <span class="menu-item-icon">🎓</span>
-        <span class="menu-item-text">Tutoriales</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-      <a href="musica.html" class="menu-item">
-        <span class="menu-item-icon">🎵</span>
-        <span class="menu-item-text">Música</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-      <a href="revistas.html" class="menu-item">
-        <span class="menu-item-icon">📰</span>
-        <span class="menu-item-text">Revistas</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
     </div>
 
     <div class="menu-footer">
@@ -148,18 +301,16 @@
     </div>
   </div>
 
-  <!-- NOTIFICACIÓN BANNER -->
-  <div class="notif-banner">
-    <div class="notif-banner-text">
-      <h3>🧟 Nuevos contenidos zombie</h3>
-      <p>Descubre los últimos estrenos de Zombie-TK</p>
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1 class="hero-title">ZOMBIE-TK</h1>
+      <p class="hero-subtitle">La plataforma definitiva para fans del género zombie</p>
+      <div class="hero-buttons">
+        <button class="btn-play">▶ Reproducir</button>
+        <button class="btn-list">+ Mi Lista</button>
+      </div>
     </div>
-    <button>Activar</button>
-  </div>
-
-  <!-- HERO CARRUSEL -->
-  <div class="hero-carousel" id="heroCarousel">
-    <!-- Se genera dinámicamente -->
   </div>
 
   <!-- CONTENIDO DINÁMICO -->
@@ -172,7 +323,6 @@
 
   <!-- SCRIPTS -->
   <script src="database.js"></script>
-  <script src="script.js"></script>
   
   <script>
     // ===== FUNCIONES DE MENÚ HAMBURGUESA =====
@@ -218,7 +368,7 @@
       console.log('🎨 Renderizando contenido del index...');
       let html = '';
 
-      // 1. SEGUIR VIENDO (últimos vistos - simulado con primeros items)
+      // 1. SEGUIR VIENDO
       if (ZOMBIE_DB.series && ZOMBIE_DB.series.length > 0) {
         html += renderSection('Seguir Viendo', ZOMBIE_DB.series.slice(0, 5), 'serie', 'card-wide');
       }
@@ -309,9 +459,9 @@
         html += `
           <div class="${cardClass}" data-id="${item.id}" data-title="${item.title}" data-type="${type}">
             ${cardClass === 'card' ? '<div class="card-img-container">' : ''}
-              <img src="${img}" alt="${item.title}" class="card-img-real" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23333%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23FFD700%22>🧟</text></svg>'">
+              <img src="${img}" alt="${item.title}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23333%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23FFD700%22>🧟</text></svg>'">
               ${number}
-              <div class="content-type-badge ${type}">${badge}</div>
+              <div class="content-type-badge">${badge}</div>
               <div class="card-title-overlay">${item.title}</div>
               <button class="favorite-btn" onclick="toggleFavorite(event, this)">
                 <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -368,7 +518,6 @@
       });
     }
 
-    // ===== FUNCIÓN DE FAVORITOS =====
     function toggleFavorite(event, button) {
       event.stopPropagation();
       button.classList.toggle('active');
@@ -377,17 +526,15 @@
       const id = card.dataset.id;
       const title = card.dataset.title;
       const type = card.dataset.type;
-      const img = card.querySelector('.card-img-real').src;
+      const img = card.querySelector('img').src;
       
       let favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
       const index = favorites.findIndex(f => f.id === id);
       
       if (index > -1) {
         favorites.splice(index, 1);
-        console.log('⭐ Eliminado de favoritos:', title);
       } else {
         favorites.push({ id, title, type, img });
-        console.log('⭐ Agregado a favoritos:', title);
       }
       
       localStorage.setItem('zombieTK_favorites', JSON.stringify(favorites));
@@ -397,7 +544,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderIndexContent();
       
-      // Scroll button
       window.addEventListener('scroll', () => {
         const backToTop = document.getElementById('backToTop');
         if (backToTop) {
