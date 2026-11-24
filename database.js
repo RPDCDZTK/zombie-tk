@@ -222,7 +222,6 @@ const ZOMBIE_DB = {
   { id: 'm189', title: 'Zombieworld', year: '2015' },
   { id: 'm190', title: 'Zoo', year: '2018' },
   { id: 'm191', title: 'Zoombies', year: '2016' },
-];
   ],
 
   // ============================================
