@@ -373,7 +373,7 @@ function getSettingsContent(section) {
     },
     contacto: {
       title: '✉️ Contactar soporte',
-      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto: zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li><li>💬 Telegram: https://t.me/+kjGQHz-bdyc2MTZh</li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
+      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto: zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li><li>💬 Telegram: <a>https://t.me/+kjGQHz-bdyc2MTZh</a></li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
     },
     'cambiar-cuenta': {
       title: '🔄 Cambiar de cuenta',
