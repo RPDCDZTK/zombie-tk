@@ -9,37 +9,29 @@
 </head>
 <body>
 
-  <script>
-  // Verificar autenticación antes de mostrar el contenido
-  (function() {
-    const currentUser = JSON.parse(localStorage.getItem('zombieTK_currentUser'));
-    
-    if (!currentUser) {
-      // No hay usuario autenticado, redirigir al login
+  <!-- Al inicio del <body>, antes de cualquier contenido -->
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // Ocultar todo el contenido hasta verificar autenticación
+  document.body.style.visibility = 'hidden';
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Usuario autenticado, mostrar contenido
+      console.log('✅ Usuario autenticado:', user.email);
+      document.body.style.visibility = 'visible';
+      
+      // Opcional: Mostrar el nombre del usuario en algún lugar
+      // document.getElementById('userName').textContent = user.displayName || user.email;
+    } else {
+      // No hay usuario, redirigir al login
+      console.log('❌ No hay usuario autenticado, redirigiendo...');
       window.location.href = 'login.html';
     }
-  })();
-  </script>
-  
-  <!-- 🔒 GUARDIÁN DE AUTENTICACIÓN (Auth Guard) -->
-  <script type="module">
-    import { auth } from './firebase-config.js';
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        // Si NO hay usuario, lo mandamos al login
-        console.log('🚫 Acceso denegado. Redirigiendo al login...');
-        window.location.href = 'login.html';
-      } else {
-        // Si SÍ hay usuario, lo dejamos pasar
-        console.log('✅ Bienvenido a Zombie-TK:', user.email);
-        
-        // Opcional: Mostrar su nombre en la consola o en el header
-        // document.getElementById('userName').textContent = user.displayName;
-      }
-    });
-  </script>
+  });
+</script>
 
   <!-- HOME PAGE -->
   <div id="homePage" class="page active">
