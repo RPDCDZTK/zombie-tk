@@ -8,19 +8,23 @@
   <link rel="stylesheet" href="hero-carousel.css">
 </head>
 <body>
-  
-  <!-- Script de protección (Auth Guard) -->
+
+  <!-- 🔒 GUARDIÁN DE AUTENTICACIÓN (Auth Guard) -->
   <script type="module">
     import { auth } from './firebase-config.js';
     import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        // No hay usuario logueado, mandar al login
+        // Si NO hay usuario, lo mandamos al login
+        console.log('🚫 Acceso denegado. Redirigiendo al login...');
         window.location.href = 'login.html';
       } else {
-        console.log('✅ Usuario autenticado:', user.email);
-        // Aquí podrías mostrar el nombre del usuario en el header si quisieras
+        // Si SÍ hay usuario, lo dejamos pasar
+        console.log('✅ Bienvenido a Zombie-TK:', user.email);
+        
+        // Opcional: Mostrar su nombre en la consola o en el header
+        // document.getElementById('userName').textContent = user.displayName;
       }
     });
   </script>
