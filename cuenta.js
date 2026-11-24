@@ -1,5 +1,5 @@
 /* ============================================
-   ZOMBIE-TK - cuenta.js
+   ZOMBIE-TK - cuenta.js (CORREGIDO)
    ============================================ */
 
 const PREDEFINED_AVATARS = [
@@ -340,8 +340,36 @@ function loadUserProfile() {
   }
 }
 
-// ===== INICIALIZACIÓN =====
+// ===== 🆕 FUNCIÓN PARA ACTUALIZAR CONTADORES DEL MENÚ =====
+function updateMenuCounters() {
+  // Verificamos que database.js ya haya cargado la variable ZOMBIE_DB
+  if (typeof ZOMBIE_DB === 'undefined') {
+    console.warn('⚠️ ZOMBIE_DB no está cargado aún. Verifica el orden de los scripts en cuenta.html');
+    return;
+  }
+  
+  const counters = {
+    'menu-count-libros': ZOMBIE_DB.libros ? ZOMBIE_DB.libros.length : 0,
+    'menu-count-peliculas': ZOMBIE_DB.peliculas ? ZOMBIE_DB.peliculas.length : 0,
+    'menu-count-series': ZOMBIE_DB.series ? ZOMBIE_DB.series.length : 0,
+    'menu-count-animes': ZOMBIE_DB.animes ? ZOMBIE_DB.animes.length : 0,
+    'menu-count-comics': ZOMBIE_DB.comics ? ZOMBIE_DB.comics.length : 0,
+    'menu-count-cortos': ZOMBIE_DB.cortometrajes ? ZOMBIE_DB.cortometrajes.length : 0,
+    'menu-count-relatos': ZOMBIE_DB.relatos ? ZOMBIE_DB.relatos.length : 0,
+    'menu-count-juegos': ZOMBIE_DB.juegos ? ZOMBIE_DB.juegos.length : 0
+  };
 
+  Object.keys(counters).forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = counters[id];
+    }
+  });
+  
+  console.log('📊 Contadores del menú actualizados correctamente');
+}
+
+// ===== INICIALIZACIÓN =====
 function init() {
   console.log('👤 Inicializando cuenta...');
   
@@ -351,6 +379,9 @@ function init() {
   
   const currentAvatar = getCurrentAvatar();
   updateAvatarEverywhere(currentAvatar);
+  
+  // 🆕 LLAMAMOS A LA FUNCIÓN QUE ACTUALIZA LOS CONTADORES
+  updateMenuCounters();
   
   const overlay = document.getElementById('menuOverlay');
   if (overlay) overlay.addEventListener('click', closeMenu);
