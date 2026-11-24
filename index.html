@@ -8,7 +8,18 @@
   <link rel="stylesheet" href="hero-carousel.css">
 </head>
 <body>
-
+<script>
+  // Verificar autenticación antes de mostrar el contenido
+  (function() {
+    const currentUser = JSON.parse(localStorage.getItem('zombieTK_currentUser'));
+    
+    if (!currentUser) {
+      // No hay usuario autenticado, redirigir al login
+      window.location.href = 'login.html';
+    }
+  })();
+</script>
+  
   <!-- HOME PAGE -->
   <div id="homePage" class="page active">
     
