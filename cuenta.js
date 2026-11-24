@@ -2,6 +2,10 @@
    ZOMBIE-TK - cuenta.js (VERSIÓN ACTUALIZADA)
    ============================================ */
 
+// Agrega este import al principio de cuenta.js (si usas módulos) o usa la función global
+import { auth } from './firebase-config.js';
+import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 const PREDEFINED_AVATARS = [
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie1&backgroundColor=4c1d95',
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie2&backgroundColor=6d28d9',
@@ -379,15 +383,25 @@ function checkForUpdates() {
   }, 2000);
 }
 
-function logout() {
+/**
+ * Cierra sesión en Firebase
+ */
+window.logout = async () => {
   const confirmLogout = confirm('¿Estás seguro de que quieres cerrar sesión?');
+  
   if (confirmLogout) {
-    showToast('👋 Sesión cerrada correctamente');
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 1500);
+    try {
+      await signOut(auth);
+      showToast('👋 Sesión cerrada correctamente');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1500);
+    } catch (error) {
+      showToast('❌ Error al cerrar sesión');
+      console.error(error);
+    }
   }
-}
+};
 
 function showToast(message) {
   let toast = document.querySelector('.toast');
