@@ -1,3 +1,8 @@
+/* ============================================
+   ZOMBIE-TK - Estilos Globales (Parte 1 de 5)
+   Reset, Base y Header
+   ============================================ */
+
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +18,10 @@ body {
   overflow-x: hidden;
 }
 
-/* HEADER */
+/* ============================================
+   HEADER
+   ============================================ */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -23,8 +31,35 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid #1a1a1a;
 }
 
+/* Botón hamburguesa */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 101;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover .hamburger-line {
+  background: #FFD700;
+}
+
+/* Branding del sitio */
 .site-branding {
   display: flex;
   align-items: center;
@@ -58,37 +93,265 @@ body {
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.user-name {
-  font-size: 18px;
-  font-weight: bold;
-}
-
+/* Iconos del header */
 .header-icons {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 12px;
 }
 
 .header-icons button {
   background: none;
   border: none;
   color: #fff;
-  font-size: 22px;
   cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-img {
   width: 24px;
   height: 24px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s;
 }
 
-/* NOTIFICATION BANNER */
+.header-icons button:hover .icon-img {
+  transform: scale(1.1);
+}
+
+/* ============================================
+   🌟 AVATAR CIRCULAR EN HEADER
+   ============================================ */
+
+.header-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #a78bfa;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #312e81;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.4);
+  flex-shrink: 0;
+}
+
+.header-avatar:hover {
+  border-color: #FFD700;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.header-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   ZOMBIE-TK - Estilos Globales (Parte 2 de 5)
+   Menú Hamburguesa
+   ============================================ */
+
+/* Overlay oscuro */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menú lateral */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  max-width: 85vw;
+  height: 100%;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a0a0a 100%);
+  z-index: 2000;
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #8b0000;
+  box-shadow: 5px 0 25px rgba(139, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+.hamburger-menu.active {
+  left: 0;
+}
+
+/* Header del menú */
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #333;
+  background: rgba(139, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.menu-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.menu-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.menu-title .title-accent {
+  color: #ff0000;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+.menu-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-close:hover {
+  background: #8b0000;
+  transform: rotate(90deg);
+}
+
+/* Contenido del menú */
+.menu-content {
+  flex: 1;
+  padding: 15px 0;
+  overflow-y: auto;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+  background: rgba(139, 0, 0, 0.2);
+  border-left-color: #ff0000;
+  padding-left: 25px;
+}
+
+.menu-item.active {
+  background: rgba(139, 0, 0, 0.3);
+  border-left-color: #FFD700;
+}
+
+.menu-item-icon {
+  font-size: 20px;
+  width: 28px;
+  text-align: center;
+}
+
+.menu-item-text {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.menu-item-count {
+  font-size: 11px;
+  color: #aaa;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.menu-item-badge {
+  font-size: 10px;
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Divisor visual en el menú */
+.menu-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8b0000, transparent);
+  margin: 15px 20px;
+}
+
+/* Footer del menú */
+.menu-footer {
+  padding: 20px;
+  border-top: 1px solid #333;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.menu-footer-logo {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.menu-footer-text {
+  font-size: 12px;
+  color: #8b0000;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   ZOMBIE-TK - Estilos Globales (Parte 3 de 5)
+   Notificaciones, Hero, Secciones y Cards
+   ============================================ */
+
+/* ============================================
+   NOTIFICATION BANNER
+   ============================================ */
+
 .notif-banner {
   margin: 0 15px 15px;
   background: #1a1a1a;
@@ -120,96 +383,10 @@ body {
   cursor: pointer;
 }
 
-/* HERO BANNER */
-.hero-banner {
-  position: relative;
-  height: 450px;
-  margin: 0 15px 20px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #8b0000 0%, #000 100%);
-  display: flex;
-  align-items: flex-end;
-}
+/* ============================================
+   SECCIONES
+   ============================================ */
 
-.hero-bg-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(139, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
-  z-index: 2;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 3;
-  padding: 30px;
-  width: 100%;
-}
-
-.hero-title {
-  font-size: 48px;
-  font-weight: 900;
-  color: #ff0000;
-  text-shadow: 3px 3px 0 #000;
-  margin-bottom: 10px;
-  letter-spacing: 2px;
-  font-style: italic;
-}
-
-.hero-subtitle {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 20px;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-play {
-  background: #fff;
-  color: #000;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 25px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-list {
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 12px 24px;
-  border-radius: 25px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  backdrop-filter: blur(10px);
-}
-
-/* SECTIONS */
 .section {
   margin-bottom: 30px;
 }
@@ -232,9 +409,21 @@ body {
   font-size: 14px;
   cursor: pointer;
   text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 15px;
 }
 
-/* HORIZONTAL SCROLL */
+.section-link:hover {
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateX(3px);
+}
+
+/* ============================================
+   HORIZONTAL SCROLL
+   ============================================ */
+
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
@@ -248,11 +437,14 @@ body {
   display: none;
 }
 
-/* CARDS */
+/* ============================================
+   CARDS
+   ============================================ */
+
 .card {
   flex-shrink: 0;
   border-radius: 12px;
-  overflow: visible;
+  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s;
   position: relative;
@@ -267,7 +459,6 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 12px;
 }
 
 .card-img-container {
@@ -308,8 +499,8 @@ body {
 }
 
 .card-wide .card-img-real {
-  width: 280px;
-  height: 160px;
+  width: 100%;
+  height: 100%;
 }
 
 .card-wide::after {
@@ -328,32 +519,146 @@ body {
 .card-number {
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
+  left: auto;
   font-size: 24px;
   font-weight: bold;
   z-index: 3;
   color: #fff;
   text-shadow: 2px 2px 4px #000;
+  background: rgba(0, 0, 0, 0.5);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* FAVORITE BUTTON (ESTRELLA) */
+/* ============================================
+   🏷️ INDICADORES DE TIPO DE CONTENIDO
+   ============================================ */
+
+.content-type-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Colores por tipo de contenido */
+.content-type-badge.pelicula {
+  background: rgba(139, 0, 0, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-type-badge.serie {
+  background: rgba(147, 112, 219, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-type-badge.libro {
+  background: rgba(45, 80, 22, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-type-badge.anime {
+  background: rgba(255, 0, 110, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-type-badge.comic {
+  background: rgba(255, 140, 0, 0.9);
+  color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.content-type-badge.cortometraje {
+  background: rgba(0, 180, 216, 0.9);
+  color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.content-type-badge.relato {
+  background: rgba(139, 69, 19, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-type-badge.juego {
+  background: rgba(57, 255, 20, 0.9);
+  color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.content-type-badge.musica {
+  background: rgba(255, 20, 147, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-type-badge.tutorial {
+  background: rgba(0, 255, 136, 0.9);
+  color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.content-type-badge.revista {
+  background: rgba(255, 105, 180, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-type-badge.coleccion {
+  background: rgba(255, 215, 0, 0.9);
+  color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Efecto hover en badges */
+.card:hover .content-type-badge {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   ZOMBIE-TK - Estilos Globales (Parte 4 de 5)
+   Favoritos, Estrella, Personalidades y Search
+   ============================================ */
+
+/* ============================================
+   BOTÓN DE FAVORITOS (ESTRELLA)
+   ============================================ */
+
 .favorite-btn {
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 10;
   background: rgba(0, 0, 0, 0.6);
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0;
+  z-index: 10;
+  transition: all 0.3s ease;
   backdrop-filter: blur(4px);
-  transition: all 0.2s ease;
 }
 
 .favorite-btn:hover {
@@ -362,27 +667,28 @@ body {
 }
 
 .star-icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   fill: transparent;
   stroke: #FFD700;
   stroke-width: 1.5;
-  stroke-linejoin: round;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.5));
 }
 
 .favorite-btn.active .star-icon {
   fill: #FFD700;
   stroke: #FFD700;
-  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.9));
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
 }
 
-.favorite-btn:active {
-  transform: scale(0.9);
+.favorite-btn.active {
+  background: rgba(255, 215, 0, 0.2);
 }
 
-/* PERSONALITIES */
+/* ============================================
+   PERSONALIDADES
+   ============================================ */
+
 .personality {
   flex-shrink: 0;
   text-align: center;
@@ -413,7 +719,10 @@ body {
   color: #aaa;
 }
 
-/* SEARCH PAGE */
+/* ============================================
+   SEARCH PAGE
+   ============================================ */
+
 .search-container {
   padding: 20px;
 }
@@ -494,37 +803,28 @@ body {
   height: 200px;
 }
 
-/* FAVORITES PAGE */
+/* ============================================
+   FAVORITES PAGE
+   ============================================ */
+
 .favorites-container {
   padding: 20px;
   min-height: 70vh;
 }
 
-.favorites-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  text-align: center;
+.favorites-header {
+  margin-bottom: 25px;
 }
 
-.favorites-empty-icon {
-  font-size: 80px;
-  margin-bottom: 20px;
-  opacity: 0.3;
+.favorites-header h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #FFD700;
 }
 
-.favorites-empty h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.favorites-empty p {
+.favorites-count {
   color: #aaa;
   font-size: 14px;
-  max-width: 280px;
 }
 
 .favorites-grid {
@@ -542,7 +842,40 @@ body {
   height: 200px;
 }
 
-/* ACCOUNT PAGE */
+.empty-favorites {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #aaa;
+}
+
+.empty-star {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-favorites h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.empty-favorites p {
+  font-size: 14px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   ZOMBIE-TK - Estilos Globales (Parte 5 de 5)
+   Account, Modal, Toast, Volver Arriba y Responsive
+   ============================================ */
+
+/* ============================================
+   ACCOUNT PAGE
+   ============================================ */
+
 .account-page {
   padding: 20px;
 }
@@ -552,13 +885,6 @@ body {
   align-items: center;
   gap: 15px;
   margin-bottom: 30px;
-}
-
-.account-avatar-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .account-avatar-img-large {
@@ -668,7 +994,10 @@ body {
   color: #8b0000;
 }
 
-/* MODAL */
+/* ============================================
+   MODAL
+   ============================================ */
+
 .modal {
   display: none;
   position: fixed;
@@ -718,54 +1047,114 @@ body {
   border-radius: 50%;
 }
 
-/* BOTTOM NAV */
-.bottom-nav {
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+
+.toast {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #0a0a0a;
-  border-top: 1px solid #222;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  z-index: 1000;
-}
-
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  padding: 5px 15px;
-  color: #888;
-  transition: color 0.2s;
-}
-
-.nav-item.active {
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0, 0, 0, 0.95);
   color: #fff;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  z-index: 3000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  border: 1px solid #FFD700;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.nav-item.active .nav-icon-img {
-  filter: brightness(0) invert(1);
-  background: #333;
-  border-radius: 20px;
-  padding: 8px;
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
-.nav-icon-img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  transition: all 0.2s;
+/* ============================================
+   BOTÓN VOLVER ARRIBA
+   ============================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #8b0000;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.5);
+  z-index: 100;
+  transition: all 0.3s ease;
 }
 
-.nav-label {
-  font-size: 11px;
+.back-to-top.visible {
+  display: flex;
+  animation: fadeInUp 0.3s ease;
 }
 
-/* PAGE VISIBILITY */
+.back-to-top:hover {
+  background: #a00000;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(139, 0, 0, 0.7);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   ZOMBIE EFFECTS
+   ============================================ */
+
+.zombie-text {
+  color: #8b0000;
+  text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+}
+
+.blood-drip {
+  position: relative;
+}
+
+.blood-drip::after {
+  content: '🩸';
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  font-size: 20px;
+}
+
+/* ============================================
+   ANIMACIÓN DE ENTRADA
+   ============================================ */
+
+.animate-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   PAGE VISIBILITY
+   ============================================ */
+
 .page {
   display: none;
 }
@@ -786,25 +1175,10 @@ body {
   }
 }
 
-/* ZOMBIE EFFECTS */
-.zombie-text {
-  color: #8b0000;
-  text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
-}
+/* ============================================
+   SCROLLBAR PERSONALIZADO
+   ============================================ */
 
-.blood-drip {
-  position: relative;
-}
-
-.blood-drip::after {
-  content: '🩸';
-  position: absolute;
-  top: -10px;
-  right: -15px;
-  font-size: 20px;
-}
-
-/* SCROLLBAR */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -822,7 +1196,10 @@ body {
   background: #a00000;
 }
 
-/* RESPONSIVE */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
 @media (min-width: 768px) {
   body {
     max-width: 480px;
@@ -831,14 +1208,16 @@ body {
     border-right: 1px solid #222;
   }
   
-  .bottom-nav {
-    max-width: 480px;
-    left: 50%;
-    transform: translateX(-50%);
+  .content-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
   
-  .content-grid, .favorites-grid {
+  .favorites-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .hamburger-menu {
+    width: 320px;
   }
 }
 
@@ -847,373 +1226,11 @@ body {
     max-width: 600px;
   }
   
-  .bottom-nav {
-    max-width: 600px;
-  }
-  
-  .content-grid, .favorites-grid {
+  .content-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-/* ============================================
-   ESTRELLAS DE FAVORITOS
-   ============================================ */
-
-.favorite-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-.favorite-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-  transform: scale(1.1);
-}
-
-.star-icon {
-  width: 20px;
-  height: 20px;
-  fill: transparent;
-  stroke: #FFD700;
-  stroke-width: 1.5;
-  transition: all 0.3s ease;
-}
-
-.favorite-btn.active .star-icon {
-  fill: #FFD700;
-  stroke: #FFD700;
-  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
-}
-
-.favorite-btn.active {
-  background: rgba(255, 215, 0, 0.2);
-}
-
-/* ============================================
-   PÁGINA DE FAVORITOS
-   ============================================ */
-
-.favorites-container {
-  padding: 20px;
-  min-height: 70vh;
-}
-
-.favorites-header {
-  margin-bottom: 25px;
-}
-
-.favorites-header h2 {
-  font-size: 24px;
-  margin-bottom: 8px;
-  color: #FFD700;
-}
-
-.favorites-count {
-  color: #aaa;
-  font-size: 14px;
-}
-
-.favorites-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.favorites-grid .card {
-  width: 100%;
-}
-
-.favorites-grid .card-img-container {
-  width: 100%;
-  height: 200px;
-}
-
-.empty-favorites {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 60px 20px;
-  color: #aaa;
-}
-
-.empty-star {
-  font-size: 64px;
-  margin-bottom: 20px;
-  opacity: 0.5;
-}
-
-.empty-favorites h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.empty-favorites p {
-  font-size: 14px;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-/* ============================================
-   TOAST NOTIFICATION
-   ============================================ */
-
-.toast {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: rgba(0, 0, 0, 0.9);
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 25px;
-  font-size: 14px;
-  z-index: 3000;
-  opacity: 0;
-  transition: all 0.3s ease;
-  border: 1px solid #FFD700;
-  pointer-events: none;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* ============================================
-   🍔 MENÚ HAMBURGUESA
-   ============================================ */
-
-/* Botón hamburguesa */
-.hamburger-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  z-index: 101;
-}
-
-.hamburger-line {
-  display: block;
-  width: 24px;
-  height: 3px;
-  background: #fff;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.hamburger-btn:hover .hamburger-line {
-  background: #FFD700;
-}
-
-/* Overlay oscuro */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1999;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Menú lateral */
-.hamburger-menu {
-  position: fixed;
-  top: 0;
-  left: -320px;
-  width: 300px;
-  max-width: 85vw;
-  height: 100%;
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a0a0a 100%);
-  z-index: 2000;
-  transition: left 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  border-right: 2px solid #8b0000;
-  box-shadow: 5px 0 25px rgba(139, 0, 0, 0.5);
-  overflow-y: auto;
-}
-
-.hamburger-menu.active {
-  left: 0;
-}
-
-/* Header del menú */
-.menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #333;
-  background: rgba(139, 0, 0, 0.1);
-}
-
-.menu-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.menu-logo-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.menu-title {
-  font-size: 20px;
-  font-weight: 900;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.menu-title .title-accent {
-  color: #ff0000;
-  text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-}
-
-.menu-close {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: #fff;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.menu-close:hover {
-  background: #8b0000;
-  transform: rotate(90deg);
-}
-
-/* Contenido del menú */
-.menu-content {
-  flex: 1;
-  padding: 15px 0;
-  overflow-y: auto;
-}
-
-.menu-section {
-  margin-bottom: 20px;
-}
-
-.menu-section-title {
-  font-size: 11px;
-  color: #8b0000;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  padding: 0 20px 10px;
-  font-weight: bold;
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  color: #fff;
-  text-decoration: none;
-  transition: all 0.2s;
-  border-left: 3px solid transparent;
-}
-
-.menu-item:hover {
-  background: rgba(139, 0, 0, 0.2);
-  border-left-color: #ff0000;
-  padding-left: 25px;
-}
-
-.menu-item-icon {
-  font-size: 20px;
-  width: 28px;
-  text-align: center;
-}
-
-.menu-item-text {
-  flex: 1;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.menu-item-count {
-  font-size: 11px;
-  color: #aaa;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 3px 8px;
-  border-radius: 10px;
-}
-
-.menu-item-badge {
-  font-size: 10px;
-  color: #FFD700;
-  background: rgba(255, 215, 0, 0.1);
-  padding: 3px 8px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-}
-
-/* Footer del menú */
-.menu-footer {
-  padding: 20px;
-  border-top: 1px solid #333;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.menu-footer-logo {
-  font-size: 36px;
-  margin-bottom: 8px;
-}
-
-.menu-footer-text {
-  font-size: 12px;
-  color: #8b0000;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-/* ============================================
-   AJUSTES RESPONSIVE PARA MENÚ
-   ============================================ */
-
-@media (min-width: 768px) {
-  .hamburger-menu {
-    width: 320px;
+  
+  .favorites-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
-}
-
-/* Divisor visual en el menú */
-.menu-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #8b0000, transparent);
-  margin: 15px 20px;
 }
