@@ -365,7 +365,7 @@ function getSettingsContent(section) {
     },
     acerca: {
       title: 'ℹ️ Acerca de Zombie-TK',
-      body: `<h4>Zombie-TK+</h4><p>La plataforma definitiva para fans del género zombie.</p><h4>Versión</h4><p><strong>Versión 1.0.43</strong> (Noviembre 2024)</p><h4>Contacto</h4><p>📧 punk_dead_rp@hotmail.com</p>`
+      body: `<h4>Zombie-TK+</h4><p>La plataforma definitiva para fans del género zombie.</p><h4>Versión</h4><p><strong>Versión 1.0</strong> (Noviembre 2024)</p><h4>Contacto</h4><p>📧 zombie-tk-regepunk@outlook.com</p>`
     },
     actualizar: {
       title: '📱 Buscar actualizaciones',
@@ -373,7 +373,7 @@ function getSettingsContent(section) {
     },
     contacto: {
       title: '✉️ Contactar soporte',
-      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto:punk_dead_rp@hotmail.com" style="color: #a78bfa;">punk_dead_rp@hotmail.com</a></li><li>💬 Telegram: @ZombieTKSupport</li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
+      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto: zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li><li>💬 Telegram: https://t.me/+kjGQHz-bdyc2MTZh</li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
     },
     'cambiar-cuenta': {
       title: '🔄 Cambiar de cuenta',
