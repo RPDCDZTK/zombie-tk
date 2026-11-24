@@ -1,12 +1,7 @@
 /* ============================================
-   ZOMBIE-TK - cuenta.js (VERSIÓN CON FIREBASE)
+   ZOMBIE-TK - cuenta.js
    ============================================ */
 
-// Importar Firebase
-import { auth } from './firebase-config.js';
-import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-// Avatares predefinidos
 const PREDEFINED_AVATARS = [
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie1&backgroundColor=4c1d95',
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie2&backgroundColor=6d28d9',
@@ -20,15 +15,16 @@ const PREDEFINED_AVATARS = [
 
 const DEFAULT_AVATAR = 'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
 const MAX_USER_AVATARS = 3;
+const favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
 
-// Hacer funciones globales para que el HTML pueda llamarlas
+// ===== FUNCIONES GLOBALES =====
+
 window.openMenu = function() {
   const menu = document.getElementById('hamburgerMenu');
   const overlay = document.getElementById('menuOverlay');
   if (menu) menu.classList.add('active');
   if (overlay) overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
-  console.log('🍔 Menú abierto');
 };
 
 window.closeMenu = function() {
@@ -37,11 +33,21 @@ window.closeMenu = function() {
   if (menu) menu.classList.remove('active');
   if (overlay) overlay.classList.remove('active');
   document.body.style.overflow = 'auto';
-  console.log('🍔 Menú cerrado');
 };
 
 window.scrollToTop = function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+window.logout = function() {
+  const confirmLogout = confirm('¿Estás seguro de que quieres cerrar sesión?');
+  if (confirmLogout) {
+    if (window.firebaseAuth && window.firebaseAuth.logout) {
+      window.firebaseAuth.logout();
+    } else {
+      window.location.href = 'login.html';
+    }
+  }
 };
 
 window.openAvatarModal = function() {
@@ -72,9 +78,6 @@ window.openAvatarModal = function() {
   const userGrid = document.getElementById('userAvatarGrid');
   const userSection = document.getElementById('userAvatarsSection');
   const userCount = document.getElementById('userAvatarsCount');
-  const uploadBtn = document.getElementById('uploadBtnLabel');
-  const uploadHint = document.getElementById('uploadHint');
-  const uploadWarning = document.getElementById('uploadLimitWarning');
   
   if (userGrid && userSection) {
     userGrid.innerHTML = '';
@@ -113,22 +116,8 @@ window.openAvatarModal = function() {
     }
   }
   
-  if (uploadBtn && uploadHint && uploadWarning) {
-    if (userAvatars.length >= MAX_USER_AVATARS) {
-      uploadBtn.classList.add('disabled');
-      uploadHint.style.display = 'none';
-      uploadWarning.style.display = 'block';
-    } else {
-      uploadBtn.classList.remove('disabled');
-      uploadHint.style.display = 'block';
-      uploadWarning.style.display = 'none';
-    }
-  }
-  
   const currentImg = document.getElementById('avatarCurrentImg');
-  if (currentImg) {
-    currentImg.src = currentAvatar;
-  }
+  if (currentImg) currentImg.src = currentAvatar;
   
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -148,7 +137,7 @@ window.editProfile = function() {
   if (newName && newName.trim()) {
     document.getElementById('profileName').textContent = newName.trim();
     localStorage.setItem('zombieTK_username', newName.trim());
-    showToast('✅ Perfil actualizado correctamente');
+    showToast('✅ Perfil actualizado');
   }
 };
 
@@ -174,25 +163,6 @@ window.closeSettingsModal = function() {
     document.body.style.overflow = 'auto';
   }
 };
-
-window.checkForUpdates = function() {
-  showToast('🔍 Buscando actualizaciones...');
-  setTimeout(() => {
-    showToast('✅ Ya tienes la versión más reciente');
-  }, 2000);
-};
-
-/**
- * Cierra sesión (dispara evento para el módulo de Firebase)
- */
-function logout() {
-  const confirmLogout = confirm('¿Estás seguro de que quieres cerrar sesión?');
-  if (confirmLogout) {
-    showToast('👋 Cerrando sesión...');
-    // Disparar evento personalizado que escucha auth-logout.js
-    window.dispatchEvent(new CustomEvent('zombieLogout'));
-  }
-}
 
 window.handleAvatarUpload = function(event) {
   const file = event.target.files[0];
@@ -231,14 +201,11 @@ window.handleAvatarUpload = function(event) {
     userAvatars.push(dataUrl);
     saveUserAvatars(userAvatars);
     saveAvatar(dataUrl);
-    showToast(`✅ Foto subida correctamente (${userAvatars.length}/${MAX_USER_AVATARS})`);
+    showToast(`✅ Foto subida (${userAvatars.length}/${MAX_USER_AVATARS})`);
     
-    setTimeout(() => {
-      openAvatarModal();
-    }, 500);
+    setTimeout(() => openAvatarModal(), 500);
   };
   reader.readAsDataURL(file);
-  
   event.target.value = '';
 };
 
@@ -246,22 +213,17 @@ window.clearAllUserAvatars = function() {
   const userAvatars = getUserAvatars();
   if (userAvatars.length === 0) return;
   
-  const currentAvatar = getCurrentAvatar();
-  const isCurrentUserAvatar = userAvatars.includes(currentAvatar);
-  
-  const confirmDelete = confirm(`¿Eliminar las ${userAvatars.length} fotos subidas?`);
+  const confirmDelete = confirm(`¿Eliminar las ${userAvatars.length} fotos?`);
   if (!confirmDelete) return;
   
-  if (isCurrentUserAvatar) {
-    saveAvatar(DEFAULT_AVATAR);
-  }
-  
   saveUserAvatars([]);
-  showToast('🗑️ Todas las fotos han sido eliminadas');
+  saveAvatar(DEFAULT_AVATAR);
+  showToast('🗑️ Fotos eliminadas');
   openAvatarModal();
 };
 
-// Funciones auxiliares
+// ===== FUNCIONES AUXILIARES =====
+
 function getUserAvatars() {
   try {
     return JSON.parse(localStorage.getItem('zombieTK_userAvatars')) || [];
@@ -297,66 +259,39 @@ function selectAvatar(avatarUrl, element) {
   document.querySelectorAll('.avatar-option').forEach(opt => {
     opt.classList.remove('selected');
   });
-  
   if (element) element.classList.add('selected');
-  
   saveAvatar(avatarUrl);
-  showToast('✅ Avatar actualizado correctamente');
-  
-  setTimeout(() => {
-    closeAvatarModal();
-  }, 500);
+  showToast('✅ Avatar actualizado');
+  setTimeout(() => closeAvatarModal(), 500);
 }
 
 function deleteUserAvatar(index) {
   const userAvatars = getUserAvatars();
   const currentAvatar = getCurrentAvatar();
-  const avatarToDelete = userAvatars[index];
   
-  const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta foto?');
+  const confirmDelete = confirm('¿Eliminar esta foto?');
   if (!confirmDelete) return;
   
-  if (avatarToDelete === currentAvatar) {
+  if (userAvatars[index] === currentAvatar) {
     saveAvatar(DEFAULT_AVATAR);
-    showToast('🗑️ Foto eliminada. Avatar restablecido.');
-  } else {
-    showToast('🗑️ Foto eliminada correctamente');
   }
   
   userAvatars.splice(index, 1);
   saveUserAvatars(userAvatars);
+  showToast('🗑️ Foto eliminada');
   openAvatarModal();
 }
 
 function getSettingsContent(section) {
   const contents = {
-    idioma: {
-      title: '🌐 Idioma y subtítulos',
-      body: `<h4>Idioma de la aplicación</h4><p>Disponible en la próxima actualización</p>`
-    },
-    privacidad: {
-      title: '🔒 Privacidad',
-      body: `<h4>Control de privacidad</h4><p>Disponible en la próxima actualización</p>`
-    },
-    descargas: {
-      title: '⬇️ Descargas',
-      body: `<h4>Descargas</h4><p>Disponible en la próxima actualización</p>`
-    },
-    acerca: {
-      title: 'ℹ️ Acerca de Zombie-TK',
-      body: `<h4>Zombie-TK+</h4><p>La plataforma definitiva para fans del género zombie.</p><h4>Versión</h4><p><strong>Versión 1.0</strong> (Noviembre 2024)</p><h4>Contacto</h4><p>📧 zombie-tk-regepunk@outlook.com</p>`
-    },
-    actualizar: {
-      title: '📱 Buscar actualizaciones',
-      body: `<h4>Versión actual</h4><p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0</p><p>✅ Estás usando la versión más reciente.</p>`
-    },
-    contacto: {
-      title: '✉️ Contactar soporte',
-      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto:zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
-    }
+    idioma: { title: '🌐 Idioma', body: '<p>Disponible en la próxima actualización</p>' },
+    privacidad: { title: '🔒 Privacidad', body: '<p>Disponible en la próxima actualización</p>' },
+    descargas: { title: '⬇️ Descargas', body: '<p>Disponible en la próxima actualización</p>' },
+    acerca: { title: 'ℹ️ Acerca de', body: '<h4>Zombie-TK+</h4><p>La plataforma definitiva para fans del género zombie.</p><p>Versión 1.0</p>' },
+    actualizar: { title: '📱 Actualizar', body: '<p>Versión actual: 1.0</p><p>✅ Estás usando la versión más reciente.</p>' },
+    contacto: { title: '✉️ Contacto', body: '<p>📧 zombie-tk-regepunk@outlook.com</p>' }
   };
-  
-  return contents[section] || { title: 'Configuración', body: '<p>Opción no disponible.</p>' };
+  return contents[section] || { title: 'Configuración', body: '<p>Opción no disponible</p>' };
 }
 
 function showToast(message) {
@@ -366,13 +301,9 @@ function showToast(message) {
     toast.className = 'toast';
     document.body.appendChild(toast);
   }
-  
   toast.textContent = message;
   toast.classList.add('show');
-  
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2500);
+  setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
 function handleScroll() {
@@ -382,25 +313,47 @@ function handleScroll() {
   else backToTop.classList.remove('visible');
 }
 
-// Inicialización
-function init() {
-  console.log('👤 Inicializando página de cuenta...');
+function updateStats() {
+  const statFavorites = document.getElementById('statFavorites');
+  if (statFavorites) statFavorites.textContent = favorites.length;
   
-  window.addEventListener('scroll', handleScroll);
+  const statViewed = document.getElementById('statViewed');
+  const viewedCount = parseInt(localStorage.getItem('zombieTK_viewed') || '0');
+  if (statViewed) statViewed.textContent = viewedCount;
   
-  const currentAvatar = getCurrentAvatar();
-  updateAvatarEverywhere(currentAvatar);
-  
+  const statLevel = document.getElementById('statLevel');
+  if (statLevel) {
+    let level = 'Novato';
+    if (favorites.length >= 50) level = 'Experto';
+    else if (favorites.length >= 20) level = 'Avanzado';
+    else if (favorites.length >= 10) level = 'Intermedio';
+    else if (favorites.length >= 5) level = 'Principiante';
+    statLevel.textContent = level;
+  }
+}
+
+function loadUserProfile() {
   const savedName = localStorage.getItem('zombieTK_username');
   if (savedName) {
     const profileName = document.getElementById('profileName');
     if (profileName) profileName.textContent = savedName;
   }
+}
+
+// ===== INICIALIZACIÓN =====
+
+function init() {
+  console.log('👤 Inicializando cuenta...');
+  
+  window.addEventListener('scroll', handleScroll);
+  updateStats();
+  loadUserProfile();
+  
+  const currentAvatar = getCurrentAvatar();
+  updateAvatarEverywhere(currentAvatar);
   
   const overlay = document.getElementById('menuOverlay');
-  if (overlay) {
-    overlay.addEventListener('click', closeMenu);
-  }
+  if (overlay) overlay.addEventListener('click', closeMenu);
   
   const settingsModal = document.getElementById('settingsModal');
   if (settingsModal) {
@@ -424,7 +377,7 @@ function init() {
     }
   });
   
-  console.log('✅ Página de cuenta inicializada');
+  console.log('✅ Cuenta inicializada');
 }
 
 if (document.readyState === 'loading') {
