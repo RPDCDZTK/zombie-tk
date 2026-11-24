@@ -170,6 +170,53 @@
     </div>
   </div>
 
+  <!-- ========================================== -->
+  <!-- NUEVAS SECCIONES AGREGADAS                 -->
+  <!-- ========================================== -->
+
+  <!-- VER MÁS TARDE -->
+  <div class="section-header">
+    <div class="section-title">📺 Ver más tarde</div>
+    <span class="menu-item-badge">Próximamente</span>
+  </div>
+  <div class="watch-later-empty" style="background: #1a1a1a; border: 1px dashed #333; border-radius: 12px; padding: 30px 20px; text-align: center; margin: 0 20px 30px 20px; opacity: 0.7;">
+    <div style="font-size: 40px; margin-bottom: 10px;">📼</div>
+    <h4 style="margin-bottom: 5px; color: #fff;">Guarda contenido para después</h4>
+    <p style="font-size: 13px; color: #aaa; margin: 0;">Esta función estará disponible en la próxima actualización para que organices tu lista de reproducción.</p>
+  </div>
+
+  <!-- INSIGNIAS Y LOGROS -->
+  <div class="section-header">
+    <div class="section-title">🏆 Insignias y Logros</div>
+    <span class="menu-item-badge">Próximamente</span>
+  </div>
+  <div class="badges-preview" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 20px; margin-bottom: 30px; opacity: 0.4; pointer-events: none;">
+    <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 20px 15px; text-align: center;">
+      <div style="font-size: 36px; margin-bottom: 8px;">🧟</div>
+      <div style="font-weight: bold; font-size: 14px; color: #fff; margin-bottom: 4px;">Superviviente</div>
+      <div style="font-size: 11px; color: #aaa;">Explora 10 categorías</div>
+    </div>
+    <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 20px 15px; text-align: center;">
+      <div style="font-size: 36px; margin-bottom: 8px;">👁️</div>
+      <div style="font-weight: bold; font-size: 14px; color: #fff; margin-bottom: 4px;">Observador</div>
+      <div style="font-size: 11px; color: #aaa;">Mira 50 contenidos</div>
+    </div>
+    <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 20px 15px; text-align: center;">
+      <div style="font-size: 36px; margin-bottom: 8px;">⭐</div>
+      <div style="font-weight: bold; font-size: 14px; color: #fff; margin-bottom: 4px;">Coleccionista</div>
+      <div style="font-size: 11px; color: #aaa;">Agrega 20 favoritos</div>
+    </div>
+    <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 20px 15px; text-align: center;">
+      <div style="font-size: 36px; margin-bottom: 8px;">🎬</div>
+      <div style="font-weight: bold; font-size: 14px; color: #fff; margin-bottom: 4px;">Cinéfilo Zombie</div>
+      <div style="font-size: 11px; color: #aaa;">Ve 10 películas</div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- FIN DE NUEVAS SECCIONES                    -->
+  <!-- ========================================== -->
+
   <!-- CONFIGURACIÓN -->
   <div class="section-header">
     <div class="section-title">⚙️ Configuración</div>
@@ -187,23 +234,12 @@
       <span class="settings-arrow">›</span>
     </div>
 
-    <div class="settings-item" onclick="openSettingsModal('notificaciones')">
-      <div class="settings-item-left">
-        <div class="settings-icon">🔔</div>
-        <div class="settings-item-text">
-          <h4>Notificaciones</h4>
-          <p>Avisos y mensajes del soporte</p>
-        </div>
-      </div>
-      <span class="settings-arrow">›</span>
-    </div>
-
     <div class="settings-item" onclick="openSettingsModal('privacidad')">
       <div class="settings-item-left">
         <div class="settings-icon">🔒</div>
         <div class="settings-item-text">
           <h4>Privacidad</h4>
-          <p>Controla quién puede ver tu actividad</p>
+          <p>Disponible en la próxima actualización</p>
         </div>
       </div>
       <span class="settings-arrow">›</span>
@@ -214,18 +250,7 @@
         <div class="settings-icon">⬇️</div>
         <div class="settings-item-text">
           <h4>Descargas</h4>
-          <p>Calidad, carpetas y Wi-Fi</p>
-        </div>
-      </div>
-      <span class="settings-arrow">›</span>
-    </div>
-
-    <div class="settings-item" onclick="openSettingsModal('tv')">
-      <div class="settings-item-left">
-        <div class="settings-icon">📺</div>
-        <div class="settings-item-text">
-          <h4>Instalar en un TV</h4>
-          <p>Pon la app de TV en tu televisor desde aquí</p>
+          <p>Disponible en la próxima actualización</p>
         </div>
       </div>
       <span class="settings-arrow">›</span>
@@ -271,17 +296,6 @@
       <span class="settings-arrow">›</span>
     </div>
 
-    <div class="settings-item" onclick="openSettingsModal('cambiar-cuenta')">
-      <div class="settings-item-left">
-        <div class="settings-icon">🔄</div>
-        <div class="settings-item-text">
-          <h4>Cambiar de cuenta</h4>
-          <p>Inicia sesión con otra cuenta</p>
-        </div>
-      </div>
-      <span class="settings-arrow">›</span>
-    </div>
-
     <div class="settings-item logout-item" onclick="logout()">
       <div class="settings-item-left">
         <div class="settings-icon logout-icon">🚪</div>
@@ -315,54 +329,54 @@
     </div>
   </div>
 
-<!-- MODAL DE SELECCIÓN DE AVATAR -->
-<div class="avatar-modal" id="avatarModal">
-  <div class="avatar-modal-content">
-    <div class="avatar-modal-header">
-      <h3>📷 Cambiar foto de perfil</h3>
-      <button class="avatar-modal-close" onclick="closeAvatarModal()">✕</button>
-    </div>
-    <div class="avatar-modal-body">
-      
-      <!-- Avatares predefinidos -->
-      <div class="avatar-section">
-        <h4>🎨 Avatares predefinidos</h4>
-        <div class="avatar-grid" id="avatarGrid"></div>
+  <!-- MODAL DE SELECCIÓN DE AVATAR -->
+  <div class="avatar-modal" id="avatarModal">
+    <div class="avatar-modal-content">
+      <div class="avatar-modal-header">
+        <h3>📷 Cambiar foto de perfil</h3>
+        <button class="avatar-modal-close" onclick="closeAvatarModal()">✕</button>
       </div>
-      
-      <!-- Avatares subidos por el usuario (NUEVO) -->
-      <div class="avatar-section" id="userAvatarsSection" style="display: none;">
-        <h4>📸 Mis fotos subidas (<span id="userAvatarsCount">0</span>/3)</h4>
-        <div class="avatar-grid" id="userAvatarGrid"></div>
-        <button class="clear-all-btn" onclick="clearAllUserAvatars()" style="margin-top: 10px; padding: 8px 16px; background: #dc2626; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 12px;">
-          🗑️ Eliminar todas mis fotos
-        </button>
+      <div class="avatar-modal-body">
+        
+        <!-- Avatares predefinidos -->
+        <div class="avatar-section">
+          <h4>🎨 Avatares predefinidos</h4>
+          <div class="avatar-grid" id="avatarGrid"></div>
+        </div>
+        
+        <!-- Avatares subidos por el usuario -->
+        <div class="avatar-section" id="userAvatarsSection" style="display: none;">
+          <h4>📸 Mis fotos subidas (<span id="userAvatarsCount">0</span>/3)</h4>
+          <div class="avatar-grid" id="userAvatarGrid"></div>
+          <button class="clear-all-btn" onclick="clearAllUserAvatars()" style="margin-top: 10px; padding: 8px 16px; background: #dc2626; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 12px;">
+            🗑️ Eliminar todas mis fotos
+          </button>
+        </div>
+        
+        <div class="avatar-divider"><span>O</span></div>
+        
+        <!-- Subir nueva imagen -->
+        <div class="avatar-section">
+          <h4>📁 Subir desde tu galería</h4>
+          <label class="upload-btn" id="uploadBtnLabel" for="avatarUpload">
+            <span>📤 Elegir imagen</span>
+          </label>
+          <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
+          <p class="upload-hint" id="uploadHint">Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB</p>
+          <p class="upload-warning" id="uploadLimitWarning" style="display: none; color: #ff4444; font-size: 12px; margin-top: 8px;">
+            ⚠️ Has alcanzado el límite de 3 fotos. Elimina una para subir otra.
+          </p>
+        </div>
+        
+        <!-- Avatar actual -->
+        <div class="avatar-current">
+          <h4>👤 Avatar actual</h4>
+          <img src="" alt="Actual" class="avatar-current-img" id="avatarCurrentImg">
+        </div>
+        
       </div>
-      
-      <div class="avatar-divider"><span>O</span></div>
-      
-      <!-- Subir nueva imagen -->
-      <div class="avatar-section">
-        <h4>📁 Subir desde tu galería</h4>
-        <label class="upload-btn" id="uploadBtnLabel" for="avatarUpload">
-          <span>📤 Elegir imagen</span>
-        </label>
-        <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
-        <p class="upload-hint" id="uploadHint">Formatos: JPG, PNG, GIF. Tamaño máximo: 2MB</p>
-        <p class="upload-warning" id="uploadLimitWarning" style="display: none; color: #ff4444; font-size: 12px; margin-top: 8px;">
-          ⚠️ Has alcanzado el límite de 3 fotos. Elimina una para subir otra.
-        </p>
-      </div>
-      
-      <!-- Avatar actual -->
-      <div class="avatar-current">
-        <h4>👤 Avatar actual</h4>
-        <img src="" alt="Actual" class="avatar-current-img" id="avatarCurrentImg">
-      </div>
-      
     </div>
   </div>
-</div>
 
   <script src="cuenta.js"></script>
   <script src="search.js"></script>
