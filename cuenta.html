@@ -380,12 +380,17 @@
     </div>
   </div>
   
-  <!-- Otros scripts de la página -->
-  <script type="module" src="cuenta.js"></script> <!-- o el script específico de la página -->
+<!-- Script normal (sin module) para el menú, avatares, etc. -->
+  <script src="cuenta.js"></script>
   
-  <!-- Cargar la base de datos central para actualizar contadores -->
+  <!-- Módulo para Firebase (logout) -->
+  <script type="module" src="auth-logout.js"></script>
+  
+  <!-- Módulo para protección (evita entrar sin sesión) -->
+  <script type="module" src="auth-guard.js"></script>
+  
   <script src="database.js"></script>
-  
+
   <!-- Script de carga de avatar (si lo tienes) -->
   <script>
     (function() {
