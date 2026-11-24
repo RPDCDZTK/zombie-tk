@@ -228,7 +228,7 @@
   transition: all 0.3s;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .btn-login:hover {
