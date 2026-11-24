@@ -1,40 +1,67 @@
 /* ============================================
    ZOMBIE-TK - Sistema de Autenticación con Firebase
+   VERSIÓN CORREGIDA Y FUNCIONAL
    ============================================ */
+
+// Importar Firebase
 import { auth } from './firebase-config.js';
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// ===== FUNCIONES GLOBALES PARA NAVEGACIÓN ENTRE FORMULARIOS =====
+console.log('🔐 login.js cargado correctamente');
 
+// ===== FUNCIONES DE NAVEGACIÓN ENTRE FORMULARIOS =====
+
+// Función para mostrar formulario de registro
 window.showRegister = function() {
-  console.log('📝 Mostrando formulario de registro');
-  document.getElementById('loginForm').classList.remove('active');
-  document.getElementById('registerForm').classList.add('active');
-  document.getElementById('forgotForm').classList.remove('active');
-  document.getElementById('loginMessage').className = 'login-message';
+  console.log('📝 Cambiando a formulario de registro');
+  
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const forgotForm = document.getElementById('forgotForm');
+  const messageEl = document.getElementById('loginMessage');
+  
+  if (loginForm) loginForm.classList.remove('active');
+  if (registerForm) registerForm.classList.add('active');
+  if (forgotForm) forgotForm.classList.remove('active');
+  if (messageEl) messageEl.className = 'login-message';
 };
 
+// Función para mostrar formulario de login
 window.showLogin = function() {
-  console.log('🔐 Mostrando formulario de login');
-  document.getElementById('registerForm').classList.remove('active');
-  document.getElementById('forgotForm').classList.remove('active');
-  document.getElementById('loginForm').classList.add('active');
-  document.getElementById('loginMessage').className = 'login-message';
+  console.log('🔐 Cambiando a formulario de login');
+  
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const forgotForm = document.getElementById('forgotForm');
+  const messageEl = document.getElementById('loginMessage');
+  
+  if (loginForm) loginForm.classList.add('active');
+  if (registerForm) registerForm.classList.remove('active');
+  if (forgotForm) forgotForm.classList.remove('active');
+  if (messageEl) messageEl.className = 'login-message';
 };
 
+// Función para mostrar formulario de recuperación
 window.showForgotPassword = function() {
-  console.log('📧 Mostrando formulario de recuperación');
-  document.getElementById('loginForm').classList.remove('active');
-  document.getElementById('registerForm').classList.remove('active');
-  document.getElementById('forgotForm').classList.add('active');
-  document.getElementById('loginMessage').className = 'login-message';
+  console.log('📧 Cambiando a formulario de recuperación');
+  
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const forgotForm = document.getElementById('forgotForm');
+  const messageEl = document.getElementById('loginMessage');
+  
+  if (loginForm) loginForm.classList.remove('active');
+  if (registerForm) registerForm.classList.remove('active');
+  if (forgotForm) forgotForm.classList.add('active');
+  if (messageEl) messageEl.className = 'login-message';
 };
 
-// ===== FUNCIONES AUXILIARES =====
+// ===== FUNCIÓN AUXILIAR PARA MENSAJES =====
 
 function showMessage(msg, type) {
   const messageEl = document.getElementById('loginMessage');
@@ -96,7 +123,6 @@ window.handleRegister = async function(event) {
   const password = document.getElementById('registerPassword').value;
   const confirmPassword = document.getElementById('registerConfirmPassword').value;
 
-  // Validaciones
   if (!name || !email || !password || !confirmPassword) {
     showMessage('❌ Por favor completa todos los campos', 'error');
     return;
@@ -118,7 +144,6 @@ window.handleRegister = async function(event) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
-    // Guardar el nombre de usuario en el perfil de Firebase
     await updateProfile(user, { displayName: name });
     
     showMessage('✅ ¡Cuenta creada exitosamente! Bienvenido a la horda.', 'success');
@@ -155,18 +180,18 @@ window.handleForgotPassword = function(event) {
   setTimeout(() => showLogin(), 3000);
 };
 
-// ===== VERIFICAR ESTADO DE AUTENTICACIÓN AL CARGAR =====
-
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+// ===== VERIFICAR ESTADO DE AUTENTICACIÓN =====
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log('✅ Usuario ya autenticado:', user.email);
     // Si ya está autenticado, redirigir al index
-    window.location.href = 'index.html';
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 1000);
   } else {
     console.log('❌ No hay usuario autenticado, mostrando login');
   }
 });
 
-console.log('🔐 Sistema de autenticación Zombie-TK cargado');
+console.log('✅ Todas las funciones de login.js están listas');
