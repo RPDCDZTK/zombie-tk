@@ -8,8 +8,24 @@
   <link rel="stylesheet" href="hero-carousel.css">
 </head>
 <body>
+  
+  <!-- Módulo de Firebase para proteger la página -->
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-<script type="module" src="auth-guard.js"></script>
+    document.body.style.visibility = 'hidden';
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.body.style.visibility = 'visible';
+        console.log('✅ Usuario autenticado:', user.email);
+      } else {
+        console.log('❌ Sin sesión, redirigiendo...');
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
 
   <!-- HOME PAGE -->
   <div id="homePage" class="page active">
