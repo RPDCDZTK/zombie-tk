@@ -182,25 +182,17 @@ window.checkForUpdates = function() {
   }, 2000);
 };
 
-// ✅ FUNCIÓN DE LOGOUT CON FIREBASE
-window.logout = async function() {
+/**
+ * Cierra sesión (dispara evento para el módulo de Firebase)
+ */
+function logout() {
   const confirmLogout = confirm('¿Estás seguro de que quieres cerrar sesión?');
-  
   if (confirmLogout) {
-    try {
-      showToast('👋 Cerrando sesión...');
-      await signOut(auth);
-      showToast('✅ Sesión cerrada correctamente');
-      
-      setTimeout(() => {
-        window.location.href = 'login.html';
-      }, 1500);
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-      showToast('❌ Error al cerrar sesión');
-    }
+    showToast('👋 Cerrando sesión...');
+    // Disparar evento personalizado que escucha auth-logout.js
+    window.dispatchEvent(new CustomEvent('zombieLogout'));
   }
-};
+}
 
 window.handleAvatarUpload = function(event) {
   const file = event.target.files[0];
