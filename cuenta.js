@@ -1,11 +1,12 @@
 /* ============================================
-   ZOMBIE-TK - cuenta.js (VERSIÓN ACTUALIZADA)
+   ZOMBIE-TK - cuenta.js (VERSIÓN CON FIREBASE)
    ============================================ */
 
-// Agrega este import al principio de cuenta.js (si usas módulos) o usa la función global
+// Importar Firebase
 import { auth } from './firebase-config.js';
-import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+// Avatares predefinidos
 const PREDEFINED_AVATARS = [
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie1&backgroundColor=4c1d95',
   'https://api.dicebear.com/7.x/bottts/svg?seed=zombie2&backgroundColor=6d28d9',
@@ -19,40 +20,31 @@ const PREDEFINED_AVATARS = [
 
 const DEFAULT_AVATAR = 'https://api.dicebear.com/7.x/bottts/svg?seed=zombiefan&backgroundColor=4c1d95';
 const MAX_USER_AVATARS = 3;
-const favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
 
-function getUserAvatars() {
-  try {
-    return JSON.parse(localStorage.getItem('zombieTK_userAvatars')) || [];
-  } catch (e) {
-    return [];
-  }
-}
+// Hacer funciones globales para que el HTML pueda llamarlas
+window.openMenu = function() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.add('active');
+  if (overlay) overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  console.log('🍔 Menú abierto');
+};
 
-function saveUserAvatars(avatars) {
-  localStorage.setItem('zombieTK_userAvatars', JSON.stringify(avatars));
-}
+window.closeMenu = function() {
+  const menu = document.getElementById('hamburgerMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if (menu) menu.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  console.log('🍔 Menú cerrado');
+};
 
-function getCurrentAvatar() {
-  return localStorage.getItem('zombieTK_avatar') || DEFAULT_AVATAR;
-}
+window.scrollToTop = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
-function saveAvatar(avatarUrl) {
-  localStorage.setItem('zombieTK_avatar', avatarUrl);
-  updateAvatarEverywhere(avatarUrl);
-}
-
-function updateAvatarEverywhere(avatarUrl) {
-  const profileImg = document.getElementById('profileAvatarImg');
-  const headerImg = document.getElementById('headerAvatarImg');
-  const currentImg = document.getElementById('avatarCurrentImg');
-  
-  if (profileImg) profileImg.src = avatarUrl;
-  if (headerImg) headerImg.src = avatarUrl;
-  if (currentImg) currentImg.src = avatarUrl;
-}
-
-function openAvatarModal() {
+window.openAvatarModal = function() {
   const modal = document.getElementById('avatarModal');
   const grid = document.getElementById('avatarGrid');
   
@@ -64,7 +56,6 @@ function openAvatarModal() {
   const currentAvatar = getCurrentAvatar();
   const userAvatars = getUserAvatars();
   
-  // ===== GENERAR AVATARES PREDEFINIDOS =====
   grid.innerHTML = '';
   PREDEFINED_AVATARS.forEach((avatarUrl, index) => {
     const img = document.createElement('img');
@@ -78,7 +69,6 @@ function openAvatarModal() {
     grid.appendChild(img);
   });
   
-  // ===== GENERAR AVATARES SUBIDOS =====
   const userGrid = document.getElementById('userAvatarGrid');
   const userSection = document.getElementById('userAvatarsSection');
   const userCount = document.getElementById('userAvatarsCount');
@@ -109,20 +99,13 @@ function openAvatarModal() {
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'avatar-delete-btn';
         deleteBtn.innerHTML = '✕';
-        deleteBtn.title = 'Eliminar esta foto';
         deleteBtn.onclick = (e) => {
           e.stopPropagation();
           deleteUserAvatar(index);
         };
         
-        const badge = document.createElement('div');
-        badge.className = 'avatar-uploaded-badge';
-        badge.innerHTML = '📸';
-        badge.title = 'Foto subida por ti';
-        
         wrapper.appendChild(img);
         wrapper.appendChild(deleteBtn);
-        wrapper.appendChild(badge);
         userGrid.appendChild(wrapper);
       });
     } else {
@@ -130,7 +113,6 @@ function openAvatarModal() {
     }
   }
   
-  // ===== CONTROLAR LÍMITE DE UPLOAD =====
   if (uploadBtn && uploadHint && uploadWarning) {
     if (userAvatars.length >= MAX_USER_AVATARS) {
       uploadBtn.classList.add('disabled');
@@ -143,7 +125,6 @@ function openAvatarModal() {
     }
   }
   
-  // ===== MOSTRAR AVATAR ACTUAL =====
   const currentImg = document.getElementById('avatarCurrentImg');
   if (currentImg) {
     currentImg.src = currentAvatar;
@@ -151,73 +132,77 @@ function openAvatarModal() {
   
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-}
+};
 
-function closeAvatarModal() {
+window.closeAvatarModal = function() {
   const modal = document.getElementById('avatarModal');
   if (modal) {
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
   }
-}
+};
 
-function selectAvatar(avatarUrl, element) {
-  document.querySelectorAll('.avatar-option').forEach(opt => {
-    opt.classList.remove('selected');
-  });
+window.editProfile = function() {
+  const currentName = document.getElementById('profileName').textContent;
+  const newName = prompt('Ingresa tu nuevo nombre:', currentName);
+  if (newName && newName.trim()) {
+    document.getElementById('profileName').textContent = newName.trim();
+    localStorage.setItem('zombieTK_username', newName.trim());
+    showToast('✅ Perfil actualizado correctamente');
+  }
+};
+
+window.openSettingsModal = function(section) {
+  const modal = document.getElementById('settingsModal');
+  const title = document.getElementById('settingsModalTitle');
+  const body = document.getElementById('settingsModalBody');
   
-  if (element) element.classList.add('selected');
+  if (!modal || !title || !body) return;
   
-  saveAvatar(avatarUrl);
-  showToast('✅ Avatar actualizado correctamente');
+  const content = getSettingsContent(section);
+  title.textContent = content.title;
+  body.innerHTML = content.body;
   
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeSettingsModal = function() {
+  const modal = document.getElementById('settingsModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+};
+
+window.checkForUpdates = function() {
+  showToast('🔍 Buscando actualizaciones...');
   setTimeout(() => {
-    closeAvatarModal();
-  }, 500);
-}
+    showToast('✅ Ya tienes la versión más reciente');
+  }, 2000);
+};
 
-function deleteUserAvatar(index) {
-  const userAvatars = getUserAvatars();
-  const currentAvatar = getCurrentAvatar();
-  const avatarToDelete = userAvatars[index];
+// ✅ FUNCIÓN DE LOGOUT CON FIREBASE
+window.logout = async function() {
+  const confirmLogout = confirm('¿Estás seguro de que quieres cerrar sesión?');
   
-  const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta foto?');
-  if (!confirmDelete) return;
-  
-  if (avatarToDelete === currentAvatar) {
-    saveAvatar(DEFAULT_AVATAR);
-    showToast('🗑️ Foto eliminada. Avatar restablecido.');
-  } else {
-    showToast('🗑️ Foto eliminada correctamente');
+  if (confirmLogout) {
+    try {
+      showToast('👋 Cerrando sesión...');
+      await signOut(auth);
+      showToast('✅ Sesión cerrada correctamente');
+      
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1500);
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+      showToast('❌ Error al cerrar sesión');
+    }
   }
-  
-  userAvatars.splice(index, 1);
-  saveUserAvatars(userAvatars);
-  
-  openAvatarModal();
-}
+};
 
-function clearAllUserAvatars() {
-  const userAvatars = getUserAvatars();
-  if (userAvatars.length === 0) return;
-  
-  const currentAvatar = getCurrentAvatar();
-  const isCurrentUserAvatar = userAvatars.includes(currentAvatar);
-  
-  const confirmDelete = confirm(`¿Eliminar las ${userAvatars.length} fotos subidas?`);
-  if (!confirmDelete) return;
-  
-  if (isCurrentUserAvatar) {
-    saveAvatar(DEFAULT_AVATAR);
-  }
-  
-  saveUserAvatars([]);
-  showToast('🗑️ Todas las fotos han sido eliminadas');
-  
-  openAvatarModal();
-}
-
-function handleAvatarUpload(event) {
+window.handleAvatarUpload = function(event) {
   const file = event.target.files[0];
   if (!file) return;
   
@@ -253,7 +238,6 @@ function handleAvatarUpload(event) {
     
     userAvatars.push(dataUrl);
     saveUserAvatars(userAvatars);
-    
     saveAvatar(dataUrl);
     showToast(`✅ Foto subida correctamente (${userAvatars.length}/${MAX_USER_AVATARS})`);
     
@@ -264,92 +248,99 @@ function handleAvatarUpload(event) {
   reader.readAsDataURL(file);
   
   event.target.value = '';
-}
+};
 
-function handleScroll() {
-  const backToTop = document.getElementById('backToTop');
-  if (!backToTop) return;
-  if (window.scrollY > 300) backToTop.classList.add('visible');
-  else backToTop.classList.remove('visible');
-}
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function openMenu() {
-  const menu = document.getElementById('hamburgerMenu');
-  const overlay = document.getElementById('menuOverlay');
-  if (menu) menu.classList.add('active');
-  if (overlay) overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeMenu() {
-  const menu = document.getElementById('hamburgerMenu');
-  const overlay = document.getElementById('menuOverlay');
-  if (menu) menu.classList.remove('active');
-  if (overlay) overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-
-function updateStats() {
-  const statFavorites = document.getElementById('statFavorites');
-  if (statFavorites) statFavorites.textContent = favorites.length;
+window.clearAllUserAvatars = function() {
+  const userAvatars = getUserAvatars();
+  if (userAvatars.length === 0) return;
   
-  const statViewed = document.getElementById('statViewed');
-  const viewedCount = parseInt(localStorage.getItem('zombieTK_viewed') || '0');
-  if (statViewed) statViewed.textContent = viewedCount;
+  const currentAvatar = getCurrentAvatar();
+  const isCurrentUserAvatar = userAvatars.includes(currentAvatar);
   
-  const statLevel = document.getElementById('statLevel');
-  if (statLevel) {
-    let level = 'Novato';
-    if (favorites.length >= 50) level = 'Experto';
-    else if (favorites.length >= 20) level = 'Avanzado';
-    else if (favorites.length >= 10) level = 'Intermedio';
-    else if (favorites.length >= 5) level = 'Principiante';
-    statLevel.textContent = level;
+  const confirmDelete = confirm(`¿Eliminar las ${userAvatars.length} fotos subidas?`);
+  if (!confirmDelete) return;
+  
+  if (isCurrentUserAvatar) {
+    saveAvatar(DEFAULT_AVATAR);
+  }
+  
+  saveUserAvatars([]);
+  showToast('🗑️ Todas las fotos han sido eliminadas');
+  openAvatarModal();
+};
+
+// Funciones auxiliares
+function getUserAvatars() {
+  try {
+    return JSON.parse(localStorage.getItem('zombieTK_userAvatars')) || [];
+  } catch (e) {
+    return [];
   }
 }
 
-function editProfile() {
-  const currentName = document.getElementById('profileName').textContent;
-  const newName = prompt('Ingresa tu nuevo nombre:', currentName);
-  if (newName && newName.trim()) {
-    document.getElementById('profileName').textContent = newName.trim();
-    localStorage.setItem('zombieTK_username', newName.trim());
-    showToast('✅ Perfil actualizado correctamente');
-  }
+function saveUserAvatars(avatars) {
+  localStorage.setItem('zombieTK_userAvatars', JSON.stringify(avatars));
 }
 
-function openSettingsModal(section) {
-  const modal = document.getElementById('settingsModal');
-  const title = document.getElementById('settingsModalTitle');
-  const body = document.getElementById('settingsModalBody');
-  
-  if (!modal || !title || !body) return;
-  
-  const content = getSettingsContent(section);
-  title.textContent = content.title;
-  body.innerHTML = content.body;
-  
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+function getCurrentAvatar() {
+  return localStorage.getItem('zombieTK_avatar') || DEFAULT_AVATAR;
 }
 
-function closeSettingsModal() {
-  const modal = document.getElementById('settingsModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+function saveAvatar(avatarUrl) {
+  localStorage.setItem('zombieTK_avatar', avatarUrl);
+  updateAvatarEverywhere(avatarUrl);
+}
+
+function updateAvatarEverywhere(avatarUrl) {
+  const profileImg = document.getElementById('profileAvatarImg');
+  const headerImg = document.getElementById('headerAvatarImg');
+  const currentImg = document.getElementById('avatarCurrentImg');
+  
+  if (profileImg) profileImg.src = avatarUrl;
+  if (headerImg) headerImg.src = avatarUrl;
+  if (currentImg) currentImg.src = avatarUrl;
+}
+
+function selectAvatar(avatarUrl, element) {
+  document.querySelectorAll('.avatar-option').forEach(opt => {
+    opt.classList.remove('selected');
+  });
+  
+  if (element) element.classList.add('selected');
+  
+  saveAvatar(avatarUrl);
+  showToast('✅ Avatar actualizado correctamente');
+  
+  setTimeout(() => {
+    closeAvatarModal();
+  }, 500);
+}
+
+function deleteUserAvatar(index) {
+  const userAvatars = getUserAvatars();
+  const currentAvatar = getCurrentAvatar();
+  const avatarToDelete = userAvatars[index];
+  
+  const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta foto?');
+  if (!confirmDelete) return;
+  
+  if (avatarToDelete === currentAvatar) {
+    saveAvatar(DEFAULT_AVATAR);
+    showToast('🗑️ Foto eliminada. Avatar restablecido.');
+  } else {
+    showToast('🗑️ Foto eliminada correctamente');
   }
+  
+  userAvatars.splice(index, 1);
+  saveUserAvatars(userAvatars);
+  openAvatarModal();
 }
 
 function getSettingsContent(section) {
   const contents = {
     idioma: {
       title: '🌐 Idioma y subtítulos',
-      body: `<h4>Idioma de la aplicación</h4><p>Selecciona el idioma en el que deseas ver Zombie-TK:</p><ul><li>🇪🇸 Español (Actual)</li><li>🇺🇸 English</li><li>🇧🇷 Português</li><li>🇫🇷 Français</li></ul><p><strong>Nota:</strong> Esta función estará disponible en la próxima actualización.</p>`
+      body: `<h4>Idioma de la aplicación</h4><p>Disponible en la próxima actualización</p>`
     },
     privacidad: {
       title: '🔒 Privacidad',
@@ -357,7 +348,7 @@ function getSettingsContent(section) {
     },
     descargas: {
       title: '⬇️ Descargas',
-      body: `<h4>Calidad de descarga</h4><p>Disponible en la próxima actualización</p>`
+      body: `<h4>Descargas</h4><p>Disponible en la próxima actualización</p>`
     },
     acerca: {
       title: 'ℹ️ Acerca de Zombie-TK',
@@ -365,43 +356,16 @@ function getSettingsContent(section) {
     },
     actualizar: {
       title: '📱 Buscar actualizaciones',
-      body: `<h4>Versión actual</h4><p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0</p><p>✅ Estás usando la versión más reciente.</p><button onclick="checkForUpdates()" style="width: 100%; padding: 12px; background: #6d28d9; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Buscar actualizaciones</button>`
+      body: `<h4>Versión actual</h4><p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0</p><p>✅ Estás usando la versión más reciente.</p>`
     },
     contacto: {
       title: '✉️ Contactar soporte',
-      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto:zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li><li>💬 Telegram: <a href="https://t.me/+kjGQHz-bdyc2MTZh" target="_blank" style="color: #a78bfa;">https://t.me/+kjGQHz-bdyc2MTZh</a></li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
+      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto:zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
     }
   };
   
   return contents[section] || { title: 'Configuración', body: '<p>Opción no disponible.</p>' };
 }
-
-function checkForUpdates() {
-  showToast('🔍 Buscando actualizaciones...');
-  setTimeout(() => {
-    showToast('✅ Ya tienes la versión más reciente');
-  }, 2000);
-}
-
-/**
- * Cierra sesión en Firebase
- */
-window.logout = async () => {
-  const confirmLogout = confirm('¿Estás seguro de que quieres cerrar sesión?');
-  
-  if (confirmLogout) {
-    try {
-      await signOut(auth);
-      showToast('👋 Sesión cerrada correctamente');
-      setTimeout(() => {
-        window.location.href = 'login.html';
-      }, 1500);
-    } catch (error) {
-      showToast('❌ Error al cerrar sesión');
-      console.error(error);
-    }
-  }
-};
 
 function showToast(message) {
   let toast = document.querySelector('.toast');
@@ -419,20 +383,27 @@ function showToast(message) {
   }, 2500);
 }
 
-function loadUserProfile() {
-  const savedName = localStorage.getItem('zombieTK_username');
-  if (savedName) {
-    document.getElementById('profileName').textContent = savedName;
-  }
+function handleScroll() {
+  const backToTop = document.getElementById('backToTop');
+  if (!backToTop) return;
+  if (window.scrollY > 300) backToTop.classList.add('visible');
+  else backToTop.classList.remove('visible');
 }
 
+// Inicialización
 function init() {
+  console.log('👤 Inicializando página de cuenta...');
+  
   window.addEventListener('scroll', handleScroll);
-  updateStats();
-  loadUserProfile();
   
   const currentAvatar = getCurrentAvatar();
   updateAvatarEverywhere(currentAvatar);
+  
+  const savedName = localStorage.getItem('zombieTK_username');
+  if (savedName) {
+    const profileName = document.getElementById('profileName');
+    if (profileName) profileName.textContent = savedName;
+  }
   
   const overlay = document.getElementById('menuOverlay');
   if (overlay) {
@@ -461,9 +432,7 @@ function init() {
     }
   });
   
-  console.log('👤 Página de Cuenta Zombie-TK cargada');
-  console.log('🖼️ Avatar actual:', currentAvatar);
-  console.log('📸 Avatares subidos:', getUserAvatars().length);
+  console.log('✅ Página de cuenta inicializada');
 }
 
 if (document.readyState === 'loading') {
