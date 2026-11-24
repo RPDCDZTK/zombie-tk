@@ -2,6 +2,23 @@
    ZOMBIE-TK - Script Principal
    ============================================ */
 
+/**
+ * Cierra la sesión del usuario
+ */
+function logout() {
+  const confirmLogout = confirm('¿Estás seguro de que quieres cerrar sesión?');
+  
+  if (confirmLogout) {
+    localStorage.removeItem('zombieTK_currentUser');
+    localStorage.removeItem('zombieTK_rememberMe');
+    showToast('👋 Sesión cerrada correctamente');
+    
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 1500);
+  }
+}
+
   // Cargar avatar del usuario en el header
   (function() {
     const avatarImg = document.getElementById('headerAvatarImg');
