@@ -5,181 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zombie - TK</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Estilos críticos para el index */
-    .horizontal-scroll {
-      display: flex !important;
-      overflow-x: auto !important;
-      gap: 12px !important;
-      padding: 0 20px !important;
-      scrollbar-width: none !important;
-      scroll-behavior: smooth !important;
-    }
-    .horizontal-scroll::-webkit-scrollbar {
-      display: none !important;
-    }
-    .card {
-      flex-shrink: 0 !important;
-      border-radius: 12px !important;
-      overflow: hidden !important;
-      cursor: pointer !important;
-      transition: transform 0.2s !important;
-      position: relative !important;
-    }
-    .card:hover {
-      transform: scale(1.05) !important;
-    }
-    .card-img-container {
-      width: 140px !important;
-      height: 200px !important;
-      position: relative !important;
-      border-radius: 12px !important;
-      overflow: hidden !important;
-    }
-    .card-img-container img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-    }
-    .card-wide {
-      width: 280px !important;
-      height: 160px !important;
-      position: relative !important;
-      flex-shrink: 0 !important;
-    }
-    .card-wide img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      border-radius: 12px !important;
-    }
-    .content-type-badge {
-      position: absolute !important;
-      top: 8px !important;
-      left: 8px !important;
-      padding: 4px 10px !important;
-      border-radius: 12px !important;
-      font-size: 10px !important;
-      font-weight: bold !important;
-      z-index: 5 !important;
-      background: rgba(139, 0, 0, 0.9) !important;
-      color: #fff !important;
-    }
-    .card-title-overlay {
-      position: absolute !important;
-      bottom: 8px !important;
-      left: 8px !important;
-      right: 8px !important;
-      font-size: 12px !important;
-      font-weight: bold !important;
-      z-index: 2 !important;
-      text-shadow: 1px 1px 2px #000 !important;
-      color: #fff !important;
-    }
-    .card-number {
-      position: absolute !important;
-      top: 10px !important;
-      right: 10px !important;
-      font-size: 24px !important;
-      font-weight: bold !important;
-      z-index: 3 !important;
-      color: #fff !important;
-      text-shadow: 2px 2px 4px #000 !important;
-    }
-    .favorite-btn {
-      position: absolute !important;
-      top: 8px !important;
-      right: 8px !important;
-      background: rgba(0, 0, 0, 0.6) !important;
-      border: none !important;
-      border-radius: 50% !important;
-      width: 32px !important;
-      height: 32px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      cursor: pointer !important;
-      z-index: 10 !important;
-    }
-    .star-icon {
-      width: 20px !important;
-      height: 20px !important;
-      fill: transparent !important;
-      stroke: #FFD700 !important;
-      stroke-width: 1.5 !important;
-    }
-    .favorite-btn.active .star-icon {
-      fill: #FFD700 !important;
-      stroke: #FFD700 !important;
-    }
-    .section {
-      margin-bottom: 30px !important;
-    }
-    .section-header {
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      padding: 0 20px !important;
-      margin-bottom: 15px !important;
-    }
-    .section-title {
-      font-size: 20px !important;
-      font-weight: bold !important;
-    }
-    .section-link {
-      color: #aaa !important;
-      font-size: 14px !important;
-      text-decoration: none !important;
-    }
-    /* Hero Banner */
-    .hero-banner {
-      position: relative !important;
-      height: 450px !important;
-      margin: 0 15px 20px !important;
-      border-radius: 16px !important;
-      overflow: hidden !important;
-      background: linear-gradient(135deg, #8b0000 0%, #000 100%) !important;
-      display: flex !important;
-      align-items: flex-end !important;
-    }
-    .hero-content {
-      position: relative !important;
-      z-index: 3 !important;
-      padding: 30px !important;
-      width: 100% !important;
-    }
-    .hero-title {
-      font-size: 48px !important;
-      font-weight: 900 !important;
-      color: #ff0000 !important;
-      text-shadow: 3px 3px 0 #000 !important;
-      margin-bottom: 10px !important;
-    }
-    .hero-subtitle {
-      font-size: 14px !important;
-      color: #ccc !important;
-      margin-bottom: 20px !important;
-    }
-    .hero-buttons {
-      display: flex !important;
-      gap: 10px !important;
-    }
-    .btn-play, .btn-list {
-      padding: 12px 24px !important;
-      border-radius: 25px !important;
-      font-weight: bold !important;
-      cursor: pointer !important;
-      border: none !important;
-    }
-    .btn-play {
-      background: #fff !important;
-      color: #000 !important;
-    }
-    .btn-list {
-      background: rgba(255,255,255,0.2) !important;
-      color: #fff !important;
-    }
-  </style>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
@@ -194,6 +20,11 @@
       if (user) {
         document.body.style.visibility = 'visible';
         console.log('✅ Usuario autenticado:', user.email);
+        window.ZOMBIE_USER = {
+          email: user.email,
+          name: user.displayName || 'ZombieFan',
+          uid: user.uid
+        };
       } else {
         console.log('❌ Sin sesión, redirigiendo...');
         window.location.href = 'login.html';
@@ -293,6 +124,21 @@
         <span class="menu-item-text">Juegos</span>
         <span class="menu-item-count" id="menu-count-juegos">0</span>
       </a>
+      <a href="tutoriales.html" class="menu-item">
+        <span class="menu-item-icon">🎓</span>
+        <span class="menu-item-text">Tutoriales</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      <a href="musica.html" class="menu-item">
+        <span class="menu-item-icon">🎵</span>
+        <span class="menu-item-text">Música</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
+      <a href="revistas.html" class="menu-item">
+        <span class="menu-item-icon">📰</span>
+        <span class="menu-item-text">Revistas</span>
+        <span class="menu-item-badge">Próximamente</span>
+      </a>
     </div>
 
     <div class="menu-footer">
@@ -301,52 +147,30 @@
     </div>
   </div>
 
-  <!-- HERO BANNER -->
-  <div class="hero-banner">
-    <div class="hero-content">
-      <h1 class="hero-title">ZOMBIE-TK</h1>
-      <p class="hero-subtitle">La plataforma definitiva para fans del género zombie</p>
-      <div class="hero-buttons">
-        <button class="btn-play">▶ Reproducir</button>
-        <button class="btn-list">+ Mi Lista</button>
-      </div>
+  <!-- NOTIFICACIÓN BANNER -->
+  <div class="notif-banner">
+    <div class="notif-banner-text">
+      <h3>🧟 Nuevos contenidos zombie</h3>
+      <p>Descubre los últimos estrenos de Zombie-TK</p>
     </div>
+    <button>Activar</button>
   </div>
 
+  <!-- HERO CARRUSEL -->
+  <div class="hero-carousel" id="heroCarousel"></div>
+
   <!-- CONTENIDO DINÁMICO -->
-  <div id="dynamicContent">
-    <!-- Las secciones se generan automáticamente desde database.js -->
-  </div>
+  <div id="dynamicContent"></div>
 
   <!-- BOTÓN VOLVER ARRIBA -->
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
   <!-- SCRIPTS -->
   <script src="database.js"></script>
+  <script src="index.js"></script>
   
   <script>
-    // ===== FUNCIONES DE MENÚ HAMBURGUESA =====
-    function openMenu() {
-      const menu = document.getElementById('hamburgerMenu');
-      const overlay = document.getElementById('menuOverlay');
-      if (menu) menu.classList.add('active');
-      if (overlay) overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-      const menu = document.getElementById('hamburgerMenu');
-      const overlay = document.getElementById('menuOverlay');
-      if (menu) menu.classList.remove('active');
-      if (overlay) overlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // ===== CARGAR AVATAR DEL USUARIO =====
+    // Cargar avatar del usuario
     (function() {
       const avatarImg = document.getElementById('headerAvatarImg');
       if (avatarImg) {
@@ -355,203 +179,6 @@
         avatarImg.src = savedAvatar;
       }
     })();
-
-    // ===== RENDERIZAR CONTENIDO DESDE DATABASE.JS =====
-    function renderIndexContent() {
-      const container = document.getElementById('dynamicContent');
-      if (!container || typeof ZOMBIE_DB === 'undefined') {
-        console.log('⏳ Esperando database.js...');
-        setTimeout(renderIndexContent, 500);
-        return;
-      }
-
-      console.log('🎨 Renderizando contenido del index...');
-      let html = '';
-
-      // 1. SEGUIR VIENDO
-      if (ZOMBIE_DB.series && ZOMBIE_DB.series.length > 0) {
-        html += renderSection('Seguir Viendo', ZOMBIE_DB.series.slice(0, 5), 'serie', 'card-wide');
-      }
-
-      // 2. NUEVOS EPISODIOS
-      if (ZOMBIE_DB.series && ZOMBIE_DB.series.length > 0) {
-        html += renderSection('Nuevos Episodios', ZOMBIE_DB.series.slice(0, 5), 'serie', 'card-wide');
-      }
-
-      // 3. PELÍCULAS DESTACADAS
-      if (ZOMBIE_DB.peliculas && ZOMBIE_DB.peliculas.length > 0) {
-        const destacadas = ZOMBIE_DB.peliculas.filter(p => p.featured).slice(0, 5);
-        const peliculas = destacadas.length > 0 ? destacadas : ZOMBIE_DB.peliculas.slice(0, 5);
-        html += renderSection('Películas Destacadas', peliculas, 'pelicula', 'card', 'peliculas.html');
-      }
-
-      // 4. SERIES PRINCIPALES
-      if (ZOMBIE_DB.series && ZOMBIE_DB.series.length > 0) {
-        const destacadas = ZOMBIE_DB.series.filter(s => s.featured).slice(0, 5);
-        const series = destacadas.length > 0 ? destacadas : ZOMBIE_DB.series.slice(0, 5);
-        html += renderSection('Series Principales', series, 'serie', 'card', 'series.html');
-      }
-
-      // 5. LO ÚLTIMO
-      const ultimos = [];
-      if (ZOMBIE_DB.libros) ultimos.push(...ZOMBIE_DB.libros.slice(0, 2).map(i => ({...i, type: 'libro'})));
-      if (ZOMBIE_DB.juegos) ultimos.push(...ZOMBIE_DB.juegos.slice(0, 1).map(i => ({...i, type: 'juego'})));
-      if (ultimos.length > 0) {
-        html += renderSection('Lo último en Zombie-TK', ultimos.slice(0, 5), 'mixto', 'card-wide', 'libros.html');
-      }
-
-      // 6. LIBROS
-      if (ZOMBIE_DB.libros && ZOMBIE_DB.libros.length > 0) {
-        html += renderSection('📚 Libros Zombie', ZOMBIE_DB.libros.slice(0, 5), 'libro', 'card', 'libros.html');
-      }
-
-      // 7. CÓMICS
-      if (ZOMBIE_DB.comics && ZOMBIE_DB.comics.length > 0) {
-        html += renderSection('📖 Cómics', ZOMBIE_DB.comics.slice(0, 5), 'comic', 'card', 'comics.html');
-      }
-
-      // 8. JUEGOS
-      if (ZOMBIE_DB.juegos && ZOMBIE_DB.juegos.length > 0) {
-        const destacados = ZOMBIE_DB.juegos.filter(g => g.featured).slice(0, 5);
-        const juegos = destacados.length > 0 ? destacados : ZOMBIE_DB.juegos.slice(0, 5);
-        html += renderSection('🎮 Juegos', juegos, 'juego', 'card', 'juegos.html');
-      }
-
-      // 9. ANIMES
-      if (ZOMBIE_DB.animes && ZOMBIE_DB.animes.length > 0) {
-        const destacados = ZOMBIE_DB.animes.filter(a => a.featured).slice(0, 5);
-        const animes = destacados.length > 0 ? destacados : ZOMBIE_DB.animes.slice(0, 5);
-        html += renderSection('🎌 Animes', animes, 'anime', 'card', 'animes.html');
-      }
-
-      // 10. CORTOMETRAJES
-      if (ZOMBIE_DB.cortometrajes && ZOMBIE_DB.cortometrajes.length > 0) {
-        html += renderSection('🎬 Cortometrajes', ZOMBIE_DB.cortometrajes.slice(0, 5), 'cortometraje', 'card', 'cortometrajes.html');
-      }
-
-      // 11. RELATOS
-      if (ZOMBIE_DB.relatos && ZOMBIE_DB.relatos.length > 0) {
-        html += renderSection('✍️ Relatos', ZOMBIE_DB.relatos.slice(0, 5), 'relato', 'card', 'relatos.html');
-      }
-
-      container.innerHTML = html;
-      updateMenuCounters();
-      console.log('✅ Contenido del index renderizado');
-    }
-
-    function renderSection(title, items, type, cardClass, linkUrl = null) {
-      if (!items || items.length === 0) return '';
-
-      let html = `
-        <div class="section">
-          <div class="section-header">
-            <div class="section-title">${title}</div>
-            ${linkUrl ? `<a href="${linkUrl}" class="section-link">Ver todo ›</a>` : ''}
-          </div>
-          <div class="horizontal-scroll">
-      `;
-
-      items.forEach((item, index) => {
-        const img = item.img || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23333" width="100" height="100"/><text x="50" y="55" font-size="40" text-anchor="middle" fill="%23FFD700">🧟</text></svg>';
-        const badge = getBadge(item, type);
-        const number = cardClass === 'card' ? `<span class="card-number">${index + 1}</span>` : '';
-        
-        html += `
-          <div class="${cardClass}" data-id="${item.id}" data-title="${item.title}" data-type="${type}">
-            ${cardClass === 'card' ? '<div class="card-img-container">' : ''}
-              <img src="${img}" alt="${item.title}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23333%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23FFD700%22>🧟</text></svg>'">
-              ${number}
-              <div class="content-type-badge">${badge}</div>
-              <div class="card-title-overlay">${item.title}</div>
-              <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-                <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </button>
-            ${cardClass === 'card' ? '</div>' : ''}
-          </div>
-        `;
-      });
-
-      html += `
-          </div>
-        </div>
-      `;
-
-      return html;
-    }
-
-    function getBadge(item, type) {
-      if (item.featured) return '⭐ Destacado';
-      
-      const badges = {
-        pelicula: '🎥 Película',
-        serie: '📺 Serie',
-        libro: '📖 Libro',
-        anime: '🎌 Anime',
-        comic: '💥 Cómic',
-        cortometraje: '🎬 Corto',
-        relato: '✍️ Relato',
-        juego: '🎮 Juego'
-      };
-      
-      return badges[type] || type;
-    }
-
-    function updateMenuCounters() {
-      if (typeof ZOMBIE_DB === 'undefined') return;
-      
-      const counters = {
-        'menu-count-libros': ZOMBIE_DB.libros ? ZOMBIE_DB.libros.length : 0,
-        'menu-count-peliculas': ZOMBIE_DB.peliculas ? ZOMBIE_DB.peliculas.length : 0,
-        'menu-count-series': ZOMBIE_DB.series ? ZOMBIE_DB.series.length : 0,
-        'menu-count-animes': ZOMBIE_DB.animes ? ZOMBIE_DB.animes.length : 0,
-        'menu-count-comics': ZOMBIE_DB.comics ? ZOMBIE_DB.comics.length : 0,
-        'menu-count-cortos': ZOMBIE_DB.cortometrajes ? ZOMBIE_DB.cortometrajes.length : 0,
-        'menu-count-relatos': ZOMBIE_DB.relatos ? ZOMBIE_DB.relatos.length : 0,
-        'menu-count-juegos': ZOMBIE_DB.juegos ? ZOMBIE_DB.juegos.length : 0
-      };
-
-      Object.keys(counters).forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.textContent = counters[id];
-        }
-      });
-    }
-
-    function toggleFavorite(event, button) {
-      event.stopPropagation();
-      button.classList.toggle('active');
-      
-      const card = button.closest('[data-id]');
-      const id = card.dataset.id;
-      const title = card.dataset.title;
-      const type = card.dataset.type;
-      const img = card.querySelector('img').src;
-      
-      let favorites = JSON.parse(localStorage.getItem('zombieTK_favorites')) || [];
-      const index = favorites.findIndex(f => f.id === id);
-      
-      if (index > -1) {
-        favorites.splice(index, 1);
-      } else {
-        favorites.push({ id, title, type, img });
-      }
-      
-      localStorage.setItem('zombieTK_favorites', JSON.stringify(favorites));
-    }
-
-    // ===== INICIALIZAR =====
-    document.addEventListener('DOMContentLoaded', () => {
-      renderIndexContent();
-      
-      window.addEventListener('scroll', () => {
-        const backToTop = document.getElementById('backToTop');
-        if (backToTop) {
-          if (window.scrollY > 300) backToTop.classList.add('visible');
-          else backToTop.classList.remove('visible');
-        }
-      });
-    });
   </script>
 </body>
 </html>
