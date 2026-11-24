@@ -1,0 +1,420 @@
+/* ============================================
+   ZOMBIE-TK - Estilos específicos para index.html
+   ============================================ */
+
+/* ===== HERO CARRUSEL ===== */
+.hero-carousel {
+  position: relative;
+  height: 420px;
+  margin: 0 15px 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.95));
+}
+
+.hero-slide-content {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  z-index: 2;
+}
+
+.hero-slide-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  margin-bottom: 8px;
+}
+
+.hero-slide-subtitle {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  z-index: 3;
+  display: flex;
+  gap: 6px;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hero-dot.active {
+  background: #FFD700;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ===== SECCIONES ===== */
+.section {
+  margin-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.section-link {
+  color: #FFD700;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.section-link:hover {
+  color: #fff;
+}
+
+/* ===== SCROLL HORIZONTAL ===== */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 0 20px;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== TARJETA VERTICAL (estándar) ===== */
+.card {
+  flex-shrink: 0;
+  width: 140px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-container {
+  width: 140px;
+  height: 200px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-img-container .card-img-real {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-img-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  z-index: 1;
+}
+
+.card-title-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2;
+  text-shadow: 1px 1px 2px #000;
+  color: #fff;
+}
+
+/* ===== TARJETA HORIZONTAL (wide) ===== */
+.card-wide {
+  flex-shrink: 0;
+  width: 280px;
+  height: 160px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-wide:hover {
+  transform: scale(1.03);
+}
+
+.card-wide .card-img-real {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-wide::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.95));
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== NÚMERO DE RANKING ===== */
+.card-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  background: rgba(0, 0, 0, 0.5);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== BADGE DE TIPO DE CONTENIDO ===== */
+.content-type-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.content-type-badge.pelicula { background: rgba(139, 0, 0, 0.9); color: #fff; }
+.content-type-badge.serie { background: rgba(147, 112, 219, 0.9); color: #fff; }
+.content-type-badge.libro { background: rgba(45, 80, 22, 0.9); color: #fff; }
+.content-type-badge.anime { background: rgba(255, 0, 110, 0.9); color: #fff; }
+.content-type-badge.comic { background: rgba(255, 140, 0, 0.9); color: #000; }
+.content-type-badge.cortometraje { background: rgba(0, 180, 216, 0.9); color: #000; }
+.content-type-badge.relato { background: rgba(139, 69, 19, 0.9); color: #fff; }
+.content-type-badge.juego { background: rgba(57, 255, 20, 0.9); color: #000; }
+.content-type-badge.musica { background: rgba(255, 20, 147, 0.9); color: #fff; }
+.content-type-badge.tutorial { background: rgba(0, 255, 136, 0.9); color: #000; }
+.content-type-badge.revista { background: rgba(255, 105, 180, 0.9); color: #fff; }
+.content-type-badge.coleccion { background: rgba(255, 215, 0, 0.9); color: #000; }
+.content-type-badge.mixto { background: rgba(255, 215, 0, 0.9); color: #000; }
+
+/* ===== BOTÓN DE FAVORITOS ===== */
+.favorite-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  padding: 0;
+}
+
+.favorite-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.star-icon {
+  width: 20px;
+  height: 20px;
+  fill: transparent;
+  stroke: #FFD700;
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn.active .star-icon {
+  fill: #FFD700;
+  stroke: #FFD700;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
+}
+
+/* ===== PERSONALIDADES ===== */
+.personality {
+  flex-shrink: 0;
+  text-align: center;
+  width: 90px;
+  cursor: pointer;
+}
+
+.personality-img-real {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #333;
+  margin: 0 auto 8px;
+  display: block;
+}
+
+.personality-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.personality-role {
+  font-size: 10px;
+  color: #aaa;
+}
+
+/* ===== BOTÓN VOLVER ARRIBA ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #8b0000;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.5);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.back-to-top.visible {
+  display: flex;
+}
+
+.back-to-top:hover {
+  background: #a00000;
+  transform: translateY(-3px);
+}
+
+/* ===== BANNER DE NOTIFICACIÓN ===== */
+.notif-banner {
+  margin: 0 15px 15px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #333;
+}
+
+.notif-banner-text h3 {
+  font-size: 14px;
+  margin-bottom: 3px;
+  color: #fff;
+}
+
+.notif-banner-text p {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.notif-banner button {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .hero-carousel {
+    height: 480px;
+  }
+  
+  .hero-slide-title {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-carousel {
+    height: 520px;
+  }
+  
+  .hero-slide-title {
+    font-size: 52px;
+  }
+}
