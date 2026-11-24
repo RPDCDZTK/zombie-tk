@@ -371,17 +371,20 @@ function renderJuegos(containerId) {
 
 /**
  * Actualiza los contadores del menú hamburguesa
+ * leyendo la longitud de los arrays en ZOMBIE_DB
  */
 function updateMenuCounters() {
   const counters = {
-    'menu-count-libros': ZOMBIE_DB.libros.length,
-    'menu-count-peliculas': ZOMBIE_DB.peliculas.length,
-    'menu-count-series': ZOMBIE_DB.series.length,
-    'menu-count-animes': ZOMBIE_DB.animes.length,
-    'menu-count-comics': ZOMBIE_DB.comics.length,
-    'menu-count-cortos': ZOMBIE_DB.cortometrajes.length
+    'menu-count-libros': ZOMBIE_DB.libros ? ZOMBIE_DB.libros.length : 0,
+    'menu-count-peliculas': ZOMBIE_DB.peliculas ? ZOMBIE_DB.peliculas.length : 0,
+    'menu-count-series': ZOMBIE_DB.series ? ZOMBIE_DB.series.length : 0,
+    'menu-count-animes': ZOMBIE_DB.animes ? ZOMBIE_DB.animes.length : 0,
+    'menu-count-comics': ZOMBIE_DB.comics ? ZOMBIE_DB.comics.length : 0,
+    'menu-count-cortos': ZOMBIE_DB.cortometrajes ? ZOMBIE_DB.cortometrajes.length : 0,
+    'menu-count-relatos': ZOMBIE_DB.relatos ? ZOMBIE_DB.relatos.length : 0,
+    'menu-count-juegos': ZOMBIE_DB.juegos ? ZOMBIE_DB.juegos.length : 0
   };
-  
+
   Object.keys(counters).forEach(id => {
     const element = document.getElementById(id);
     if (element) {
@@ -389,7 +392,7 @@ function updateMenuCounters() {
     }
   });
   
-  console.log('📊 Contadores del menú actualizados');
+  console.log('📊 Contadores del menú actualizados desde database.js');
 }
 
 /**
