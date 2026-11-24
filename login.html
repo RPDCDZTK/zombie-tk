@@ -6,122 +6,354 @@
   <title>Zombie-TK - Iniciar Sesión</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="login.css">
+  <style>
+    /* Estilos específicos para login */
+    .login-form { display: none; }
+    .login-form.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #8b0000;
+    }
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #8b0000 0%, #ff0000 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+    .btn-register {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: #a78bfa;
+      border: 2px solid #a78bfa;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-back {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: #aaa;
+      border: 2px solid #555;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .form-divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      color: #666;
+    }
+    .form-divider::before,
+    .form-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #333;
+    }
+    .form-divider span {
+      padding: 0 15px;
+      font-size: 12px;
+    }
+    .login-message {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+    .login-message.error {
+      display: block;
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid #dc2626;
+      color: #ff6b6b;
+    }
+    .login-message.success {
+      display: block;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid #22c55e;
+      color: #86efac;
+    }
+    .login-container {
+      max-width: 450px;
+      margin: 50px auto;
+      padding: 40px;
+      background: rgba(20, 20, 20, 0.95);
+      border: 2px solid #8b0000;
+      border-radius: 20px;
+    }
+    .login-logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .login-logo img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    .login-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 10px 0;
+    }
+    .title-accent { color: #ff0000; }
+    .login-subtitle {
+      font-size: 14px;
+      color: #aaa;
+      margin: 0;
+    }
+    .login-form h2 {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .forgot-link {
+      display: block;
+      text-align: right;
+      color: #a78bfa;
+      text-decoration: none;
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
-<body class="login-body">
+<body>
 
-  <!-- FONDO ANIMADO -->
-  <div class="login-background">
-    <div class="zombie-particle">🧟</div>
-    <div class="zombie-particle">🧟‍♂️</div>
-    <div class="zombie-particle">💀</div>
-    <div class="zombie-particle">🧟</div>
-    <div class="zombie-particle">☠️</div>
-  </div>
-
-  <!-- CONTENEDOR PRINCIPAL -->
   <div class="login-container">
     
     <!-- LOGO -->
     <div class="login-logo">
-      <img src="img/logo-zombietk.png" alt="Logo" class="login-logo-img">
+      <img src="img/logo-zombietk.png" alt="Logo">
       <h1 class="login-title">Zombie<span class="title-accent">-TK</span></h1>
       <p class="login-subtitle">La plataforma definitiva para fans del género zombie</p>
     </div>
 
-    <!-- FORMULARIOS -->
-    <div class="login-forms">
-      
-      <!-- LOGIN -->
-      <div class="login-form active" id="loginForm">
-        <h2>Iniciar Sesión</h2>
-        <form onsubmit="handleLogin(event)">
-          <div class="form-group">
-            <label for="loginEmail">📧 Correo electrónico</label>
-            <input type="email" id="loginEmail" required placeholder="tu@email.com">
-          </div>
-          <div class="form-group">
-            <label for="loginPassword">🔒 Contraseña</label>
-            <input type="password" id="loginPassword" required placeholder="••••••••">
-          </div>
-          <div class="form-options">
-            <label class="remember-me">
-              <input type="checkbox" id="rememberMe">
-              <span>Recordarme</span>
-            </label>
-            <a href="#" class="forgot-password" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
-          </div>
-          <button type="submit" class="btn-login">🧟 Entrar al Apocalipsis</button>
-        </form>
-        <div class="form-divider">
-          <span>O</span>
+    <!-- FORMULARIO DE LOGIN -->
+    <div class="login-form active" id="loginForm">
+      <h2>Iniciar Sesión</h2>
+      <form id="loginFormElement">
+        <div class="form-group">
+          <label>📧 Correo electrónico</label>
+          <input type="email" id="loginEmail" required placeholder="tu@email.com">
         </div>
-        <button type="button" class="btn-register" onclick="showRegister()">📝 Crear cuenta nueva</button>
-      </div>
-
-      <!-- REGISTRO -->
-      <div class="login-form" id="registerForm">
-        <h2>Crear Cuenta</h2>
-        <form onsubmit="handleRegister(event)">
-          <div class="form-group">
-            <label for="registerName">👤 Nombre de usuario</label>
-            <input type="text" id="registerName" required placeholder="ZombieFan123" minlength="3">
-          </div>
-          <div class="form-group">
-            <label for="registerEmail">📧 Correo electrónico</label>
-            <input type="email" id="registerEmail" required placeholder="tu@email.com">
-          </div>
-          <div class="form-group">
-            <label for="registerPassword">🔒 Contraseña</label>
-            <input type="password" id="registerPassword" required placeholder="Mínimo 6 caracteres" minlength="6">
-          </div>
-          <div class="form-group">
-            <label for="registerConfirmPassword">🔒 Confirmar contraseña</label>
-            <input type="password" id="registerConfirmPassword" required placeholder="Repite la contraseña">
-          </div>
-          <div class="form-options">
-            <label class="remember-me">
-              <input type="checkbox" id="acceptTerms" required>
-              <span>Acepto los términos y condiciones</span>
-            </label>
-          </div>
-          <button type="submit" class="btn-login">🧟 Unirme a la horda</button>
-        </form>
-        <div class="form-divider">
-          <span>O</span>
+        <div class="form-group">
+          <label>🔒 Contraseña</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••">
         </div>
-        <button type="button" class="btn-register" onclick="showLogin()">← Volver al inicio de sesión</button>
-      </div>
+        <a href="#" class="forgot-link" onclick="showForgot(); return false;">¿Olvidaste tu contraseña?</a>
+        <button type="submit" class="btn-login">🧟 Entrar al Apocalipsis</button>
+      </form>
+      <div class="form-divider"><span>O</span></div>
+      <button type="button" class="btn-register" onclick="showRegister()">📝 Crear cuenta nueva</button>
+    </div>
 
-      <!-- RECUPERAR CONTRASEÑA -->
-      <div class="login-form" id="forgotForm">
-        <h2>Recuperar Contraseña</h2>
-        <p class="forgot-description">Ingresa tu correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.</p>
-        <form onsubmit="handleForgotPassword(event)">
-          <div class="form-group">
-            <label for="forgotEmail">📧 Correo electrónico</label>
-            <input type="email" id="forgotEmail" required placeholder="tu@email.com">
-          </div>
-          <button type="submit" class="btn-login">📧 Enviar instrucciones</button>
-        </form>
-        <div class="form-divider">
-          <span>O</span>
+    <!-- FORMULARIO DE REGISTRO -->
+    <div class="login-form" id="registerForm">
+      <h2>Crear Cuenta</h2>
+      <form id="registerFormElement">
+        <div class="form-group">
+          <label>👤 Nombre de usuario</label>
+          <input type="text" id="registerName" required placeholder="ZombieFan123" minlength="3">
         </div>
-        <button type="button" class="btn-register" onclick="showLogin()">← Volver al inicio de sesión</button>
-      </div>
+        <div class="form-group">
+          <label>📧 Correo electrónico</label>
+          <input type="email" id="registerEmail" required placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>🔒 Contraseña</label>
+          <input type="password" id="registerPassword" required placeholder="Mínimo 6 caracteres" minlength="6">
+        </div>
+        <div class="form-group">
+          <label>🔒 Confirmar contraseña</label>
+          <input type="password" id="registerConfirmPassword" required placeholder="Repite la contraseña">
+        </div>
+        <button type="submit" class="btn-login">🧟 Unirme a la horda</button>
+      </form>
+      <div class="form-divider"><span>O</span></div>
+      <button type="button" class="btn-back" onclick="showLogin()">← Volver al inicio de sesión</button>
+    </div>
 
+    <!-- FORMULARIO DE RECUPERACIÓN -->
+    <div class="login-form" id="forgotForm">
+      <h2>Recuperar Contraseña</h2>
+      <p style="color: #aaa; font-size: 13px; text-align: center; margin-bottom: 20px;">
+        Ingresa tu correo y te enviaremos instrucciones para restablecer tu contraseña.
+      </p>
+      <form id="forgotFormElement">
+        <div class="form-group">
+          <label>📧 Correo electrónico</label>
+          <input type="email" id="forgotEmail" required placeholder="tu@email.com">
+        </div>
+        <button type="submit" class="btn-login">📧 Enviar instrucciones</button>
+      </form>
+      <div class="form-divider"><span>O</span></div>
+      <button type="button" class="btn-back" onclick="showLogin()">← Volver al inicio de sesión</button>
     </div>
 
     <!-- MENSAJE DE ERROR/ÉXITO -->
     <div class="login-message" id="loginMessage"></div>
 
-    <!-- FOOTER -->
-    <div class="login-footer">
-      <p>© 2024 Zombie-TK. Todos los derechos reservados.</p>
-      <p class="login-version">Versión 1.0</p>
-    </div>
-
   </div>
 
-  <script type="module" src="login.js"></script>
+  <!-- Firebase + Lógica de autenticación (TODO INLINE) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      signInWithEmailAndPassword,
+      updateProfile,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhmfIe2-ubrvTLlp4q6_PCP1B-ya4ScCA",
+      authDomain: "zombie-tk-rpd.firebaseapp.com",
+      projectId: "zombie-tk-rpd",
+      storageBucket: "zombie-tk-rpd.firebasestorage.app",
+      messagingSenderId: "139295642195",
+      appId: "1:139295642195:web:96a7b445922acf9e2faca6",
+      measurementId: "G-LBBBZJS8ZX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ===== FUNCIONES DE NAVEGACIÓN (GLOBALES) =====
+    window.showRegister = function() {
+      document.getElementById('loginForm').classList.remove('active');
+      document.getElementById('registerForm').classList.add('active');
+      document.getElementById('forgotForm').classList.remove('active');
+      hideMessage();
+    };
+
+    window.showLogin = function() {
+      document.getElementById('registerForm').classList.remove('active');
+      document.getElementById('forgotForm').classList.remove('active');
+      document.getElementById('loginForm').classList.add('active');
+      hideMessage();
+    };
+
+    window.showForgot = function() {
+      document.getElementById('loginForm').classList.remove('active');
+      document.getElementById('registerForm').classList.remove('active');
+      document.getElementById('forgotForm').classList.add('active');
+      hideMessage();
+    };
+
+    function showMessage(msg, type) {
+      const el = document.getElementById('loginMessage');
+      el.textContent = msg;
+      el.className = `login-message ${type}`;
+    }
+
+    function hideMessage() {
+      document.getElementById('loginMessage').className = 'login-message';
+    }
+
+    // ===== LOGIN =====
+    document.getElementById('loginFormElement').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        showMessage('🔄 Iniciando sesión...', 'success');
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        showMessage(`✅ ¡Bienvenido, ${userCredential.user.displayName || 'Superviviente'}!`, 'success');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+      } catch (error) {
+        let msg = '❌ Error al iniciar sesión';
+        if (error.code === 'auth/user-not-found') msg = '❌ Usuario no encontrado';
+        else if (error.code === 'auth/wrong-password') msg = '❌ Contraseña incorrecta';
+        else if (error.code === 'auth/invalid-credential') msg = '❌ Credenciales inválidas';
+        else msg = `❌ Error: ${error.message}`;
+        showMessage(msg, 'error');
+      }
+    });
+
+    // ===== REGISTRO =====
+    document.getElementById('registerFormElement').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+      const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+      if (password !== confirmPassword) {
+        showMessage('❌ Las contraseñas no coinciden', 'error');
+        return;
+      }
+
+      try {
+        showMessage('🔄 Creando cuenta...', 'success');
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(userCredential.user, { displayName: name });
+        showMessage('✅ ¡Cuenta creada! Bienvenido a la horda.', 'success');
+        setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+      } catch (error) {
+        let msg = '❌ Error al crear la cuenta';
+        if (error.code === 'auth/email-already-in-use') msg = '❌ Este correo ya está registrado';
+        else if (error.code === 'auth/weak-password') msg = '❌ Contraseña muy débil (mínimo 6 caracteres)';
+        else msg = `❌ Error: ${error.message}`;
+        showMessage(msg, 'error');
+      }
+    });
+
+    // ===== RECUPERAR CONTRASEÑA =====
+    document.getElementById('forgotFormElement').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showMessage('📧 Función en desarrollo', 'success');
+      setTimeout(() => showLogin(), 3000);
+    });
+
+    // ===== VERIFICAR SESIÓN =====
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('✅ Ya autenticado:', user.email);
+      }
+    });
+
+    console.log('🔐 Login cargado correctamente');
+  </script>
+
 </body>
 </html>
