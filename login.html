@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie-TK - Iniciar Sesión</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body class="login-body">
+
+  <!-- FONDO ANIMADO -->
+  <div class="login-background">
+    <div class="zombie-particle">🧟</div>
+    <div class="zombie-particle">🧟‍♂️</div>
+    <div class="zombie-particle">💀</div>
+    <div class="zombie-particle">🧟</div>
+    <div class="zombie-particle">☠️</div>
+  </div>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="login-container">
+    
+    <!-- LOGO -->
+    <div class="login-logo">
+      <img src="img/logo-zombietk.png" alt="Logo" class="login-logo-img">
+      <h1 class="login-title">Zombie<span class="title-accent">-TK</span></h1>
+      <p class="login-subtitle">La plataforma definitiva para fans del género zombie</p>
+    </div>
+
+    <!-- FORMULARIOS -->
+    <div class="login-forms">
+      
+      <!-- LOGIN -->
+      <div class="login-form active" id="loginForm">
+        <h2>Iniciar Sesión</h2>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginEmail">📧 Correo electrónico</label>
+            <input type="email" id="loginEmail" required placeholder="tu@email.com">
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">🔒 Contraseña</label>
+            <input type="password" id="loginPassword" required placeholder="••••••••">
+          </div>
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" id="rememberMe">
+              <span>Recordarme</span>
+            </label>
+            <a href="#" class="forgot-password" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
+          </div>
+          <button type="submit" class="btn-login">🧟 Entrar al Apocalipsis</button>
+        </form>
+        <div class="form-divider">
+          <span>O</span>
+        </div>
+        <button class="btn-register" onclick="showRegister()">📝 Crear cuenta nueva</button>
+      </div>
+
+      <!-- REGISTRO -->
+      <div class="login-form" id="registerForm">
+        <h2>Crear Cuenta</h2>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label for="registerName">👤 Nombre de usuario</label>
+            <input type="text" id="registerName" required placeholder="ZombieFan123" minlength="3">
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">📧 Correo electrónico</label>
+            <input type="email" id="registerEmail" required placeholder="tu@email.com">
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">🔒 Contraseña</label>
+            <input type="password" id="registerPassword" required placeholder="Mínimo 6 caracteres" minlength="6">
+          </div>
+          <div class="form-group">
+            <label for="registerConfirmPassword">🔒 Confirmar contraseña</label>
+            <input type="password" id="registerConfirmPassword" required placeholder="Repite la contraseña">
+          </div>
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" id="acceptTerms" required>
+              <span>Acepto los términos y condiciones</span>
+            </label>
+          </div>
+          <button type="submit" class="btn-login">🧟 Unirme a la horda</button>
+        </form>
+        <div class="form-divider">
+          <span>O</span>
+        </div>
+        <button class="btn-register" onclick="showLogin()">← Volver al inicio de sesión</button>
+      </div>
+
+      <!-- RECUPERAR CONTRASEÑA -->
+      <div class="login-form" id="forgotForm">
+        <h2>Recuperar Contraseña</h2>
+        <p class="forgot-description">Ingresa tu correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.</p>
+        <form onsubmit="handleForgotPassword(event)">
+          <div class="form-group">
+            <label for="forgotEmail">📧 Correo electrónico</label>
+            <input type="email" id="forgotEmail" required placeholder="tu@email.com">
+          </div>
+          <button type="submit" class="btn-login">📧 Enviar instrucciones</button>
+        </form>
+        <div class="form-divider">
+          <span>O</span>
+        </div>
+        <button class="btn-register" onclick="showLogin()">← Volver al inicio de sesión</button>
+      </div>
+
+    </div>
+
+    <!-- MENSAJE DE ERROR/ÉXITO -->
+    <div class="login-message" id="loginMessage"></div>
+
+    <!-- FOOTER -->
+    <div class="login-footer">
+      <p>© 2024 Zombie-TK. Todos los derechos reservados.</p>
+      <p class="login-version">Versión 1.0</p>
+    </div>
+
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
