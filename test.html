@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Firebase</title>
+</head>
+<body>
+  <h1>Prueba de Firebase</h1>
+  <div id="resultado">Cargando...</div>
+  
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    
+    onAuthStateChanged(auth, (user) => {
+      const resultado = document.getElementById('resultado');
+      if (user) {
+        resultado.innerHTML = `✅ Usuario conectado: ${user.email}`;
+      } else {
+        resultado.innerHTML = '❌ No hay usuario conectado';
+      }
+    });
+  </script>
+</body>
+</html>
