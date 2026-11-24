@@ -1,5 +1,5 @@
 /* ============================================
-   ZOMBIE-TK - cuenta.js (VERSIÓN CORREGIDA)
+   ZOMBIE-TK - cuenta.js (VERSIÓN ACTUALIZADA)
    ============================================ */
 
 const PREDEFINED_AVATARS = [
@@ -347,21 +347,13 @@ function getSettingsContent(section) {
       title: '🌐 Idioma y subtítulos',
       body: `<h4>Idioma de la aplicación</h4><p>Selecciona el idioma en el que deseas ver Zombie-TK:</p><ul><li>🇪🇸 Español (Actual)</li><li>🇺🇸 English</li><li>🇧🇷 Português</li><li>🇫🇷 Français</li></ul><p><strong>Nota:</strong> Esta función estará disponible en la próxima actualización.</p>`
     },
-    notificaciones: {
-      title: '🔔 Notificaciones',
-      body: `<h4>Tipos de notificaciones</h4><ul><li>✅ Nuevos estrenos y lanzamientos</li><li>✅ Actualizaciones de contenido favorito</li><li>✅ Mensajes del soporte técnico</li><li>✅ Ofertas y promociones especiales</li></ul><p><strong>Estado actual:</strong> Notificaciones desactivadas</p>`
-    },
     privacidad: {
       title: '🔒 Privacidad',
-      body: `<h4>Control de privacidad</h4><p>Gestiona quién puede ver tu actividad en Zombie-TK:</p><ul><li>👁️ Perfil público/privado</li><li>⭐ Lista de favoritos visible</li><li>📊 Estadísticas de visualización</li><li>🔍 Historial de búsqueda</li></ul>`
+      body: `<h4>Control de privacidad</h4><p>Disponible en la próxima actualización</p>`
     },
     descargas: {
       title: '⬇️ Descargas',
-      body: `<h4>Calidad de descarga</h4><ul><li>📱 Baja (480p) - Ahorra datos</li><li>💻 Media (720p) - Balance calidad/tamaño</li><li>🖥️ Alta (1080p) - Máxima calidad</li></ul><p>Las descargas se guardan en: <code>/ZombieTK/Downloads/</code></p>`
-    },
-    tv: {
-      title: '📺 Instalar en un TV',
-      body: `<h4>Dispositivos compatibles</h4><ul><li>📺 Smart TV (Samsung, LG, Sony)</li><li>🎮 Consolas (PlayStation, Xbox)</li><li>📱 Chromecast / AirPlay</li><li>🖥️ Android TV / Apple TV</li></ul><h4>Código de vinculación</h4><p style="font-size: 24px; text-align: center; color: #a78bfa; font-weight: bold; padding: 15px; background: rgba(109, 40, 217, 0.2); border-radius: 8px;">ZTK-2024-XXXX</p>`
+      body: `<h4>Calidad de descarga</h4><p>Disponible en la próxima actualización</p>`
     },
     acerca: {
       title: 'ℹ️ Acerca de Zombie-TK',
@@ -369,15 +361,11 @@ function getSettingsContent(section) {
     },
     actualizar: {
       title: '📱 Buscar actualizaciones',
-      body: `<h4>Versión actual</h4><p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0.43</p><p>✅ Estás usando la versión más reciente.</p><button onclick="checkForUpdates()" style="width: 100%; padding: 12px; background: #6d28d9; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Buscar actualizaciones</button>`
+      body: `<h4>Versión actual</h4><p style="font-size: 18px; color: #a78bfa; font-weight: bold;">v1.0</p><p>✅ Estás usando la versión más reciente.</p><button onclick="checkForUpdates()" style="width: 100%; padding: 12px; background: #6d28d9; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Buscar actualizaciones</button>`
     },
     contacto: {
       title: '✉️ Contactar soporte',
-      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto: zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li><li>💬 Telegram: <a>https://t.me/+kjGQHz-bdyc2MTZh</a></li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
-    },
-    'cambiar-cuenta': {
-      title: '🔄 Cambiar de cuenta',
-      body: `<h4>Cuenta actual</h4><p><strong>Usuario:</strong> ZombieFan</p><p><strong>Email:</strong> zombiefan@zombie-tk.com</p><button onclick="logout()" style="width: 100%; padding: 12px; background: #dc2626; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">Cerrar sesión</button>`
+      body: `<h4>Métodos de contacto</h4><ul><li>📧 Email: <a href="mailto:zombie-tk-regepunk@outlook.com" style="color: #a78bfa;">zombie-tk-regepunk@outlook.com</a></li><li>💬 Telegram: <a href="https://t.me/+kjGQHz-bdyc2MTZh" target="_blank" style="color: #a78bfa;">https://t.me/+kjGQHz-bdyc2MTZh</a></li></ul><p>Tiempo de respuesta: 24-48 horas</p>`
     }
   };
   
