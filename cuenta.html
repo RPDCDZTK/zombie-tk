@@ -380,18 +380,13 @@
     </div>
   </div>
   
-<!-- Script normal (sin module) para el menú, avatares, etc. -->
+  <!-- Script de cuenta (funciones globales) -->
   <script src="cuenta.js"></script>
   
-  <!-- Módulo para Firebase (logout) -->
-  <script type="module" src="auth-logout.js"></script>
+  <!-- Módulo de Firebase (auth) -->
+  <script type="module" src="auth.js"></script>
   
-  <!-- Módulo para protección (evita entrar sin sesión) -->
-  <script type="module" src="auth-guard.js"></script>
-  
-  <script src="database.js"></script>
-
-  <!-- Script de carga de avatar (si lo tienes) -->
+  <!-- Script de avatar en header -->
   <script>
     (function() {
       const avatarImg = document.getElementById('headerAvatarImg');
