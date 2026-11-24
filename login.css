@@ -254,6 +254,7 @@
   transition: all 0.3s;
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-bottom: 60px;
 }
 
 .btn-register:hover {
@@ -317,7 +318,6 @@
 /* FOOTER */
 .login-footer {
   margin-top: 30px;
-  margin-bottom: 60px;
   text-align: center;
   font-size: 12px;
   color: #666;
