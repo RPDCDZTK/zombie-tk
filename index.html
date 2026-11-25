@@ -5,285 +5,1088 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zombie - TK</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="hero-carousel.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <div class="site-branding">
-      <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
-      <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
-    </div>
-    <div class="header-icons">
-      <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
-      <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
-        <img src="" alt="Perfil" class="header-avatar-img" id="headerAvatarImg">
+  <!-- HOME PAGE -->
+  <div id="homePage" class="page active">
+    
+    <!-- HEADER CON AVATAR CIRCULAR -->
+    <div class="header">
+      <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <div class="site-branding">
+        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <div class="header-icons">
+        <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+        <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
+          <img src="" alt="Perfil" class="header-avatar-img" id="headerAvatarImg">
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- OVERLAY DEL MENÚ -->
-  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+    <!-- OVERLAY DEL MENÚ -->
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-  <!-- MENÚ HAMBURGUESA -->
-  <div class="hamburger-menu" id="hamburgerMenu">
-    <div class="menu-header">
-      <div class="menu-logo">
-        <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
-        <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+    <!-- MENÚ HAMBURGUESA LATERAL (SIN SECCIONES) -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <div class="menu-header">
+        <div class="menu-logo">
+          <img src="img/logo-zombietk.png" alt="Logo" class="menu-logo-img">
+          <div class="menu-title">Zombie<span class="title-accent">-TK</span></div>
+        </div>
+        <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
       </div>
-      <button class="menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
-    </div>
 
-    <div class="menu-content">
-      <a href="index.html" class="menu-item active">
-        <span class="menu-item-icon">🏠</span>
-        <span class="menu-item-text">Inicio</span>
-      </a>
-      <a href="search.html" class="menu-item">
-        <span class="menu-item-icon">🔍</span>
-        <span class="menu-item-text">Buscar</span>
-      </a>
-      <a href="favoritos.html" class="menu-item">
-        <span class="menu-item-icon">⭐</span>
-        <span class="menu-item-text">Favoritos</span>
-      </a>
-      <a href="cuenta.html" class="menu-item">
-        <span class="menu-item-icon">👤</span>
-        <span class="menu-item-text">Cuenta</span>
-      </a>
+      <div class="menu-content">
+        <a href="index.html" class="menu-item active">
+          <span class="menu-item-icon">🏠</span>
+          <span class="menu-item-text">Inicio</span>
+        </a>
+        
+        <a href="search.html" class="menu-item">
+          <span class="menu-item-icon">🔍</span>
+          <span class="menu-item-text">Buscar</span>
+        </a>
+        
+        <a href="favoritos.html" class="menu-item">
+          <span class="menu-item-icon">⭐</span>
+          <span class="menu-item-text">Favoritos</span>
+        </a>
+        
+        <a href="cuenta.html" class="menu-item">
+          <span class="menu-item-icon">👤</span>
+          <span class="menu-item-text">Cuenta</span>
+        </a>
 
-      <div class="menu-divider"></div>
+        <div class="menu-divider"></div>
 
-      <a href="libros.html" class="menu-item">
-        <span class="menu-item-icon">📖</span>
-        <span class="menu-item-text">Libros</span>
-        <span class="menu-item-count" id="menu-count-libros">0</span>
-      </a>
-      <a href="peliculas.html" class="menu-item">
-        <span class="menu-item-icon">🎥</span>
-        <span class="menu-item-text">Películas</span>
-        <span class="menu-item-count" id="menu-count-peliculas">0</span>
-      </a>
-      <a href="series.html" class="menu-item">
-        <span class="menu-item-icon">📺</span>
-        <span class="menu-item-text">Series</span>
-        <span class="menu-item-count" id="menu-count-series">0</span>
-      </a>
-      <a href="animes.html" class="menu-item">
-        <span class="menu-item-icon">🎌</span>
-        <span class="menu-item-text">Animes</span>
-        <span class="menu-item-count" id="menu-count-animes">0</span>
-      </a>
-      <a href="comics.html" class="menu-item">
-        <span class="menu-item-icon">💥</span>
-        <span class="menu-item-text">Cómics</span>
-        <span class="menu-item-count" id="menu-count-comics">0</span>
-      </a>
-      <a href="cortometrajes.html" class="menu-item">
-        <span class="menu-item-icon">🎬</span>
-        <span class="menu-item-text">Cortometrajes</span>
-        <span class="menu-item-count" id="menu-count-cortos">0</span>
-      </a>
-      <a href="relatos.html" class="menu-item">
-        <span class="menu-item-icon">✍️</span>
-        <span class="menu-item-text">Relatos</span>
-        <span class="menu-item-count" id="menu-count-relatos">0</span>
-      </a>
-      <a href="juegos.html" class="menu-item">
-        <span class="menu-item-icon">🎮</span>
-        <span class="menu-item-text">Juegos</span>
-        <span class="menu-item-count" id="menu-count-juegos">0</span>
-      </a>
-      <a href="tutoriales.html" class="menu-item">
-        <span class="menu-item-icon">🎓</span>
-        <span class="menu-item-text">Tutoriales</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-      <a href="musica.html" class="menu-item">
-        <span class="menu-item-icon">🎵</span>
-        <span class="menu-item-text">Música</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-      <a href="revistas.html" class="menu-item">
-        <span class="menu-item-icon">📰</span>
-        <span class="menu-item-text">Revistas</span>
-        <span class="menu-item-badge">Próximamente</span>
-      </a>
-    </div>
+        <a href="libros.html" class="menu-item">
+          <span class="menu-item-icon">📖</span>
+          <span class="menu-item-text">Libros</span>
+          <span class="menu-item-count" id="menu-count-libros">0</span>
+        </a>
+        
+        <a href="peliculas.html" class="menu-item">
+          <span class="menu-item-icon">🎥</span>
+          <span class="menu-item-text">Películas</span>
+          <span class="menu-item-count" id="menu-count-peliculas">0</span>
+        </a>
+        
+        <a href="series.html" class="menu-item">
+          <span class="menu-item-icon">📺</span>
+          <span class="menu-item-text">Series</span>
+          <span class="menu-item-count" id="menu-count-series">0</span>
+        </a>
+        
+        <a href="animes.html" class="menu-item">
+          <span class="menu-item-icon">🎌</span>
+          <span class="menu-item-text">Animes</span>
+          <span class="menu-item-count" id="menu-count-animes">0</span>
+        </a>
+        
+        <a href="comics.html" class="menu-item">
+          <span class="menu-item-icon">💥</span>
+          <span class="menu-item-text">Cómics</span>
+          <span class="menu-item-count" id="menu-count-comics">0</span>
+        </a>
+        
+        <a href="cortometrajes.html" class="menu-item">
+          <span class="menu-item-icon">🎬</span>
+          <span class="menu-item-text">Cortometrajes</span>
+          <span class="menu-item-count" id="menu-count-cortos">0</span>
+        </a>
+        
+        <a href="relatos.html" class="menu-item">
+          <span class="menu-item-icon">✍️</span>
+          <span class="menu-item-text">Relatos</span>
+          <span class="menu-item-count">6</span>
+        </a>
+        
+        <a href="juegos.html" class="menu-item">
+          <span class="menu-item-icon">🎮</span>
+          <span class="menu-item-text">Juegos</span>
+          <span class="menu-item-count">27</span>
+        </a>
+        
+        <a href="tutoriales.html" class="menu-item">
+          <span class="menu-item-icon">🎓</span>
+          <span class="menu-item-text">Tutoriales</span>
+          <span class="menu-item-badge">Próximamente</span>
+        </a>
+        
+        <a href="musica.html" class="menu-item">
+          <span class="menu-item-icon">🎵</span>
+          <span class="menu-item-text">Música</span>
+          <span class="menu-item-badge">Próximamente</span>
+        </a>
+        
+        <a href="revistas.html" class="menu-item">
+          <span class="menu-item-icon">📰</span>
+          <span class="menu-item-text">Revistas</span>
+          <span class="menu-item-badge">Próximamente</span>
+        </a>
+      </div>
 
-    <div class="menu-footer">
-      <div class="menu-footer-logo">🧟</div>
-      <div class="menu-footer-text">Zombie-TK+ v1.0</div>
-    </div>
-  </div>
-
-  <!-- NOTIFICACIÓN BANNER -->
-  <div class="notif-banner">
-    <div class="notif-banner-text">
-      <h3>🧟 Nuevos contenidos zombie</h3>
-      <p>Descubre los últimos estrenos de Zombie-TK</p>
-    </div>
-    <button>Activar</button>
-  </div>
-
-  <!-- HERO BANNER -->
-  <div class="hero-banner">
-    <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&q=80" alt="Hero" class="hero-bg-img">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">WORLD WAR Z</h1>
-      <p class="hero-subtitle">Una epidemia de proporciones bíblicas amenaza con destruir a la humanidad.</p>
-      <div class="hero-buttons">
-        <button class="btn-play">▶ Reproducir</button>
-        <button class="btn-list">+ Mi Lista</button>
+      <div class="menu-footer">
+        <div class="menu-footer-logo">🧟</div>
+        <div class="menu-footer-text">Zombie-TK+ v1.0</div>
       </div>
     </div>
-  </div>
 
-  <!-- SEGUIR VIENDO -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">Seguir Viendo</div>
-    </div>
-    <div class="horizontal-scroll">
-      <div class="card card-wide">
-        <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="TWD" class="card-img-real">
-        <div class="card-title-overlay">The Walking Dead · T11:E8</div>
-        <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-          <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </button>
+    <!-- NOTIFICACIÓN BANNER -->
+    <div class="notif-banner">
+      <div class="notif-banner-text">
+        <h3>🧟 Nuevos contenidos zombie</h3>
+        <p>Descubre los últimos estrenos de Zombie-TK</p>
       </div>
-      <div class="card card-wide">
-        <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="ZN" class="card-img-real">
-        <div class="card-title-overlay">Z Nation · T3:E5</div>
-        <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-          <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </button>
-      </div>
+      <button>Activar</button>
     </div>
-  </div>
 
-  <!-- PELÍCULAS DESTACADAS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">Películas Destacadas</div>
-      <a href="peliculas.html" class="section-link">Ver todo ›</a>
+    <!-- HERO CARRUSEL -->
+    <div class="hero-carousel" id="heroCarousel">
+      <!-- Los slides se generan dinámicamente con JavaScript -->
     </div>
-    <div class="horizontal-scroll">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="World War Z" class="card-img-real">
-          <span class="card-number">1</span>
-          <div class="card-title-overlay">World War Z</div>
+
+    <!-- 1. SEGUIR VIENDO -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Seguir Viendo</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide" data-id="sv1" data-title="The Walking Dead · T11:E8" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="TWD" class="card-img-real">
+          <div class="content-type-badge serie">📺 Serie</div>
+          <div class="card-title-overlay">The Walking Dead · T11:E8</div>
           <button class="favorite-btn" onclick="toggleFavorite(event, this)">
             <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80" alt="Zombieland" class="card-img-real">
-          <span class="card-number">2</span>
-          <div class="card-title-overlay">Zombieland</div>
-          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80" alt="Resident Evil" class="card-img-real">
-          <span class="card-number">3</span>
-          <div class="card-title-overlay">Resident Evil</div>
-          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80" alt="Dawn of the Dead" class="card-img-real">
-          <span class="card-number">4</span>
-          <div class="card-title-overlay">Dawn of the Dead</div>
+        <div class="card card-wide" data-id="sv2" data-title="Z Nation · T3:E5" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="ZN" class="card-img-real">
+          <div class="content-type-badge serie">📺 Serie</div>
+          <div class="card-title-overlay">Z Nation · T3:E5</div>
           <button class="favorite-btn" onclick="toggleFavorite(event, this)">
             <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </button>
         </div>
       </div>
     </div>
+
+    <!-- 2. NUEVOS EPISODIOS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Nuevos Episodios</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide" data-id="ep1" data-title="The Walking Dead · T11E24" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="The Walking Dead" class="card-img-real">
+          <div class="content-type-badge serie">📺 Serie</div>
+          <div class="card-title-overlay">The Walking Dead · T11E24</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="ep2" data-title="Z Nation · T5E13" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="Z Nation" class="card-img-real">
+          <div class="content-type-badge serie">📺 Serie</div>
+          <div class="card-title-overlay">Z Nation · T5E13</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="ep3" data-title="Black Summer · T2E8" data-type="Serie" data-img="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=400&q=80" alt="Black Summer" class="card-img-real">
+          <div class="content-type-badge serie">📺 Serie</div>
+          <div class="card-title-overlay">Black Summer · T2E8</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PELÍCULAS DESTACADAS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Películas Destacadas</div>
+        <a href="peliculas.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="m1" data-title="World War Z" data-type="Película" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="World War Z" class="card-img-real">
+            <span class="card-number">1</span>
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">World War Z</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="m2" data-title="Zombieland" data-type="Película" data-img="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80" alt="Zombieland" class="card-img-real">
+            <span class="card-number">2</span>
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">Zombieland</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="m3" data-title="Resident Evil" data-type="Película" data-img="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80" alt="Resident Evil" class="card-img-real">
+            <span class="card-number">3</span>
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">Resident Evil</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="m4" data-title="Dawn of the Dead" data-type="Película" data-img="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80" alt="Dawn of the Dead" class="card-img-real">
+            <span class="card-number">4</span>
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">Dawn of the Dead</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="m5" data-title="28 Days Later" data-type="Película" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="28 Days Later" class="card-img-real">
+            <span class="card-number">5</span>
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">28 Days Later</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. SERIES PRINCIPALES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Series Principales</div>
+        <a href="series.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="s1" data-title="The Walking Dead" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80" alt="The Walking Dead" class="card-img-real">
+            <span class="card-number">1</span>
+            <div class="content-type-badge serie">📺 Serie</div>
+            <div class="card-title-overlay">The Walking Dead</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="s2" data-title="Z Nation" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="Z Nation" class="card-img-real">
+            <span class="card-number">2</span>
+            <div class="content-type-badge serie">📺 Serie</div>
+            <div class="card-title-overlay">Z Nation</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="s3" data-title="Kingdom" data-type="Serie" data-img="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300&q=80" alt="Kingdom" class="card-img-real">
+            <span class="card-number">3</span>
+            <div class="content-type-badge serie">📺 Serie</div>
+            <div class="card-title-overlay">Kingdom</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. LO ÚLTIMO EN ZOMBIE-TK -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Lo último en Zombie-TK</div>
+        <a href="libros.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide" data-id="n1" data-title="Guía de Supervivencia Zombie" data-type="Libro" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" alt="Guía" class="card-img-real">
+          <div class="content-type-badge libro">📖 Libro</div>
+          <div class="card-title-overlay">Guía de Supervivencia Zombie</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="n2" data-title="Diario de un Zombi" data-type="Libro" data-img="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80" alt="Diario" class="card-img-real">
+          <div class="content-type-badge libro">📖 Libro</div>
+          <div class="card-title-overlay">Diario de un Zombi</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="n3" data-title="Left 4 Dead 3" data-type="Juego" data-img="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&q=80" alt="L4D3" class="card-img-real">
+          <div class="content-type-badge juego">🎮 Juego</div>
+          <div class="card-title-overlay">Left 4 Dead 3</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. LIBROS ZOMBIE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📚 Libros Zombie</div>
+        <a href="libros.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="b1" data-title="World War Z (Libro)" data-type="Libro" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80" alt="WWZ" class="card-img-real">
+            <div class="content-type-badge libro">📖 Libro</div>
+            <div class="card-title-overlay">World War Z (Libro)</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="b2" data-title="Guía de Supervivencia" data-type="Libro" data-img="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80" alt="Guía" class="card-img-real">
+            <div class="content-type-badge libro">📖 Libro</div>
+            <div class="card-title-overlay">Guía de Supervivencia</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="b3" data-title="Zombie Survival Guide" data-type="Libro" data-img="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=300&q=80" alt="ZSG" class="card-img-real">
+            <div class="content-type-badge libro">📖 Libro</div>
+            <div class="card-title-overlay">Zombie Survival Guide</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="b4" data-title="Patient Zero" data-type="Libro" data-img="https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&q=80" alt="PZ" class="card-img-real">
+            <div class="content-type-badge libro">📖 Libro</div>
+            <div class="card-title-overlay">Patient Zero</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. CÓMICS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📖 Cómics</div>
+        <a href="comics.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="c1" data-title="The Walking Dead Comics" data-type="Cómic" data-img="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=300&q=80" alt="TWD Comics" class="card-img-real">
+            <div class="content-type-badge comic">💥 Cómic</div>
+            <div class="card-title-overlay">The Walking Dead Comics</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="c2" data-title="Marvel Zombies" data-type="Cómic" data-img="https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1608889476561-6242cfdbf622?w=300&q=80" alt="Marvel Zombies" class="card-img-real">
+            <div class="content-type-badge comic">💥 Cómic</div>
+            <div class="card-title-overlay">Marvel Zombies</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="c3" data-title="I, Zombie" data-type="Cómic" data-img="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=300&q=80" alt="I Zombie" class="card-img-real">
+            <div class="content-type-badge comic">💥 Cómic</div>
+            <div class="card-title-overlay">I, Zombie</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. JUEGOS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎮 Juegos</div>
+        <a href="juegos.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="g1" data-title="Left 4 Dead 2" data-type="Juego" data-img="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80" alt="L4D2" class="card-img-real">
+            <div class="content-type-badge juego">🎮 Juego</div>
+            <div class="card-title-overlay">Left 4 Dead 2</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="g2" data-title="Resident Evil Village" data-type="Juego" data-img="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300&q=80" alt="RE Village" class="card-img-real">
+            <div class="content-type-badge juego">🎮 Juego</div>
+            <div class="card-title-overlay">Resident Evil Village</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="g3" data-title="Days Gone" data-type="Juego" data-img="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&q=80" alt="Days Gone" class="card-img-real">
+            <div class="content-type-badge juego">🎮 Juego</div>
+            <div class="card-title-overlay">Days Gone</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="g4" data-title="Dying Light 2" data-type="Juego" data-img="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&q=80" alt="DL2" class="card-img-real">
+            <div class="content-type-badge juego">🎮 Juego</div>
+            <div class="card-title-overlay">Dying Light 2</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. MÚSICA ZOMBIE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎵 Música Zombie</div>
+        <a href="#" class="section-link" onclick="showToast('🎵 Próximamente'); return false;">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="mu1" data-title="Thriller - Michael Jackson" data-type="Música" data-img="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80" alt="Thriller" class="card-img-real">
+            <div class="content-type-badge musica">🎵 Música</div>
+            <div class="card-title-overlay">Thriller - Michael Jackson</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="mu2" data-title="Zombie - The Cranberries" data-type="Música" data-img="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=300&q=80" alt="Zombie" class="card-img-real">
+            <div class="content-type-badge musica">🎵 Música</div>
+            <div class="card-title-overlay">Zombie - The Cranberries</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="mu3" data-title="Dead Man's Party" data-type="Música" data-img="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80" alt="Dead Party" class="card-img-real">
+            <div class="content-type-badge musica">🎵 Música</div>
+            <div class="card-title-overlay">Dead Man's Party</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. TUTORIALES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎓 Tutoriales de Supervivencia</div>
+        <a href="tutoriales.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide" data-id="t1" data-title="Cómo sobrevivir a un apocalipsis zombie" data-type="Tutorial" data-img="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=400&q=80" alt="Survive" class="card-img-real">
+          <div class="content-type-badge tutorial">🎓 Tutorial</div>
+          <div class="card-title-overlay">Cómo sobrevivir a un apocalipsis zombie</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="t2" data-title="Refugios seguros: Guía completa" data-type="Tutorial" data-img="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80" alt="Refugios" class="card-img-real">
+          <div class="content-type-badge tutorial">🎓 Tutorial</div>
+          <div class="card-title-overlay">Refugios seguros: Guía completa</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="t3" data-title="Armas caseras contra zombies" data-type="Tutorial" data-img="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=400&q=80" alt="Armas" class="card-img-real">
+          <div class="content-type-badge tutorial">🎓 Tutorial</div>
+          <div class="card-title-overlay">Armas caseras contra zombies</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. CORTOMETRAJES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">🎬 Cortometrajes</div>
+        <a href="cortometrajes.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="co1" data-title="Pride and Prejudice and Zombies" data-type="Cortometraje" data-img="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300&q=80" alt="PPZ" class="card-img-real">
+            <div class="content-type-badge cortometraje">🎬 Corto</div>
+            <div class="card-title-overlay">Pride and Prejudice and Zombies</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="co2" data-title="Shaun of the Dead" data-type="Cortometraje" data-img="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300&q=80" alt="Shaun" class="card-img-real">
+            <div class="content-type-badge cortometraje">🎬 Corto</div>
+            <div class="card-title-overlay">Shaun of the Dead</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="co3" data-title="Cockneys vs Zombies" data-type="Cortometraje" data-img="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300&q=80" alt="Cockneys" class="card-img-real">
+            <div class="content-type-badge cortometraje">🎬 Corto</div>
+            <div class="card-title-overlay">Cockneys vs Zombies</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. REVISTAS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">📰 Revistas</div>
+        <a href="#" class="section-link" onclick="showToast('📰 Próximamente'); return false;">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="r1" data-title="Zombie Monthly" data-type="Revista" data-img="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&q=80" alt="ZM" class="card-img-real">
+            <div class="content-type-badge revista">📰 Revista</div>
+            <div class="card-title-overlay">Zombie Monthly</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="r2" data-title="Undead Times" data-type="Revista" data-img="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=300&q=80" alt="UT" class="card-img-real">
+            <div class="content-type-badge revista">📰 Revista</div>
+            <div class="card-title-overlay">Undead Times</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="r3" data-title="Survival Weekly" data-type="Revista" data-img="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&q=80" alt="SW" class="card-img-real">
+            <div class="content-type-badge revista">📰 Revista</div>
+            <div class="card-title-overlay">Survival Weekly</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. RELATOS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">✍️ Relatos</div>
+        <a href="relatos.html" class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card" data-id="cu1" data-title="El último superviviente" data-type="Relato" data-img="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80" alt="Último" class="card-img-real">
+            <div class="content-type-badge relato">✍️ Relato</div>
+            <div class="card-title-overlay">El último superviviente</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="cu2" data-title="Noche de muertos" data-type="Relato" data-img="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=300&q=80" alt="Noche" class="card-img-real">
+            <div class="content-type-badge relato">✍️ Relato</div>
+            <div class="card-title-overlay">Noche de muertos</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="cu3" data-title="La cura perdida" data-type="Relato" data-img="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&q=80" alt="Cura" class="card-img-real">
+            <div class="content-type-badge relato">✍️ Relato</div>
+            <div class="card-title-overlay">La cura perdida</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. PERSONALIDADES POPULARES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Personalidades Populares</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="personality">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="George Romero" class="personality-img-real">
+          <div class="personality-name">George Romero</div>
+          <div class="personality-role">Director</div>
+        </div>
+        <div class="personality">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80" alt="Robert Kirkman" class="personality-img-real">
+          <div class="personality-name">Robert Kirkman</div>
+          <div class="personality-role">Creador</div>
+        </div>
+        <div class="personality">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80" alt="Andrew Lincoln" class="personality-img-real">
+          <div class="personality-name">Andrew Lincoln</div>
+          <div class="personality-role">Actor</div>
+        </div>
+        <div class="personality">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&q=80" alt="Max Brooks" class="personality-img-real">
+          <div class="personality-name">Max Brooks</div>
+          <div class="personality-role">Escritor</div>
+        </div>
+        <div class="personality">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80" alt="Hideo Kojima" class="personality-img-real">
+          <div class="personality-name">Hideo Kojima</div>
+          <div class="personality-role">Game Dev</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. COLECCIONES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Colecciones</div>
+      </div>
+      <div class="horizontal-scroll">
+        <div class="card card-wide" data-id="col1" data-title="Saga Completa: Resident Evil" data-type="Colección" data-img="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&q=80" alt="RE Saga" class="card-img-real">
+          <div class="content-type-badge coleccion">🏆 Colección</div>
+          <div class="card-title-overlay">Saga Completa: Resident Evil</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="col2" data-title="Saga: Night of the Living Dead" data-type="Colección" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=400&q=80" alt="NOTLD" class="card-img-real">
+          <div class="content-type-badge coleccion">🏆 Colección</div>
+          <div class="card-title-overlay">Saga: Night of the Living Dead</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="col3" data-title="Zombies Clásicos" data-type="Colección" data-img="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=400&q=80" alt="Clásicos" class="card-img-real">
+          <div class="content-type-badge coleccion">🏆 Colección</div>
+          <div class="card-title-overlay">Zombies Clásicos</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- SERIES PRINCIPALES -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">Series Principales</div>
-      <a href="series.html" class="section-link">Ver todo ›</a>
+  <!-- SEARCH PAGE -->
+  <div id="searchPage" class="page">
+    <div class="header">
+      <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <div class="site-branding">
+        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <div class="header-icons">
+        <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+        <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
+          <img src="" alt="Perfil" class="header-avatar-img">
+        </div>
+      </div>
     </div>
-    <div class="horizontal-scroll">
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80" alt="The Walking Dead" class="card-img-real">
-          <span class="card-number">1</span>
-          <div class="card-title-overlay">The Walking Dead</div>
-          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
+    <div class="search-container">
+      <div class="search-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Buscar" class="search-icon">
+        <input type="text" id="searchInput" placeholder="Programas, películas y más...">
       </div>
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="Z Nation" class="card-img-real">
-          <span class="card-number">2</span>
-          <div class="card-title-overlay">Z Nation</div>
-          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
-        </div>
+      <div class="search-filters">
+        <button class="filter-btn active" onclick="setFilter(this)">Populares</button>
+        <button class="filter-btn" onclick="setFilter(this)">Películas</button>
+        <button class="filter-btn" onclick="setFilter(this)">Series</button>
+        <button class="filter-btn" onclick="setFilter(this)">Libros</button>
+        <button class="filter-btn" onclick="setFilter(this)">Cómics</button>
+        <button class="filter-btn" onclick="setFilter(this)">Juegos</button>
+        <button class="filter-btn" onclick="setFilter(this)">Música</button>
+        <button class="filter-btn" onclick="setFilter(this)">Tutoriales</button>
       </div>
-      <div class="card">
-        <div class="card-img-container">
-          <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300&q=80" alt="Kingdom" class="card-img-real">
-          <span class="card-number">3</span>
-          <div class="card-title-overlay">Kingdom</div>
-          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
-            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </button>
+      <div class="content-grid" id="searchResults">
+        <div class="card" data-id="sm1" data-title="World War Z" data-type="Película" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="WWZ" class="card-img-real">
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">World War Z</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm2" data-title="Zombieland" data-type="Película" data-img="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80" alt="ZL" class="card-img-real">
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">Zombieland</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm3" data-title="Resident Evil" data-type="Película" data-img="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80" alt="RE" class="card-img-real">
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">Resident Evil</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm4" data-title="The Walking Dead" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80" alt="TWD" class="card-img-real">
+            <div class="content-type-badge serie">📺 Serie</div>
+            <div class="card-title-overlay">The Walking Dead</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm5" data-title="28 Days Later" data-type="Película" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="28DL" class="card-img-real">
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">28 Days Later</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm6" data-title="Left 4 Dead 2" data-type="Juego" data-img="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&q=80" alt="L4D2" class="card-img-real">
+            <div class="content-type-badge juego">🎮 Juego</div>
+            <div class="card-title-overlay">Left 4 Dead 2</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm7" data-title="Guía de Supervivencia" data-type="Libro" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80" alt="Guía" class="card-img-real">
+            <div class="content-type-badge libro">📖 Libro</div>
+            <div class="card-title-overlay">Guía de Supervivencia</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm8" data-title="Thriller" data-type="Música" data-img="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&q=80" alt="Thriller" class="card-img-real">
+            <div class="content-type-badge musica">🎵 Música</div>
+            <div class="card-title-overlay">Thriller</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="card" data-id="sm9" data-title="Dawn of the Dead" data-type="Película" data-img="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80" alt="DOTD" class="card-img-real">
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">Dawn of the Dead</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PERSONALIDADES POPULARES -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">Personalidades Populares</div>
+  <!-- FAVORITES PAGE -->
+  <div id="favoritesPage" class="page">
+    <div class="header">
+      <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <div class="site-branding">
+        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
+      </div>
+      <div class="header-icons">
+        <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+        <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
+          <img src="" alt="Perfil" class="header-avatar-img">
+        </div>
+      </div>
     </div>
-    <div class="horizontal-scroll">
-      <div class="personality">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="George Romero" class="personality-img-real">
-        <div class="personality-name">George Romero</div>
-        <div class="personality-role">Director</div>
+    <div class="favorites-container">
+      <div class="favorites-header">
+        <h2>⭐ Mis Favoritos</h2>
+        <p class="favorites-count" id="favoritesCount">0 ítems guardados</p>
       </div>
-      <div class="personality">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80" alt="Robert Kirkman" class="personality-img-real">
-        <div class="personality-name">Robert Kirkman</div>
-        <div class="personality-role">Creador</div>
+      <div class="favorites-grid" id="favoritesGrid">
+        <div class="empty-favorites" id="emptyFavorites">
+          <div class="empty-star">⭐</div>
+          <h3>No tienes favoritos aún</h3>
+          <p>Toca la estrella en cualquier contenido para agregarlo aquí</p>
+        </div>
       </div>
-      <div class="personality">
-        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80" alt="Andrew Lincoln" class="personality-img-real">
-        <div class="personality-name">Andrew Lincoln</div>
-        <div class="personality-role">Actor</div>
+    </div>
+  </div>
+
+  <!-- ACCOUNT PAGE -->
+  <div id="accountPage" class="page">
+    <div class="header">
+      <button class="hamburger-btn" onclick="openMenu()" aria-label="Abrir menú">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <div class="site-branding">
+        <img src="img/logo-zombietk.png" alt="Logo" class="site-logo">
+        <div class="site-title">Zombie<span class="title-accent">-TK</span></div>
       </div>
-      <div class="personality">
-        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&q=80" alt="Max Brooks" class="personality-img-real">
-        <div class="personality-name">Max Brooks</div>
-        <div class="personality-role">Escritor</div>
+      <div class="header-icons">
+        <button><img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="icon-img"></button>
+        <div class="header-avatar" onclick="window.location.href='cuenta.html'" title="Mi cuenta">
+          <img src="" alt="Perfil" class="header-avatar-img">
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-banner">
+      <div class="notif-banner-text">
+        <h3>Activar notificaciones</h3>
+        <p>Entérate antes que nadie de los estrenos de Zombie-TK+</p>
+      </div>
+      <button>Activar</button>
+    </div>
+
+    <div class="account-page">
+      <div class="section-header" style="padding: 0; margin-bottom: 15px;">
+        <div class="section-title">Continuar viendo</div>
+      </div>
+      <div class="horizontal-scroll" style="padding: 0; margin-bottom: 30px;">
+        <div class="card card-wide" data-id="sv1" data-title="The Walking Dead · T11:E8" data-type="Serie" data-img="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="TWD" class="card-img-real">
+          <div class="content-type-badge serie">📺 Serie</div>
+          <div class="card-title-overlay">The Walking Dead · T11:E8</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+        <div class="card card-wide" data-id="sv2" data-title="Z Nation · T3:E5" data-type="Serie" data-img="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80">
+          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="ZN" class="card-img-real">
+          <div class="content-type-badge serie">📺 Serie</div>
+          <div class="card-title-overlay">Z Nation · T3:E5</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="section-header" style="padding: 0; margin-bottom: 15px;">
+        <div class="section-title">Watchlist</div>
+        <a class="section-link">Ver todo ›</a>
+      </div>
+      <div class="horizontal-scroll" style="padding: 0;">
+        <div class="card" data-id="m1" data-title="World War Z" data-type="Película" data-img="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80">
+          <div class="card-img-container">
+            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="WWZ" class="card-img-real">
+            <div class="content-type-badge pelicula">🎥 Película</div>
+            <div class="card-title-overlay">World War Z</div>
+            <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+              <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeSettings()">←</button>
+        <div style="font-size: 20px; font-weight: bold;">Configuración</div>
+      </div>
+      <div class="account-page">
+        <div class="account-header">
+          <img src="" alt="ZombieFan" class="account-avatar-img-large" id="settingsAvatarImg">
+          <div class="account-info">
+            <h2 id="settingsUserName">ZombieFan</h2>
+            <p>zombiefan@zombie-tk.com</p>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <div class="settings-group-title">Cuenta</div>
+          <div class="settings-item" onclick="window.location.href='cuenta.html'">
+            <div class="settings-item-left">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Mi cuenta" class="settings-icon-img">
+              <div class="settings-item-text">
+                <h4>Mi cuenta</h4>
+                <p>Perfil, plan, dispositivos y soporte</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <div class="settings-group-title">General</div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Idioma" class="settings-icon-img">
+              <div class="settings-item-text">
+                <h4>Idioma y subtítulos</h4>
+                <p>Idioma de la app, audio y subtítulos</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <img src="https://cdn-icons-png.flaticon.com/512/3239/3239952.png" alt="Notificaciones" class="settings-icon-img">
+              <div class="settings-item-text">
+                <h4>Notificaciones</h4>
+                <p>Avisos y mensajes del soporte</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <img src="https://cdn-icons-png.flaticon.com/512/3659/3659898.png" alt="TV" class="settings-icon-img">
+              <div class="settings-item-text">
+                <h4>Instalar en un TV</h4>
+                <p>Pon la app de TV en tu televisor desde aquí</p>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <div class="settings-group-title">Soporte</div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <img src="https://cdn-icons-png.flaticon.com/512/189/189653.png" alt="Acerca de" class="settings-icon-img">
+              <div class="settings-item-text">
+                <h4>Acerca de</h4>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item">
+            <div class="settings-item-left">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Cambiar cuenta" class="settings-icon-img">
+              <div class="settings-item-text">
+                <h4>Cambiar de cuenta</h4>
+              </div>
+            </div>
+            <span>›</span>
+          </div>
+          <div class="settings-item logout-btn" onclick="logout()">
+            <div class="settings-item-left">
+              <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Cerrar sesión" class="settings-icon-img">
+              <div class="settings-item-text">
+                <h4 class="logout-text">Cerrar sesión</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-footer">
+          <img src="img/logo-zombietk.png" alt="Zombie-TK Logo" class="logo-footer-img">
+          <div class="logo-text">Zombie-TK+</div>
+        </div>
       </div>
     </div>
   </div>
@@ -291,57 +1094,33 @@
   <!-- BOTÓN VOLVER ARRIBA -->
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
-  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script src="hero-carousel.js"></script>
+  <script src="search.js"></script>
+  
+  <!-- SCRIPT DE CARGA DE AVATAR -->
   <script>
-    // ===== FUNCIONES GLOBALES =====
-    function openMenu() {
-      const menu = document.getElementById('hamburgerMenu');
-      const overlay = document.getElementById('menuOverlay');
-      if (menu) menu.classList.add('active');
-      if (overlay) overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-      const menu = document.getElementById('hamburgerMenu');
-      const overlay = document.getElementById('menuOverlay');
-      if (menu) menu.classList.remove('active');
-      if (overlay) overlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function toggleFavorite(event, button) {
-      event.stopPropagation();
-      button.classList.toggle('active');
-      
-      const isFav = button.classList.contains('active');
-      console.log(isFav ? '⭐ Agregado a favoritos' : '☆ Eliminado de favoritos');
-    }
-
-    // Cargar avatar del usuario
     (function() {
-      const avatarImg = document.getElementById('headerAvatarImg');
-      if (avatarImg) {
-        const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
-          'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%234c1d95"/><text x="50" y="65" font-size="45" text-anchor="middle">🧟</text></svg>';
-        avatarImg.src = savedAvatar;
+      const savedAvatar = localStorage.getItem('zombieTK_avatar') || 
+        'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%234c1d95"/><text x="50" y="65" font-size="45" text-anchor="middle">🧟</text></svg>';
+      
+      const avatarImgs = document.querySelectorAll('.header-avatar-img');
+      avatarImgs.forEach(img => {
+        img.src = savedAvatar;
+        img.onerror = function() {
+          this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%234c1d95"/><text x="50" y="65" font-size="45" text-anchor="middle">🧟</text></svg>';
+        };
+      });
+      
+      const settingsAvatar = document.getElementById('settingsAvatarImg');
+      if (settingsAvatar) settingsAvatar.src = savedAvatar;
+      
+      const savedName = localStorage.getItem('zombieTK_username');
+      const settingsUserName = document.getElementById('settingsUserName');
+      if (savedName && settingsUserName) {
+        settingsUserName.textContent = savedName;
       }
     })();
-
-    // Scroll button visibility
-    window.addEventListener('scroll', () => {
-      const backToTop = document.getElementById('backToTop');
-      if (backToTop) {
-        if (window.scrollY > 300) backToTop.classList.add('visible');
-        else backToTop.classList.remove('visible');
-      }
-    });
-
-    console.log('🧟 Zombie-TK Index cargado correctamente');
   </script>
 </body>
 </html>
