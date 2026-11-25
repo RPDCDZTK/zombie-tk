@@ -5,32 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zombie - TK</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-
-  <!-- 🔒 PROTECCIÓN DE AUTENTICACIÓN -->
-  <script type="module">
-    import { auth } from './firebase-config.js';
-    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    document.body.style.visibility = 'hidden';
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        document.body.style.visibility = 'visible';
-        console.log('✅ Usuario autenticado:', user.email);
-        window.ZOMBIE_USER = {
-          email: user.email,
-          name: user.displayName || 'ZombieFan',
-          uid: user.uid
-        };
-      } else {
-        console.log('❌ Sin sesión, redirigiendo...');
-        window.location.href = 'login.html';
-      }
-    });
-  </script>
 
   <!-- HEADER -->
   <div class="header">
@@ -156,20 +132,196 @@
     <button>Activar</button>
   </div>
 
-  <!-- HERO CARRUSEL -->
-  <div class="hero-carousel" id="heroCarousel"></div>
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+    <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&q=80" alt="Hero" class="hero-bg-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">WORLD WAR Z</h1>
+      <p class="hero-subtitle">Una epidemia de proporciones bíblicas amenaza con destruir a la humanidad.</p>
+      <div class="hero-buttons">
+        <button class="btn-play">▶ Reproducir</button>
+        <button class="btn-list">+ Mi Lista</button>
+      </div>
+    </div>
+  </div>
 
-  <!-- CONTENIDO DINÁMICO -->
-  <div id="dynamicContent"></div>
+  <!-- SEGUIR VIENDO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Seguir Viendo</div>
+    </div>
+    <div class="horizontal-scroll">
+      <div class="card card-wide">
+        <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=400&q=80" alt="TWD" class="card-img-real">
+        <div class="card-title-overlay">The Walking Dead · T11:E8</div>
+        <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+          <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+      </div>
+      <div class="card card-wide">
+        <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80" alt="ZN" class="card-img-real">
+        <div class="card-title-overlay">Z Nation · T3:E5</div>
+        <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+          <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PELÍCULAS DESTACADAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Películas Destacadas</div>
+      <a href="peliculas.html" class="section-link">Ver todo ›</a>
+    </div>
+    <div class="horizontal-scroll">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=300&q=80" alt="World War Z" class="card-img-real">
+          <span class="card-number">1</span>
+          <div class="card-title-overlay">World War Z</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=300&q=80" alt="Zombieland" class="card-img-real">
+          <span class="card-number">2</span>
+          <div class="card-title-overlay">Zombieland</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&q=80" alt="Resident Evil" class="card-img-real">
+          <span class="card-number">3</span>
+          <div class="card-title-overlay">Resident Evil</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=300&q=80" alt="Dawn of the Dead" class="card-img-real">
+          <span class="card-number">4</span>
+          <div class="card-title-overlay">Dawn of the Dead</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERIES PRINCIPALES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Series Principales</div>
+      <a href="series.html" class="section-link">Ver todo ›</a>
+    </div>
+    <div class="horizontal-scroll">
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=300&q=80" alt="The Walking Dead" class="card-img-real">
+          <span class="card-number">1</span>
+          <div class="card-title-overlay">The Walking Dead</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300&q=80" alt="Z Nation" class="card-img-real">
+          <span class="card-number">2</span>
+          <div class="card-title-overlay">Z Nation</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img-container">
+          <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?w=300&q=80" alt="Kingdom" class="card-img-real">
+          <span class="card-number">3</span>
+          <div class="card-title-overlay">Kingdom</div>
+          <button class="favorite-btn" onclick="toggleFavorite(event, this)">
+            <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONALIDADES POPULARES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Personalidades Populares</div>
+    </div>
+    <div class="horizontal-scroll">
+      <div class="personality">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="George Romero" class="personality-img-real">
+        <div class="personality-name">George Romero</div>
+        <div class="personality-role">Director</div>
+      </div>
+      <div class="personality">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80" alt="Robert Kirkman" class="personality-img-real">
+        <div class="personality-name">Robert Kirkman</div>
+        <div class="personality-role">Creador</div>
+      </div>
+      <div class="personality">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80" alt="Andrew Lincoln" class="personality-img-real">
+        <div class="personality-name">Andrew Lincoln</div>
+        <div class="personality-role">Actor</div>
+      </div>
+      <div class="personality">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&q=80" alt="Max Brooks" class="personality-img-real">
+        <div class="personality-name">Max Brooks</div>
+        <div class="personality-role">Escritor</div>
+      </div>
+    </div>
+  </div>
 
   <!-- BOTÓN VOLVER ARRIBA -->
   <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
   <!-- SCRIPTS -->
-  <script src="database.js"></script>
-  <script src="index.js"></script>
-  
   <script>
+    // ===== FUNCIONES GLOBALES =====
+    function openMenu() {
+      const menu = document.getElementById('hamburgerMenu');
+      const overlay = document.getElementById('menuOverlay');
+      if (menu) menu.classList.add('active');
+      if (overlay) overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('hamburgerMenu');
+      const overlay = document.getElementById('menuOverlay');
+      if (menu) menu.classList.remove('active');
+      if (overlay) overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleFavorite(event, button) {
+      event.stopPropagation();
+      button.classList.toggle('active');
+      
+      const isFav = button.classList.contains('active');
+      console.log(isFav ? '⭐ Agregado a favoritos' : '☆ Eliminado de favoritos');
+    }
+
     // Cargar avatar del usuario
     (function() {
       const avatarImg = document.getElementById('headerAvatarImg');
@@ -179,6 +331,17 @@
         avatarImg.src = savedAvatar;
       }
     })();
+
+    // Scroll button visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.getElementById('backToTop');
+      if (backToTop) {
+        if (window.scrollY > 300) backToTop.classList.add('visible');
+        else backToTop.classList.remove('visible');
+      }
+    });
+
+    console.log('🧟 Zombie-TK Index cargado correctamente');
   </script>
 </body>
 </html>
